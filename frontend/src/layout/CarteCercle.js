@@ -27,7 +27,7 @@ function CarteCercle() {
         </p>
         <p>
           <a class="btn btn-secondary" href="#" role="button">
-            View details »
+            Voir plus »
           </a>
         </p>
       </div>
@@ -57,7 +57,7 @@ function CarteCercle() {
         </p>
         <p>
           <a class="btn btn-secondary" href="#" role="button">
-            View details »
+            Voir plus »
           </a>
         </p>
       </div>
@@ -87,7 +87,7 @@ function CarteCercle() {
         </p>
         <p>
           <a class="btn btn-secondary" href="#" role="button">
-            View details »
+            Voir plus »
           </a>
         </p>
       </div>
