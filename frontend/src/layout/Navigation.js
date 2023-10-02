@@ -24,12 +24,8 @@ function Navigation() {
               <NavDropdown.Divider />
               <NavDropdown.Item href="#action5">ex:</NavDropdown.Item>
             </NavDropdown>
-            <Nav.Link href="#action2">Spéciaux</Nav.Link>
+            <Nav.Link href="#action2">Promotions</Nav.Link>
             <Nav.Link href="#action3">Contacts</Nav.Link>
-
-            <Nav.Link href="#" disabled>
-              Link
-            </Nav.Link>
           </Nav>
           <Form className="d-flex">
             <Form.Control
