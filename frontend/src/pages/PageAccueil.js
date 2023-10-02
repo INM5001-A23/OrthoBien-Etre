@@ -4,7 +4,6 @@ import ModelePage from "../layout/ModelePage";
 import Carousel from "react-bootstrap/Carousel";
 import CarteCercle from "../components/CarteCercle";
 import "./PageAccueil.css";
-import Footer from "../layout/Footer.js";
 
 function PageAccueil() {
   return (
@@ -38,7 +37,6 @@ function PageAccueil() {
         <h1 className="jumbotron-heading">Les Catégories</h1>
         <CarteCercle />
         <CarteCercle />
-        <Footer />
       </Stack>
     </ModelePage>
   );

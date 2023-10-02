@@ -26,13 +26,7 @@ function Navigation() {
             style={{ maxHeight: "100px" }}
             navbarScroll
           >
-            <NavDropdown title="Catalogue" id="navbarScrollingDropdown">
-              <NavDropdown.Item href="#action4">ex:Souliers</NavDropdown.Item>
-              <NavDropdown.Divider />
-              <NavDropdown.Item href="#action5">ex:</NavDropdown.Item>
-              <NavDropdown.Divider />
-              <NavDropdown.Item href="#action5">ex:</NavDropdown.Item>
-            </NavDropdown>
+            <Nav.Link href="/PageCatalogue.js">Catalogue</Nav.Link>
             <Nav.Link href="#action2">Promotions</Nav.Link>
             <Nav.Link href="#action3">Contacts</Nav.Link>
           </Nav>
