@@ -9,6 +9,15 @@ function Navigation() {
   return (
     <Navbar expand="lg" className="bg-body-tertiary">
       <Container fluid>
+        <Navbar.Brand href="#home">
+          <img
+            src="/bones.png"
+            width="60"
+            height="60"
+            className="d-inline-block align-top"
+            alt="React Bootstrap logo"
+          />
+        </Navbar.Brand>
         <Navbar.Brand href="#">OrthoBien-Être</Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">

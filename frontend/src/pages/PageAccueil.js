@@ -2,8 +2,9 @@ import { Stack } from "react-bootstrap";
 import ExampleCarouselImage from "../components/ExampleCarouselImage";
 import ModelePage from "../layout/ModelePage";
 import Carousel from "react-bootstrap/Carousel";
-import CarteCercle from "../layout/CarteCercle";
-import "./pageAccueil.css";
+import CarteCercle from "../components/CarteCercle";
+import "./PageAccueil.css";
+import Footer from "../layout/Footer.js";
 
 function PageAccueil() {
   return (
@@ -34,9 +35,10 @@ function PageAccueil() {
             </Carousel.Caption>
           </Carousel.Item>
         </Carousel>
-        <h1 class="jumbotron-heading">Les Catégories</h1>
+        <h1 className="jumbotron-heading">Les Catégories</h1>
         <CarteCercle />
         <CarteCercle />
+        <Footer />
       </Stack>
     </ModelePage>
   );
