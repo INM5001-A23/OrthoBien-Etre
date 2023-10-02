@@ -4,21 +4,14 @@ import Form from "react-bootstrap/Form";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import { Link } from "react-router-dom";
+import Logo from "../components/Logo";
 
 function Navigation() {
   return (
     <Navbar expand="lg" className="bg-body-tertiary">
       <Container fluid>
-        <Navbar.Brand href="#home">
-          <img
-            src="/bones.png"
-            width="60"
-            height="60"
-            className="d-inline-block align-top"
-            alt="React Bootstrap logo"
-          />
-        </Navbar.Brand>
-        <Navbar.Brand href="#">OrthoBien-Être</Navbar.Brand>
+        <Logo />
+        <Navbar.Brand>OrthoBien-Être</Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
           <Nav
