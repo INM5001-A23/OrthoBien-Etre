@@ -11,7 +11,7 @@ function Navigation() {
   return (
     <Navbar expand="lg" className="bg-body-tertiary">
       <Container fluid>
-        <Logo />
+        <Logo img="/bones.svg" />
         <Navbar.Brand>
           <Link to={"/"}>OrthoBien-Être</Link>
         </Navbar.Brand>
@@ -33,6 +33,8 @@ function Navigation() {
             </Nav.Link>
           </Nav>
           <Form className="d-flex">
+            <Logo img="/user.svg" />
+            <Logo img="/panier.svg" />
             <Form.Control
               type="search"
               placeholder="Recherche"
