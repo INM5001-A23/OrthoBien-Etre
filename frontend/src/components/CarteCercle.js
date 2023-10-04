@@ -4,8 +4,8 @@ import Row from "react-bootstrap/Row";
 
 function CarteCercle() {
   return (
-    <Row xs={1} md={2} className="g-4">
-      {Array.from({ length: 4 }).map((_, idx) => (
+    <Row xs={1} md={3} className="g-4">
+      {Array.from({ length: 3 }).map((_, idx) => (
         <Col key={idx}>
           <Card>
             <Card.Img variant="top" src="holder.js/100px160" />
