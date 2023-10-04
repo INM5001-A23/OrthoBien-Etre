@@ -5,13 +5,16 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import { Link } from "react-router-dom";
 import Logo from "../components/Logo";
+import "./Navigation.css";
 
 function Navigation() {
   return (
     <Navbar expand="lg" className="bg-body-tertiary">
       <Container fluid>
         <Logo />
-        <Navbar.Brand>OrthoBien-Être</Navbar.Brand>
+        <Navbar.Brand>
+          <Link to={"/"}>OrthoBien-Être</Link>
+        </Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
           <Nav
@@ -22,8 +25,12 @@ function Navigation() {
             <Nav.Link>
               <Link to={"/catalogue"}>Catalogue</Link>
             </Nav.Link>
-            <Nav.Link href="#action2">Promotions</Nav.Link>
-            <Nav.Link href="#action3">Contacts</Nav.Link>
+            <Nav.Link>
+              <Link to={"/faq"}>F.A.Q.</Link>
+            </Nav.Link>
+            <Nav.Link>
+              <Link to={"/contacts"}>Contacts</Link>
+            </Nav.Link>
           </Nav>
           <Form className="d-flex">
             <Form.Control

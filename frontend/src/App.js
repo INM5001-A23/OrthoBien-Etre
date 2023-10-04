@@ -2,6 +2,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import PageAccueil from "./pages/PageAccueil";
 import PageErreur from "./pages/PageErreur";
 import PageCatalogue from "./pages/PageCatalogue";
+import axios from "axios";
 
 const router = createBrowserRouter([
   {
