@@ -2,7 +2,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import PageAccueil from "./pages/PageAccueil";
 import PageErreur from "./pages/PageErreur";
 import PageCatalogue from "./pages/PageCatalogue";
-import axios from "axios";
+import PageConnexion from "./pages/PageConnexion";
 
 const router = createBrowserRouter([
   {
@@ -13,6 +13,11 @@ const router = createBrowserRouter([
   {
     path: "/catalogue",
     element: <PageCatalogue />,
+    errorElement: <PageErreur />,
+  },
+  {
+    path: "/connexion",
+    element: <PageConnexion />,
     errorElement: <PageErreur />,
   },
 ]);

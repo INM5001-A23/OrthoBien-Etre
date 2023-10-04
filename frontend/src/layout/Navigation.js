@@ -3,11 +3,13 @@ import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Logo from "../components/Logo";
 import "./Navigation.css";
 
 function Navigation() {
+  const navigate = useNavigate();
+
   return (
     <Navbar expand="lg" className="bg-body-tertiary">
       <Container fluid>
@@ -22,8 +24,8 @@ function Navigation() {
             style={{ maxHeight: "100px" }}
             navbarScroll
           >
-            <Nav.Link>
-              <Link to={"/catalogue"}>Catalogue</Link>
+            <Nav.Link onClick={() => navigate("/catalogue")}>
+              Catalogue
             </Nav.Link>
             <Nav.Link>
               <Link to={"/faq"}>F.A.Q.</Link>
@@ -33,8 +35,8 @@ function Navigation() {
             </Nav.Link>
           </Nav>
           <Form className="d-flex">
-            <Logo img="/user.svg" />
-            <Logo img="/panier.svg" />
+            <Logo img="/user.svg" path="/connexion" />
+            <Logo img="/panier.svg" path="/panier" />
             <Form.Control
               type="search"
               placeholder="Recherche"

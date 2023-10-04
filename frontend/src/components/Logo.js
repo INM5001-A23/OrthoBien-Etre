@@ -1,10 +1,10 @@
 import Navbar from "react-bootstrap/Navbar";
 import { Link } from "react-router-dom";
 
-function Logo({ img }) {
+function Logo({ path, img }) {
   return (
-    <Navbar.Brand href="#home">
-      <Link to={"/"}>
+    <Navbar.Brand>
+      <Link to={path}>
         <img
           src={img}
           width="40"
@@ -16,4 +16,5 @@ function Logo({ img }) {
     </Navbar.Brand>
   );
 }
+
 export default Logo;

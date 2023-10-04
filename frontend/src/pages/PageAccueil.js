@@ -4,8 +4,26 @@ import ModelePage from "../layout/ModelePage";
 import Carousel from "react-bootstrap/Carousel";
 import CarteCercle from "../components/CarteCercle";
 import "./PageAccueil.css";
+import { useContext } from "react";
+import { AxiosContext } from "..";
 
 function PageAccueil() {
+  const axios = useContext(AxiosContext);
+
+  axios
+    .get("/pokemon")
+    .then(function (response) {
+      // handle success
+      console.log(response);
+    })
+    .catch(function (error) {
+      // handle error
+      console.log(error);
+    })
+    .finally(function () {
+      // always executed
+    });
+
   return (
     <ModelePage>
       <Stack gap={3}>
