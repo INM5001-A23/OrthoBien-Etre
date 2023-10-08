@@ -3,6 +3,7 @@ import PageAccueil from "./pages/PageAccueil";
 import PageErreur from "./pages/PageErreur";
 import PageCatalogue from "./pages/PageCatalogue";
 import PageConnexion from "./pages/PageConnexion";
+import PageInscription from "./pages/PageInscription";
 
 const router = createBrowserRouter([
   {
@@ -18,6 +19,12 @@ const router = createBrowserRouter([
   {
     path: "/connexion",
     element: <PageConnexion />,
+    errorElement: <PageErreur />,
+  },
+
+  {
+    path: "/inscription",
+    element: <PageInscription />,
     errorElement: <PageErreur />,
   },
 ]);
