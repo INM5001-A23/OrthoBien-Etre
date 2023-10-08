@@ -13,9 +13,9 @@ function Navigation() {
   return (
     <Navbar expand="lg" className="bg-body-tertiary">
       <Container fluid>
-        <Logo img="/bones.svg" />
+        <Logo img="/bones.svg" path="/" />
         <Navbar.Brand>
-          <Link to={"/"}>OrthoBien-Être</Link>
+          <Nav.Link onClick={() => navigate("/")}>OrthoBien-Être</Nav.Link>
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
@@ -27,12 +27,8 @@ function Navigation() {
             <Nav.Link onClick={() => navigate("/catalogue")}>
               Catalogue
             </Nav.Link>
-            <Nav.Link>
-              <Link to={"/faq"}>F.A.Q.</Link>
-            </Nav.Link>
-            <Nav.Link>
-              <Link to={"/contacts"}>Contacts</Link>
-            </Nav.Link>
+            <Nav.Link onClick={() => navigate("/faq")}>F.A.Q.</Nav.Link>
+            <Nav.Link onClick={() => navigate("/contacts")}>Contacts</Nav.Link>
           </Nav>
           <Form className="d-flex">
             <Logo img="/user.svg" path="/connexion" />
