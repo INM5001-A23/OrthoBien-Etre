@@ -1,0 +1,9 @@
+a {
+  display: block;
+  margin: 0;
+}
+
+.col {
+  display: flex;
+  justify-content: space-evenly;
+}
