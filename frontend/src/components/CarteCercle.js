@@ -1,6 +1,6 @@
 import Card from "react-bootstrap/Card";
 
-function CarteCercle({ img, nomProduit }) {
+function CarteCercle({ img, nomProduit, path }) {
   return (
     <Card
       style={{
@@ -12,10 +12,7 @@ function CarteCercle({ img, nomProduit }) {
       <Card.Img variant="top" src={img} />
       <Card.Body>
         <Card.Title>{nomProduit}</Card.Title>
-        <Card.Text>
-          This is a longer card with supporting text below as a natural lead-in
-          to additional content. This content is a little bit longer.
-        </Card.Text>
+        <Card.Link href="/{path}">Voir détails</Card.Link>
       </Card.Body>
     </Card>
   );

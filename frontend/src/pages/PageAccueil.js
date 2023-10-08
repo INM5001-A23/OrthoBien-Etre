@@ -35,26 +35,43 @@ function PageAccueil() {
         />
 
         <h1 className="jumbotron-heading">Les Produits Populaires</h1>
-        <Row xs={1} md={3} className="g-3">
-          {Array.from({ length: 3 }).map((_, idx) => (
+        <Row xs={1} md={1} className="g-3">
+          {Array.from({ length: 1 }).map((_, idx) => (
             <Col key={idx}>
-              <CarteCercle img="/bones.svg" nomProduit="Allo" />
+              <CarteCercle img="/bones.svg" nomProduit="Nom Produit" />
+              <CarteCercle img="/bones.svg" nomProduit="Nom Produit" />
+              <CarteCercle img="/bones.svg" nomProduit="Nom Produit" />
             </Col>
           ))}
         </Row>
         <h1 className="jumbotron-heading">Les Catégories</h1>
-        <Row xs={1} md={4} className="g-3">
-          {Array.from({ length: 4 }).map((_, idx) => (
+        <Row xs={1} md={1} className="g-3">
+          {Array.from({ length: 1 }).map((_, idx) => (
             <Col key={idx}>
-              <CarteCercle img="/bones.svg" nomProduit="Allo" />
+              <CarteCercle img="/bones.svg" nomProduit="Nom catégorie" />
+              <CarteCercle img="/bones.svg" nomProduit="Nom catégorie" />
+              <CarteCercle img="/bones.svg" nomProduit="Nom catégorie" />
+              <CarteCercle img="/bones.svg" nomProduit="Nom catégorie" />
+            </Col>
+          ))}
+        </Row>
+        <Row xs={1} md={1} className="g-3">
+          {Array.from({ length: 1 }).map((_, idx) => (
+            <Col key={idx}>
+              <CarteCercle img="/bones.svg" nomProduit="Nom catégorie" />
+              <CarteCercle img="/bones.svg" nomProduit="Nom catégorie" />
+              <CarteCercle img="/bones.svg" nomProduit="Nom catégorie" />
+              <CarteCercle img="/bones.svg" nomProduit="Nom catégorie" />
             </Col>
           ))}
         </Row>
         <h1 className="jumbotron-heading">Les Promotions</h1>
-        <Row xs={1} md={4} className="g-3">
-          {Array.from({ length: 4 }).map((_, idx) => (
+        <Row xs={1} md={1} className="g-3">
+          {Array.from({ length: 1 }).map((_, idx) => (
             <Col key={idx}>
-              <CarteCercle img="/bones.svg" nomProduit="Allo" />
+              <CarteCercle img="/bones.svg" nomProduit="Nom Produit" />
+              <CarteCercle img="/bones.svg" nomProduit="Nom Produit" />
+              <CarteCercle img="/bones.svg" nomProduit="Nom Produit" />
             </Col>
           ))}
         </Row>

@@ -1,0 +1,10 @@
+.p-2 {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+}
+
+.mb-3 .form-control {
+  text-align: center;
+  width: 25rem;
+}
