@@ -1,9 +1,9 @@
 import Dropdown from "react-bootstrap/Dropdown";
 import DropdownButton from "react-bootstrap/DropdownButton";
 
-function Filtres() {
+function SortBy() {
   return (
-    <DropdownButton id="filtres" title="Filtres">
+    <DropdownButton id="filter" title="filter">
       <Dropdown.Item href="#/action-1">Prix ascendant</Dropdown.Item>
       <Dropdown.Item href="#/action-2">Prix descendant</Dropdown.Item>
       <Dropdown.Item href="#/action-3">Les mieux notés</Dropdown.Item>
@@ -12,4 +12,4 @@ function Filtres() {
   );
 }
 
-export default Filtres;
+export default SortBy;
