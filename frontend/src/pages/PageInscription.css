@@ -1,0 +1,16 @@
+.p-2 {
+  display: block;
+  margin: 0 35rem 10rem 35rem;
+}
+
+.col {
+  display: block;
+}
+
+.form-label {
+  justify-content: left;
+}
+
+label {
+  display: flex;
+}
