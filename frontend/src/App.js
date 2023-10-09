@@ -4,6 +4,7 @@ import PageErreur from "./pages/PageErreur";
 import PageCatalogue from "./pages/PageCatalogue";
 import PageConnexion from "./pages/PageConnexion";
 import PageInscription from "./pages/PageInscription";
+import PagePanier from "./pages/PagePanier";
 
 const router = createBrowserRouter([
   {
@@ -25,6 +26,12 @@ const router = createBrowserRouter([
   {
     path: "/inscription",
     element: <PageInscription />,
+    errorElement: <PageErreur />,
+  },
+
+  {
+    path: "/panier",
+    element: <PagePanier />,
     errorElement: <PageErreur />,
   },
 ]);
