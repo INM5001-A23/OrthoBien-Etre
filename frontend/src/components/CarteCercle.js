@@ -1,4 +1,5 @@
 import Card from "react-bootstrap/Card";
+import styles from "./CarteCercle.module.css";
 
 function CarteCercle({ img, nomProduit, path }) {
   return (
@@ -6,10 +7,9 @@ function CarteCercle({ img, nomProduit, path }) {
       style={{
         width: "15rem",
         textAlign: "center",
-        // display: "inline",
       }}
     >
-      <Card.Img variant="top" src={img} />
+      <Card.Img className={styles["header-img"]} variant="top" src={img} />
       <Card.Body>
         <Card.Title>{nomProduit}</Card.Title>
         <Card.Link href="/{path}">Voir détails</Card.Link>

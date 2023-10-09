@@ -9,7 +9,7 @@ export const AxiosContext = createContext();
 
 const instance = axios.create({
   // TODO: CHANGE FOR REAL API
-  baseURL: "https://pokeapi.co/api/v2",
+  baseURL: "https://api.sampleapis.com",
 });
 
 const root = ReactDOM.createRoot(document.getElementById("root"));

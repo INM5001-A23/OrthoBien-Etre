@@ -1,12 +1,16 @@
 .p-2 {
   text-align: center;
   display: flex;
+}
+
+.p-2 label {
   justify-content: center;
 }
 
-.mb-3 .form-control {
+.form-label {
   text-align: center;
-  width: 25rem;
+
+  justify-content: center;
 }
 
 .btn-primary {

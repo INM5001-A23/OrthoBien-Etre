@@ -3,7 +3,7 @@ import CarteCarree from "../components/CarteCarree";
 import BoutonDeroulant from "../components/BoutonDeroulant";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
-import "./PageCatalogue.css";
+import "./PageCatalogue.module.css";
 
 function PageCatalogue() {
   return (

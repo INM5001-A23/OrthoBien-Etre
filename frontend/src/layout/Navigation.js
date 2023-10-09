@@ -5,7 +5,7 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import { useNavigate } from "react-router-dom";
 import Logo from "../components/Logo";
-import "./Navigation.css";
+import "./Navigation.module.css";
 
 function Navigation() {
   const navigate = useNavigate();

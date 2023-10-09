@@ -1,6 +1,6 @@
 import ModelePage from "../layout/ModelePage";
 import Form from "react-bootstrap/Form";
-import "./PageConnexion.css";
+import "./PageConnexion.module.css";
 import Bouton from "../components/Bouton";
 import { useNavigate } from "react-router-dom";
 import Nav from "react-bootstrap/Nav";

@@ -3,7 +3,7 @@ h1 {
   margin: 10px;
 }
 
-/* .col {
+.col {
   display: flex;
   justify-content: space-evenly;
 }
@@ -11,4 +11,4 @@ h1 {
 .carousel-item {
   height: 20em;
   padding: 0 30em 0 30em;
-} */
+}
