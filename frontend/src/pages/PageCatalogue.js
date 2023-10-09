@@ -38,18 +38,20 @@ function PageCatalogue() {
           option3="Meilleurs vendeurs"
           option4="En promotion"
         />
-        <Row xs={1} md={4} className="g-3 justify-content-center">
-          {items.map((item) => (
-            <Col key={item.id}>
-              <CarteCarree
-                img={item.image}
-                nomProduit={item.title}
-                // categorie="Catégorie"
-                description={item.description}
-                // prix="Prix(0.00 $)"
-              />
-            </Col>
-          ))}
+        <Row xs={1} md={4} className="g-4 justify-content-center">
+          {items
+            .map((item) => (
+              <Col xs="auto" md="auto" key={item.id}>
+                <CarteCarree
+                  img={item.image}
+                  nomProduit={item.title}
+                  // categorie="Catégorie"
+                  description={item.description}
+                  // prix="Prix(0.00 $)"
+                />
+              </Col>
+            ))
+            .slice(0, 10)}
         </Row>
       </Container>
     </ModelePage>
