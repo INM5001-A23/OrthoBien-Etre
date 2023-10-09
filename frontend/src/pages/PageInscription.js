@@ -80,7 +80,7 @@ function PageInscription() {
           </Row>
 
           <Nav.Link
-            class="d-grid col-6 mx-auto mt-4"
+            className="d-grid col-6 mx-auto mt-4"
             onClick={() => navigate("/")}
           >
             <Bouton variant="outline-success" nom="Créer un compte" />

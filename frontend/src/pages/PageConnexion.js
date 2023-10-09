@@ -23,7 +23,7 @@ function PageConnexion() {
           </Form.Group>
 
           <Nav.Link
-            class="d-grid col-6 mx-auto mt-4"
+            className="d-grid col-6 mx-auto mt-4"
             onClick={() => navigate("/")}
           >
             {/* TODO 
@@ -34,7 +34,7 @@ function PageConnexion() {
           </Nav.Link>
 
           <Nav.Link
-            class="d-grid col-6 mx-auto mt-3"
+            className="d-grid col-6 mx-auto mt-3"
             onClick={() => navigate("/inscription")}
           >
             <Bouton variant="outline-success" nom="S'inscrire" />
