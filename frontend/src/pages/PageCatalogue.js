@@ -1,5 +1,5 @@
 import ModelePage from "../layout/ModelePage";
-import CarteCarree from "../components/CarteCarree";
+import Carte from "../components/Carte";
 import BoutonDeroulant from "../components/BoutonDeroulant";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
@@ -42,16 +42,17 @@ function PageCatalogue() {
           {items
             .map((item) => (
               <Col xs="auto" md="auto" key={item.id}>
-                <CarteCarree
+                <Carte
                   img={item.image}
                   nomProduit={item.title}
-                  // categorie="Catégorie"
+                  categorie="Catégorie"
                   description={item.description}
-                  // prix="Prix(0.00 $)"
+                  prix="Prix(0.00 $)"
+                  achat
                 />
               </Col>
             ))
-            .slice(0, 10)}
+            .slice(0, 15)}
         </Row>
       </Container>
     </ModelePage>

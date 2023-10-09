@@ -1,6 +1,6 @@
 import { Container, Stack } from "react-bootstrap";
 import ModelePage from "../layout/ModelePage";
-import CarteCercle from "../components/CarteCercle";
+import Carte from "../components/Carte";
 import { useContext, useEffect, useState } from "react";
 import { AxiosContext } from "..";
 import Col from "react-bootstrap/Col";
@@ -41,7 +41,7 @@ function PageAccueil() {
             {items
               .map((item) => (
                 <Col xs="auto" md="auto" key={item.id}>
-                  <CarteCercle img={item.image} nomProduit={item.title} />
+                  <Carte img={item.image} nomProduit={item.title} />
                 </Col>
               ))
               .slice(0, 3)}
@@ -56,7 +56,7 @@ function PageAccueil() {
             {items
               .map((item) => (
                 <Col xs="auto" md="auto" key={item.id}>
-                  <CarteCercle img={item.image} nomProduit={item.title} />
+                  <Carte img={item.image} nomProduit={item.title} />
                 </Col>
               ))
               .slice(0, 10)}
@@ -71,7 +71,7 @@ function PageAccueil() {
             {items
               .map((item) => (
                 <Col xs="auto" md="auto" key={item.id}>
-                  <CarteCercle img={item.image} nomProduit={item.title} />
+                  <Carte img={item.image} nomProduit={item.title} />
                 </Col>
               ))
               .slice(0, 3)}
