@@ -10,16 +10,20 @@ function PageConnexion() {
   return (
     <ModelePage>
       <h1 className="d-flex justify-content-center mb-3">Connexion</h1>
+      <p className="d-flex justify-content-center mb-3">
+        Veuillez entrer vos information si vous êtes déjà enregistré. <br></br>
+        Sinon veuillez vous inscrire.
+      </p>
       <Container className="d-flex justify-content-center">
-        <Form className="w-25">
+        <Form className="w-25 mb-5">
           <Form.Group className="mb-3 mx-auto" controlId="formBasicEmail">
-            <Form.Label>Email address</Form.Label>
-            <Form.Control type="email" placeholder="Enter email" />
+            <Form.Label>Adresse courriel</Form.Label>
+            <Form.Control type="email" />
           </Form.Group>
 
           <Form.Group className="mb-3" controlId="formBasicPassword">
-            <Form.Label>Password</Form.Label>
-            <Form.Control type="password" placeholder="Password" />
+            <Form.Label>Mot de passe</Form.Label>
+            <Form.Control type="password" />
           </Form.Group>
 
           <Nav.Link
@@ -34,7 +38,7 @@ function PageConnexion() {
           </Nav.Link>
 
           <Nav.Link
-            className="d-grid col-6 mx-auto mt-3"
+            className="d-grid col-6 mx-auto mt-3 mb-5"
             onClick={() => navigate("/inscription")}
           >
             <Bouton variant="outline-success" nom="S'inscrire" />

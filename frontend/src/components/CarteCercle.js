@@ -1,5 +1,5 @@
 import Card from "react-bootstrap/Card";
-import styles from "./CarteCercle.module.css";
+import styles from "./Carte.module.css";
 
 function CarteCercle({ img, nomProduit, path }) {
   return (

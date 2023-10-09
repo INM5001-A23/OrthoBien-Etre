@@ -19,43 +19,35 @@ function PageInscription() {
           <Row className="mb-2">
             <Form.Group as={Col} controlId="formGridFirstName">
               <Form.Label>Prénom</Form.Label>
-              <Form.Control
-                type="firstName"
-                placeholder="Entrez votre prénom"
-              />
+              <Form.Control type="firstName" />
             </Form.Group>
 
             <Form.Group as={Col} controlId="formGridLastName">
               <Form.Label>Nom</Form.Label>
-              <Form.Control type="lastName" placeholder="Entrez votre nom" />
+              <Form.Control type="lastName" />
             </Form.Group>
 
-            <Form.Group as={Col} controlId="formGridPassword">
+            <Form.Group as={Col} controlId="formGridTelephone">
               <Form.Label>Téléphone</Form.Label>
-              <Form.Control type="password" placeholder="Password" />
+              <Form.Control type="tel" placeholder="(000)-000-0000" />
             </Form.Group>
           </Row>
 
           <Row className="mb-2">
             <Form.Group as={Col} controlId="formGridEmail">
-              <Form.Label>Email</Form.Label>
-              <Form.Control type="email" placeholder="Enter email" />
+              <Form.Label>Courriel</Form.Label>
+              <Form.Control type="email" />
             </Form.Group>
 
             <Form.Group as={Col} controlId="formGridPassword">
-              <Form.Label>Password</Form.Label>
-              <Form.Control type="password" placeholder="Password" />
+              <Form.Label>Mot de passe</Form.Label>
+              <Form.Control type="password" />
             </Form.Group>
           </Row>
 
           <Form.Group>
-            <Form.Label>Address</Form.Label>
+            <Form.Label>Adresse</Form.Label>
             <Form.Control placeholder="1234 Main St" />
-          </Form.Group>
-
-          <Form.Group>
-            <Form.Label>Address 2</Form.Label>
-            <Form.Control placeholder="Apartment, studio, or floor" />
           </Form.Group>
 
           <Row>
@@ -80,7 +72,7 @@ function PageInscription() {
           </Row>
 
           <Nav.Link
-            className="d-grid col-6 mx-auto mt-4"
+            className="d-grid col-6 mx-auto mt-4 mb-4"
             onClick={() => navigate("/")}
           >
             <Bouton variant="outline-success" nom="Créer un compte" />

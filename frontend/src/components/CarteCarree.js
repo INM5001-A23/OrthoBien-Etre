@@ -1,5 +1,6 @@
 import ListGroup from "react-bootstrap/ListGroup";
 import Card from "react-bootstrap/Card";
+import styles from "./Carte.module.css";
 
 function CarteCarree({ img, nomProduit, categorie, description, prix }) {
   return (
@@ -9,10 +10,12 @@ function CarteCarree({ img, nomProduit, categorie, description, prix }) {
         textAlign: "center",
       }}
     >
-      <Card.Img variant="top" src={img} />
+      <Card.Img className={styles["header-img"]} variant="top" src={img} />
       <Card.Body>
         <Card.Title>{nomProduit}</Card.Title>
-        <Card.Text>{description}</Card.Text>
+        <Card.Text className={styles["description-field"]}>
+          {description}
+        </Card.Text>
       </Card.Body>
 
       <ListGroup className="list-group-flush">
