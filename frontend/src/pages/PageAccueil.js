@@ -1,7 +1,6 @@
 import { Container, Stack } from "react-bootstrap";
 import ModelePage from "../layout/ModelePage";
 import CarteCercle from "../components/CarteCercle";
-import "./PageAccueil.module.css";
 import { useContext, useEffect, useState } from "react";
 import { AxiosContext } from "..";
 import Col from "react-bootstrap/Col";
@@ -34,8 +33,10 @@ function PageAccueil() {
       <Stack gap={3}>
         <Carrousel images={items.map((items) => items.image).slice(0, 5)} />
 
-        <h1 className="jumbotron-heading">Les Produits Populaires</h1>
-        <Container>
+        <Container className="text-center">
+          <Row className="p-3">
+            <h1>Les Produits Populaires</h1>
+          </Row>
           <Row xs={1} md={3} className="g-3 justify-content-center">
             {items
               .map((item) => (
@@ -47,8 +48,10 @@ function PageAccueil() {
           </Row>
         </Container>
 
-        <h1 className="jumbotron-heading">Les Catégories</h1>
-        <Container>
+        <Container className="text-center">
+          <Row className="p-3">
+            <h1>Les Catégories</h1>
+          </Row>
           <Row xs={1} md={3} className="g-3 justify-content-center">
             {items
               .map((item) => (
@@ -60,8 +63,10 @@ function PageAccueil() {
           </Row>
         </Container>
 
-        <h1 className="jumbotron-heading">Les Promotions</h1>
-        <Container>
+        <Container className="text-center">
+          <Row className="p-3">
+            <h1>Les Promotions</h1>
+          </Row>
           <Row xs={1} md={3} className="g-3 justify-content-center">
             {items
               .map((item) => (

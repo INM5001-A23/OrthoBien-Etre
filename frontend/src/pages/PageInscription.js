@@ -2,7 +2,6 @@ import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import ModelePage from "../layout/ModelePage";
-import "./PageInscription.module.css";
 import Bouton from "../components/Bouton";
 import { useNavigate } from "react-router-dom";
 import Nav from "react-bootstrap/Nav";
