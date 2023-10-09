@@ -48,36 +48,30 @@ function PageAccueil() {
         </Container>
 
         <h1 className="jumbotron-heading">Les Catégories</h1>
-        <Row xs={1} md={1} className="g-1">
-          {Array.from({ length: 3 }).map((_, idx) => (
-            <Col key={idx}>
-              <CarteCercle img="/bones.svg" nomProduit="Nom catégorie" />
-              <CarteCercle img="/bones.svg" nomProduit="Nom catégorie" />
-              <CarteCercle img="/bones.svg" nomProduit="Nom catégorie" />
-              <CarteCercle img="/bones.svg" nomProduit="Nom catégorie" />
-            </Col>
-          ))}
-        </Row>
-        <Row xs={1} md={1} className="g-3">
-          {Array.from({ length: 1 }).map((_, idx) => (
-            <Col key={idx}>
-              <CarteCercle img="/bones.svg" nomProduit="Nom catégorie" />
-              <CarteCercle img="/bones.svg" nomProduit="Nom catégorie" />
-              <CarteCercle img="/bones.svg" nomProduit="Nom catégorie" />
-              <CarteCercle img="/bones.svg" nomProduit="Nom catégorie" />
-            </Col>
-          ))}
-        </Row>
+        <Container>
+          <Row xs={1} md={3} className="g-3 justify-content-center">
+            {items
+              .map((item) => (
+                <Col xs="auto" md="auto" key={item.id}>
+                  <CarteCercle img={item.image} nomProduit={item.title} />
+                </Col>
+              ))
+              .slice(0, 10)}
+          </Row>
+        </Container>
+
         <h1 className="jumbotron-heading">Les Promotions</h1>
-        <Row xs={1} md={1} className="g-3">
-          {Array.from({ length: 1 }).map((_, idx) => (
-            <Col key={idx}>
-              <CarteCercle img="/bones.svg" nomProduit="Nom Produit" />
-              <CarteCercle img="/bones.svg" nomProduit="Nom Produit" />
-              <CarteCercle img="/bones.svg" nomProduit="Nom Produit" />
-            </Col>
-          ))}
-        </Row>
+        <Container>
+          <Row xs={1} md={3} className="g-3 justify-content-center">
+            {items
+              .map((item) => (
+                <Col xs="auto" md="auto" key={item.id}>
+                  <CarteCercle img={item.image} nomProduit={item.title} />
+                </Col>
+              ))
+              .slice(0, 3)}
+          </Row>
+        </Container>
       </Stack>
     </ModelePage>
   );
