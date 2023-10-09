@@ -9,7 +9,7 @@ export const AxiosContext = createContext();
 
 const instance = axios.create({
   // TODO: CHANGE FOR REAL API
-  baseURL: "https://api.sampleapis.com",
+  baseURL: "http://localhost:3300",
 });
 
 const root = ReactDOM.createRoot(document.getElementById("root"));

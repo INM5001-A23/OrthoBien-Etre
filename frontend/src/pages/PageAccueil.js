@@ -13,7 +13,7 @@ function PageAccueil() {
 
   useEffect(() => {
     axios
-      .get("/coffee/hot")
+      .get("/categories")
       .then(function (response) {
         // handle success
         console.log(response);
@@ -56,7 +56,7 @@ function PageAccueil() {
             {items
               .map((item) => (
                 <Col xs="auto" md="auto" key={item.id}>
-                  <Carte img={item.image} nomProduit={item.title} />
+                  <Carte img={item.nom} nomProduit={item.quantite} />
                 </Col>
               ))
               .slice(0, 10)}
