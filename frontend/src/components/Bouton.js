@@ -1,9 +1,9 @@
 import Button from "react-bootstrap/Button";
 
-function Bouton({ variant, nom }) {
+function Bouton({ variant, className, children }) {
   return (
-    <Button type="submit" variant={variant}>
-      {nom}
+    <Button type="submit" variant={variant} className={className}>
+      {children}
     </Button>
   );
 }
