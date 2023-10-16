@@ -9,12 +9,14 @@ function PageConnexion() {
   const navigate = useNavigate();
   return (
     <ModelePage>
-      <h1 className="d-flex justify-content-center mb-3">Connexion</h1>
-      <p className="d-flex justify-content-center mb-3">
-        Veuillez entrer vos information si vous êtes déjà enregistré. <br></br>
-        Sinon veuillez vous inscrire.
-      </p>
-      <Container className="d-flex justify-content-center">
+      <div className="d-flex flex-column align-items-center justify-content-center">
+        <h1 className="mb-3">Connexion</h1>
+        <p className="mb-3 text-center">
+          Veuillez entrer vos information si vous êtes déjà enregistré.{" "}
+          <br></br>
+          Sinon veuillez vous inscrire.
+        </p>
+
         <Form className="w-25 mb-5">
           <Form.Group className="mb-3 mx-auto" controlId="formBasicEmail">
             <Form.Label>Adresse courriel</Form.Label>
@@ -26,25 +28,23 @@ function PageConnexion() {
             <Form.Control type="password" />
           </Form.Group>
 
-          <Nav.Link
-            className="d-grid col-6 mx-auto mt-4"
-            onClick={() => navigate("/")}
-          >
+          <div className="d-grid gap-2">
+            <Nav.Link onClick={() => navigate("/")}>
+              <Bouton variant="primary" size="lg" className="w-100">
+                Se connecter
+              </Bouton>
+            </Nav.Link>
             {/* TODO 
           Si compte existant, redirection sur PageAccueil avec nom a cote du logo. 
           Si pas de compte, message erreur apparait*/}
-
-            <Bouton variant="primary" nom="Se connecter" />
-          </Nav.Link>
-
-          <Nav.Link
-            className="d-grid col-6 mx-auto mt-3 mb-5"
-            onClick={() => navigate("/inscription")}
-          >
-            <Bouton variant="outline-success" nom="S'inscrire" />
-          </Nav.Link>
+            <Nav.Link onClick={() => navigate("/inscription")}>
+              <Bouton variant="secondary" size="lg" className="w-100">
+                S'inscrire
+              </Bouton>
+            </Nav.Link>
+          </div>
         </Form>
-      </Container>
+      </div>
     </ModelePage>
   );
 }

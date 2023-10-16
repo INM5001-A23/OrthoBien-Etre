@@ -75,7 +75,7 @@ function PageInscription() {
             className="d-grid col-6 mx-auto mt-4 mb-4"
             onClick={() => navigate("/")}
           >
-            <Bouton variant="outline-success" nom="Créer un compte" />
+            <Bouton variant="outline-success">Créer un compte</Bouton>
           </Nav.Link>
         </Form>
       </Container>

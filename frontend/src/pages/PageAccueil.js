@@ -35,6 +35,21 @@ function PageAccueil() {
 
         <Container className="text-center">
           <Row className="p-3">
+            <h1>Les Promotions</h1>
+          </Row>
+          <Row xs={1} md={3} className="g-3 justify-content-center">
+            {items
+              .map((item) => (
+                <Col xs="auto" md="auto" key={item.id}>
+                  <Carte img={item.image} nomProduit={item.title} />
+                </Col>
+              ))
+              .slice(0, 3)}
+          </Row>
+        </Container>
+
+        <Container className="text-center">
+          <Row className="p-3">
             <h1>Les Produits Populaires</h1>
           </Row>
           <Row xs={1} md={3} className="g-3 justify-content-center">
@@ -60,21 +75,6 @@ function PageAccueil() {
                 </Col>
               ))
               .slice(0, 10)}
-          </Row>
-        </Container>
-
-        <Container className="text-center">
-          <Row className="p-3">
-            <h1>Les Promotions</h1>
-          </Row>
-          <Row xs={1} md={3} className="g-3 justify-content-center">
-            {items
-              .map((item) => (
-                <Col xs="auto" md="auto" key={item.id}>
-                  <Carte img={item.image} nomProduit={item.title} />
-                </Col>
-              ))
-              .slice(0, 3)}
           </Row>
         </Container>
       </Stack>

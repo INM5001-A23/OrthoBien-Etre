@@ -4,9 +4,9 @@ import Footer from "./Footer";
 
 function ModelePage({ children }) {
   return (
-    <Stack gap={3}>
+    <Stack gap={3} className="min-vh-100">
       <Navigation />
-      <div className="p-2">{children}</div>
+      <div className="flex-grow-1">{children}</div>
       <Footer />
     </Stack>
   );
