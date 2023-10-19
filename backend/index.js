@@ -17,7 +17,7 @@ app.use(cors());
 // db connection
 // mongoose.connect('mongodb://localhost:27017/orthobienetre',{useNewUrlParser: true});
 mongoose.connect(
-  "mongodb+srv://admin:pVYa4Qc0WZzMFQ9U@cluster0.6hiecyv.mongodb.net/?retryWrites=true&w=majority",
+  "mongodb+srv://admin:pVYa4Qc0WZzMFQ9U@cluster0.6hiecyv.mongodb.net/INM5001",
   { useNewUrlParser: true }
 );
 mongoose.connection.on("connected", () => console.log("Mongodb Connected..."));

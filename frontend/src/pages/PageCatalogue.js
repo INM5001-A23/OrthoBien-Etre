@@ -13,7 +13,7 @@ function PageCatalogue() {
 
   useEffect(() => {
     axios
-      .get("/categories")
+      .get("/products")
       .then(function (response) {
         // handle success
         console.log(response);
@@ -44,10 +44,10 @@ function PageCatalogue() {
               <Col xs="auto" md="auto" key={item.id}>
                 <Carte
                   img={item.image}
-                  nomProduit={item.title}
-                  categorie="Catégorie"
+                  nomProduit={item.nomProduit}
+                  categorie={item.codeCategorie}
                   description={item.description}
-                  prix="Prix(0.00 $)"
+                  prix={item.prix}
                   achat
                 />
               </Col>
