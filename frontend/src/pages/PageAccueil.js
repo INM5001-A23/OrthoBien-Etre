@@ -71,7 +71,7 @@ function PageAccueil() {
             {items
               .map((item) => (
                 <Col xs="auto" md="auto" key={item.id}>
-                  <Carte img={item.nom} nomProduit={item.quantite} />
+                  <Carte img={item.nom} nomProduit={item.nomCategorie} />
                 </Col>
               ))
               .slice(0, 10)}
