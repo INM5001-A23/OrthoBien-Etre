@@ -1,11 +1,12 @@
 import ListGroup from "react-bootstrap/ListGroup";
 import Card from "react-bootstrap/Card";
 import styles from "./Carte.module.css";
+import NomCategorie from "./NomCategorie";
 
-function CarteCarree({
+function CarteProduit({
   img,
   nomProduit,
-  categorie,
+  codeCategorie,
   description,
   prix,
   achat = false,
@@ -28,7 +29,7 @@ function CarteCarree({
       </Card.Body>
 
       <ListGroup className="list-group-flush">
-        {categorie && <ListGroup.Item>{categorie}</ListGroup.Item>}
+        {codeCategorie && <NomCategorie codeCategorie={codeCategorie} />}
         {prix && <ListGroup.Item>{prix}</ListGroup.Item>}
         <ListGroup.Item className="lien">
           <Card.Link href="#">Voir détails</Card.Link>
@@ -48,4 +49,4 @@ function CarteCarree({
   );
 }
 
-export default CarteCarree;
+export default CarteProduit;

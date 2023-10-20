@@ -1,6 +1,6 @@
 import { Container, Stack } from "react-bootstrap";
 import ModelePage from "../layout/ModelePage";
-import Carte from "../components/Carte";
+import CarteProduit from "../components/CarteProduit";
 import { useContext, useEffect, useState } from "react";
 import { AxiosContext } from "..";
 import Col from "react-bootstrap/Col";
@@ -41,7 +41,7 @@ function PageAccueil() {
             {items
               .map((item) => (
                 <Col xs="auto" md="auto" key={item.id}>
-                  <Carte img={item.image} nomProduit={item.title} />
+                  <CarteProduit img={item.image} nomProduit={item.title} />
                 </Col>
               ))
               .slice(0, 3)}
@@ -56,7 +56,7 @@ function PageAccueil() {
             {items
               .map((item) => (
                 <Col xs="auto" md="auto" key={item.id}>
-                  <Carte img={item.image} nomProduit={item.title} />
+                  <CarteProduit img={item.image} nomProduit={item.title} />
                 </Col>
               ))
               .slice(0, 3)}
@@ -71,7 +71,7 @@ function PageAccueil() {
             {items
               .map((item) => (
                 <Col xs="auto" md="auto" key={item.id}>
-                  <Carte img={item.nom} nomProduit={item.nomCategorie} />
+                  <CarteProduit img={item.nom} nomProduit={item.nomCategorie} />
                 </Col>
               ))
               .slice(0, 10)}
