@@ -41,7 +41,7 @@ function PageCatalogue() {
         <Row xs={1} md={4} className="g-4 justify-content-center">
           {items
             .map((item) => (
-              <Col xs="auto" md="auto" key={item.id}>
+              <Col xs="auto" md="auto" key={item._id}>
                 <Carte
                   img={item.image}
                   nomProduit={item.nomProduit}
@@ -49,6 +49,7 @@ function PageCatalogue() {
                   description={item.description}
                   prix={item.prix}
                   achat
+                  key={item._id}
                 />
               </Col>
             ))
