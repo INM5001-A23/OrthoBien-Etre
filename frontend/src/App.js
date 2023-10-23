@@ -6,6 +6,7 @@ import PageConnexion from "./pages/PageConnexion";
 import PageInscription from "./pages/PageInscription";
 import PagePanier from "./pages/PagePanier";
 import PagePaiement from "./pages/PagePaiement";
+import PageProduit from "./pages/PageProduit";
 
 const router = createBrowserRouter([
   {
@@ -39,6 +40,12 @@ const router = createBrowserRouter([
   {
     path: "/paiement",
     element: <PagePaiement />,
+    errorElement: <PageErreur />,
+  },
+
+  {
+    path: "/produit",
+    element: <PageProduit />,
     errorElement: <PageErreur />,
   },
 ]);
