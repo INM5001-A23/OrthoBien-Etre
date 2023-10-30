@@ -112,7 +112,7 @@ function PageAccueil() {
               .map((categorie) => (
                 <Col xs="auto" md="auto" key={categorie._id}>
                   {/* {JSON.stringify(categorie)} */}
-                  <CarteCategorie categorie={categories} />
+                  <CarteCategorie categorie={categorie} />
                 </Col>
               ))
               .slice(0, 10)}

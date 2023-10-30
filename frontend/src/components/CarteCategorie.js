@@ -2,7 +2,6 @@ import ListGroup from "react-bootstrap/ListGroup";
 import Card from "react-bootstrap/Card";
 import styles from "./Carte.module.css";
 import { Link, useNavigate } from "react-router-dom";
-import NomCategorie from "./NomCategorie";
 
 function CarteCategorie({ categorie: { img, nomCategorie, codeCategorie } }) {
   const navigate = useNavigate();
@@ -19,7 +18,6 @@ function CarteCategorie({ categorie: { img, nomCategorie, codeCategorie } }) {
       </Card.Body>
 
       <ListGroup className="list-group-flush">
-        {codeCategorie && <NomCategorie codeCategorie={codeCategorie} />}
         <ListGroup.Item className="lien">
           <Link onClick={() => navigate(`/categorie/${codeCategorie}`)}>
             Voir plus
