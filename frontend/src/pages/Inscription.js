@@ -2,7 +2,7 @@ import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import ModelePage from "../layout/ModelePage";
-import Bouton from "../components/Bouton";
+import Button from "../components/Bouton";
 import { useNavigate } from "react-router-dom";
 import Nav from "react-bootstrap/Nav";
 import { Container } from "react-bootstrap";
@@ -75,7 +75,7 @@ function PageInscription() {
             className="d-grid col-6 mx-auto mt-4 mb-4"
             onClick={() => navigate("/")}
           >
-            <Bouton variant="outline-success">Créer un compte</Bouton>
+            <Button variant="outline-success">Créer un compte</Button>
           </Nav.Link>
         </Form>
       </Container>

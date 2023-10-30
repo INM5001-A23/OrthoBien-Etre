@@ -1,6 +1,6 @@
 import { Card, Col, Container, Row, Stack } from "react-bootstrap";
 import { Star, StarFill, StarHalf } from "react-bootstrap-icons";
-import Bouton from "./Bouton";
+import Button from "./Bouton";
 import Carrousel from "./Carrousel";
 import styles from "./DetailsProduit.css";
 
@@ -41,8 +41,8 @@ function DetailsProduit({
                 gap={5}
                 style={{ justifyContent: "center" }}
               >
-                <Bouton variant="primary">Ajouter au panier</Bouton>
-                <Bouton variant="secondary">Acheter maintenant</Bouton>
+                <Button variant="primary">Ajouter au panier</Button>
+                <Button variant="secondary">Acheter maintenant</Button>
               </Stack>
             </Card.Body>
           </Card>

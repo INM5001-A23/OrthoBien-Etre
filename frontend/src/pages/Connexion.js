@@ -1,6 +1,6 @@
 import ModelePage from "../layout/ModelePage";
 import Form from "react-bootstrap/Form";
-import Bouton from "../components/Bouton";
+import Button from "../components/Bouton";
 import { useNavigate } from "react-router-dom";
 import Nav from "react-bootstrap/Nav";
 
@@ -29,17 +29,17 @@ function PageConnexion() {
 
           <div className="d-grid gap-2">
             <Nav.Link onClick={() => navigate("/")}>
-              <Bouton variant="primary" size="lg" className="w-100">
+              <Button variant="primary" size="lg" className="w-100">
                 Se connecter
-              </Bouton>
+              </Button>
             </Nav.Link>
             {/* TODO 
           Si compte existant, redirection sur PageAccueil avec nom a cote du logo. 
           Si pas de compte, message erreur apparait*/}
             <Nav.Link onClick={() => navigate("/inscription")}>
-              <Bouton variant="secondary" size="lg" className="w-100">
+              <Button variant="secondary" size="lg" className="w-100">
                 S'inscrire
-              </Bouton>
+              </Button>
             </Nav.Link>
           </div>
         </Form>

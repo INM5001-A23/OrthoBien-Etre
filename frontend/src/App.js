@@ -1,52 +1,52 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import PageAccueil from "./pages/PageAccueil";
-import PageErreur from "./pages/PageErreur";
-import PageCatalogue from "./pages/PageCatalogue";
-import PageConnexion from "./pages/PageConnexion";
-import PageInscription from "./pages/PageInscription";
-import PagePanier from "./pages/PagePanier";
-import PagePaiement from "./pages/PagePaiement";
-import PageProduit from "./pages/PageProduit";
+import Accueil from "./pages/Accueil";
+import Erreur from "./pages/Erreur";
+import Catalogue from "./pages/Catalogue";
+import Connexion from "./pages/Connexion";
+import Inscription from "./pages/Inscription";
+import Panier from "./pages/Panier";
+import Paiement from "./pages/Paiement";
+import Produit from "./pages/Produit";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <PageAccueil />,
-    errorElement: <PageErreur />,
+    element: <Accueil />,
+    errorElement: <Erreur />,
   },
   {
     path: "/catalogue",
-    element: <PageCatalogue />,
-    errorElement: <PageErreur />,
+    element: <Catalogue />,
+    errorElement: <Erreur />,
   },
   {
     path: "/connexion",
-    element: <PageConnexion />,
-    errorElement: <PageErreur />,
+    element: <Connexion />,
+    errorElement: <Erreur />,
   },
 
   {
     path: "/inscription",
-    element: <PageInscription />,
-    errorElement: <PageErreur />,
+    element: <Inscription />,
+    errorElement: <Erreur />,
   },
 
   {
     path: "/panier",
-    element: <PagePanier />,
-    errorElement: <PageErreur />,
+    element: <Panier />,
+    errorElement: <Erreur />,
   },
 
   {
     path: "/paiement",
-    element: <PagePaiement />,
-    errorElement: <PageErreur />,
+    element: <Paiement />,
+    errorElement: <Erreur />,
   },
 
   {
     path: "/produit/:codeProduit",
-    element: <PageProduit />,
-    errorElement: <PageErreur />,
+    element: <Produit />,
+    errorElement: <Erreur />,
   },
 ]);
 
