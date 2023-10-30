@@ -5,11 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import NomCategorie from "./NomCategorie";
 
 function CarteProduit({
-  img,
-  nomProduit,
-  codeCategorie,
-  description,
-  prix,
+  produit: { codeProduit, img, nomProduit, codeCategorie, description, prix },
   achat = false,
 }) {
   const navigate = useNavigate();
@@ -34,7 +30,9 @@ function CarteProduit({
         {codeCategorie && <NomCategorie codeCategorie={codeCategorie} />}
         {prix && <ListGroup.Item>{prix}</ListGroup.Item>}
         <ListGroup.Item className="lien">
-          <Link onClick={() => navigate("/produit")}>Voir détails</Link>
+          <Link onClick={() => navigate(`/produit/${codeProduit}`)}>
+            Voir détails
+          </Link>
         </ListGroup.Item>
         {achat && (
           <>

@@ -12,6 +12,21 @@ router.get("/", async (req, res) => {
   }
 });
 
+// Fetch product
+router.get("/:codeProduit", async (req, res) => {
+  try {
+    const codeProduit = req.params.codeProduit;
+    const produit = await Produits.findOne({ codeProduit });
+    if (!produit) {
+      res.status(404).json({ message: "Product not found." });
+      return;
+    }
+    res.json(produit);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
+
 // Fetch popular products
 router.get("/popular", async (req, res) => {
   try {
@@ -27,17 +42,6 @@ router.get("/produitPhare", async (req, res) => {
   try {
     const produitPhare = await Produits.find({ produitPhare: 1 });
     res.json(produitPhare);
-  } catch (err) {
-    res.status(500).json({ message: err.message });
-  }
-});
-
-// Fetch all categories
-router.get("/:code", async (req, res) => {
-  try {
-    const codeCategorie = req.params.code;
-    const categorie = await Categories.findOne({ codeCategorie });
-    res.json(categorie);
   } catch (err) {
     res.status(500).json({ message: err.message });
   }

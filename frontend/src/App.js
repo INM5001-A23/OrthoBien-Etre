@@ -44,7 +44,7 @@ const router = createBrowserRouter([
   },
 
   {
-    path: "/produit",
+    path: "/produit/:codeProduit",
     element: <PageProduit />,
     errorElement: <PageErreur />,
   },

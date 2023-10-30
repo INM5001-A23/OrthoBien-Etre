@@ -1,34 +1,51 @@
-import { Container, Stack } from "react-bootstrap";
+import { Container, Spinner, Stack } from "react-bootstrap";
 import ModelePage from "../layout/ModelePage";
 import { useContext, useEffect, useState } from "react";
 import { AxiosContext } from "..";
+import DetailsProduit from "../components/DetailsProduit";
+import { useNavigate, useParams } from "react-router-dom";
 
-function PagePaiement() {
+function PageProduit() {
   const axios = useContext(AxiosContext);
-  const [items, setItems] = useState([]);
+  const navigate = useNavigate();
+  const { codeProduit } = useParams();
+  const [produit, setProduit] = useState(null);
 
   useEffect(() => {
     axios
-      .get("/categories")
+      .get(`/products/${codeProduit}`)
       .then(function (response) {
         // handle success
         console.log(response);
-        setItems(response.data);
+        setProduit(response.data);
       })
       .catch(function (error) {
         // handle error
         console.log(error);
+        if (error.response.status === 404) {
+          navigate("/product-not-found");
+        }
       })
       .finally(function () {
         // always executed
       });
   }, []);
 
+  console.log(produit);
+
   return (
     <ModelePage>
-      <Stack gap={3}></Stack>
+      <Stack gap={3}>
+        {produit ? (
+          <DetailsProduit produit={produit} />
+        ) : (
+          <Spinner animation="border" role="status">
+            <span className="visually-hidden">Loading...</span>
+          </Spinner>
+        )}
+      </Stack>
     </ModelePage>
   );
 }
 
-export default PagePaiement;
+export default PageProduit;
