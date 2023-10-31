@@ -24,7 +24,7 @@ function DetailsProduit({
           />
         </Col>
         <Col>
-          <Card>
+          <Card style={{ height: "100%" }}>
             <Card.Body>
               <Card.Title>{nomProduit}</Card.Title>
               <Card.Subtitle className="mb-2 text-muted">
