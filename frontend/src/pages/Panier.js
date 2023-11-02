@@ -2,9 +2,14 @@ import ModelePage from "../layout/ModelePage";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import { Badge, Button, Card, ListGroup } from "react-bootstrap";
+import { Badge, Card, ListGroup } from "react-bootstrap";
+import PagePaiement from "./Paiement";
+import Nav from "react-bootstrap/Nav";
+import { useNavigate } from "react-router-dom";
+import Button from "../components/Bouton";
 
 function PagePanier() {
+  const navigate = useNavigate();
   return (
     <ModelePage>
       <Container>
@@ -55,7 +60,11 @@ function PagePanier() {
               <Card.Body>
                 <Card.Title>Paiement</Card.Title>
                 <Card.Text>Sous-total (3 articles) : 20.00 $</Card.Text>
-                <Button variant="primary">Passer la commande</Button>
+                <Nav.Link onClick={() => navigate("/paiement")}>
+                  <Button variant="secondary" size="lg" className="w-100">
+                    Passer la commande
+                  </Button>
+                </Nav.Link>
               </Card.Body>
             </Card>
           </Col>

@@ -1,15 +1,14 @@
 import ListGroup from "react-bootstrap/ListGroup";
 import Card from "react-bootstrap/Card";
 import styles from "./Carte.module.css";
+import { Link, useNavigate } from "react-router-dom";
+import NomCategorie from "./NomCategorie";
 
-function CarteCarree({
-  img,
-  nomProduit,
-  categorie,
-  description,
-  prix,
+function CarteProduit({
+  produit: { codeProduit, img, nomProduit, codeCategorie, description, prix },
   achat = false,
 }) {
+  const navigate = useNavigate();
   return (
     <Card
       style={{
@@ -28,10 +27,12 @@ function CarteCarree({
       </Card.Body>
 
       <ListGroup className="list-group-flush">
-        {categorie && <ListGroup.Item>{categorie}</ListGroup.Item>}
+        {codeCategorie && <NomCategorie codeCategorie={codeCategorie} />}
         {prix && <ListGroup.Item>{prix}</ListGroup.Item>}
         <ListGroup.Item className="lien">
-          <Card.Link href="#">Voir détails</Card.Link>
+          <Link onClick={() => navigate(`/produit/${codeProduit}`)}>
+            Voir détails
+          </Link>
         </ListGroup.Item>
         {achat && (
           <>
@@ -48,4 +49,4 @@ function CarteCarree({
   );
 }
 
-export default CarteCarree;
+export default CarteProduit;

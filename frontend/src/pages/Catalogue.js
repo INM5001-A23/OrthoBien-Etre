@@ -1,5 +1,5 @@
 import ModelePage from "../layout/ModelePage";
-import Carte from "../components/Carte";
+import CarteProduit from "../components/CarteProduit";
 import BoutonDeroulant from "../components/BoutonDeroulant";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
@@ -9,15 +9,15 @@ import { Container } from "react-bootstrap";
 
 function PageCatalogue() {
   const axios = useContext(AxiosContext);
-  const [items, setItems] = useState([]);
+  const [produits, setProduits] = useState([]);
 
   useEffect(() => {
     axios
-      .get("/categories")
+      .get("/products")
       .then(function (response) {
         // handle success
         console.log(response);
-        setItems(response.data);
+        setProduits(response.data);
       })
       .catch(function (error) {
         // handle error
@@ -39,17 +39,10 @@ function PageCatalogue() {
           option4="En promotion"
         />
         <Row xs={1} md={4} className="g-4 justify-content-center">
-          {items
-            .map((item) => (
-              <Col xs="auto" md="auto" key={item.id}>
-                <Carte
-                  img={item.image}
-                  nomProduit={item.title}
-                  categorie="Catégorie"
-                  description={item.description}
-                  prix="Prix(0.00 $)"
-                  achat
-                />
+          {produits
+            .map((produit) => (
+              <Col xs="auto" md="auto" key={produit._id}>
+                <CarteProduit produit={produit} achat />
               </Col>
             ))
             .slice(0, 15)}
