@@ -47,11 +47,13 @@ const produitSchema = new mongoose.Schema(
               type: Number,
           },
   
-  
+    promotion:{
+        type: Boolean,
+        required:true
+    }
       }
   );
   
-  //const Produits = mongoose.model("Produits" ,produitSchema);
-  //module.exports = Produits;
+  
 
   export default mongoose.model('Produits', produitSchema,'Produits');

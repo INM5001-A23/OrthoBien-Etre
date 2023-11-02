@@ -17,7 +17,7 @@ app.use(cors());
 // db connection
 // mongoose.connect('mongodb://localhost:27017/orthobienetre',{useNewUrlParser: true});
 mongoose.connect(
-  "mongodb+srv://admin:pVYa4Qc0WZzMFQ9U@cluster0.6hiecyv.mongodb.net/?retryWrites=true&w=majority",
+  "mongodb+srv://admin:pVYa4Qc0WZzMFQ9U@cluster0.6hiecyv.mongodb.net/INM5001",
   { useNewUrlParser: true }
 );
 mongoose.connection.on("connected", () => console.log("Mongodb Connected..."));
@@ -32,9 +32,9 @@ app.get("/", (req, res) => {
 });
 
 // Use API Routes
-app.use("/categories", categoryRoutes);
-app.use("/products", productRoutes);
-app.use("/cart", cartRoutes);
+app.use("/Categories", categoryRoutes);
+app.use("/Produits", productRoutes);
+app.use("/Panier", cartRoutes);
 
 app.listen(port, () => {
   console.log(`Successfully started server on port ${port}.`);

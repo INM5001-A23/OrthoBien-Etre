@@ -11,7 +11,7 @@ const panierSchema = new mongoose.Schema({
         }
     },
 
-    infosclient:{
+    infosClient:{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Clients'
     },
@@ -68,8 +68,7 @@ const panierSchema = new mongoose.Schema({
    
 });
 
-//const Panier = mongoose.mode('Panier', panierSchema);
-//module.exports = Panier;
+
 
 export default mongoose.model('Panier', panierSchema,'Panier');
 
