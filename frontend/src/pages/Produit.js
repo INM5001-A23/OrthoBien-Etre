@@ -13,7 +13,7 @@ function PageProduit() {
 
   useEffect(() => {
     axios
-      .get(`/products/${codeProduit}`)
+      .get(`/Produits/${codeProduit}`)
       .then(function (response) {
         // handle success
         console.log(response);

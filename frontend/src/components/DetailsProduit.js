@@ -49,6 +49,7 @@ function DetailsProduit({
         </Col>
       </Row>
     </Container>
+
     // <div className="d-flex flex-column align-items-center justify-content-center">
     //   <h1 className="mb-3">{nomProduit}</h1>
     //   <div className="d-grid gap-2">
