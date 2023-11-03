@@ -2,7 +2,7 @@ import { useState } from "react";
 import { AiOutlineStar } from "react-icons/ai";
 import { FaStar, FaStarHalfAlt } from "react-icons/fa";
 
-const Etoile = () => {
+const Etoile = ({ size }) => {
   const [rating, setRating] = useState(null);
   const [hover, setHover] = useState(null);
   return (
@@ -20,7 +20,7 @@ const Etoile = () => {
             />
             <FaStar
               style={{ cursor: "pointer" }}
-              size={30}
+              size={size}
               color={currentRating <= (hover || rating) ? "#ffc107" : "#e4e5e9"}
               onMouseEnter={() => setHover(currentRating)}
               onMouseLeave={() => setHover(null)}
@@ -29,27 +29,7 @@ const Etoile = () => {
         );
       })}
     </div>
-
-    //   <span key={index}>
-    //     {stars >= index + 1 ? (
-    //       <FaStar className="icon" />
-    //     ) : stars >= numbers ? (
-    //       <FaStarHalfAlt className="icon" />
-    //     ) : (
-    //       <AiOutlineStar className="icon" />
-    //     )}
-    //   </span>
   );
 };
-
-//   return (
-//     <Wrapper>
-//       <div className=".icon-style">
-//         {ratingStar}
-//         <p>({reviews} customer reviews)</p>
-//       </div>
-//     </Wrapper>
-//   );
-// };
 
 export default Etoile;

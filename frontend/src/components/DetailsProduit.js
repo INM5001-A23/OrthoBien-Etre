@@ -5,6 +5,7 @@ import Carrousel from "./Carrousel";
 import styles from "./DetailsProduit.css";
 import NomCategorie from "./NomCategorie";
 import Etoile from "./Etoile";
+import CarteCommentaire from "./CarteCommentaire";
 
 function DetailsProduit({
   produit: { nomProduit, description, codeCategorie },
@@ -42,12 +43,12 @@ function DetailsProduit({
                 )}
               </Card.Subtitle>
               <Card.Subtitle className="mb-2 text-muted">
-                <Etoile />
+                <Etoile size="30" />
               </Card.Subtitle>
               <Card.Text>{description}</Card.Text>
-              <div>
-                <Card.Title>Commentaires des clients</Card.Title>
-              </div>
+
+              <CarteCommentaire />
+
               <Stack
                 direction="horizontal"
                 gap={5}
