@@ -52,7 +52,7 @@ function DetailsProduit({
               <Stack
                 direction="horizontal"
                 gap={5}
-                style={{ justifyContent: "center" }}
+                style={{ justifyContent: "center", margin: "20px" }}
               >
                 <Button variant="primary">Ajouter au panier</Button>
                 <Button variant="secondary">Acheter maintenant</Button>
