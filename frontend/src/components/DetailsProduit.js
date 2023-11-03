@@ -3,6 +3,7 @@ import { Star, StarFill, StarHalf } from "react-bootstrap-icons";
 import Button from "./Bouton";
 import Carrousel from "./Carrousel";
 import styles from "./DetailsProduit.css";
+import NomCategorie from "./NomCategorie";
 
 function DetailsProduit({
   produit: { nomProduit, description, codeCategorie },
@@ -25,10 +26,19 @@ function DetailsProduit({
         </Col>
         <Col>
           <Card style={{ height: "100%" }}>
-            <Card.Body>
+            <Card.Body
+              style={{
+                alignItems: "center",
+                display: "flex",
+                flexWrap: "wrap",
+                justifyContent: "space-evenly",
+              }}
+            >
               <Card.Title>{nomProduit}</Card.Title>
               <Card.Subtitle className="mb-2 text-muted">
-                {codeCategorie}
+                {codeCategorie && (
+                  <NomCategorie codeCategorie={codeCategorie} />
+                )}
               </Card.Subtitle>
               <Card.Subtitle className="mb-2 text-muted">
                 <Star />
