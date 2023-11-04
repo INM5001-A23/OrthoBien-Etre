@@ -1,4 +1,4 @@
-import { Container, Spinner, Stack } from "react-bootstrap";
+import { Card, Container, Spinner, Stack } from "react-bootstrap";
 import ModelePage from "../layout/ModelePage";
 import { useContext, useEffect, useState } from "react";
 import { AxiosContext } from "..";
@@ -13,7 +13,7 @@ function PageProduit() {
 
   useEffect(() => {
     axios
-      .get(`/products/${codeProduit}`)
+      .get(`/Produits/${codeProduit}`)
       .then(function (response) {
         // handle success
         console.log(response);
@@ -29,7 +29,7 @@ function PageProduit() {
       .finally(function () {
         // always executed
       });
-  }, []);
+  }, [axios]);
 
   console.log(produit);
 

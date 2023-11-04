@@ -29,7 +29,7 @@ function PageAccueil() {
       .finally(function () {
         // always executed
       });
-  }, []);
+  }, [axios]);
 
   useEffect(() => {
     axios
@@ -46,7 +46,7 @@ function PageAccueil() {
       .finally(function () {
         // always executed
       });
-  }, []);
+  }, [axios]);
 
   useEffect(() => {
     axios
@@ -63,7 +63,7 @@ function PageAccueil() {
       .finally(function () {
         // always executed
       });
-  }, []);
+  }, [axios]);
 
   return (
     <ModelePage>

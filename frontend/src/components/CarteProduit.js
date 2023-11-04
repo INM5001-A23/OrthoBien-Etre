@@ -16,7 +16,11 @@ function CarteProduit({
         textAlign: "center",
       }}
     >
-      <Card.Img className={styles["header-img"]} variant="top" src={img} />
+      <Card.Img
+        className={styles["header-img"]}
+        variant="top"
+        src={`/images/produits/${codeProduit}.jpeg`}
+      />
       <Card.Body>
         <Card.Title className="mb-0">{nomProduit}</Card.Title>
         {description && (
