@@ -7,8 +7,7 @@ import Col from "react-bootstrap/Col";
 import { Badge, Button, Card, ListGroup } from "react-bootstrap";
 
 function PagePanier() {
-  const handleCheckout = () => {
-  };
+  const handleCheckout = () => {};
   const [cart, setCart] = useState([
     {
       id: 1,
@@ -77,23 +76,35 @@ function PagePanier() {
             <Card>
               <ListGroup variant="flush">
                 {cart.map((item) => (
-                  <ListGroup.Item className="d-flex justify-content-between" key={item.id}>
+                  <ListGroup.Item
+                    className="d-flex justify-content-between"
+                    key={item.id}
+                  >
                     <div>
                       <h6 className="my-0">{item.name}</h6>
                       <small className="text-muted">{item.description}</small>
                     </div>
                     <div>
-                      <Button variant="secondary" onClick={() => decreaseQuantity(item.id)}>
+                      <Button
+                        variant="secondary"
+                        onClick={() => decreaseQuantity(item.id)}
+                      >
                         -
                       </Button>
                       {item.quantity}
-                      <Button variant="secondary" onClick={() => increaseQuantity(item.id)}>
+                      <Button
+                        variant="secondary"
+                        onClick={() => increaseQuantity(item.id)}
+                      >
                         +
                       </Button>
                       <span className="text-muted">
                         {item.price.toFixed(2)} $
                       </span>
-                      <Button variant="danger" onClick={() => removeItem(item.id)}>
+                      <Button
+                        variant="danger"
+                        onClick={() => removeItem(item.id)}
+                      >
                         Remove
                       </Button>
                     </div>
