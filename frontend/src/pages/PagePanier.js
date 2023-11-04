@@ -84,31 +84,39 @@ function PagePanier() {
                   >
                     <div>
                       <h6 className="my-0">{item.name}</h6>
+
                       <small className="text-muted">{item.description}</small>
+                      <Button
+                        variant="danger"
+                        size="sm"
+                        style={{ margin: "10px" }}
+                        onClick={() => removeItem(item.id)}
+                      >
+                        Retirer
+                      </Button>
                     </div>
                     <div>
                       <Button
-                        variant="secondary"
+                        variant="outline-secondary"
+                        size="sm"
+                        style={{ margin: "10px" }}
                         onClick={() => decreaseQuantity(item.id)}
                       >
                         -
                       </Button>
                       {item.quantity}
                       <Button
-                        variant="secondary"
+                        variant="outline-secondary"
+                        size="sm"
+                        style={{ margin: "10px" }}
                         onClick={() => increaseQuantity(item.id)}
                       >
                         +
                       </Button>
-                      <span className="text-muted">
+
+                      <span className="text-muted" style={{ fontSize: "20px" }}>
                         {item.price.toFixed(2)} $
                       </span>
-                      <Button
-                        variant="danger"
-                        onClick={() => removeItem(item.id)}
-                      >
-                        Retirer
-                      </Button>
                     </div>
                   </ListGroup.Item>
                 ))}
