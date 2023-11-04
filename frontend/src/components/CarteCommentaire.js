@@ -1,24 +1,25 @@
-import { Card } from "react-bootstrap";
+import { Card, Container, Row } from "react-bootstrap";
 import Etoile from "./Etoile";
 
-function CarteCommentaire({ nomClient }) {
+function CarteCommentaire({ nomClient, titre, commentaire, evaluation }) {
   return (
-    <div>
-      <Card.Title>Commentaires des clients</Card.Title>
-      <Card style={{ width: "18rem" }}>
-        <Card.Body>
-          <Etoile size="20" />
-          <Card.Title>Titre du commentaire</Card.Title>
-          <Card.Subtitle className="mb-2 text-muted">
-            Nom du client
-          </Card.Subtitle>
-          <Card.Text>
-            Some quick example text to build on the card title and make up the
-            bulk of the card's content.
-          </Card.Text>
-        </Card.Body>
-      </Card>
-    </div>
+    <Container>
+      <Row className="g-4">
+        <Card.Title>Commentaires des clients</Card.Title>
+      </Row>
+      <Row xs={1} md={4} className="g-4 justify-content-center">
+        <Card style={{ width: "18rem" }}>
+          <Card.Body>
+            <Etoile evaluation={evaluation} size="20px" />
+            <Card.Title>{titre}</Card.Title>
+            <Card.Subtitle className="mb-2 text-muted">
+              {nomClient}
+            </Card.Subtitle>
+            <Card.Text>{commentaire}</Card.Text>
+          </Card.Body>
+        </Card>
+      </Row>
+    </Container>
   );
 }
 
