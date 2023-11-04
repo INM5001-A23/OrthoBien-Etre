@@ -51,7 +51,7 @@ function DetailsProduit({
                 style={{ justifyContent: "center", margin: "0px" }}
               >
                 <Button variant="primary">Ajouter au panier</Button>
-                <Button variant="secondary">Acheter maintenant</Button>
+                <Button variant="success">Acheter maintenant</Button>
               </Stack>
             </Card.Body>
           </Card>

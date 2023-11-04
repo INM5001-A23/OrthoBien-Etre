@@ -5,6 +5,7 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { Badge, Button, Card, ListGroup } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 
 function PagePanier() {
   const handleCheckout = () => {};
@@ -58,6 +59,7 @@ function PagePanier() {
     setCart(updatedCart);
   };
 
+  const navigate = useNavigate();
   return (
     <ModelePage>
       <Container>
@@ -124,8 +126,8 @@ function PagePanier() {
                 <Card.Text>
                   Sous-total ({cart.length} articles) : {cartTotal.toFixed(2)} $
                 </Card.Text>
-                <Button variant="primary" onClick={handleCheckout}>
-                  <Link to="/paiement">Passer la commande</Link>
+                <Button variant="primary" onClick={() => navigate("/paiement")}>
+                  Passer la commande
                 </Button>
               </Card.Body>
             </Card>

@@ -26,7 +26,7 @@ function PageCatalogue() {
       .finally(function () {
         // always executed
       });
-  }, []);
+  }, [axios]);
 
   return (
     <ModelePage>

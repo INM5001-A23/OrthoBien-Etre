@@ -3,6 +3,7 @@ import Card from "react-bootstrap/Card";
 import styles from "./Carte.module.css";
 import { Link, useNavigate } from "react-router-dom";
 import NomCategorie from "./NomCategorie";
+import { Button } from "react-bootstrap";
 
 function CarteProduit({
   produit: { codeProduit, img, nomProduit, codeCategorie, description, prix },
@@ -34,17 +35,22 @@ function CarteProduit({
         {codeCategorie && <NomCategorie codeCategorie={codeCategorie} />}
         {prix && <ListGroup.Item>{prix}</ListGroup.Item>}
         <ListGroup.Item className="lien">
-          <Link onClick={() => navigate(`/produit/${codeProduit}`)}>
+          <Button
+            variant="secondary"
+            onClick={() => navigate(`/produit/${codeProduit}`)}
+          >
             Voir détails
-          </Link>
+          </Button>
         </ListGroup.Item>
         {achat && (
           <>
             <ListGroup.Item>
-              <Card.Link href="#">Ajouter au panier</Card.Link>
+              <Button href="#">Ajouter au panier</Button>
             </ListGroup.Item>
             <ListGroup.Item>
-              <Card.Link href="#">Acheter maintenant</Card.Link>
+              <Button variant="success" href="#">
+                Acheter maintenant
+              </Button>
             </ListGroup.Item>
           </>
         )}
