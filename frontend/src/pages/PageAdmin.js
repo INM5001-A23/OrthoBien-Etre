@@ -1,3 +1,6 @@
+import { Stack } from "react-bootstrap";
+import ModelePage from "../layout/ModelePage";
+
 function PageAdmin() {
   return (
     <ModelePage>

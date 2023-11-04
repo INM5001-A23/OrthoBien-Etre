@@ -1,13 +1,13 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Accueil from "./pages/PageAccueil";
+import PageAccueil from "./pages/PageAccueil";
 import Erreur from "./pages/PageErreur";
-import Catalogue from "./pages/PageCatalogue";
-import Connexion from "./pages/PageConnexion";
-import Inscription from "./pages/PageInscription";
-import Panier from "./pages/Panier";
-import Paiement from "./pages/Paiement";
-import Produit from "./pages/PageProduit";
-
+import PageCatalogue from "./pages/PageCatalogue";
+import PageConnexion from "./pages/PageConnexion";
+import PageInscription from "./pages/PageInscription";
+import PagePanier from "./pages/PagePanier";
+import PagePaiement from "./pages/Paiement";
+import PageProduit from "./pages/PageProduit";
+import PageAdmin from "./pages/PageAdmin";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -33,7 +33,7 @@ const router = createBrowserRouter([
 
   {
     path: "/panier",
-    element: <Panier />,
+    element: <PagePanier />,
     errorElement: <Erreur />,
   },
 
