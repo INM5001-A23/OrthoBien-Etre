@@ -11,23 +11,23 @@ import Produit from "./pages/PageProduit";
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Accueil />,
+    element: <PageAccueil />,
     errorElement: <Erreur />,
   },
   {
     path: "/catalogue",
-    element: <Catalogue />,
+    element: <PageCatalogue />,
     errorElement: <Erreur />,
   },
   {
     path: "/connexion",
-    element: <Connexion />,
+    element: <PageConnexion />,
     errorElement: <Erreur />,
   },
 
   {
     path: "/inscription",
-    element: <Inscription />,
+    element: <PageInscription />,
     errorElement: <Erreur />,
   },
 
@@ -39,13 +39,19 @@ const router = createBrowserRouter([
 
   {
     path: "/paiement",
-    element: <Paiement />,
+    element: <PagePaiement />,
     errorElement: <Erreur />,
   },
 
   {
     path: "/produit/:codeProduit",
-    element: <Produit />,
+    element: <PageProduit />,
+    errorElement: <Erreur />,
+  },
+
+  {
+    path: "/admin",
+    element: <PageAdmin />,
     errorElement: <Erreur />,
   },
 ]);
