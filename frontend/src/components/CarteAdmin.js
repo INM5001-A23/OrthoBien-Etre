@@ -7,6 +7,7 @@ function CarteAdmin({
   produit: { codeProduit, img, nomProduit, codeCategorie, description, prix },
 }) {
   const navigate = useNavigate();
+
   return (
     <Card style={{ width: "18rem", textAlign: "center" }}>
       <Card.Img
@@ -20,10 +21,8 @@ function CarteAdmin({
           Some quick example text to build on the card title and make up the
           bulk of the card's content.
         </Card.Text>
-        <Button style={{ color: "white" }} variant="primary">
-          Modifier
-        </Button>
-        <Button variant="danger">Supprimer</Button>
+        <Button variant="outline-primary">Modifier</Button> &nbsp;&nbsp;&nbsp;
+        <Button variant="outline-danger">Supprimer</Button>
       </Card.Body>
     </Card>
   );

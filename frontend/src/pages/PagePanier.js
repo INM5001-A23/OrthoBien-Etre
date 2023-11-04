@@ -83,9 +83,11 @@ function PagePanier() {
                     key={item.id}
                   >
                     <div>
-                      <h6 className="my-0">{item.name}</h6>
+                      <h6 style={{ fontSize: "20px" }} className="my-0">
+                        {item.name}
+                      </h6>
 
-                      <small className="text-muted">{item.description}</small>
+                      {/* <small className="text-muted">{item.description}</small> */}
                       <Button
                         variant="danger"
                         size="sm"

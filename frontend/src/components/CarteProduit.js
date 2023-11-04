@@ -36,7 +36,7 @@ function CarteProduit({
         {prix && <ListGroup.Item>{prix}</ListGroup.Item>}
         <ListGroup.Item className="lien">
           <Button
-            variant="secondary"
+            variant="outline-secondary"
             onClick={() => navigate(`/produit/${codeProduit}`)}
           >
             Voir détails
@@ -45,10 +45,12 @@ function CarteProduit({
         {achat && (
           <>
             <ListGroup.Item>
-              <Button href="#">Ajouter au panier</Button>
+              <Button variant="outline-primary" href="#">
+                Ajouter au panier
+              </Button>
             </ListGroup.Item>
             <ListGroup.Item>
-              <Button variant="success" href="#">
+              <Button variant="outline-success" href="#">
                 Acheter maintenant
               </Button>
             </ListGroup.Item>
