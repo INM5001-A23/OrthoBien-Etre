@@ -107,7 +107,7 @@ function PagePanier() {
                         variant="danger"
                         onClick={() => removeItem(item.id)}
                       >
-                        Remove
+                        Retirer
                       </Button>
                     </div>
                   </ListGroup.Item>
