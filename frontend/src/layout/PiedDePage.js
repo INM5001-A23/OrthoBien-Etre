@@ -5,9 +5,9 @@ function PiedDePage() {
   return (
     <div className="bg-dark text-light py-3">
       <Stack direction="horizontal" className="justify-content-center" gap={3}>
-        <p>First item</p>
-        <p>Second item</p>
-        <p>Third item</p>
+        <p>F.A.Q.</p>
+        <p>Contacts</p>
+        <p>À propos</p>
         <p>&copy; {new Date().getFullYear()} OrthoBien-Être</p>
       </Stack>
     </div>
