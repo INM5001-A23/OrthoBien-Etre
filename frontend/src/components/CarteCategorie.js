@@ -12,7 +12,7 @@ function CarteCategorie({ categorie: { img, nomCategorie, codeCategorie } }) {
         textAlign: "center",
       }}
     >
-      <Card.Img className={styles["header-img"]} variant="top" src={img} />
+      {/* <Card.Img className={styles["header-img"]} variant="top" src={img} /> */}
       <Card.Body>
         <Card.Title className="mb-0">{nomCategorie}</Card.Title>
       </Card.Body>
