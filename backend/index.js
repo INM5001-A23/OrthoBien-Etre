@@ -32,9 +32,9 @@ app.get("/", (req, res) => {
 });
 
 // Use API Routes
-app.use("/Categories", categoryRoutes);
-app.use("/Produits", productRoutes);
-app.use("/Panier", cartRoutes);
+app.use("/categories", categoryRoutes);
+app.use("/produits", productRoutes);
+app.use("/panier", cartRoutes);
 
 app.listen(port, () => {
   console.log(`Successfully started server on port ${port}.`);

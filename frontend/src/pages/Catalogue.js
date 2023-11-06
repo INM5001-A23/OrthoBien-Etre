@@ -13,7 +13,7 @@ function PageCatalogue() {
 
   useEffect(() => {
     axios
-      .get("/products")
+      .get("/produits")
       .then(function (response) {
         // handle success
         console.log(response);
