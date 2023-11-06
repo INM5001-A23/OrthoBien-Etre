@@ -28,7 +28,7 @@ function PageConnexion() {
           </Form.Group>
 
           <div className="d-grid gap-2">
-            <Nav.Link onClick={() => navigate("/")}>
+            <Nav.Link onClick={() => navigate("/admin")}>
               <Button variant="primary" size="lg" className="w-100">
                 Se connecter
               </Button>

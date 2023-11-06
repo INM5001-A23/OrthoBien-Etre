@@ -13,7 +13,7 @@ function Navigation() {
   return (
     <Navbar expand="lg" className="bg-body-tertiary">
       <Container fluid>
-        <Logo img="/bones.svg" path="/" />
+        <Logo img="/images/bones.svg" path="/" />
         <Navbar.Brand>
           <Nav.Link onClick={() => navigate("/")}>OrthoBien-Être</Nav.Link>
         </Navbar.Brand>
@@ -31,8 +31,8 @@ function Navigation() {
             <Nav.Link onClick={() => navigate("/contacts")}>Contacts</Nav.Link>
           </Nav>
           <Form className="d-flex">
-            <Logo img="/user.svg" path="/connexion" />
-            <Logo img="/panier.svg" path="/panier" />
+            <Logo img="/images/user.svg" path="/connexion" />
+            <Logo img="/images/panier.svg" path="/panier" />
             <Form.Control
               type="search"
               placeholder="Recherche"

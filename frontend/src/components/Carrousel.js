@@ -7,7 +7,7 @@ function Carrousel({
   className = "",
 }) {
   return (
-    <Carousel style={style} className={className}>
+    <Carousel style={style} variant="dark" className={className}>
       {images.map((image) => (
         <Carousel.Item style={{ height: itemHeight }}>
           <img
@@ -15,10 +15,6 @@ function Carrousel({
             src={image}
             alt="First slide"
           />
-          <Carousel.Caption>
-            <h5>First slide label</h5>
-            <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-          </Carousel.Caption>
         </Carousel.Item>
       ))}
     </Carousel>

@@ -13,7 +13,11 @@ function PageCatalogue() {
 
   useEffect(() => {
     axios
+<<<<<<< HEAD:frontend/src/pages/Catalogue.js
       .get("/produits")
+=======
+      .get("/Produits")
+>>>>>>> 90ffdf5a01267268243ec49abd5454a7afb06fb1:frontend/src/pages/PageCatalogue.js
       .then(function (response) {
         // handle success
         console.log(response);
@@ -24,9 +28,7 @@ function PageCatalogue() {
         console.log(error);
       })
       .finally(function () {
-        // always executed
-      });
-  }, []);
+  }, [axios]);
 
   return (
     <ModelePage>
