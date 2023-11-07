@@ -33,7 +33,7 @@ function PageAccueil() {
 
   useEffect(() => {
     axios
-      .get("/produits/popular")
+      .get("/products/popular")
       .then(function (response) {
         // handle success
         console.log(response);
@@ -50,7 +50,7 @@ function PageAccueil() {
 
   useEffect(() => {
     axios
-      .get("/produits/produitPhare")
+      .get("/products/produitPhare")
       .then(function (response) {
         // handle success
         console.log(response);
