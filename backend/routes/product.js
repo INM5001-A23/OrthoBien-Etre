@@ -36,10 +36,35 @@ router.get("/popular", async (req, res) => {
  
 });
 
+
 // Fetch produits phares
 router.get("/produitPhare", async (req, res) => {
   try {
     const produitPhare = await Produits.find({ produitPhare: 1 });
+    res.json(produitPhare);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
+
+//Fetch in order of higher price
+router.get("/grandprix", async (req, res) => {
+  try {
+    const query = {};
+    const sort = {prix: -1}
+    const produitPhare = await Produits.find(query).sort(sort);
+    res.json(produitPhare);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
+
+//Fetch in order of lower price
+router.get("/petitprix", async (req, res) => {
+  try {
+    const query = {};
+    const sort = {prix: 1}
+    const produitPhare = await Produits.find(query).sort(sort);
     res.json(produitPhare);
   } catch (err) {
     res.status(500).json({ message: err.message });
