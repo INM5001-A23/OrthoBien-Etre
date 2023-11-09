@@ -50,14 +50,24 @@ function DetailsProduit({
                 gap={5}
                 style={{ justifyContent: "center", margin: "0px" }}
               >
-                <Button variant="primary">Ajouter au panier</Button>
-                <Button variant="success">Acheter maintenant</Button>
+                <Button variant="outline-primary">Ajouter au panier</Button>
+                <Button variant="outline-success">Acheter maintenant</Button>
               </Stack>
             </Card.Body>
           </Card>
         </Col>
       </Row>
       <Row>
+        <Row className="g-4">
+          <h2 style={{ textAlign: "center" }}>Commentaires des clients</h2>
+        </Row>
+        <Row style={{ padding: "10px 0 20px 0" }}>
+          <Button variant="success">
+            <Card.Title>Écrire un commentaire</Card.Title>
+          </Button>
+        </Row>
+        {/* TODO 
+        Affiche sil y a des commentaires pour le produit */}
         <CarteCommentaire
           nomClient={"Nom du client"}
           titre={"Titre du commentaire"}
