@@ -8,6 +8,8 @@ import PagePanier from "./pages/PagePanier";
 import PagePaiement from "./pages/Paiement";
 import PageProduit from "./pages/PageProduit";
 import PageAdmin from "./pages/PageAdmin";
+import PageEvaluation from "./pages/PageEvaluation";
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -52,6 +54,12 @@ const router = createBrowserRouter([
   {
     path: "/admin",
     element: <PageAdmin />,
+    errorElement: <Erreur />,
+  },
+
+  {
+    path: "/produit/:codeProduit/evaluation",
+    element: <PageEvaluation />,
     errorElement: <Erreur />,
   },
 ]);
