@@ -5,7 +5,7 @@ import Carrousel from "./Carrousel";
 import NomCategorie from "./NomCategorie";
 import Etoile from "./Etoile";
 import CarteCommentaire from "./CarteCommentaire";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./DetailsProduit.css";
 
 import { useContext, useEffect, useState } from "react";
@@ -62,7 +62,12 @@ function DetailsProduit({
                 alignItems: "center",
               }}
             >
-              <Etoile evaluation={evaluation} size="30" />
+              <div style={{ display: "flex" }}>
+                <Etoile evaluation={evaluation} size="30" />
+                <Card.Link href="#" style={{ alignItems: "center" }}>
+                  (0)
+                </Card.Link>
+              </div>
               <Card.Title>{nomProduit}</Card.Title>
               <Card.Subtitle className="mb-2 text-muted">
                 {codeCategorie && (
