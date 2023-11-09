@@ -5,7 +5,9 @@ function CarteCommentaire({ nomClient, titre, commentaire, evaluation }) {
   return (
     <Container>
       <Row className="g-4">
-        <Card.Title>Commentaires des clients</Card.Title>
+        <h2 style={{ textAlign: "center", padding: "30px 0 10px 0" }}>
+          Commentaires des clients
+        </h2>
       </Row>
       <Row xs={1} md={4} className="g-4 justify-content-center">
         <Card style={{ width: "18rem" }}>
