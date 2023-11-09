@@ -56,7 +56,7 @@ function DetailsProduit({
           />
         </Col>
         <Col style={{}}>
-          <Card style={{ height: "55%" }}>
+          <Card style={{ height: "auto" }}>
             <Card.Body
               style={{
                 alignItems: "center",
