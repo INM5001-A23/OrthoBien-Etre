@@ -13,11 +13,7 @@ function PageProduit() {
 
   useEffect(() => {
     axios
-<<<<<<< HEAD:frontend/src/pages/Produit.js
       .get(`/produits/${codeProduit}`)
-=======
-      .get(`/Produits/${codeProduit}`)
->>>>>>> 90ffdf5a01267268243ec49abd5454a7afb06fb1:frontend/src/pages/PageProduit.js
       .then(function (response) {
         // handle success
         console.log(response);
