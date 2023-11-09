@@ -24,11 +24,6 @@ function CarteProduit({
       />
       <Card.Body>
         <Card.Title className="mb-0">{nomProduit}</Card.Title>
-        {description && (
-          <Card.Text className={styles["description-field"]}>
-            {description}
-          </Card.Text>
-        )}
       </Card.Body>
 
       <ListGroup className="list-group-flush">
