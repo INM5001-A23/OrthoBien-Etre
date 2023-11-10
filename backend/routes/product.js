@@ -81,7 +81,6 @@ router.get("/:codeProduit", async (req, res) => {
   }
 });
 
-<<<<<<< HEAD
 //  // Fetch products by category
 //  router.get("/:codeCategorie", async (req, res) => {
 //   try {
@@ -92,8 +91,4 @@ router.get("/:codeProduit", async (req, res) => {
 //     res.status(500).json({ message: err.message });
 //   }
 // });
-||||||| 71473aa
-
-=======
->>>>>>> 538c1536f46b2512df219101c8dc67a853b0c215
 export default router;
