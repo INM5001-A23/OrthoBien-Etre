@@ -1,19 +1,20 @@
 import ModelePage from "../layout/ModelePage";
 import CarteProduit from "../components/CarteProduit";
-import BoutonDeroulant from "../components/BoutonDeroulant";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import { useContext, useEffect, useState } from "react";
 import { AxiosContext } from "..";
-import { Container } from "react-bootstrap";
+import { Container, Dropdown, DropdownButton, Form } from "react-bootstrap";
+import FiltreCatalogue from "../components/FiltreCatalogue";
 
 function PageCatalogue() {
   const axios = useContext(AxiosContext);
   const [produits, setProduits] = useState([]);
+  const [filtre, setFiltre] = useState("");
 
   useEffect(() => {
     axios
-      .get("/produits")
+      .get(`/produits/${filtre}`)
       .then(function (response) {
         // handle success
         console.log(response);
@@ -26,18 +27,12 @@ function PageCatalogue() {
       .finally(function () {
         // always executed
       });
-  }, [axios]);
+  }, [axios, filtre]);
 
   return (
     <ModelePage>
       <Container>
-        <BoutonDeroulant
-          titre="Trier par"
-          option1="Prix[Bas-Élevé]"
-          option2="Prix[Élevé-Bas]"
-          option3="Meilleurs vendeurs"
-          option4="En promotion"
-        />
+        <FiltreCatalogue filtre={filtre} setFiltre={setFiltre} />
         <Row xs={1} md={4} className="g-4 justify-content-center">
           {produits
             .map((produit) => (

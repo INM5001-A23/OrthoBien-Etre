@@ -12,9 +12,6 @@ router.get("/", async (req, res) => {
   }
 });
 
-
-
-
 // Fetch products in promotion
 router.get("/promotion", async (req, res) => {
   try {
@@ -33,9 +30,7 @@ router.get("/popular", async (req, res) => {
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
- 
 });
-
 
 // Fetch produits phares
 router.get("/produitPhare", async (req, res) => {
@@ -51,7 +46,7 @@ router.get("/produitPhare", async (req, res) => {
 router.get("/grandprix", async (req, res) => {
   try {
     const query = {};
-    const sort = {prix: -1}
+    const sort = { prix: -1 };
     const produitPhare = await Produits.find(query).sort(sort);
     res.json(produitPhare);
   } catch (err) {
@@ -63,7 +58,7 @@ router.get("/grandprix", async (req, res) => {
 router.get("/petitprix", async (req, res) => {
   try {
     const query = {};
-    const sort = {prix: 1}
+    const sort = { prix: 1 };
     const produitPhare = await Produits.find(query).sort(sort);
     res.json(produitPhare);
   } catch (err) {
@@ -85,6 +80,5 @@ router.get("/:codeProduit", async (req, res) => {
     res.status(500).json({ message: err.message });
   }
 });
-
 
 export default router;
