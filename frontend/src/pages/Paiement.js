@@ -1,36 +1,23 @@
-import React, { useContext, useEffect, useState } from "react";
-import { AxiosContext } from "..";
+import { Elements } from "@stripe/react-stripe-js"
+import { loadStripe } from "@stripe/stripe-js"
+import React from "react"
+import PaymentForm from "./PaymentForm"
 import ModelePage from "../layout/ModelePage";
 import { Container, Stack, Form, Button } from "react-bootstrap";
-import StripePayment from "../components/StripePayment";
+import PaymentForm from "./PaymentForm"
 
 function PagePaiement() {
-  // const axios = useContext(AxiosContext);
-  // const [items, setItems] = useState([]);
 
-  // useEffect(() => {
-  //   axios
-  //     .get("/categories")
-  //     .then(function (response) {
-  //       // handle success
-  //       console.log(response);
-  //       setItems(response.data);
-  //     })
-  //     .catch(function (error) {
-  //       // handle error
-  //       console.log(error);
-  //     })
-  //     .finally(function () {
-  //       // always executed
-  //     });
-  // }, []);
+  const stripeTestPromise = loadStripe("pk_test_51OB0JqEAjLSuYLB5HfTwA8aqpmN0EnTlKBQRS0x1gxIr2b2CtRhwmQuIdunsbo8j0H5L5PlOmdTbxmWdMN37ORb600vKFk8RmR");
 
   return (
     <ModelePage>
       <Container>
         <Stack gap={3}>
           <h1>Page de paiement</h1>
-          <StripePayment/>
+          <Elements stripe={stripeTestPromise}>
+			      <PaymentForm />
+		      </Elements>
         </Stack>
       </Container>
     </ModelePage>
