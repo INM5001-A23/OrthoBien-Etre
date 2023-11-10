@@ -3,10 +3,10 @@ import Card from "react-bootstrap/Card";
 import styles from "./Carte.module.css";
 import { Link, useNavigate } from "react-router-dom";
 import NomCategorie from "./NomCategorie";
-import { Button } from "react-bootstrap";
+import { Badge, Button } from "react-bootstrap";
 
 function CarteProduit({
-  produit: { codeProduit, img, nomProduit, codeCategorie, description, prix },
+  produit: { codeProduit, img, nomProduit, codeCategorie, prix, promotion },
   achat = false,
 }) {
   const navigate = useNavigate();
@@ -17,18 +17,25 @@ function CarteProduit({
         textAlign: "center",
       }}
     >
-      <Card.Img
-        className={styles["header-img"]}
-        variant="top"
-        src={`/images/produits/${codeProduit}.jpeg`}
-      />
+      <div style={{ position: "relative", display: "inline-block" }}>
+        <Card.Img
+          className={styles["header-img"]}
+          variant="top"
+          src={`/images/produits/${codeProduit}.jpeg`}
+        />
+        <h5>
+          <Badge
+            pill
+            bg="danger"
+            style={{ position: "absolute", top: "10px", right: "10px" }}
+          >
+            {promotion ? "En promotion" : ""}
+          </Badge>
+        </h5>
+      </div>
+
       <Card.Body>
         <Card.Title className="mb-0">{nomProduit}</Card.Title>
-        {description && (
-          <Card.Text className={styles["description-field"]}>
-            {description}
-          </Card.Text>
-        )}
       </Card.Body>
 
       <ListGroup className="list-group-flush">

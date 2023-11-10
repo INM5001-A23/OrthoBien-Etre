@@ -6,6 +6,7 @@ import cors from "cors";
 import categoryRoutes from "./routes/category.js";
 import productRoutes from "./routes/product.js";
 import cartRoutes from "./routes/cart.js";
+import paymentRoutes from "./routes/payment.js"
 
 // app
 const app = express();
@@ -35,6 +36,7 @@ app.get("/", (req, res) => {
 app.use("/categories", categoryRoutes);
 app.use("/produits", productRoutes);
 app.use("/panier", cartRoutes);
+app.use("/paiement",paymentRoutes );
 
 app.listen(port, () => {
   console.log(`Successfully started server on port ${port}.`);

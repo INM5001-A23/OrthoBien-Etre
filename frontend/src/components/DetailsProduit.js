@@ -5,7 +5,11 @@ import Carrousel from "./Carrousel";
 import NomCategorie from "./NomCategorie";
 import Etoile from "./Etoile";
 import CarteCommentaire from "./CarteCommentaire";
+import { Link, useNavigate } from "react-router-dom";
 import "./DetailsProduit.css";
+
+import { useContext, useEffect, useState } from "react";
+import { AxiosContext } from "..";
 
 function DetailsProduit({
   produit: {
@@ -16,8 +20,31 @@ function DetailsProduit({
     prix,
     evaluation,
   },
-  achat = false,
 }) {
+  const navigate = useNavigate();
+  const axios = useContext(AxiosContext);
+  const [produit, setProduit] = useState(null);
+
+  useEffect(() => {
+    axios
+      .get(`/produits/${codeProduit}`)
+      .then(function (response) {
+        // handle success
+        console.log(response);
+        setProduit(response.data);
+      })
+      .catch(function (error) {
+        // handle error
+        console.log(error);
+        if (error.response.status === 404) {
+          navigate("/product-not-found");
+        }
+      })
+      .finally(function () {
+        // always executed
+      });
+  }, [axios]);
+
   return (
     <Container>
       <Row>
@@ -29,13 +56,18 @@ function DetailsProduit({
           />
         </Col>
         <Col style={{}}>
-          <Card style={{ height: "55%" }}>
+          <Card style={{ height: "auto" }}>
             <Card.Body
               style={{
                 alignItems: "center",
               }}
             >
-              <Etoile evaluation={evaluation} size="30" />
+              <div style={{ display: "flex" }}>
+                <Etoile evaluation={evaluation} size="30" />
+                <Card.Link href="#" style={{ alignItems: "center" }}>
+                  (0)
+                </Card.Link>
+              </div>
               <Card.Title>{nomProduit}</Card.Title>
               <Card.Subtitle className="mb-2 text-muted">
                 {codeCategorie && (
@@ -50,14 +82,28 @@ function DetailsProduit({
                 gap={5}
                 style={{ justifyContent: "center", margin: "0px" }}
               >
-                <Button variant="primary">Ajouter au panier</Button>
-                <Button variant="success">Acheter maintenant</Button>
+                <Button variant="outline-primary">Ajouter au panier</Button>
+                <Button variant="outline-success">Acheter maintenant</Button>
               </Stack>
             </Card.Body>
           </Card>
         </Col>
       </Row>
       <Row>
+        <Row className="g-4">
+          <h2 style={{ textAlign: "center" }}>Commentaires des clients</h2>
+        </Row>
+        <Row style={{ padding: "10px 0 20px 0" }}>
+          <Button variant="secondary">
+            <Card.Title
+              onClick={() => navigate(`/produit/${codeProduit}/evaluation`)}
+            >
+              Écrire un commentaire client
+            </Card.Title>
+          </Button>
+        </Row>
+        {/* TODO 
+        Affiche sil y a des commentaires pour le produit */}
         <CarteCommentaire
           nomClient={"Nom du client"}
           titre={"Titre du commentaire"}
