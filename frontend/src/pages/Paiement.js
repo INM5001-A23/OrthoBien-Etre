@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { AxiosContext } from "..";
 import ModelePage from "../layout/ModelePage";
 import { Container, Stack, Form, Button } from "react-bootstrap";
-import Checkout from '../components/Checkout'
+import StripePayment from "./StripePayment";
 
 function PagePaiement() {
   const axios = useContext(AxiosContext);
@@ -30,7 +30,7 @@ function PagePaiement() {
       <Container>
         <Stack gap={3}>
           <h1>Page de paiement</h1>
-          <Checkout/>
+          <StripePayment/>
         </Stack>
       </Container>
     </ModelePage>
