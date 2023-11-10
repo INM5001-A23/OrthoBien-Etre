@@ -86,5 +86,14 @@ router.get("/:codeProduit", async (req, res) => {
   }
 });
 
-
+//  // Fetch products by category
+//  router.get("/:codeCategorie", async (req, res) => {
+//   try {
+//     const codeCategorie = req.params.codeCategorie;
+//     const produit = await Produits.find({ codeCategorie });
+//     res.json(produit);
+//   } catch (err) {
+//     res.status(500).json({ message: err.message });
+//   }
+// });
 export default router;
