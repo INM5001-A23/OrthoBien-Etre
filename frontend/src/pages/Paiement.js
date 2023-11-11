@@ -1,10 +1,9 @@
 import { Elements } from "@stripe/react-stripe-js"
 import { loadStripe } from "@stripe/stripe-js"
 import React from "react"
-import PaymentForm from "./PaymentForm"
+import PaymentForm from "../components/PaymentForm"
 import ModelePage from "../layout/ModelePage";
-import { Container, Stack, Form, Button } from "react-bootstrap";
-import PaymentForm from "./PaymentForm"
+import { Container, Stack, Form, Button } from "react-bootstrap"
 
 function PagePaiement() {
 
