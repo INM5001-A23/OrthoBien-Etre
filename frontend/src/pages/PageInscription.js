@@ -5,9 +5,10 @@ import ModelePage from "../layout/ModelePage";
 import Button from "../components/Bouton";
 import { useNavigate } from "react-router-dom";
 import Nav from "react-bootstrap/Nav";
-import { Container } from "react-bootstrap";
+import { Container, Stack } from "react-bootstrap";
 
 import { useForm } from "react-hook-form";
+import React from "react";
 
 function PageInscription() {
   const navigate = useNavigate();
@@ -15,14 +16,18 @@ function PageInscription() {
   const {
     register,
     handleSubmit,
+    watch,
+    unregister,
     formState: { errors },
   } = useForm({
+    mode: "onBlur",
     defaultValues: {
       prenom: "",
       nom: "",
-      mode: "onChange",
     },
   });
+
+  React.useEffect(() => {}, [unregister]);
 
   const handleFormulaireInscription = handleSubmit((data) => {
     // Appeller le backend
@@ -32,13 +37,11 @@ function PageInscription() {
 
   return (
     <ModelePage>
-      <h1 className="d-flex justify-content-center mb-3">
-        Création d'un compte
-      </h1>
-      <Container className="d-flex justify-content-center">
+      <h1 className="d-flex justify-content-center">Création d'un compte</h1>
+      <Container className="d-flex justify-content-center ">
         <Form onSubmit={handleFormulaireInscription}>
-          <Row className="mb-2">
-            {/* Input prenom */}
+          <Stack>
+            {/* Input PRENOM */}
             <Form.Group as={Col} controlId="formGridFirstName">
               <Form.Label>Prénom</Form.Label>
               <Form.Control
@@ -48,31 +51,35 @@ function PageInscription() {
                     value: /^[A-Za-z]+$/i,
                     message: "Lettres de l'alphabet uniquement",
                   },
+                  minLength: {
+                    value: 4,
+                    message: "Longueur minimale est de 4 caractères",
+                  },
                 })}
               />
               <p style={{ color: "red" }}>{errors.prenom?.message}</p>
             </Form.Group>
 
-            {/* Input nom */}
+            {/* Input NOM */}
             <Form.Group as={Col} controlId="formGridLastName">
               <Form.Label>Nom</Form.Label>
               <Form.Control
-                {...register(
-                  "nom",
-                  {
-                    required: "Ce champ est obligatoire",
-                    minLength: {
-                      value: 4,
-                      message: "Longueur minimale est de 4 caracteres",
-                    },
+                {...register("nom", {
+                  required: "Ce champ est obligatoire",
+                  pattern: {
+                    value: /^[A-Za-z]+$/i,
+                    message: "Lettres de l'alphabet uniquement",
                   },
-                  { pattern: /^[A-Za-z]+$/i }
-                )}
+                  minLength: {
+                    value: 4,
+                    message: "Longueur minimale est de 4 caractères",
+                  },
+                })}
               />
               <p style={{ color: "red" }}>{errors.nom?.message}</p>
             </Form.Group>
 
-            {/* Input telephone */}
+            {/* Input TELEPHONE */}
             <Form.Group as={Col} controlId="formGridTelephone">
               <Form.Label>Téléphone</Form.Label>
               <Form.Control
@@ -80,42 +87,69 @@ function PageInscription() {
                 placeholder="(000)-000-0000"
                 name="telephone"
                 {...register("telephone", {
-                  pattern: /^\(\d{3}\)-\d{3}-\d{4}$/,
+                  required: "Ce champ est obligatoire",
+                  pattern: {
+                    value: /^\(\d{3}\)-\d{3}-\d{4}$/,
+                    message: "Veuillez respecter le format: '(000)-000-0000'",
+                  },
                 })}
               />
+              <p style={{ color: "red" }}>{errors.telephone?.message}</p>
             </Form.Group>
-          </Row>
 
-          <Row className="mb-2">
-            {/* Input courriel */}
+            {/* Input EMAIL */}
             <Form.Group as={Col} controlId="formGridEmail">
               <Form.Label>Courriel</Form.Label>
               <Form.Control
                 type="email"
                 {...register("email", {
-                  pattern: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+                  pattern: {
+                    value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+                    message:
+                      "Veuillez respecter le format: 'nomutilisateur@domaine.com'",
+                  },
                 })}
+              />
+              <p style={{ color: "red" }}>{errors.email?.message}</p>
+            </Form.Group>
+
+            {/* Input MOT DE PASSE  */}
+            <Form.Group as={Col} controlId="formGridPassword">
+              <Form.Label>Mot de passe</Form.Label>
+              <Form.Control
+                type="password"
+                {...register("motDePasse", {
+                  pattern: {
+                    value:
+                      /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
+                    message: (
+                      <div>
+                        <p>Le mot de passe doit contenir au moins:</p>
+                        <ul>
+                          <li>une lettre majuscule.</li>
+                          <li>une lettre minuscule.</li>
+                          <li>un chiffre.</li>
+                          <li>un caractère spécial (@, $, !, %, *, ?, &).</li>
+                          <li>6 caractères au minimum.</li>
+                        </ul>
+                      </div>
+                    ),
+                  },
+                })}
+              />
+              <p style={{ color: "red" }}>{errors.motDePasse?.message}</p>
+            </Form.Group>
+
+            {/* Input adresse */}
+            <Form.Group>
+              <Form.Label>Adresse</Form.Label>
+              <Form.Control
+                placeholder="1234 Main St"
+                type="text"
+                {...register("adresse")}
               />
             </Form.Group>
 
-            {/* Input mot de passe */}
-            <Form.Group as={Col} controlId="formGridPassword">
-              <Form.Label>Mot de passe</Form.Label>
-              <Form.Control type="password" {...register("motDePasse")} />
-            </Form.Group>
-          </Row>
-
-          {/* Input adresse */}
-          <Form.Group>
-            <Form.Label>Adresse</Form.Label>
-            <Form.Control
-              placeholder="1234 Main St"
-              type="text"
-              {...register("adresse")}
-            />
-          </Form.Group>
-
-          <Row>
             {/* Input ville */}
             <Form.Group as={Col} controlId="formGridCity">
               <Form.Label>Ville</Form.Label>
@@ -137,18 +171,19 @@ function PageInscription() {
               <Form.Label>Code Postal</Form.Label>
               <Form.Control type="text" {...register("codePostal")} />
             </Form.Group>
-          </Row>
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              margin: "20px",
-            }}
-          >
-            <Button type="submit" variant="outline-success">
-              Créer un compte
-            </Button>
-          </div>
+
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                margin: "20px",
+              }}
+            >
+              <Button type="submit" variant="outline-success">
+                Créer un compte
+              </Button>
+            </div>
+          </Stack>
         </Form>
       </Container>
     </ModelePage>
