@@ -15,12 +15,11 @@ router.get("/", async (req, res) => {
   }
 });
 
-
 // Fetch products by category
-router.get("/:codeCategorie", async (req, res) => {
+router.get("/:codeCategorie/produits", async (req, res) => {
   try {
     const codeCategorie = req.params.codeCategorie;
-    const categoriesProduits = await Produit.find({codeCategorie});
+    const categoriesProduits = await Produit.find({ codeCategorie });
     res.json(categoriesProduits);
   } catch (err) {
     res.status(500).json({ message: err.message });
