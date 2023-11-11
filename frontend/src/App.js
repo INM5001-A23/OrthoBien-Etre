@@ -5,10 +5,10 @@ import PageCatalogue from "./pages/PageCatalogue";
 import PageConnexion from "./pages/PageConnexion";
 import PageInscription from "./pages/PageInscription";
 import PagePanier from "./pages/PagePanier";
-import PagePaiement from "./pages/Paiement";
+import PagePaiement from "./pages/PagePaiement";
 import PageProduit from "./pages/PageProduit";
 import PageAdmin from "./pages/PageAdmin";
-import PageEvaluation from "./pages/PageEvaluation";
+import Evaluation from "./layout/Evaluation";
 
 const router = createBrowserRouter([
   {
@@ -59,7 +59,7 @@ const router = createBrowserRouter([
 
   {
     path: "/produit/:codeProduit/evaluation",
-    element: <PageEvaluation />,
+    element: <Evaluation />,
     errorElement: <Erreur />,
   },
 ]);
