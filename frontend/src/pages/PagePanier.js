@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
 import ModelePage from "../layout/ModelePage";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
@@ -8,7 +7,7 @@ import { Badge, Button, Card, ListGroup } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 
 function PagePanier() {
-  const handleCheckout = () => {};
+
   const [cart, setCart] = useState([
     {
       id: 1,
@@ -136,7 +135,7 @@ function PagePanier() {
                 <Card.Text>
                   Sous-total ({cart.length} articles) : {cartTotal.toFixed(2)} $
                 </Card.Text>
-                <Button variant="primary" onClick={() => navigate("/paiement")}>
+                <Button variant="primary" onClick={() => navigate("/paiement", {state: {total: cartTotal}})}>
                   Passer la commande
                 </Button>
               </Card.Body>

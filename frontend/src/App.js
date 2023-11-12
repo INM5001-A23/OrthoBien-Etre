@@ -8,7 +8,7 @@ import PagePanier from "./pages/PagePanier";
 import PagePaiement from "./pages/PagePaiement";
 import PageProduit from "./pages/PageProduit";
 import PageAdmin from "./pages/PageAdmin";
-import Evaluation from "./layout/Evaluation";
+//import Evaluation from "./layout/Evaluation";
 
 const router = createBrowserRouter([
   {
@@ -55,13 +55,13 @@ const router = createBrowserRouter([
     path: "/admin",
     element: <PageAdmin />,
     errorElement: <Erreur />,
-  },
+  } //,
 
-  {
-    path: "/produit/:codeProduit/evaluation",
-    element: <Evaluation />,
-    errorElement: <Erreur />,
-  },
+  // {
+  //   path: "/produit/:codeProduit/evaluation",
+  //   element: <Evaluation />,
+  //   errorElement: <Erreur />,
+  // },
 ]);
 
 function App() {
