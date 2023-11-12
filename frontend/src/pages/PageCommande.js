@@ -29,9 +29,9 @@ function PageCommande() {
   const location = useLocation();
   
   const totalAvantTaxes = location.state.total;
-  const tps = 0;
-  const tvq = 0;
-  const fraisLivraison = 0;
+  const tps =totalAvantTaxes*(5/100);
+  const tvq = totalAvantTaxes*(9.975/100);
+  const fraisLivraison = totalAvantTaxes*(2/100);
   const totalApresTaxes = totalAvantTaxes + tvq + tps + fraisLivraison;
 
   return (
@@ -41,8 +41,8 @@ function PageCommande() {
         <hr></hr>
         <div>
         <Row>
-          <Col>
-            <h3> Informations de livraison </h3>
+          <Col xs={8}>
+            <h4> Informations de livraison </h4>
             <Form className="w-75 mb-5">
               <Form.Group className="mb-3 mx-auto" controlId="formBasicPrenom">
                 <Form.Label>Prenom</Form.Label>
@@ -90,24 +90,25 @@ function PageCommande() {
           </Col>
           <Col>
             <PayPalScriptProvider options={{"client-id": "AaI3aP2GIIHpPJp05ca6a380uZLugk_tJHJOEqh3JRWxVsSlLNrwxX3vSB82f4cb6iSpJJdCU4hVFreb"}}>
-            <h3>Récapitulatif de la commande</h3>
+            <Row className="p-2"><h3>Récapitulatif de la commande</h3></Row>
               <Row>
-                <Col className="w-49">
-                  <Row>Sous-Total:</Row>
-                  <Row>Frais de Livraison:</Row>
-                  <Row>TPS:</Row>
-                  <Row>TVQ:</Row>
-                  <Row>TOTAL:</Row>
+                <Col>
+                  <Row className="p-1">Sous-Total:</Row>
+                  <Row className="p-1">Frais de Livraison:</Row>
+                  <Row className="p-1">TPS:</Row>
+                  <Row className="p-1">TVQ:</Row>
+                  <Row className="fw-bolder p-1" style={{color:'#800020', borderTop: 'solid lightGray'}}>TOTAL:</Row>
                 </Col>
-                <Col className="w-49">
-                <Row>{totalAvantTaxes}</Row>
-                  <Row>{fraisLivraison}</Row>
-                  <Row>{tps}</Row>
-                  <Row>{tvq}</Row>
-                  <Row>{totalApresTaxes}</Row>
+                <Col className="">
+                  <Row className="p-1 d-flex justify-content-end">{totalAvantTaxes.toFixed(2)} CAD</Row>
+                  <Row className="d-flex justify-content-end p-1">{fraisLivraison.toFixed(2)} CAD</Row>
+                  <Row className="d-flex justify-content-end p-1">{tps.toFixed(2)} CAD</Row>
+                  <Row className="p-1 d-flex justify-content-end">{tvq.toFixed(2)} CAD</Row>
+                  <Row className="d-flex justify-content-end p-1 fw-bolder" style={{color:'#800020', borderTop: 'solid lightGray'}}>{totalApresTaxes.toFixed(2)} CAD</Row>
                 </Col>
+                <hr></hr>
               </Row>
-              <Row><BouttonCommande total={totalApresTaxes} /></Row>
+              <Row className=""><BouttonCommande total={totalApresTaxes} /></Row>
             </PayPalScriptProvider>
             
           </Col>
