@@ -23,31 +23,7 @@ const Checkout = (props) => {
   }
 
   return (
-    <PayPalButtons
-      createOrder={(data,actions) => {
-        return actions.order.create({
-          purchase_units:[
-            {
-              description:"customerNameDateAndHour",
-              amount:{
-                value:checkoutTotal
-              }
-            }
-          ]
-        })
-      }}
-
-      onApprove={async(data,actions)=>{
-          const order = await actions.order.capture()
-          console.log("order", order)
-          handleApprove(data.orderID);
-      }}
-
-      onError={(err)=>{
-        setError(err)
-        console.log("Paypal checkout error", err)
-      }}
-    />
+    <PayPalButtons/>
   );
 };
 

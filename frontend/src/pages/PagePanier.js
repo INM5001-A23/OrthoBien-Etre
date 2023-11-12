@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ModelePage from "../layout/ModelePage";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
@@ -8,34 +8,38 @@ import { useNavigate } from "react-router-dom";
 
 function PagePanier() {
 
-  const [cart, setCart] = useState([
+  const [cart, setCart] = useState(JSON.parse(localStorage.getItem('guestCartItems')) != null? JSON.parse(localStorage.getItem('guestCartItems')) : [
     {
-      id: 1,
-      name: "Product name",
-      description: "Brief description",
-      price: 12.0,
-      quantity: 1,
+        "id": 1,
+        "name": "Product name",
+        "description": "Brief description",
+        "price": 12,
+        "quantity": 2
     },
     {
-      id: 2,
-      name: "Second product",
-      description: "Brief description",
-      price: 5.0,
-      quantity: 1,
+        "id": 2,
+        "name": "Second product",
+        "description": "Brief description",
+        "price": 5,
+        "quantity": 1
     },
     {
-      id: 3,
-      name: "Third item",
-      description: "Brief description",
-      price: 3.0,
-      quantity: 1,
-    },
-  ]);
+        "id": 3,
+        "name": "Third item",
+        "description": "Brief description",
+        "price": 3,
+        "quantity": 1
+    }
+]);
 
   const cartTotal = cart.reduce(
     (total, item) => total + item.price * item.quantity,
     0
   );
+
+  useEffect(() => {
+    localStorage.setItem("guestCartItems",JSON.stringify(cart));
+  }, [cart]);
 
   const increaseQuantity = (itemId) => {
     const updatedCart = cart.map((item) =>
@@ -59,6 +63,7 @@ function PagePanier() {
   };
 
   const navigate = useNavigate();
+
   return (
     <ModelePage>
       <Container>
