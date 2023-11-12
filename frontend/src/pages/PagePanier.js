@@ -135,7 +135,7 @@ function PagePanier() {
                 <Card.Text>
                   Sous-total ({cart.length} articles) : {cartTotal.toFixed(2)} $
                 </Card.Text>
-                <Button variant="primary" onClick={() => navigate("/paiement", {state: {total: cartTotal}})}>
+                <Button variant="primary" onClick={() => navigate("/commande", {state: {total: cartTotal}})}>
                   Passer la commande
                 </Button>
               </Card.Body>

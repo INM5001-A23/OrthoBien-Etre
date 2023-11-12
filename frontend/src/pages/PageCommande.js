@@ -6,8 +6,10 @@ import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { useLocation } from "react-router-dom";
+import BouttonCommande from "../components/BouttonCommande"
+import { PayPalScriptProvider } from "@paypal/react-paypal-js";
 
-function PagePaiement() {
+function PageCommande() {
 
   const countries = [
     {
@@ -87,24 +89,27 @@ function PagePaiement() {
             </Form>
           </Col>
           <Col>
+            <PayPalScriptProvider options={{"client-id": "AaI3aP2GIIHpPJp05ca6a380uZLugk_tJHJOEqh3JRWxVsSlLNrwxX3vSB82f4cb6iSpJJdCU4hVFreb"}}>
             <h3>Récapitulatif de la commande</h3>
-            <Row>
-              <Col className="w-49">
-                <Row>Sous-Total:</Row>
-                <Row>Frais de Livraison:</Row>
-                <Row>TPS:</Row>
-                <Row>TVQ:</Row>
-                <Row>TOTAL:</Row>
-              </Col>
-              <Col className="w-49">
-              <Row>{totalAvantTaxes}</Row>
-                <Row>{fraisLivraison}</Row>
-                <Row>{tps}</Row>
-                <Row>{tvq}</Row>
-                <Row>{totalApresTaxes}</Row>
-              </Col>
-            </Row>
-            <Row></Row>
+              <Row>
+                <Col className="w-49">
+                  <Row>Sous-Total:</Row>
+                  <Row>Frais de Livraison:</Row>
+                  <Row>TPS:</Row>
+                  <Row>TVQ:</Row>
+                  <Row>TOTAL:</Row>
+                </Col>
+                <Col className="w-49">
+                <Row>{totalAvantTaxes}</Row>
+                  <Row>{fraisLivraison}</Row>
+                  <Row>{tps}</Row>
+                  <Row>{tvq}</Row>
+                  <Row>{totalApresTaxes}</Row>
+                </Col>
+              </Row>
+              <Row><BouttonCommande total={totalApresTaxes} /></Row>
+            </PayPalScriptProvider>
+            
           </Col>
         </Row>
         </div>
@@ -114,4 +119,4 @@ function PagePaiement() {
   );
 }
 
-export default PagePaiement;
+export default PageCommande;
