@@ -50,21 +50,25 @@ function FormulaireEvaluation() {
           }}
         >
           <Card.Body>
-            <Card.Subtitle>Évaluation globale</Card.Subtitle>
+            <Card.Subtitle style={{ margin: "0 0 5px 0" }}>
+              Évaluation globale
+            </Card.Subtitle>
             <Etoile size="30px" />
 
-            <Card.Subtitle>Ajouter un titre</Card.Subtitle>
+            <Card.Subtitle style={{ margin: "15px 0 5px 0" }}>
+              Ajouter un titre
+            </Card.Subtitle>
             <Form.Control
               as="textarea"
-              placeholder="Leave a comment here"
+              placeholder="Écrirez votre commentaire ici..."
               style={{ height: "100px" }}
             />
 
-            <Button variant="secondary" style={{}}>
+            <Button variant="secondary" style={{ margin: "10px 0 0 0" }}>
               <Card.Subtitle
               // onClick={() => navigate(`/produit/${codeProduit}/evaluation`)}
               >
-                Créer un commentaire client
+                Soumettre
               </Card.Subtitle>
             </Button>
           </Card.Body>
