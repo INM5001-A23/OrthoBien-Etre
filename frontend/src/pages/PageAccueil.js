@@ -10,6 +10,7 @@ import CarteCategorie from "../components/CarteCategorie";
 
 function PageAccueil() {
   const axios = useContext(AxiosContext);
+  const [promotions, setPromotions] = useState([]);
   const [produitsPopulaire, setProduitsPopulaire] = useState([]);
   const [produitsPhare, setProduitsPhare] = useState([]);
   const [categories, setCategories] = useState([]);
@@ -65,6 +66,23 @@ function PageAccueil() {
       });
   }, [axios]);
 
+  useEffect(() => {
+    axios
+      .get("/produits/promotion")
+      .then(function (response) {
+        // handle success
+        console.log(response);
+        setPromotions(response.data);
+      })
+      .catch(function (error) {
+        // handle error
+        console.log(error);
+      })
+      .finally(function () {
+        // always executed
+      });
+  }, [axios]);
+
   return (
     <ModelePage>
       <Stack gap={3}>
@@ -77,14 +95,11 @@ function PageAccueil() {
             <h1>Les Promotions</h1>
           </Row>
           <Row xs={1} md={3} className="g-3 justify-content-center">
-            {/* TODO */}
-            {/* {produits
-              .map((item) => (
-                <Col xs="auto" md="auto" key={item.id}>
-                  <CarteProduit img={item.image} nomProduit={item.title} />
-                </Col>
-              ))
-              .slice(0, 3)} */}
+            {promotions.map((produit) => (
+              <Col xs="auto" md="auto" key={produit._id}>
+                <CarteProduit produit={produit} />
+              </Col>
+            ))}
           </Row>
         </Container>
 

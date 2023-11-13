@@ -4,35 +4,52 @@ import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import { useContext, useEffect, useState } from "react";
 import { AxiosContext } from "..";
-import { Container, Dropdown, DropdownButton, Form } from "react-bootstrap";
+import { Button, Container, Stack } from "react-bootstrap";
 import FiltreCatalogue from "../components/FiltreCatalogue";
+import { useSearchParams } from "react-router-dom";
+import FiltreCategorie from "../components/FiltreCategorie";
 
 function PageCatalogue() {
   const axios = useContext(AxiosContext);
+  const [searchParams] = useSearchParams();
+  const [filtreCategorie, setFiltreCategorie] = useState(
+    searchParams.get("filtreCategorie") || ""
+  );
   const [produits, setProduits] = useState([]);
   const [filtre, setFiltre] = useState("");
 
   useEffect(() => {
-    axios
-      .get(`/produits/${filtre}`)
-      .then(function (response) {
-        // handle success
-        console.log(response);
+    if (!!filtreCategorie) {
+      axios.get(`/categories/${filtreCategorie}/produits`).then((response) => {
         setProduits(response.data);
-      })
-      .catch(function (error) {
-        // handle error
-        console.log(error);
-      })
-      .finally(function () {
-        // always executed
       });
-  }, [axios, filtre]);
+      return;
+    }
+
+    axios.get(`/produits/${filtre}`).then((response) => {
+      setProduits(response.data);
+    });
+  }, [axios, filtre, filtreCategorie]);
 
   return (
     <ModelePage>
       <Container>
-        <FiltreCatalogue filtre={filtre} setFiltre={setFiltre} />
+        <Stack direction="horizontal" gap={2}>
+          <FiltreCatalogue filtre={filtre} setFiltre={setFiltre} />
+          <FiltreCategorie
+            filtre={filtreCategorie}
+            setFiltre={setFiltreCategorie}
+          />
+          <Button
+            style={{ margin: "0px 0px 15px 0px" }}
+            onClick={() => {
+              setFiltre(""); // Réinitialise le filtre principal
+              setFiltreCategorie(""); // Réinitialise le filtre de catégorie
+            }}
+          >
+            Réinitialiser
+          </Button>
+        </Stack>
         <Row xs={1} md={4} className="g-4 justify-content-center">
           {produits
             .map((produit) => (
