@@ -4,8 +4,34 @@ import Button from "../components/Bouton";
 import { useNavigate } from "react-router-dom";
 import Nav from "react-bootstrap/Nav";
 
+import { useForm } from "react-hook-form";
+import React from "react";
+
 function PageConnexion() {
   const navigate = useNavigate();
+
+  const {
+    register,
+    handleSubmit,
+    watch,
+    unregister,
+    formState: { errors },
+  } = useForm({
+    mode: "onBlur",
+    defaultValues: {
+      prenom: "",
+      nom: "",
+    },
+  });
+
+  React.useEffect(() => {}, [unregister]);
+
+  const handleFormulaireInscription = handleSubmit((data) => {
+    // Appeller le backend
+    // Si linscription fonctionne on redirige
+    // navigate("/");
+  });
+
   return (
     <ModelePage>
       <div className="d-flex flex-column align-items-center justify-content-center">
@@ -16,10 +42,21 @@ function PageConnexion() {
           Sinon veuillez vous inscrire.
         </p>
 
-        <Form className="w-25 mb-5">
+        <Form className="w-25 mb-5" onSubmit={handleFormulaireInscription}>
           <Form.Group className="mb-3 mx-auto" controlId="formBasicEmail">
             <Form.Label>Adresse courriel</Form.Label>
-            <Form.Control type="email" />
+            <Form.Control
+              type="email"
+              {...register("email", {
+                required: "Ce champ est obligatoire",
+                pattern: {
+                  value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+                  message:
+                    "Veuillez respecter le format: 'nomutilisateur@domaine.com'",
+                },
+              })}
+            />
+            <p style={{ color: "red" }}>{errors.email?.message}</p>
           </Form.Group>
 
           <Form.Group className="mb-3" controlId="formBasicPassword">
