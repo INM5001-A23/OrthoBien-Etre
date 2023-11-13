@@ -1,9 +1,8 @@
 import ListGroup from "react-bootstrap/ListGroup";
-import Card from "react-bootstrap/Card";
 import styles from "./Carte.module.css";
 import { Link, useNavigate } from "react-router-dom";
 import NomCategorie from "./NomCategorie";
-import { Badge, Button } from "react-bootstrap";
+import { Badge, Button, Row, Col, Card } from "react-bootstrap";
 
 function CarteProduit({
   produit: { codeProduit, img, nomProduit, codeCategorie, prix, promotion },
@@ -12,8 +11,9 @@ function CarteProduit({
   const navigate = useNavigate();
   return (
     <Card
+    onClick={() => navigate(`/produit/${codeProduit}`)}
       style={{
-        width: "15rem",
+        width: "18rem",
         textAlign: "center",
       }}
     >
@@ -35,36 +35,24 @@ function CarteProduit({
       </div>
 
       <Card.Body>
-        <Card.Title className="mb-0">{nomProduit}</Card.Title>
+        <Card.Title className="mb-0  p-2">{nomProduit}</Card.Title>
+        <Row>{codeCategorie && <NomCategorie codeCategorie={codeCategorie} />}</Row>
+        <Row className="p-2">{prix && <ListGroup.Item>{prix} CAD</ListGroup.Item>}</Row>
+        <Row className="p-2">
+          <Col xs={6}>
+            <Button className="d-grid gap-2" size="lg" variant="outline-info">
+              <Row><img src="/images/cart.png"  width="10" height="40" /></Row>
+              <Row style={{fontSize: 10}}>Ajout Au Panier</Row>
+            </Button>
+          </Col>
+          <Col xs={6}>
+            <Button className="d-grid gap-2" size="lg" variant="outline-success">
+              <Row><img src="/images/cartcheck.png"  width="40" height="40" /></Row>
+              <Row style={{fontSize: 10}}>Achat Rapide</Row>
+            </Button>
+          </Col>
+        </Row>
       </Card.Body>
-
-      <ListGroup className="list-group-flush">
-        {codeCategorie && <NomCategorie codeCategorie={codeCategorie} />}
-        {prix && <ListGroup.Item>{prix}</ListGroup.Item>}
-        <ListGroup.Item className="lien">
-          <Button
-            size="sm"
-            variant="outline-secondary"
-            onClick={() => navigate(`/produit/${codeProduit}`)}
-          >
-            Voir détails
-          </Button>
-        </ListGroup.Item>
-        {achat && (
-          <>
-            <ListGroup.Item>
-              <Button size="sm" variant="outline-primary" href="#">
-                Ajouter au panier
-              </Button>
-            </ListGroup.Item>
-            <ListGroup.Item>
-              <Button size="sm" variant="outline-success" href="#">
-                Acheter maintenant
-              </Button>
-            </ListGroup.Item>
-          </>
-        )}
-      </ListGroup>
     </Card>
   );
 }
