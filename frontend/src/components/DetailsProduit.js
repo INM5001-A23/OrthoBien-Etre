@@ -5,11 +5,13 @@ import Carrousel from "./Carrousel";
 import NomCategorie from "./NomCategorie";
 import Etoile from "./Etoile";
 import CarteCommentaire from "./CarteCommentaire";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "./DetailsProduit.css";
 
 import { useContext, useEffect, useState } from "react";
 import { AxiosContext } from "..";
+import Evaluation from "./FormulaireEvaluation";
+import FormulaireEvaluation from "./FormulaireEvaluation";
 
 function DetailsProduit({
   produit: {
@@ -64,9 +66,9 @@ function DetailsProduit({
             >
               <div style={{ display: "flex" }}>
                 <Etoile evaluation={evaluation} size="30" />
-                <Card.Link href="#" style={{ alignItems: "center" }}>
-                  (0)
-                </Card.Link>
+                <div style={{ display: "flex", alignItems: "center" }}>
+                  <Card.Link href="#">(0)</Card.Link>
+                </div>
               </div>
               <Card.Title>{nomProduit}</Card.Title>
               <Card.Subtitle className="mb-2 text-muted">
@@ -89,19 +91,8 @@ function DetailsProduit({
           </Card>
         </Col>
       </Row>
-      <Row>
-        <Row className="g-4">
-          <h2 style={{ textAlign: "center" }}>Commentaires des clients</h2>
-        </Row>
-        <Row style={{ padding: "10px 0 20px 0" }}>
-          <Button variant="secondary">
-            <Card.Title
-              onClick={() => navigate(`/produit/${codeProduit}/evaluation`)}
-            >
-              Écrire un commentaire client
-            </Card.Title>
-          </Button>
-        </Row>
+      <Stack>
+        <Row style={{ padding: "10px 0 20px 0" }}></Row>
         {/* TODO 
         Affiche sil y a des commentaires pour le produit */}
         <CarteCommentaire
@@ -112,7 +103,8 @@ function DetailsProduit({
           }
           evaluation={4}
         />
-      </Row>
+        <FormulaireEvaluation etoiles={"4"} />
+      </Stack>
     </Container>
   );
 }

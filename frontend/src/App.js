@@ -8,7 +8,7 @@ import PagePanier from "./pages/PagePanier";
 import PageCommande from "./pages/PageCommande";
 import PageProduit from "./pages/PageProduit";
 import PageAdmin from "./pages/PageAdmin";
-import Evaluation from "./layout/Evaluation";
+import Evaluation from "./components/FormulaireEvaluation";
 
 const router = createBrowserRouter([
   {
