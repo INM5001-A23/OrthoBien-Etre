@@ -1,9 +1,8 @@
 import ListGroup from "react-bootstrap/ListGroup";
-import Card from "react-bootstrap/Card";
 import styles from "./Carte.module.css";
 import { Link, useNavigate } from "react-router-dom";
 import NomCategorie from "./NomCategorie";
-import { Badge, Button } from "react-bootstrap";
+import { Badge, Button, Row, Col, Card } from "react-bootstrap";
 
 function CarteProduit({
   produit: { codeProduit, img, nomProduit, codeCategorie, prix, promotion },
@@ -12,8 +11,9 @@ function CarteProduit({
   const navigate = useNavigate();
   return (
     <Card
+    onClick={() => navigate(`/produit/${codeProduit}`)}
       style={{
-        width: "15rem",
+        width: "18rem",
         textAlign: "center",
       }}
     >
@@ -36,35 +36,13 @@ function CarteProduit({
 
       <Card.Body>
         <Card.Title className="mb-0">{nomProduit}</Card.Title>
+        <Row>{codeCategorie && <NomCategorie codeCategorie={codeCategorie} />}</Row>
+        <Row>{prix && <ListGroup.Item>{prix}</ListGroup.Item>}</Row>
+        <Row>
+          <Col  xs={6}><Button style={{backgroundImage:"url('../../public/images/panier.svg')",backgroundSize:"cover", width:"40px", height:"40px"}}></Button></Col>
+          <Col xs={6}><Button>Achat Rapide</Button></Col>
+        </Row>
       </Card.Body>
-
-      <ListGroup className="list-group-flush">
-        {codeCategorie && <NomCategorie codeCategorie={codeCategorie} />}
-        {prix && <ListGroup.Item>{prix}</ListGroup.Item>}
-        <ListGroup.Item className="lien">
-          <Button
-            size="sm"
-            variant="outline-secondary"
-            onClick={() => navigate(`/produit/${codeProduit}`)}
-          >
-            Voir détails
-          </Button>
-        </ListGroup.Item>
-        {achat && (
-          <>
-            <ListGroup.Item>
-              <Button size="sm" variant="outline-primary" href="#">
-                Ajouter au panier
-              </Button>
-            </ListGroup.Item>
-            <ListGroup.Item>
-              <Button size="sm" variant="outline-success" href="#">
-                Acheter maintenant
-              </Button>
-            </ListGroup.Item>
-          </>
-        )}
-      </ListGroup>
     </Card>
   );
 }
