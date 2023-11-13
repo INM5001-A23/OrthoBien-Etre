@@ -5,7 +5,7 @@ import PageCatalogue from "./pages/PageCatalogue";
 import PageConnexion from "./pages/PageConnexion";
 import PageInscription from "./pages/PageInscription";
 import PagePanier from "./pages/PagePanier";
-import PagePaiement from "./pages/PagePaiement";
+import PageCommande from "./pages/PageCommande";
 import PageProduit from "./pages/PageProduit";
 import PageAdmin from "./pages/PageAdmin";
 import Evaluation from "./layout/Evaluation";
@@ -40,8 +40,8 @@ const router = createBrowserRouter([
   },
 
   {
-    path: "/paiement",
-    element: <PagePaiement />,
+    path: "/commande",
+    element: <PageCommande />,
     errorElement: <Erreur />,
   },
 
@@ -55,13 +55,13 @@ const router = createBrowserRouter([
     path: "/admin",
     element: <PageAdmin />,
     errorElement: <Erreur />,
-  },
+  } //,
 
-  {
-    path: "/produit/:codeProduit/evaluation",
-    element: <Evaluation />,
-    errorElement: <Erreur />,
-  },
+  // {
+  //   path: "/produit/:codeProduit/evaluation",
+  //   element: <Evaluation />,
+  //   errorElement: <Erreur />,
+  // },
 ]);
 
 function App() {
