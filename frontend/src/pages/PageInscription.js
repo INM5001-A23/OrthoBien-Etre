@@ -40,7 +40,7 @@ function PageInscription() {
       <h1 className="d-flex justify-content-center">Création d'un compte</h1>
       <Container className="d-flex justify-content-center ">
         <Form onSubmit={handleFormulaireInscription}>
-          <Stack style={{ width: "450px" }}>
+          <Stack>
             {/* Input PRENOM */}
             <Form.Group as={Col} controlId="formGridFirstName">
               <Form.Label>Prénom</Form.Label>
@@ -103,7 +103,6 @@ function PageInscription() {
               <Form.Control
                 type="email"
                 {...register("email", {
-                  required: "Ce champ est obligatoire",
                   pattern: {
                     value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
                     message:
@@ -120,7 +119,6 @@ function PageInscription() {
               <Form.Control
                 type="password"
                 {...register("motDePasse", {
-                  required: "Ce champ est obligatoire",
                   pattern: {
                     value:
                       /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
@@ -142,20 +140,13 @@ function PageInscription() {
               <p style={{ color: "red" }}>{errors.motDePasse?.message}</p>
             </Form.Group>
 
-            {/* Input RUE */}
-            <h5>Adresse</h5>
+            {/* Input adresse */}
             <Form.Group>
-              <Form.Label>Rue</Form.Label>
+              <Form.Label>Adresse</Form.Label>
               <Form.Control
                 placeholder="1234 Main St"
                 type="text"
-                {...register("adresse", {
-                  pattern: {
-                    value: /^[A-Za-z0-9\s.,-]+$/,
-                    message:
-                      "Veuillez respecter le format: 'nomutilisateur@domaine.com'",
-                  },
-                })}
+                {...register("adresse")}
               />
             </Form.Group>
 

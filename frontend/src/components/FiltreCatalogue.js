@@ -1,6 +1,6 @@
 import { DropdownButton, Form } from "react-bootstrap";
 
-function TriCatalogue({ filtre, setFiltre }) {
+function FiltreCatalogue({ filtre, setFiltre }) {
   const getNomFiltre = () => {
     const noms = {
       grandprix: ": Prix[Bas-Élevé]",
@@ -8,6 +8,8 @@ function TriCatalogue({ filtre, setFiltre }) {
       promotion: ": En promotion",
       "": "",
     };
+
+    console.log(filtre);
 
     return noms[filtre];
   };
@@ -28,7 +30,6 @@ function TriCatalogue({ filtre, setFiltre }) {
 
   return (
     <DropdownButton
-      variant="secondary"
       id="dropdown-basic-button"
       title={`Trier par${getNomFiltre()}`}
       style={{ margin: "0px 0px 15px 0px" }}
@@ -104,4 +105,4 @@ function TriCatalogue({ filtre, setFiltre }) {
   );
 }
 
-export default TriCatalogue;
+export default FiltreCatalogue;

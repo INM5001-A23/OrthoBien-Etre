@@ -1,5 +1,6 @@
 import ListGroup from "react-bootstrap/ListGroup";
 import Card from "react-bootstrap/Card";
+import styles from "./Carte.module.css";
 import { Link, useNavigate } from "react-router-dom";
 
 function CarteCategorie({ categorie: { img, nomCategorie, codeCategorie } }) {
@@ -11,17 +12,14 @@ function CarteCategorie({ categorie: { img, nomCategorie, codeCategorie } }) {
         textAlign: "center",
       }}
     >
+      {/* <Card.Img className={styles["header-img"]} variant="top" src={img} /> */}
       <Card.Body>
         <Card.Title className="mb-0">{nomCategorie}</Card.Title>
       </Card.Body>
 
       <ListGroup className="list-group-flush">
         <ListGroup.Item className="lien">
-          <Link
-            onClick={() =>
-              navigate(`/catalogue?filtreCategorie=${codeCategorie}`)
-            }
-          >
+          <Link onClick={() => navigate(`/categorie/${codeCategorie}`)}>
             Voir plus
           </Link>
         </ListGroup.Item>
