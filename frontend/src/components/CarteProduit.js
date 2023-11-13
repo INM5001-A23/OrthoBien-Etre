@@ -35,12 +35,22 @@ function CarteProduit({
       </div>
 
       <Card.Body>
-        <Card.Title className="mb-0">{nomProduit}</Card.Title>
+        <Card.Title className="mb-0  p-2">{nomProduit}</Card.Title>
         <Row>{codeCategorie && <NomCategorie codeCategorie={codeCategorie} />}</Row>
-        <Row>{prix && <ListGroup.Item>{prix}</ListGroup.Item>}</Row>
-        <Row>
-          <Col  xs={6}><Button style={{backgroundImage:"url('../../public/images/panier.svg')",backgroundSize:"cover", width:"40px", height:"40px"}}></Button></Col>
-          <Col xs={6}><Button>Achat Rapide</Button></Col>
+        <Row className="p-2">{prix && <ListGroup.Item>{prix} CAD</ListGroup.Item>}</Row>
+        <Row className="p-2">
+          <Col xs={6}>
+            <Button className="d-grid gap-2" size="lg" variant="outline-info">
+              <Row><img src="/images/cart.png"  width="10" height="40" /></Row>
+              <Row style={{fontSize: 10}}>Ajout Au Panier</Row>
+            </Button>
+          </Col>
+          <Col xs={6}>
+            <Button className="d-grid gap-2" size="lg" variant="outline-success">
+              <Row><img src="/images/cartcheck.png"  width="40" height="40" /></Row>
+              <Row style={{fontSize: 10}}>Achat Rapide</Row>
+            </Button>
+          </Col>
         </Row>
       </Card.Body>
     </Card>
