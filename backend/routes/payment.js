@@ -1,11 +1,8 @@
 import express from 'express';
-import Stripe from 'stripe';
-const stripe = new Stripe("sk_test_51OB0JqEAjLSuYLB51HqdT7zeZPisyTMNcA5rBVjuu0aQwEBmSNJaNndltNyUAcn9ZApTCE3W4im9Pzq5PKoMmlp2000Pjp6Oif");
 import bodyParser from "body-parser"
 import cors from "cors"
 
 const router = express.Router();
-
 router.use(bodyParser.urlencoded({ extended: true }))
 router.use(bodyParser.json())
 
