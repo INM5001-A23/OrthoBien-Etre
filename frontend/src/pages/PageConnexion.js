@@ -3,30 +3,36 @@ import Form from "react-bootstrap/Form";
 import Button from "../components/Bouton";
 import { useNavigate } from "react-router-dom";
 import Nav from "react-bootstrap/Nav";
+import { useContext } from "react";
+import { AxiosContext } from "..";
 
 import { useForm } from "react-hook-form";
 import React from "react";
 
 function PageConnexion() {
   const navigate = useNavigate();
+  const axios = useContext(AxiosContext);
 
   const {
     register,
     handleSubmit,
-    watch,
     unregister,
     formState: { errors },
   } = useForm({
     mode: "onBlur",
-    defaultValues: {
-      prenom: "",
-      nom: "",
-    },
   });
 
   React.useEffect(() => {}, [unregister]);
 
   const handleFormulaireInscription = handleSubmit((data) => {
+    axios
+      .post("lien pour chercher donnees utilisateur")
+      .then((response) => {
+        console.log(response.data.utilisateur);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
     // Appeller le backend
     // Si linscription fonctionne on redirige
     // navigate("/");
@@ -37,7 +43,7 @@ function PageConnexion() {
       <div className="d-flex flex-column align-items-center justify-content-center">
         <h1 className="mb-3">Connexion</h1>
         <p className="mb-3 text-center">
-          Veuillez entrer vos information si vous êtes déjà enregistré.{" "}
+          Veuillez entrer vos information si vous êtes déjà enregistré.
           <br></br>
           Sinon veuillez vous inscrire.
         </p>

@@ -8,7 +8,6 @@ import PagePanier from "./pages/PagePanier";
 import PageCommande from "./pages/PageCommande";
 import PageProduit from "./pages/PageProduit";
 import PageAdmin from "./pages/PageAdmin";
-import Evaluation from "./components/FormulaireEvaluation";
 
 const router = createBrowserRouter([
   {
@@ -55,13 +54,7 @@ const router = createBrowserRouter([
     path: "/admin",
     element: <PageAdmin />,
     errorElement: <Erreur />,
-  } //,
-
-  // {
-  //   path: "/produit/:codeProduit/evaluation",
-  //   element: <Evaluation />,
-  //   errorElement: <Erreur />,
-  // },
+  },
 ]);
 
 function App() {
