@@ -42,7 +42,7 @@ function PageInscription() {
         <Form onSubmit={handleFormulaireInscription}>
           <Stack style={{ width: "450px" }}>
             {/* Input PRENOM */}
-            <Form.Group as={Col} controlId="formGridFirstName">
+            <Form.Group as={Col} controlId="prenom">
               <Form.Label>Prénom</Form.Label>
               <Form.Control
                 {...register("prenom", {
@@ -61,7 +61,7 @@ function PageInscription() {
             </Form.Group>
 
             {/* Input NOM */}
-            <Form.Group as={Col} controlId="formGridLastName">
+            <Form.Group as={Col} controlId="nom">
               <Form.Label>Nom</Form.Label>
               <Form.Control
                 {...register("nom", {
@@ -80,7 +80,7 @@ function PageInscription() {
             </Form.Group>
 
             {/* Input TELEPHONE */}
-            <Form.Group as={Col} controlId="formGridTelephone">
+            <Form.Group as={Col} controlId="telephone">
               <Form.Label>Téléphone</Form.Label>
               <Form.Control
                 type="tel"
@@ -98,7 +98,7 @@ function PageInscription() {
             </Form.Group>
 
             {/* Input EMAIL */}
-            <Form.Group as={Col} controlId="formGridEmail">
+            <Form.Group as={Col} controlId="email">
               <Form.Label>Courriel</Form.Label>
               <Form.Control
                 type="email"
@@ -115,7 +115,7 @@ function PageInscription() {
             </Form.Group>
 
             {/* Input MOT DE PASSE  */}
-            <Form.Group as={Col} controlId="formGridPassword">
+            <Form.Group as={Col} controlId="motDePasse">
               <Form.Label>Mot de passe</Form.Label>
               <Form.Control
                 type="password"
@@ -142,43 +142,76 @@ function PageInscription() {
               <p style={{ color: "red" }}>{errors.motDePasse?.message}</p>
             </Form.Group>
 
-            {/* Input RUE */}
             <h5>Adresse</h5>
-            <Form.Group>
+            {/* Input RUE */}
+            <Form.Group as={Col} controlId="rue">
               <Form.Label>Rue</Form.Label>
               <Form.Control
                 placeholder="1234 Main St"
                 type="text"
-                {...register("adresse", {
+                {...register("rue", {
                   pattern: {
                     value: /^[A-Za-z0-9\s.,-]+$/,
                     message:
                       "Veuillez respecter le format: 'nomutilisateur@domaine.com'",
                   },
+                  minLength: {
+                    value: 4,
+                    message: "Longueur minimale est de 4 caractères",
+                  },
                 })}
               />
+              <p style={{ color: "red" }}>{errors.rue?.message}</p>
             </Form.Group>
 
-            {/* Input ville */}
-            <Form.Group as={Col} controlId="formGridCity">
+            {/* Input VILLE */}
+            <Form.Group as={Col} controlId="ville">
               <Form.Label>Ville</Form.Label>
-              <Form.Control type="text" {...register("ville")} />
+              <Form.Control
+                type="text"
+                {...register("ville", {
+                  required: "Ce champ est obligatoire",
+                  pattern: {
+                    value: /^[A-Za-z]+$/i,
+                    message: "Lettres de l'alphabet uniquement",
+                  },
+                  minLength: {
+                    value: 4,
+                    message: "Longueur minimale est de 4 caractères",
+                  },
+                })}
+              />
+              <p style={{ color: "red" }}>{errors.ville?.message}</p>
             </Form.Group>
 
-            {/* Input province */}
-            <Form.Group as={Col} controlId="formGridState">
+            {/* Input PROVINCE */}
+            <Form.Group as={Col} controlId="province">
               <Form.Label>Province</Form.Label>
-              <Form.Select defaultValue="Choisir..." {...register("province")}>
-                <option>Choisir...</option>
+              <Form.Select
+                {...register("province", {
+                  required: "Veuillez choisir une option",
+                })}
+              >
                 <option>Québec</option>
                 <option>Ontario</option>
               </Form.Select>
+              <p style={{ color: "red" }}>{errors.province?.message}</p>
             </Form.Group>
 
-            {/* Input code postal */}
-            <Form.Group as={Col} controlId="formGridZip">
+            {/* Input CODE POSTAL */}
+            <Form.Group as={Col} controlId="codePostal">
               <Form.Label>Code Postal</Form.Label>
-              <Form.Control type="text" {...register("codePostal")} />
+              <Form.Control
+                type="text"
+                {...register("codePostal", {
+                  required: "Ce champ est obligatoire",
+                  pattern: {
+                    value: /^[A-Za-z]\d[A-Za-z] \d[A-Za-z]\d$/,
+                    message: "Veuillez respecter ce format: 'V7X 1L7'",
+                  },
+                })}
+              />
+              <p style={{ color: "red" }}>{errors.codePostal?.message}</p>
             </Form.Group>
 
             <div
