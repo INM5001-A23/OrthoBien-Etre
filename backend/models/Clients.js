@@ -1,21 +1,16 @@
-import mongoose from mongoose;
+import mongoose from 'mongoose';
 
 
 const clientsSchema = new mongoose.Schema({
 
-    couriel: {
+    email: {
         type: String,
         unique: true,
         required :true
     },
 
-    adresse:{
-
     rue: {
         type: String, required: true
-    },
-    numeroCivic:{
-        type: Number, required: true
     },
     ville:{
         type: String,required: true
@@ -23,32 +18,31 @@ const clientsSchema = new mongoose.Schema({
     province:{
         type: String, required: true
     },
-    cp:{
+    codePostal:{
         type: String,required: true
-    }
     },
 
-    tel:{
+    telephone:{
         type:String
     },
 
-    prenomClient:{
+    prenom:{
         type: String,
         required: true
     },
 
-    nomClient:{
+    nom:{
         type: String,
         required: true
     },
 
-    numeroClient:{
-        type: Number,
-        required:true,
-        unique: true
-    },
+    // numeroClient:{//
+    //     type: Number,
+    //     required:true,
+    //     unique: true
+    // },
 
 });
 
-const Clients = mongoose.mode('Clients',clientsSchema);
-module.exports = Clients;
+
+export default mongoose.model('Clients',clientsSchema,'Clients');
