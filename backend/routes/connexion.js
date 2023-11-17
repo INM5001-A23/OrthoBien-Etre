@@ -6,19 +6,36 @@ import Administrateurs from "../models/Administrateurs.js";
 const router = express.Router();
 router.use(express.json());
 
+/**
+ * Cette route verifier que l'adresse courriel et le mot de passe
+ * concordent avec l'information dans l'une des deux collections :
+ * Clients ou Administrateurs
+ * Elle retoure un message d'accueuil avec le prenom de la personne
+ * connectée.
+ * @returns Et les values nécessaire au profil client ou profil admin
+ */
+
 router.post('/', async (req, res) => {
     try{
+
+        //Information de connexion
+
         const {courriel,mdp} =req.body;
+
+        //veification de l'acces admin
 
         const admin = await Administrateurs.findOne({courriel}, 'courriel mdp prenomAdmin codeAdmin ');
 
         if (!admin) {
 
+            //Verification de l'acces client
             const user = await Clients.findOne({courriel},'courriel mdp prenom nom rue ville province codePostal telephone');
         
             if (!user){
                 return res.status(501).json({erreur : "Votre courriel ou mot de passe est incorrecte"})
             }
+
+            //return : message d'accueil + valeurs pour page profil
 
             if(user.mdp == mdp){
                 console.log(user.mdp, user.courriel, user.prenom)
@@ -40,6 +57,8 @@ router.post('/', async (req, res) => {
         }else{
 
             if(admin.mdp == mdp){
+
+                //return message d'accueil + value pour page profil admin au besoin
 
                 return res.status(202).json({success: true, 
                 message: "Bonjour " + admin.prenomAdmin + " vous êtes connectés comme administrateur",
