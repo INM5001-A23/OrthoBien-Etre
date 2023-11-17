@@ -3,7 +3,7 @@ import mongoose from 'mongoose';
 
 const clientsSchema = new mongoose.Schema({
 
-    email: {
+    courriel: {
         type: String,
         unique: true,
         required :true
@@ -19,6 +19,9 @@ const clientsSchema = new mongoose.Schema({
         type: String, required: true
     },
     codePostal:{
+        type: String,required: true
+    },
+    mdp:{
         type: String,required: true
     },
 

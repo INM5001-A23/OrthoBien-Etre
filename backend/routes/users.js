@@ -7,17 +7,18 @@ router.use(express.json());
 //ajouter un client dans la base de donnee
 router.post('/', async (req, res) =>{
     try{
-        const {prenom,nom,email,rue,ville,province,codePostal,telephone} = req.body;
+        const {prenom,nom,courriel,rue,ville,province,codePostal,telephone,mdp} = req.body;
     
         const newClient = new Clients ({
             prenom,
             nom,
-            email,
+            courriel,
             rue,
             ville,
             province,
             telephone,
-            codePostal
+            codePostal,
+            mdp
         });
         await newClient.save();
         res.status(200).json({message: "Enregistré"})
