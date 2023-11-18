@@ -8,16 +8,16 @@ import Nav from "react-bootstrap/Nav";
 import { Container, Stack } from "react-bootstrap";
 
 import { useForm } from "react-hook-form";
-import React from "react";
+import React, { useContext } from "react";
+import { AxiosContext } from "..";
 
 function PageInscription() {
   const navigate = useNavigate();
+  const axios = useContext(AxiosContext);
 
   const {
     register,
     handleSubmit,
-    watch,
-    unregister,
     formState: { errors },
   } = useForm({
     mode: "onBlur",
@@ -27,12 +27,21 @@ function PageInscription() {
     },
   });
 
-  React.useEffect(() => {}, [unregister]);
-
   const handleFormulaireInscription = handleSubmit((data) => {
-    // Appeller le backend
-    // Si linscription fonctionne on redirige
-    // navigate("/");
+    axios
+      .post("/inscription", data)
+      .then(function (response) {
+        if (response.status === 200) {
+          navigate("/connexion");
+        } else {
+          // TODO afficher message erreur
+        }
+      })
+      .catch(function (error) {
+        // handle error
+        // TODO afficher message erreur
+        console.log(error);
+      });
   });
 
   return (
@@ -41,6 +50,23 @@ function PageInscription() {
       <Container className="d-flex justify-content-center ">
         <Form onSubmit={handleFormulaireInscription}>
           <Stack style={{ width: "450px" }}>
+            {/* Input EMAIL */}
+            <Form.Group as={Col} controlId="courriel">
+              <Form.Label>Courriel</Form.Label>
+              <Form.Control
+                type="email"
+                {...register("courriel", {
+                  required: "Ce champ est obligatoire",
+                  pattern: {
+                    value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+                    message:
+                      "Veuillez respecter le format: 'nomutilisateur@domaine.com'",
+                  },
+                })}
+              />
+              <p style={{ color: "red" }}>{errors.courriel?.message}</p>
+            </Form.Group>
+
             {/* Input PRENOM */}
             <Form.Group as={Col} controlId="prenom">
               <Form.Label>Prénom</Form.Label>
@@ -97,49 +123,34 @@ function PageInscription() {
               <p style={{ color: "red" }}>{errors.telephone?.message}</p>
             </Form.Group>
 
-            {/* Input EMAIL */}
-            <Form.Group as={Col} controlId="email">
-              <Form.Label>Courriel</Form.Label>
-              <Form.Control
-                type="email"
-                {...register("email", {
-                  required: "Ce champ est obligatoire",
-                  pattern: {
-                    value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
-                    message:
-                      "Veuillez respecter le format: 'nomutilisateur@domaine.com'",
-                  },
-                })}
-              />
-              <p style={{ color: "red" }}>{errors.email?.message}</p>
-            </Form.Group>
-
             {/* Input MOT DE PASSE  */}
-            <Form.Group as={Col} controlId="motDePasse">
+            <Form.Group as={Col} controlId="mdp">
               <Form.Label>Mot de passe</Form.Label>
               <Form.Control
                 type="password"
-                {...register("motDePasse", {
+                {...register("mdp", {
                   required: "Ce champ est obligatoire",
                   pattern: {
                     value:
                       /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
-                    message: (
-                      <div>
-                        <p>Le mot de passe doit contenir au moins:</p>
-                        <ul>
-                          <li>une lettre majuscule.</li>
-                          <li>une lettre minuscule.</li>
-                          <li>un chiffre.</li>
-                          <li>un caractère spécial (@, $, !, %, *, ?, &).</li>
-                          <li>6 caractères au minimum.</li>
-                        </ul>
-                      </div>
-                    ),
+                    message: "error",
                   },
                 })}
               />
-              <p style={{ color: "red" }}>{errors.motDePasse?.message}</p>
+              <p style={{ color: "red" }}>
+                {errors.mdp?.message === "error" && (
+                  <div>
+                    <p>Le mot de passe doit contenir au moins:</p>
+                    <ul>
+                      <li>une lettre majuscule.</li>
+                      <li>une lettre minuscule.</li>
+                      <li>un chiffre.</li>
+                      <li>un caractère spécial (@, $, !, %, *, ?, &).</li>
+                      <li>6 caractères au minimum.</li>
+                    </ul>
+                  </div>
+                )}
+              </p>
             </Form.Group>
 
             <h5>Adresse</h5>
