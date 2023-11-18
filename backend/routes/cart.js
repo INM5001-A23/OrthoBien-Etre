@@ -25,4 +25,21 @@ router.get('/', async (req, res) => {
     
 });
 
+router.post('/add', async (req, res) => {
+    try {
+      const user = req.user._id;
+      const items = req.body.products;
+
+      console.log(user);
+      console.log(items);
+  
+      const cartDoc = await cart.save();
+  
+    } catch (error) {
+      res.status(400).json({
+        error: 'Your request could not be processed. Please try again.'
+      });
+    }
+  });
+
 export default router;

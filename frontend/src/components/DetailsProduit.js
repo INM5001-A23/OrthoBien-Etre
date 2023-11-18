@@ -84,8 +84,8 @@ function DetailsProduit({
                 gap={5}
                 style={{ justifyContent: "center", margin: "0px" }}
               >
-                <Button variant="outline-primary">Ajouter au panier</Button>
-                <Button variant="outline-success">Acheter maintenant</Button>
+                <Button variant="outline-primary">Ajout Au Panier</Button>
+                <Button variant="outline-success">Achat Rapide</Button>
               </Stack>
             </Card.Body>
           </Card>
