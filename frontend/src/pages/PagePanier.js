@@ -3,7 +3,7 @@ import ModelePage from "../layout/ModelePage";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import { Badge, Button, Card, ListGroup } from "react-bootstrap";
+import { Badge, Button, Card, ListGroup, Stack } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 
 function PagePanier() {
@@ -86,21 +86,25 @@ function PagePanier() {
                     className="d-flex justify-content-between"
                     key={item.id}
                   >
-                    <div>
-                      <h6 style={{ fontSize: "20px" }} className="my-0">
-                        {item.name}
-                      </h6>
-
-                      {/* <small className="text-muted">{item.description}</small> */}
-                      <Button
-                        variant="danger"
+                    <Stack
+                    direction="horizontal"
+                    gap={1}
+                    style={{ justifyContent: "center", margin: "0px" }}>
+                    <Button className="p-2"
+                        variant="outline-danger"
                         size="sm"
                         style={{ margin: "10px" }}
                         onClick={() => removeItem(item.id)}
                       >
-                        Retirer
+                        <img style={{ width: "20px" }} src="./images/delete-button.png"/>
                       </Button>
-                    </div>
+                      <img className="p-2" style={{ width: "80px" }} src="./images/cartarrow.png"/>
+                      <h6 style={{ fontSize: "20px" }} className="my-0 p-2">
+                        {item.name}
+                      </h6>
+                      
+                      {/* <small className="text-muted">{item.description}</small> */}
+                    </Stack>
                     <div>
                       <Button
                         variant="outline-secondary"
