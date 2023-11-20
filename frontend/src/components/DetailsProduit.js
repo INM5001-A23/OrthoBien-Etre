@@ -1,17 +1,11 @@
-import { Card, Col, Container, ListGroup, Row, Stack } from "react-bootstrap";
-
-import Button from "./Bouton";
+import React, { useState } from "react";
+import { Button, Card, Col, Container, ListGroup, Row, Stack } from "react-bootstrap";
 import Carrousel from "./Carrousel";
-import NomCategorie from "./NomCategorie";
-import Etoile from "./Etoile";
 import CarteCommentaire from "./CarteCommentaire";
-import { useNavigate } from "react-router-dom";
 import "./DetailsProduit.css";
-
-import { useContext, useEffect, useState } from "react";
-import { AxiosContext } from "..";
-import Evaluation from "./FormulaireEvaluation";
+import Etoile from "./Etoile";
 import FormulaireEvaluation from "./FormulaireEvaluation";
+import NomCategorie from "./NomCategorie";
 
 function DetailsProduit({
   produit: {
@@ -23,32 +17,47 @@ function DetailsProduit({
     evaluation,
   },
 }) {
-  const navigate = useNavigate();
-  const axios = useContext(AxiosContext);
-  const [produit, setProduit] = useState(null);
+  const productDetails = {
+    id: codeProduit,
+    name: nomProduit,
+    price: prix,
+  };
 
-  useEffect(() => {
-    axios
-      .get(`/produits/${codeProduit}`)
-      .then(function (response) {
-        // handle success
-        console.log(response);
-        setProduit(response.data);
-      })
-      .catch(function (error) {
-        // handle error
-        console.log(error);
-        if (error.response.status === 404) {
-          navigate("/product-not-found");
-        }
-      })
-      .finally(function () {
-        // always executed
-      });
-  }, [axios]);
+  const [cart, setCart] = useState(
+    JSON.parse(localStorage.getItem("guestCartItems")) !== null
+      ? JSON.parse(localStorage.getItem("guestCartItems"))
+      : []
+  );
+
+  const [notification, setNotification] = useState(null);
+
+  const addToCart = () => {
+    const existingProduct = cart.find((item) => item.id === productDetails.id);
+
+    if (existingProduct) {
+      const updatedCart = cart.map((item) =>
+        item.id === productDetails.id
+          ? { ...item, quantity: item.quantity + 1 }
+          : item
+      );
+      setCart(updatedCart);
+      localStorage.setItem("guestCartItems", JSON.stringify(updatedCart));
+    } else {
+      const updatedCart = [...cart, { ...productDetails, quantity: 1 }];
+      setCart(updatedCart);
+      localStorage.setItem("guestCartItems", JSON.stringify(updatedCart));
+    }
+
+    setNotification(`${nomProduit} a été ajouté au panier`);
+
+    setTimeout(() => {
+      setNotification(null);
+    }, 3000);
+  };
 
   return (
     <Container>
+            {notification && <div className="notification">{notification}</div>}
       <Row>
         <Col>
           <Carrousel
@@ -84,7 +93,7 @@ function DetailsProduit({
                 gap={5}
                 style={{ justifyContent: "center", margin: "0px" }}
               >
-                <Button variant="outline-primary">Ajouter au panier</Button>
+                <Button variant="outline-primary" onClick={addToCart}>Ajouter au panier</Button>
                 <Button variant="outline-success">Acheter maintenant</Button>
               </Stack>
             </Card.Body>
