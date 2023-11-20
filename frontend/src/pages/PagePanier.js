@@ -1,12 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { Badge, Button, Card, ListGroup } from "react-bootstrap";
+import { Badge, Button, Card, ListGroup, Stack } from "react-bootstrap";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
-<<<<<<< HEAD
-=======
-import Col from "react-bootstrap/Col";
-import { Badge, Button, Card, ListGroup, Stack } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import ModelePage from "../layout/ModelePage";
 
@@ -49,7 +45,6 @@ function PagePanier() {
 
   const navigate = useNavigate();
 
-
   return (
     <ModelePage>
       <Container>
@@ -73,22 +68,31 @@ function PagePanier() {
                     key={item.id}
                   >
                     <Stack
-                    direction="horizontal"
-                    gap={1}
-                    style={{ justifyContent: "center", margin: "0px" }}>
-                    <Button className="p-2"
+                      direction="horizontal"
+                      gap={1}
+                      style={{ justifyContent: "center", margin: "0px" }}
+                    >
+                      <Button
+                        className="p-2"
                         variant="outline-danger"
                         size="sm"
                         style={{ margin: "10px" }}
                         onClick={() => removeItem(item.id)}
                       >
-                        <img style={{ width: "20px" }} src="./images/delete-button.png"/>
+                        <img
+                          style={{ width: "20px" }}
+                          src="./images/delete-button.png"
+                        />
                       </Button>
-                      <img className="p-2" style={{ width: "80px" }} src="./images/cartarrow.png"/>
+                      <img
+                        className="p-2"
+                        style={{ width: "80px" }}
+                        src="./images/cartarrow.png"
+                      />
                       <h6 style={{ fontSize: "20px" }} className="my-0 p-2">
                         {item.name}
                       </h6>
-                      
+
                       {/* <small className="text-muted">{item.description}</small> */}
                     </Stack>
                     <div>
@@ -128,9 +132,17 @@ function PagePanier() {
               <Card.Body>
                 <Card.Title>Paiement</Card.Title>
                 <Card.Text>
-                  Sous-total ({cart.length} articles) : {cartTotal?.toFixed(2)} $
+                  Sous-total ({cart.length} articles) : {cartTotal?.toFixed(2)}{" "}
+                  $
                 </Card.Text>
-                <Button variant="primary" onClick={() => navigate("/commande", {state: {total: cartTotal, cartItems: cart}})}>
+                <Button
+                  variant="primary"
+                  onClick={() =>
+                    navigate("/commande", {
+                      state: { total: cartTotal, cartItems: cart },
+                    })
+                  }
+                >
                   Passer la commande
                 </Button>
               </Card.Body>
