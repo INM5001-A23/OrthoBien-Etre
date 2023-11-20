@@ -57,7 +57,9 @@ function Navigation() {
               img="/images/user.svg"
               path={user ? "/compte" : "/connexion"}
             />
-            <Logo img="/images/panier.svg" path="/panier" />
+            {(!user || user?.role !== "admin") && (
+              <Logo img="/images/panier.svg" path="/panier" />
+            )}
             <Form.Control
               type="search"
               placeholder="Recherche"
