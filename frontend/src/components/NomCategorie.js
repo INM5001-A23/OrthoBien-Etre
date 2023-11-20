@@ -11,7 +11,6 @@ function NomCategorie({ codeCategorie }) {
       .get(`/categories/${codeCategorie}`)
       .then(function (response) {
         // handle success
-        console.log(response);
         setCategorie(response.data);
       })
       .catch(function (error) {
