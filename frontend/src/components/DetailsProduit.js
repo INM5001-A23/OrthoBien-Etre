@@ -93,8 +93,13 @@ function DetailsProduit({
                 gap={5}
                 style={{ justifyContent: "center", margin: "0px" }}
               >
+<<<<<<< HEAD
                 <Button variant="outline-primary" onClick={addToCart}>Ajouter au panier</Button>
                 <Button variant="outline-success">Acheter maintenant</Button>
+=======
+                <Button variant="outline-primary">Ajout Au Panier</Button>
+                <Button variant="outline-success">Achat Rapide</Button>
+>>>>>>> 5d7b07d8c234438f97486a8e9b94e0040d9e50d2
               </Stack>
             </Card.Body>
           </Card>

@@ -16,7 +16,7 @@ const adminSchema = new mongoose.Schema({
         type:String,
         required:true,
     },
-    courrielAdmin:{
+    courriel:{
         type:String,
         required: true,
         unique: true
@@ -25,9 +25,13 @@ const adminSchema = new mongoose.Schema({
         type: Number,
         required: true,
         unique: true
+    },
+    mdp: {
+        type:String,
+        required:true
     }
 });
 
-const Administrateurs = mongoose.model('Administrateurs',adminSchema);
-module.exports = Administrateurs;
+export default mongoose.model('Administrateurs',adminSchema,'Administrateurs');
+
 
