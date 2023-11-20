@@ -8,6 +8,7 @@ import PagePanier from "./pages/PagePanier";
 import PageCommande from "./pages/PageCommande";
 import PageProduit from "./pages/PageProduit";
 import PageAdmin from "./pages/PageAdmin";
+import PageCompte from "./pages/PageCompte";
 
 const router = createBrowserRouter([
   {
@@ -53,6 +54,11 @@ const router = createBrowserRouter([
   {
     path: "/admin",
     element: <PageAdmin />,
+    errorElement: <Erreur />,
+  },
+  {
+    path: "/compte",
+    element: <PageCompte />,
     errorElement: <Erreur />,
   },
 ]);
