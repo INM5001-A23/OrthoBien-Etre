@@ -38,7 +38,20 @@ function CarteProduit({
         <Card.Title className="mb-0  p-2">{nomProduit}</Card.Title>
         <Row>{codeCategorie && <NomCategorie codeCategorie={codeCategorie} />}</Row>
         <Row className="p-2">{prix && <ListGroup.Item>{prix} CAD</ListGroup.Item>}</Row>
-        
+        <Row className="p-2">
+          <Col xs={6}>
+            <Button className="d-grid gap-2" size="lg" variant="outline-info" onClick={addToCart}>
+              <Row><img src="/images/cart.png"  width="10" height="40" /></Row>
+              <Row style={{fontSize: 10}}>Ajout Au Panier</Row>
+            </Button>
+          </Col> 
+            <Button className="d-grid gap-2" size="lg" variant="outline-success">
+          <Col xs={6}>
+              <Row><img src="/images/cartcheck.png"  width="40" height="40" /></Row>
+              <Row style={{fontSize: 10}}>Achat Rapide</Row>
+            </Button>
+          </Col>
+        </Row>
       </Card.Body>
       <Row className="p-2 mb-3">
           <Stack
