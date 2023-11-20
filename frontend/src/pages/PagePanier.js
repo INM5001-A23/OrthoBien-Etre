@@ -1,36 +1,21 @@
-import React, { useState, useEffect } from "react";
-import ModelePage from "../layout/ModelePage";
+import React, { useEffect, useState } from "react";
+import { Badge, Button, Card, ListGroup } from "react-bootstrap";
+import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
+<<<<<<< HEAD
+=======
 import Col from "react-bootstrap/Col";
 import { Badge, Button, Card, ListGroup, Stack } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
+import ModelePage from "../layout/ModelePage";
 
 function PagePanier() {
-
-  const [cart, setCart] = useState(JSON.parse(localStorage.getItem('guestCartItems')) != null? JSON.parse(localStorage.getItem('guestCartItems')) : [
-    {
-        "id": 1,
-        "name": "Product name",
-        "description": "Brief description",
-        "price": 12,
-        "quantity": 2
-    },
-    {
-        "id": 2,
-        "name": "Second product",
-        "description": "Brief description",
-        "price": 5,
-        "quantity": 1
-    },
-    {
-        "id": 3,
-        "name": "Third item",
-        "description": "Brief description",
-        "price": 3,
-        "quantity": 1
-    }
-]);
+  const [cart, setCart] = useState(
+    JSON.parse(localStorage.getItem("guestCartItems")) !== null
+      ? JSON.parse(localStorage.getItem("guestCartItems"))
+      : []
+  );
 
   const cartTotal = cart.reduce(
     (total, item) => total + item.price * item.quantity,
@@ -38,7 +23,7 @@ function PagePanier() {
   );
 
   useEffect(() => {
-    localStorage.setItem("guestCartItems",JSON.stringify(cart));
+    localStorage.setItem("guestCartItems", JSON.stringify(cart));
   }, [cart]);
 
   const increaseQuantity = (itemId) => {
@@ -63,6 +48,7 @@ function PagePanier() {
   };
 
   const navigate = useNavigate();
+
 
   return (
     <ModelePage>
@@ -125,14 +111,14 @@ function PagePanier() {
                       </Button>
 
                       <span className="text-muted" style={{ fontSize: "20px" }}>
-                        {item.price.toFixed(2)} $
+                        {item.price?.toFixed(2)} $
                       </span>
                     </div>
                   </ListGroup.Item>
                 ))}
                 <ListGroup.Item className="d-flex justify-content-between">
                   <span>Sous-total</span>
-                  <strong>{cartTotal.toFixed(2)} $</strong>
+                  <strong>{cartTotal?.toFixed(2)} $</strong>
                 </ListGroup.Item>
               </ListGroup>
             </Card>
@@ -142,7 +128,7 @@ function PagePanier() {
               <Card.Body>
                 <Card.Title>Paiement</Card.Title>
                 <Card.Text>
-                  Sous-total ({cart.length} articles) : {cartTotal.toFixed(2)} $
+                  Sous-total ({cart.length} articles) : {cartTotal?.toFixed(2)} $
                 </Card.Text>
                 <Button variant="primary" onClick={() => navigate("/commande", {state: {total: cartTotal, cartItems: cart}})}>
                   Passer la commande
