@@ -30,10 +30,12 @@ function PageConnexion() {
     axios
       .post("/connexion", data)
       .then((res) => {
-        if (res.status === 201) {
+        if (res.status === 200) {
+          localStorage.setItem("token", res?.data?.token);
           navigate("/");
+          navigate(0);
         } else {
-          setError("backend", res.response?.data?.erreur);
+          setError("backend", res?.data?.erreur);
           reset({ keepValues: true });
         }
       })
@@ -77,8 +79,8 @@ function PageConnexion() {
               {...register("mdp", {
                 required: "Ce champ est obligatoire",
                 pattern: {
-                  value:
-                    /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
+                  // value:
+                  //   /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
                   message: "error",
                 },
               })}
