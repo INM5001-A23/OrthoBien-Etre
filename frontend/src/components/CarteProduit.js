@@ -63,7 +63,7 @@ function CarteProduit({
         <Row className="p-2">
           {prix && <ListGroup.Item>{prix} CAD</ListGroup.Item>}
         </Row>
-        <Row className="p-2">
+        {/* <Row className="p-2">
           <Col xs={6}>
             <Button
               className="d-grid gap-2"
@@ -89,7 +89,7 @@ function CarteProduit({
               <Row style={{ fontSize: 10 }}>Achat Rapide</Row>
             </Button>
           </Col>
-        </Row>
+        </Row> */}
       </Card.Body>
       <Row className="p-2 mb-3">
         <Stack
@@ -97,7 +97,9 @@ function CarteProduit({
           gap={1}
           style={{ justifyContent: "center", margin: "0px" }}
         >
-          <Button variant="outline-primary">Ajout Au Panier</Button>
+          <Button variant="outline-primary" onClick={addToCart}>
+            Ajout Au Panier
+          </Button>
           <Button
             variant="outline-success"
             onClick={() =>

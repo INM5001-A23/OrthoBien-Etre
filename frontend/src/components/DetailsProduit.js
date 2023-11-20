@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import {
   Button,
   Card,
@@ -14,6 +13,9 @@ import "./DetailsProduit.css";
 import Etoile from "./Etoile";
 import FormulaireEvaluation from "./FormulaireEvaluation";
 import NomCategorie from "./NomCategorie";
+import { useNavigate } from "react-router-dom";
+import { useContext, useEffect, useState } from "react";
+import { AxiosContext } from "..";
 
 function DetailsProduit({
   produit: {
@@ -25,6 +27,30 @@ function DetailsProduit({
     evaluation,
   },
 }) {
+  const navigate = useNavigate();
+  const axios = useContext(AxiosContext);
+  const [produit, setProduit] = useState(null);
+
+  useEffect(() => {
+    axios
+      .get(`/produits/${codeProduit}`)
+      .then(function (response) {
+        // handle success
+        console.log(response);
+        setProduit(response.data);
+      })
+      .catch(function (error) {
+        // handle error
+        console.log(error);
+        if (error.response.status === 404) {
+          navigate("/product-not-found");
+        }
+      })
+      .finally(function () {
+        // always executed
+      });
+  }, [axios]);
+
   const productDetails = {
     id: codeProduit,
     name: nomProduit,
