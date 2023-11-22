@@ -40,7 +40,7 @@ app.get("/", (req, res) => {
 app.use("/categories", categoryRoutes);
 app.use("/produits", productRoutes);
 app.use("/panier", cartRoutes);
-app.use("/paiement", paymentRoutes);
+app.use("/commande", paymentRoutes);
 app.use("/inscription", usersRoutes);
 app.use("/connexion", connexionRoutes);
 app.use("/ajoutProduit", ajoutProduitRoutes);
