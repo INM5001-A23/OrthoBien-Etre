@@ -18,8 +18,7 @@ const Checkout = (props) => {
             purchase_units: [
                 {
                     amount: {
-                        value: checkoutTotal,
-                        currency_code:"CAD"
+                        value: checkoutTotal
                     },
                 },
             ],

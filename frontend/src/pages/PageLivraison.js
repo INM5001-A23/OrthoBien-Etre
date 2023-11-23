@@ -34,7 +34,7 @@ const Livraison = () => {
             rue: "Rue Abc",
             ville: "Qwerty",
             postal:"Q1Q 1Q1",
-            province: "Quebec",
+            province: "Québec",
             pays: "Canada"
         },
         });
