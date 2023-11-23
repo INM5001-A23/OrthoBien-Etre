@@ -7,14 +7,8 @@ import Col from "react-bootstrap/Col";
 import { useLocation } from "react-router-dom";
 import BouttonCommande from "../components/BouttonCommande"
 import { PayPalScriptProvider } from "@paypal/react-paypal-js";
-import { useForm } from "react-hook-form";
-import { useContext } from "react";
-import { AxiosContext } from "..";
-import { useNavigate } from "react-router-dom";
 
 function PageCommande() {
-
-
 
   const location = useLocation();
   

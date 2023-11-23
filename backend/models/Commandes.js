@@ -60,6 +60,4 @@ const commandesSchema = new mongoose.Schema({
     ]
 });
 
-const Commandes = mongoose.mode('Commandes', commandesSchema);
- 
-module.exports = Commandes;
+export default mongoose.model('Commandes', commandesSchema, 'Commandes');

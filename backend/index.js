@@ -2,12 +2,14 @@ import express from "express";
 import mongoose from "mongoose";
 import cors from "cors";
 import "dotenv/config";
+import bodyParser from "body-parser";
 
 // import routes
 import categoryRoutes from "./routes/category.js";
 import productRoutes from "./routes/product.js";
 import cartRoutes from "./routes/cart.js";
 import orderRoutes from "./routes/order.js";
+import deliveryRoutes from "./routes/delivery.js"
 import usersRoutes from "./routes/users.js";
 import connexionRoutes from "./routes/connexion.js";
 import ajoutProduitRoutes from "./routes/ajoutProduit.js";
@@ -18,6 +20,8 @@ const port = 3300;
 
 // enable cors
 app.use(cors());
+
+app.use(bodyParser.json());
 
 // db connection
 // mongoose.connect('mongodb://localhost:27017/orthobienetre',{useNewUrlParser: true});
@@ -41,6 +45,7 @@ app.use("/categories", categoryRoutes);
 app.use("/produits", productRoutes);
 app.use("/panier", cartRoutes);
 app.use("/commande", orderRoutes);
+app.use("/livraison", deliveryRoutes);
 app.use("/inscription", usersRoutes);
 app.use("/connexion", connexionRoutes);
 app.use("/ajoutProduit", ajoutProduitRoutes);

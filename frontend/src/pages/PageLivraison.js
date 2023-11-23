@@ -8,55 +8,68 @@ import Col from "react-bootstrap/Col";
 import { useForm } from "react-hook-form";
 import { useContext } from "react";
 import { AxiosContext } from "..";
-import { useNavigate } from "react-router-dom";
+import { useNavigate,useLocation } from "react-router-dom";
 
 
 const Livraison = () => {
-
+    
+    const location = useLocation();
+    const totalAvantTaxes = location.state.total;
+    const cartItems = location.state.cartItems;     
     const navigate = useNavigate();
-const axios = useContext(AxiosContext);
+    const axios = useContext(AxiosContext);
 
-const {
-  register,
-  handleSubmit,
-  formState: { errors },
-} = useForm({
-  mode: "onBlur",
-  defaultValues: {
-    prenom: "",
-    nom: "",
-  },
-});
-
-const handleFormulaireInscription = handleSubmit((data) => {
-    axios
-        .post("/livraison", data)
-        .then(function (response) {
-        if (response.status === 200) {
-            navigate("/commande");
-        } else {
-            // TODO afficher message erreur
-        }
-        })
-        .catch(function (error) {
-        // handle error
-        // TODO afficher message erreur
-        console.log(error);
+    const {
+        register,
+        handleSubmit,
+        formState: { errors },
+        } = useForm({
+        mode: "onBlur",
+        defaultValues: {
+            prenom: "Fineas",
+            nom: "Fudge",
+            courriel: "ff@email.com",
+            telephone: "(000)-000-0000",
+            civique: "123A",
+            rue: "Rue Abc",
+            ville: "Qwerty",
+            postal:"Q1Q 1Q1",
+            province: "Quebec",
+            pays: "Canada"
+        },
         });
-    });
+
+    const handleformulaireLivraison = handleSubmit((data) => {
+        console.log(totalAvantTaxes)
+        console.log(data)
+        axios
+            .post("/livraison", data)
+            .then(function (response) {
+            if (response.status === 200) {
+                navigate("/commande",{
+                    state: { total: totalAvantTaxes, cartItems: cartItems },
+                  });
+            } else {
+                console.log("error message from PageLivraison");
+            }
+            })
+            .catch(function (error) {
+            console.log(error.message);
+            });
+        });
 
     return (
         <ModelePage>
             <Container>
-                <h1>Insérer information de livraison</h1>
+                <h1>Insérer informations de livraison</h1>
                 <hr></hr>
-                <Form className=" mb-5" onSubmit={handleFormulaireInscription}>
+                <Form className=" mb-5" onSubmit={handleformulaireLivraison}>
                     <Row>
-                        <Col xs={5} className="pe-5">
+                    <Col xs={5} className="pe-5">
                             <h4> Informations de l'acheteur </h4>
                             <Form.Group className="mb-3 mx-auto" controlId="formBasicPrenom">
                                 <Form.Label>Prenom</Form.Label>
-                                <Form.Control type="text"
+                                <Form.Control type="text" name="prenom"
                                 {...register("prenom", {
                                     required: "Ce champ est obligatoire",
                                     pattern: {
@@ -72,7 +85,7 @@ const handleFormulaireInscription = handleSubmit((data) => {
                             </Form.Group>
                             <Form.Group className="mb-3 mx-auto" controlId="formBasicNom">
                                 <Form.Label>Nom</Form.Label>
-                                <Form.Control type="text"
+                                <Form.Control type="text" name="nom"
                                 {...register("nom", {
                                     required: "Ce champ est obligatoire",
                                     pattern: {
@@ -88,7 +101,7 @@ const handleFormulaireInscription = handleSubmit((data) => {
                             </Form.Group>
                             <Form.Group className="mb-3 mx-auto" controlId="formBasicEmail">
                                 <Form.Label>Adresse courriel</Form.Label>
-                                <Form.Control type="email"
+                                <Form.Control type="email" name="courriel"
                                     {...register("courriel", {
                                         required: "Ce champ est obligatoire",
                                         pattern: {
@@ -115,29 +128,51 @@ const handleFormulaireInscription = handleSubmit((data) => {
                         </Col>
                         <Col xs={6}>
                             <h4> Adresse de livraison et de facturation </h4>
+                            <Row>
+                            <Col xs={4}>
+                                    <Form.Group className="mb-3 mx-auto" controlId="formBasicCivique">
+                                        <Form.Label>Numero civique</Form.Label>
+                                        <Form.Control type="text" name="civique"
+                                        {...register("civique", {
+                                            required: "Ce champ est obligatoire",
+                                            pattern: {
+                                            value: /^[A-Za-z0-9\s.,-]+$/,
+                                            message: "Veuillez respecter le format",
+                                            },
+                                            minLength: {
+                                            value: 4,
+                                            message: "Longueur minimale est de 4 caractères",
+                                            },
+                                        })}
+                                        />
+                                        <p style={{ color: "red" }}>{errors.rue?.message}</p>
+                                    </Form.Group>
+                                </Col>      
+                                <Col>
+                                    <Form.Group className="mb-3 mx-auto" controlId="formBasicStreet">
+                                        <Form.Label>Nom de la rue</Form.Label>
+                                        <Form.Control type="text" name="rue"
+                                        {...register("rue", {
+                                            required: "Ce champ est obligatoire",
+                                            pattern: {
+                                            value: /^[A-Za-z0-9\s.,-]+$/,
+                                            message: "Longueur minimale est de 4 caractères",
+                                            },
+                                            minLength: {
+                                            value: 4,
+                                            message: "Longueur minimale est de 4 caractères",
+                                            },
+                                        })}
+                                        />
+                                        <p style={{ color: "red" }}>{errors.rue?.message}</p>
+                                    </Form.Group>
+                                </Col>
+                            </Row>
+                            
 
-                            <Form.Group className="mb-3 mx-auto" controlId="formBasicTel">
-                                <Form.Label>No. et nom de la rue</Form.Label>
-                                <Form.Control type="text" 
-                                {...register("rue", {
-                                    required: "Ce champ est obligatoire",
-                                    pattern: {
-                                    value: /^[A-Za-z0-9\s.,-]+$/,
-                                    message:
-                                        "Veuillez respecter le format: 'nomutilisateur@domaine.com'",
-                                    },
-                                    minLength: {
-                                    value: 4,
-                                    message: "Longueur minimale est de 4 caractères",
-                                    },
-                                })}
-                                />
-                                <p style={{ color: "red" }}>{errors.rue?.message}</p>
-                            </Form.Group>
-
-                            <Form.Group className="mb-3 mx-auto" controlId="formBasicTel">
+                            <Form.Group className="mb-3 mx-auto" controlId="formBasicCity">
                                 <Form.Label>Ville</Form.Label>
-                                <Form.Control type="text" 
+                                <Form.Control type="text" name="ville"
                                 {...register("ville", {
                                     required: "Ce champ est obligatoire",
                                     pattern: {
@@ -153,10 +188,10 @@ const handleFormulaireInscription = handleSubmit((data) => {
                                 <p style={{ color: "red" }}>{errors.ville?.message}</p>
                             </Form.Group>
 
-                            <Form.Group className="mb-3 mx-auto" controlId="formBasicTel">
+                            <Form.Group className="mb-3 mx-auto" controlId="formBasicZip">
                                 <Form.Label>Code Postal</Form.Label>
-                                <Form.Control type="text" 
-                                {...register("codePostal", {
+                                <Form.Control type="text" name="postal"
+                                {...register("postal", {
                                     required: "Ce champ est obligatoire",
                                     pattern: {
                                     value: /^[A-Za-z]\d[A-Za-z] \d[A-Za-z]\d$/,
@@ -168,9 +203,9 @@ const handleFormulaireInscription = handleSubmit((data) => {
                             </Form.Group>
                             <Row>
                                 <Col>
-                                    <Form.Group className="mb-3 mx-auto" controlId="formBasicTel">
+                                    <Form.Group className="mb-3 mx-auto" controlId="formBasicProvince">
                                     <Form.Label>Province</Form.Label>
-                                    <Form.Select
+                                    <Form.Select name="province"
                                     {...register("province", {
                                         required: "Veuillez choisir une option",
                                     })}
@@ -182,7 +217,7 @@ const handleFormulaireInscription = handleSubmit((data) => {
                                 </Form.Group>
                                 </Col>
                                 <Col>
-                                    <Form.Group className="mb-3 mx-auto" controlId="formBasicTel">
+                                    <Form.Group className="mb-3 mx-auto" controlId="formBasicCountry">
                                         <Form.Label>Pays</Form.Label>
                                         <Form.Select
                                         {...register("pays", {

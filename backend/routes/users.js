@@ -15,8 +15,7 @@ router.post("/", async (req, res) => {
       ville,
       province,
       codePostal,
-      telephone,
-      mdp,
+      telephone
     } = req.body;
 
     // TODO: Regarder si le courriel n'existe pas avant d'inserer
@@ -29,8 +28,7 @@ router.post("/", async (req, res) => {
       ville,
       province,
       telephone,
-      codePostal,
-      mdp,
+      codePostal
     });
     await newClient.save();
     res.status(200).json({ message: "Enregistré" });
