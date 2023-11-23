@@ -9,6 +9,7 @@ import PageCommande from "./pages/PageCommande";
 import PageProduit from "./pages/PageProduit";
 import PageAdmin from "./pages/PageAdmin";
 import PageCompte from "./pages/PageCompte";
+import PageLivraison from "./pages/PageLivraison";
 
 const router = createBrowserRouter([
   {
@@ -42,6 +43,12 @@ const router = createBrowserRouter([
   {
     path: "/commande",
     element: <PageCommande />,
+    errorElement: <Erreur />,
+  },
+
+  {
+    path: "/livraison",
+    element: <PageLivraison />,
     errorElement: <Erreur />,
   },
 

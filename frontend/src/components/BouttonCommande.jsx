@@ -8,10 +8,14 @@ const Checkout = (props) => {
   const [error, setError] = useState(null);
 
   const handleApprove = (orderId) => {
-    //call backend function to fufill order
+   // API call to
+                    // create order
+                    // clear cart
+                    // reduce inventory
+                    
 
     //if response is success
-    setPaidFor(true)
+      setPaidFor(true)
 
     if(paidFor) {}
     //and clear cart and user profile if any
@@ -23,7 +27,26 @@ const Checkout = (props) => {
   }
 
   return (
-    <PayPalButtons/>
+    <PayPalButtons
+    createOrder={(data, actions) => {
+      return actions.order.create({
+        purchase_units:[
+          {
+            description: "",
+            amount: {
+              value: checkoutTotal
+            }
+          }
+        ]
+      })
+    }}
+    onApprove={ async (data, actions) => {
+        const order = await actions.order.capture();
+        console.log("order", order)
+
+        handleApprove(data.orderID);
+    }}
+    />
   );
 };
 

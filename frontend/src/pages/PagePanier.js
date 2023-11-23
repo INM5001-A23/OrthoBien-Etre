@@ -82,12 +82,14 @@ function PagePanier() {
                         <img
                           style={{ width: "20px" }}
                           src="./images/delete-button.png"
+                          alt="Delete"
                         />
                       </Button>
                       <img
                         className="p-2"
                         style={{ width: "80px" }}
                         src="./images/cartarrow.png"
+                        alt="Produit"
                       />
                       <h6 style={{ fontSize: "20px" }} className="my-0 p-2">
                         {item.name}
@@ -138,7 +140,7 @@ function PagePanier() {
                 <Button
                   variant="primary"
                   onClick={() =>
-                    navigate("/commande", {
+                    navigate("/livraison", {
                       state: { total: cartTotal, cartItems: cart },
                     })
                   }
