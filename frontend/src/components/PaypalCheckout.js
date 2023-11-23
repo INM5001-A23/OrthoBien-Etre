@@ -6,7 +6,9 @@ import { AxiosContext } from "..";
 import { useNavigate,useLocation } from "react-router-dom";
 
 const Checkout = (props) => {
-    const checkoutTotal = props.total;
+    const checkoutTotal = props.total.toFixed(2);
+    console.log(props.total);
+
     const navigate = useNavigate();
     const axios = useContext(AxiosContext);
     const [{ options, isPending }, dispatch] = usePayPalScriptReducer();
@@ -27,7 +29,9 @@ const Checkout = (props) => {
         return actions.order.capture().then((details) => {
             navigate("/confirmation", {
                 state: { total: checkoutTotal },
-              })
+            });
+        }).catch((error) => {
+            console.error("Erreur lors de la capture de la commande PayPal :", error);
         });
     }
 
