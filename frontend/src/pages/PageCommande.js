@@ -5,8 +5,8 @@ import { Container } from "react-bootstrap";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { useLocation } from "react-router-dom";
-import BouttonCommande from "../components/BouttonCommande"
 import { PayPalScriptProvider } from "@paypal/react-paypal-js";
+import Checkout from "../components/PaypalCheckout";
 
 function PageCommande() {
 
@@ -49,7 +49,7 @@ function PageCommande() {
                 </Col>
                 <hr></hr>
               </Row>
-              <Row className=""><BouttonCommande type = "submit" total={totalApresTaxes} /></Row>
+              <Row className=""><Checkout total={totalApresTaxes}  /></Row>
             </PayPalScriptProvider>
             
           </Col>

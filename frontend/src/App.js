@@ -10,6 +10,7 @@ import PageProduit from "./pages/PageProduit";
 import PageAdmin from "./pages/PageAdmin";
 import PageCompte from "./pages/PageCompte";
 import PageLivraison from "./pages/PageLivraison";
+import PageConfirmation from "./pages/PageConfirmation";
 
 const router = createBrowserRouter([
   {
@@ -49,6 +50,12 @@ const router = createBrowserRouter([
   {
     path: "/livraison",
     element: <PageLivraison />,
+    errorElement: <Erreur />,
+  },
+
+  {
+    path: "/confirmation",
+    element: <PageConfirmation />,
     errorElement: <Erreur />,
   },
 
