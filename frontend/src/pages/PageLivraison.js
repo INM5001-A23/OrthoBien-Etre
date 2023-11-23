@@ -211,7 +211,6 @@ const Livraison = () => {
                                     })}
                                     >
                                     <option>Québec</option>
-                                    <option>Ontario</option>
                                 </Form.Select>
                                 <p style={{ color: "red" }}>{errors.province?.message}</p>
                                 </Form.Group>

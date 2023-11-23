@@ -19,6 +19,7 @@ const Checkout = (props) => {
                 {
                     amount: {
                         value: checkoutTotal,
+                        currency_code:"CAD"
                     },
                 },
             ],
