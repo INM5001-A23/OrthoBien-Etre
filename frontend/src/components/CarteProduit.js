@@ -22,10 +22,30 @@ function CarteProduit({
       : []
   );
 
+  const [notification, setNotification] = useState(null);
+
   const addToCart = () => {
-    const updatedCart = [...cart, { ...productDetails, quantity: 1 }];
-    setCart(updatedCart);
-    localStorage.setItem("guestCartItems", JSON.stringify(updatedCart));
+    const existingProduct = cart.find((item) => item.id === productDetails.id);
+
+    if (existingProduct) {
+      const updatedCart = cart.map((item) =>
+        item.id === productDetails.id
+          ? { ...item, quantity: item.quantity + 1 }
+          : item
+      );
+      setCart(updatedCart);
+      localStorage.setItem("guestCartItems", JSON.stringify(updatedCart));
+    } else {
+      const updatedCart = [...cart, { ...productDetails, quantity: 1 }];
+      setCart(updatedCart);
+      localStorage.setItem("guestCartItems", JSON.stringify(updatedCart));
+    }
+
+    setNotification(`${nomProduit} a été ajouté au panier`);
+
+    setTimeout(() => {
+      setNotification(null);
+    }, 3000);
   };
   return (
     <Card
@@ -35,6 +55,8 @@ function CarteProduit({
         cursor: "pointer",
       }}
     >
+              {notification && <div className="notification">{notification}</div>}
+
       <div
         style={{ position: "relative", display: "inline-block" }}
         onClick={() => navigate(`/produit/${codeProduit}`)}
