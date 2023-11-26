@@ -16,8 +16,8 @@ router.post("/", cors(), async (req, res) => {
     const newOrder = new Commandes({
       orderId: orderDetails.orderId,
       paymentId: orderDetails.paymentId,
-      client:false,
-      invite:{
+      client: false,
+      invite: {
         nomClient: orderDetails.shipping.nom,
         prenomClient: orderDetails.shipping.prenom,
         courriel: orderDetails.shipping.courriel,
@@ -27,19 +27,19 @@ router.post("/", cors(), async (req, res) => {
           rue: orderDetails.shipping.rue,
           ville: orderDetails.shipping.ville,
           province: orderDetails.shipping.province,
-          cp: orderDetails.shipping.postal
-        }
+          cp: orderDetails.shipping.postal,
+        },
       },
 
-      articles: orderDetails.cart, 
+      articles: orderDetails.cart,
 
-      status: 'Paid',
+      status: "Paid",
       sousTotal: orderDetails.sousTotal,
       fraisLivraison: orderDetails.fraisLivraison,
       tps: orderDetails.tps,
       tvq: orderDetails.tvq,
       rabais: 0,
-      total: orderDetails.total
+      total: orderDetails.total,
     });
 
     //await console.log(newOrder);

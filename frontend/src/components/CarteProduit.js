@@ -1,13 +1,14 @@
 import { default as React, useState } from "react";
-import { Badge, Button, Card, Col, Row, Stack } from "react-bootstrap";
+import { Badge, Button, Card, Row, Stack } from "react-bootstrap";
 import ListGroup from "react-bootstrap/ListGroup";
 import { useNavigate } from "react-router-dom";
 import styles from "./Carte.module.css";
 import NomCategorie from "./NomCategorie";
+import { useContext } from "react";
+import { UserContext } from "..";
 
 function CarteProduit({
-  produit: { codeProduit, img, nomProduit, codeCategorie, prix, promotion },
-  achat = false,
+  produit: { codeProduit, nomProduit, codeCategorie, prix, promotion },
 }) {
   const navigate = useNavigate();
   const productDetails = {
@@ -15,6 +16,8 @@ function CarteProduit({
     name: nomProduit,
     price: prix,
   };
+
+  const user = useContext(UserContext);
 
   const [cart, setCart] = useState(
     JSON.parse(localStorage.getItem("guestCartItems")) !== null
@@ -55,7 +58,7 @@ function CarteProduit({
         cursor: "pointer",
       }}
     >
-              {notification && <div className="notification">{notification}</div>}
+      {notification && <div className="notification">{notification}</div>}
 
       <div
         style={{ position: "relative", display: "inline-block" }}
@@ -85,33 +88,6 @@ function CarteProduit({
         <Row className="p-2">
           {prix && <ListGroup.Item>{prix} CAD</ListGroup.Item>}
         </Row>
-        {/* <Row className="p-2">
-          <Col xs={6}>
-            <Button
-              className="d-grid gap-2"
-              size="lg"
-              variant="outline-info"
-              onClick={addToCart}
-            >
-              <Row>
-                <img src="/images/cart.png" width="10" height="40" />
-              </Row>
-              <Row style={{ fontSize: 10 }}>Ajout Au Panier</Row>
-            </Button>
-          </Col>
-          <Col xs={6}>
-            <Button
-              className="d-grid gap-2"
-              size="lg"
-              variant="outline-success"
-            >
-              <Row>
-                <img src="/images/cartcheck.png" width="40" height="40" />
-              </Row>
-              <Row style={{ fontSize: 10 }}>Achat Rapide</Row>
-            </Button>
-          </Col>
-        </Row> */}
       </Card.Body>
       <Row className="p-2 mb-3">
         <Stack
@@ -119,17 +95,24 @@ function CarteProduit({
           gap={1}
           style={{ justifyContent: "center", margin: "0px" }}
         >
-          <Button variant="outline-primary" onClick={addToCart}>
-            Ajout Au Panier
-          </Button>
-          <Button
-            variant="outline-success"
-            onClick={() =>
-              navigate("/commande", { state: { total: prix, cartItems: [] } })
-            }
-          >
-            Achat Rapide
-          </Button>
+          {(!user || user?.role !== "admin") && (
+            <div>
+              <Button variant="outline-primary" onClick={addToCart}>
+                Ajout Au Panier
+              </Button>
+
+              <Button
+                variant="outline-success"
+                onClick={() =>
+                  navigate("/commande", {
+                    state: { total: prix, cartItems: [] },
+                  })
+                }
+              >
+                Achat Rapide
+              </Button>
+            </div>
+          )}
         </Stack>
       </Row>
     </Card>
