@@ -3,11 +3,30 @@ import React, { useState } from 'react';
 import { PayPalButtons, usePayPalScriptReducer } from "@paypal/react-paypal-js";
 import { useContext } from "react";
 import { AxiosContext } from "..";
-import { useNavigate,useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Checkout = (props) => {
-    const checkoutTotal = props.total.toFixed(2);
-    console.log(props.total);
+    const orderDetails = props.orderDetails;
+
+    const handleApproved = (orderId,paymentId) => {
+        orderDetails.orderID = orderId;
+        orderDetails.paymentID = paymentId;
+
+        axios
+            .post("/commande", orderDetails)
+            .then(function (response) {
+            if (response.status === 200) {
+                navigate("/confirmation", {
+                    state: { total: orderDetails.total, orderID : orderId},
+                });
+            } else {
+                console.log("error message from PageLivraison");
+            }
+            })
+            .catch((error) => {
+                console.error("Erreur lors de la capture de la commande PayPal :", error);
+            });
+    }
 
     const navigate = useNavigate();
     const axios = useContext(AxiosContext);
@@ -18,7 +37,8 @@ const Checkout = (props) => {
             purchase_units: [
                 {
                     amount: {
-                        value: checkoutTotal
+                        currency_code: "CAD",
+                        value: orderDetails.total
                     },
                 },
             ],
@@ -27,11 +47,7 @@ const Checkout = (props) => {
 
     const onApproveOrder = (data,actions) => {
         return actions.order.capture().then((details) => {
-            navigate("/confirmation", {
-                state: { total: checkoutTotal },
-            });
-        }).catch((error) => {
-            console.error("Erreur lors de la capture de la commande PayPal :", error);
+            handleApproved(data.orderID, data.paymentID);
         });
     }
 

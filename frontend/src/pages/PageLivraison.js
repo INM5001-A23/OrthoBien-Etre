@@ -6,8 +6,6 @@ import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { useForm } from "react-hook-form";
-import { useContext } from "react";
-import { AxiosContext } from "..";
 import { useNavigate,useLocation } from "react-router-dom";
 
 
@@ -17,7 +15,6 @@ const Livraison = () => {
     const totalAvantTaxes = location.state.total;
     const cartItems = location.state.cartItems;     
     const navigate = useNavigate();
-    const axios = useContext(AxiosContext);
 
     const {
         register,
@@ -40,22 +37,9 @@ const Livraison = () => {
         });
 
     const handleformulaireLivraison = handleSubmit((data) => {
-        console.log(totalAvantTaxes)
-        console.log(data)
-        axios
-            .post("/livraison", data)
-            .then(function (response) {
-            if (response.status === 200) {
-                navigate("/commande",{
-                    state: { total: totalAvantTaxes, cartItems: cartItems },
+         navigate("/commande",{
+                    state: { total: totalAvantTaxes, cartItems: cartItems, shippingInfos: data },
                   });
-            } else {
-                console.log("error message from PageLivraison");
-            }
-            })
-            .catch(function (error) {
-            console.log(error.message);
-            });
         });
 
     return (
