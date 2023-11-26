@@ -9,15 +9,17 @@ const Checkout = (props) => {
     const orderDetails = props.orderDetails;
 
     const handleApproved = (orderId,paymentId) => {
-        orderDetails.orderID = orderId;
-        orderDetails.paymentID = paymentId;
+        orderDetails.orderId = orderId;
+        orderDetails.paymentId = paymentId;
+
+        console.log(orderDetails);
 
         axios
             .post("/commande", orderDetails)
             .then(function (response) {
             if (response.status === 200) {
                 navigate("/confirmation", {
-                    state: { total: orderDetails.total, orderID : orderId},
+                    state: { total: orderDetails.total, orderId : orderId, paymentId: paymentId}
                 });
             } else {
                 console.log("error message from PageLivraison");

@@ -12,9 +12,10 @@ import { useNavigate,useLocation } from "react-router-dom";
 const Livraison = () => {
     
     const location = useLocation();
-    const totalAvantTaxes = location.state.total;
-    const cartItems = location.state.cartItems;     
     const navigate = useNavigate();
+
+    const totalAvantTaxes = location.state.total;
+    const cartItems = location.state.cartItems;
 
     const {
         register,

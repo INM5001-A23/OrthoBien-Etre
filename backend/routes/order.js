@@ -1,7 +1,7 @@
 import express from "express";
 import bodyParser from "body-parser";
 import cors from "cors";
-import Commandes from "../models/Commandes";
+import Commandes from "../models/Commandes.js";
 
 const router = express.Router();
 router.use(bodyParser.urlencoded({ extended: true }));
@@ -18,19 +18,18 @@ router.post("/", cors(), async (req, res) => {
       paymentId: orderDetails.paymentId,
       client:false,
       invite:{
-          nomClient: orderDetails.shipping.prenom,
-          prenomClient: orderDetails.shipping.prenom,
-          courriel: orderDetails.shipping.courriel,
-          tel: orderDetails.shipping.telephone,
-          adresse: {
-              numeroCivic: orderDetails.shipping.civique,
-              rue: orderDetails.shipping.rue,
-              ville: orderDetails.shipping.ville,
-              province: orderDetails.shipping.province,
-              cp: orderDetails.shipping.postal
-          }
+        nomClient: orderDetails.shipping.nom,
+        prenomClient: orderDetails.shipping.prenom,
+        courriel: orderDetails.shipping.courriel,
+        tel: orderDetails.shipping.telephone,
+        adresse: {
+          numeroCivic: orderDetails.shipping.civique,
+          rue: orderDetails.shipping.rue,
+          ville: orderDetails.shipping.ville,
+          province: orderDetails.shipping.province,
+          cp: orderDetails.shipping.postal
+        }
       },
-
 
       articles: orderDetails.cart, 
 
@@ -43,14 +42,14 @@ router.post("/", cors(), async (req, res) => {
       total: orderDetails.total
     });
 
-    await console.log(newOrder);
+    //await console.log(newOrder);
 
-    //await commande.save();
+    await newOrder.save();
     res.status(200).json({ message: "Enregistré" });
   } catch (error) {
     console.log("Error", error);
     res.json({
-      message: "Payment failed",
+      message: "Payment failed: " + error,
       success: false,
     });
   }

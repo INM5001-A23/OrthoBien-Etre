@@ -9,7 +9,6 @@ import categoryRoutes from "./routes/category.js";
 import productRoutes from "./routes/product.js";
 import cartRoutes from "./routes/cart.js";
 import orderRoutes from "./routes/order.js";
-import deliveryRoutes from "./routes/delivery.js"
 import usersRoutes from "./routes/users.js";
 import connexionRoutes from "./routes/connexion.js";
 import ajoutProduitRoutes from "./routes/ajoutProduit.js";
@@ -45,7 +44,6 @@ app.use("/categories", categoryRoutes);
 app.use("/produits", productRoutes);
 app.use("/panier", cartRoutes);
 app.use("/commande", orderRoutes);
-app.use("/livraison", deliveryRoutes);
 app.use("/inscription", usersRoutes);
 app.use("/connexion", connexionRoutes);
 app.use("/ajoutProduit", ajoutProduitRoutes);

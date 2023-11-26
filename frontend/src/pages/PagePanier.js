@@ -51,7 +51,7 @@ function PagePanier() {
         <Row>
           <Col xs={9}>
             <h4 className="d-flex justify-content-between align-items-center mb-3">
-              <span className="text-muted">Your cart</span>
+              <span className="text-muted">Votre panier</span>
               <Badge pill bg="secondary" className="mr-3">
                 {cart.length}
               </Badge>
@@ -88,7 +88,7 @@ function PagePanier() {
                       <img
                         className="p-2"
                         style={{ width: "80px" }}
-                        src="./images/cartarrow.png"
+                        src={`/images/produits/${item.id}.jpeg`}
                         alt="Produit"
                       />
                       <h6 style={{ fontSize: "20px" }} className="my-0 p-2">
@@ -117,7 +117,7 @@ function PagePanier() {
                       </Button>
 
                       <span className="text-muted" style={{ fontSize: "20px" }}>
-                        {item.price?.toFixed(2)} $
+                        {item.price?.toFixed(2)} $<span style={{ fontSize: "16px" }}> / unité</span>
                       </span>
                     </div>
                   </ListGroup.Item>

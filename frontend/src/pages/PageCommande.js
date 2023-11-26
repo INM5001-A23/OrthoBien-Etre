@@ -1,12 +1,10 @@
 
-import React from "react";
+import React from "react"
 import ModelePage from "../layout/ModelePage";
-import { Container } from "react-bootstrap";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
+import { Container, Row, Col, Card, ListGroup } from "react-bootstrap"
 import { useLocation } from "react-router-dom";
-import { PayPalScriptProvider } from "@paypal/react-paypal-js";
-import Checkout from "../components/PaypalCheckout";
+import { PayPalScriptProvider } from "@paypal/react-paypal-js"
+import Checkout from "../components/PaypalCheckout"
 
 function PageCommande() {
 
@@ -14,24 +12,28 @@ function PageCommande() {
   
   const cartItems = location.state.cartItems;
   const shippingInfos = location.state.shippingInfos;
+  const cartItemsOrder = location.state.cartItems.map((item) => {
+    const itemCart = {codeProduit: item.id, prix: item.price, quantite: item.quantity}
+    return(itemCart);
+  }); 
 
-  const totalAvantTaxes = location.state.total;
+  const totalAvantTaxes = location.state.total.toFixed(2);
   const tps = (totalAvantTaxes*(5/100)).toFixed(2);
   const tvq = (totalAvantTaxes *(9.975/100)).toFixed(2);
   const fraisLivraison = (totalAvantTaxes*(2/100)).toFixed(2);
   const totalApresTaxes = (Number(totalAvantTaxes) + Number(tvq)  + Number(tps)  + Number(fraisLivraison)).toFixed(2);
 
   const orderApprovedDetails = {
-    orderID: "",
-    paymentID:"",
-    Shipping: shippingInfos,
-    cart: cartItems,
+    orderId: "",
+    paymentId:"",
+    shipping: shippingInfos,
+    cart: cartItemsOrder,
     sousTotal: totalAvantTaxes,
     tps: tps,
     tvq: tvq,
     fraisLivraison: fraisLivraison,
     total: totalApresTaxes
-}
+  } 
 
   return (
     <ModelePage>
@@ -41,8 +43,44 @@ function PageCommande() {
         <div>
         <Row>
           <Col xs={8}>
-            <h4> Details de la commande </h4>
-           
+            <Row><h4> Details de la commande </h4></Row>
+            <Row>
+                <Col>
+                  <Card>
+                    <ListGroup variant="flush">
+                      {cartItems.map((item) => (
+                        <ListGroup.Item 
+                          key={item.id}
+                        >
+                          <Row style={{textAlign:"center"}}>
+                            <Col xs={3}>
+                              <img
+                                className="p-2"
+                                style={{ width: "60px" }}
+                                src={`/images/produits/${item.id}.jpeg`}
+                                alt="Produit"
+                              />
+                            </Col>
+                            <Col xs={4}>
+                              <h6  style={{ fontSize: "16px" }} className="my-0 p-2">{item.name}</h6>
+                            </Col>
+                            <Col xs={5} className="text-muted">
+                              <Row>
+                                <span style={{ fontSize: "16px" }}>
+                                  {item.price?.toFixed(2)} CAD / Unité
+                                </span>
+                              </Row>
+                              <Row>
+                                <span style={{ fontSize: "14px" }}>Quantité: {item.quantity}</span>
+                              </Row>
+                            </Col>
+                          </Row>
+                        </ListGroup.Item>
+                      ))}
+                    </ListGroup>
+                  </Card>
+                </Col>
+            </Row>
           </Col>
           <Col>
             <PayPalScriptProvider options={{"client-id": "AaI3aP2GIIHpPJp05ca6a380uZLugk_tJHJOEqh3JRWxVsSlLNrwxX3vSB82f4cb6iSpJJdCU4hVFreb",currency: "CAD"}}>
