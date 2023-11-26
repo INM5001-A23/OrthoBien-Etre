@@ -4,6 +4,7 @@ import { useContext, useEffect, useState } from "react";
 import { AxiosContext, UserContext } from "..";
 import CarteAdmin from "../components/CarteAdmin";
 import { useNavigate } from "react-router-dom";
+import React from "react";
 
 function PageAdmin() {
   const navigate = useNavigate();
