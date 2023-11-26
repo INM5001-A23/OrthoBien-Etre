@@ -1,16 +1,19 @@
 import ModelePage from "../layout/ModelePage";
 import Form from "react-bootstrap/Form";
 import Button from "../components/Bouton";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import Nav from "react-bootstrap/Nav";
 import { useContext } from "react";
 import { AxiosContext } from "..";
 
 import { useForm } from "react-hook-form";
 import React from "react";
+import { Alert } from "react-bootstrap";
 
 function PageConnexion() {
   const navigate = useNavigate();
+  const { state } = useLocation();
+  const status = state?.status;
   const axios = useContext(AxiosContext);
 
   const {
@@ -48,6 +51,11 @@ function PageConnexion() {
   return (
     <ModelePage>
       <div className="d-flex flex-column align-items-center justify-content-center">
+        {status === "success" && (
+          <Alert variant="success">
+            <Alert.Heading>Création de compte réussie!</Alert.Heading>
+          </Alert>
+        )}
         <h1 className="mb-3">Connexion</h1>
         <p className="mb-3 text-center">
           Veuillez entrer vos information si vous êtes déjà enregistré.

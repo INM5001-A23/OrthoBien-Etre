@@ -1,11 +1,11 @@
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
-import Row from "react-bootstrap/Row";
+
 import ModelePage from "../layout/ModelePage";
 import Button from "../components/Bouton";
 import { useNavigate } from "react-router-dom";
-import Nav from "react-bootstrap/Nav";
-import { Container, Stack } from "react-bootstrap";
+
+import { Alert, Container, Stack } from "react-bootstrap";
 
 import { useForm } from "react-hook-form";
 import React, { useContext } from "react";
@@ -32,7 +32,7 @@ function PageInscription() {
       .post("/inscription", data)
       .then(function (response) {
         if (response.status === 200) {
-          navigate("/connexion");
+          navigate("/connexion", { state: { status: "success" } });
         } else {
           // TODO afficher message erreur
         }
