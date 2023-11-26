@@ -1,4 +1,5 @@
 import {
+  Alert,
   Button,
   Card,
   Col,
@@ -91,7 +92,20 @@ function DetailsProduit({
 
   return (
     <Container>
-      {notification && <div className="notification">{notification}</div>}
+      {notification && (
+        <Alert
+          variant="success"
+          style={{
+            position: "absolute",
+            top: 0,
+            left: 0,
+            right: 0,
+            zIndex: 1,
+          }}
+        >
+          {notification}
+        </Alert>
+      )}
       <Row>
         <Col>
           <Carrousel
@@ -100,7 +114,7 @@ function DetailsProduit({
             className="product-images"
           />
         </Col>
-        <Col style={{}}>
+        <Col>
           <Card style={{ height: "auto" }}>
             <Card.Body
               style={{
