@@ -43,6 +43,8 @@ function PagePanier() {
     setCart(updatedCart);
   };
 
+  const cartSize = cart.reduce((size, item) => size + item.quantity, 0);
+
   const navigate = useNavigate();
 
   return (
@@ -53,7 +55,7 @@ function PagePanier() {
             <h4 className="d-flex justify-content-between align-items-center mb-3">
               <span className="text-muted">Votre panier</span>
               <Badge pill bg="secondary" className="mr-3">
-                {cart.length}
+                {cartSize}
               </Badge>
             </h4>
           </Col>
@@ -117,7 +119,8 @@ function PagePanier() {
                       </Button>
 
                       <span className="text-muted" style={{ fontSize: "20px" }}>
-                        {item.price?.toFixed(2)} $<span style={{ fontSize: "16px" }}> / unité</span>
+                        {item.price?.toFixed(2)} $
+                        <span style={{ fontSize: "16px" }}> / unité</span>
                       </span>
                     </div>
                   </ListGroup.Item>
