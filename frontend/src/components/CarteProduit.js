@@ -93,12 +93,16 @@ function CarteProduit({
         <Stack
           direction="horizontal"
           gap={1}
-          style={{ justifyContent: "center", margin: "0px" }}
+          style={{ justifyContent: "center" }}
         >
           {(!user || user?.role !== "admin") && (
             <div>
-              <Button variant="outline-primary" onClick={addToCart}>
-                Ajout Au Panier
+              <Button
+                variant="outline-primary"
+                onClick={addToCart}
+                style={{ margin: "5px" }}
+              >
+                Ajout Panier
               </Button>
 
               <Button
