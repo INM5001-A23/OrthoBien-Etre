@@ -11,11 +11,12 @@ router.post("/", async (req, res) => {
       prenom,
       nom,
       courriel,
+      mdp,
       rue,
       ville,
       province,
       codePostal,
-      telephone
+      telephone,
     } = req.body;
 
     // TODO: Regarder si le courriel n'existe pas avant d'inserer
@@ -24,11 +25,12 @@ router.post("/", async (req, res) => {
       prenom,
       nom,
       courriel,
+      mdp,
       rue,
       ville,
       province,
       telephone,
-      codePostal
+      codePostal,
     });
     await newClient.save();
     res.status(200).json({ message: "Enregistré" });
