@@ -1,6 +1,7 @@
 import express from "express";
 import bodyParser from "body-parser";
 import cors from "cors";
+import Commandes from "../models/Commandes";
 
 const router = express.Router();
 router.use(bodyParser.urlencoded({ extended: true }));
@@ -9,9 +10,43 @@ router.use(bodyParser.json());
 router.use(cors());
 
 router.post("/", cors(), async (req, res) => {
-  let { amount, id } = req.body;
   try {
-    
+    let orderDetails = req.body;
+
+    const newOrder = new Commandes({
+      orderId: orderDetails.orderId,
+      paymentId: orderDetails.paymentId,
+      client:false,
+      invite:{
+          nomClient: orderDetails.shipping.prenom,
+          prenomClient: orderDetails.shipping.prenom,
+          courriel: orderDetails.shipping.courriel,
+          tel: orderDetails.shipping.telephone,
+          adresse: {
+              numeroCivic: orderDetails.shipping.civique,
+              rue: orderDetails.shipping.rue,
+              ville: orderDetails.shipping.ville,
+              province: orderDetails.shipping.province,
+              cp: orderDetails.shipping.postal
+          }
+      },
+
+
+      articles: orderDetails.cart, 
+
+      status: 'Paid',
+      sousTotal: orderDetails.sousTotal,
+      fraisLivraison: orderDetails.fraisLivraison,
+      tps: orderDetails.tps,
+      tvq: orderDetails.tvq,
+      rabais: 0,
+      total: orderDetails.total
+    });
+
+    await console.log(newOrder);
+
+    //await commande.save();
+    res.status(200).json({ message: "Enregistré" });
   } catch (error) {
     console.log("Error", error);
     res.json({
@@ -22,46 +57,3 @@ router.post("/", cors(), async (req, res) => {
 });
 
 export default router;
-
-// router.post('/add', auth, async (req, res) => {
-//   try {
-//     const cart = req.body.cartId;
-//     const total = req.body.total;
-//     const user = req.user._id;
-
-//     const order = new Order({
-//       cart,
-//       user,
-//       total
-//     });
-
-//     const orderDoc = await order.save();
-
-//     const cartDoc = await Cart.findById(orderDoc.cart._id).populate({
-//       path: 'products.product',
-//       populate: {
-//         path: 'brand'
-//       }
-//     });
-
-//     const newOrder = {
-//       _id: orderDoc._id,
-//       created: orderDoc.created,
-//       user: orderDoc.user,
-//       total: orderDoc.total,
-//       products: cartDoc.products
-//     };
-
-//     await mailgun.sendEmail(order.user.email, 'order-confirmation', newOrder);
-
-//     res.status(200).json({
-//       success: true,
-//       message: `Your order has been placed successfully!`,
-//       order: { _id: orderDoc._id }
-//     });
-//   } catch (error) {
-//     res.status(400).json({
-//       error: 'Your request could not be processed. Please try again.'
-//     });
-//   }
-// });

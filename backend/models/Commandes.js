@@ -2,6 +2,14 @@ import mongoose from 'mongoose';
 
 
 const commandesSchema = new mongoose.Schema({
+    orderId:{
+        type: String,
+        required: true 
+    },
+    paymentId:{
+        type: String,
+        required: true 
+    },
 
     client:{
             type:Boolean,
@@ -52,12 +60,52 @@ const commandesSchema = new mongoose.Schema({
                 type: Number,
                 required: true,
                 default:1
-            },
-
-
+            }
         }
         
-    ]
+    ],
+
+    status: {
+        type: String,
+        enum: ['Not paid','Paid', 'Processed', 'Shipped', 'Deliverer', 'Completed'],
+        default: 'Not paid'
+    },
+
+    sousTotal:{
+        type: Number,
+        required: true,
+        default:0
+    },
+    
+    fraisLivraison:{
+        type: Number,
+        required: true,
+        default:0
+    },
+    
+    tps:{
+        type: Number,
+        required: true,
+        default:0
+    },
+    
+    tvq:{
+        type: Number,
+        required: true,
+        default:0
+    },
+    
+    rabais:{
+        type: Number,
+        required: true,
+        default:0
+    },
+    
+    total:{
+        type: Number,
+        required: true,
+        default:0
+    }
 });
 
 export default mongoose.model('Commandes', commandesSchema, 'Commandes');
