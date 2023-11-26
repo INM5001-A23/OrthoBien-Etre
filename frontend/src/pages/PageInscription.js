@@ -5,7 +5,7 @@ import ModelePage from "../layout/ModelePage";
 import Button from "../components/Bouton";
 import { useNavigate } from "react-router-dom";
 
-import { Alert, Container, Stack } from "react-bootstrap";
+import { Container, Stack } from "react-bootstrap";
 
 import { useForm } from "react-hook-form";
 import React, { useContext } from "react";

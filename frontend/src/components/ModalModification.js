@@ -1,30 +1,27 @@
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 
-function ModalModification(props) {
+function ModalModification({ produit, show, onHide }) {
   return (
     <Modal
-      {...props}
       size="lg"
       aria-labelledby="contained-modal-title-vcenter"
+      show={show}
       centered
     >
-      <Modal.Header closeButton>
+      <Modal.Header onClick={onHide} closeButton>
         <Modal.Title id="contained-modal-title-vcenter">
-          Modal heading
+          Modification d'un produit
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <h4>Centered Modal</h4>
-        <p>
-          Cras mattis consectetur purus sit amet fermentum. Cras justo odio,
-          dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac
-          consectetur ac, vestibulum at eros.
-        </p>
+        <h4>{produit.nomProduit}</h4>
+        <Button variant="outline-primary">Modifier</Button>
+        <p>Description: {produit.description}</p>
+        <p>Prix unitaire: {produit.prix}</p>
+        <p>Quantité disponible: {produit.quantite}</p>
+        <p>Promotion: {produit.promotion ? "Oui" : "Aucune promotion"}</p>
       </Modal.Body>
-      <Modal.Footer>
-        <Button onClick={props.onHide}>Close</Button>
-      </Modal.Footer>
     </Modal>
   );
 }
