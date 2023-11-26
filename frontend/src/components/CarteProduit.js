@@ -1,5 +1,5 @@
 import { default as React, useState } from "react";
-import { Badge, Button, Card, Row, Stack } from "react-bootstrap";
+import { Alert, Badge, Button, Card, Row, Stack } from "react-bootstrap";
 import ListGroup from "react-bootstrap/ListGroup";
 import { useNavigate } from "react-router-dom";
 import styles from "./Carte.module.css";
@@ -58,7 +58,20 @@ function CarteProduit({
         cursor: "pointer",
       }}
     >
-      {notification && <div className="notification">{notification}</div>}
+      {notification && (
+        <Alert
+          variant="success"
+          style={{
+            position: "absolute",
+            top: 0,
+            left: 0,
+            right: 0,
+            zIndex: 1,
+          }}
+        >
+          {notification}
+        </Alert>
+      )}
 
       <div
         style={{ position: "relative", display: "inline-block" }}
