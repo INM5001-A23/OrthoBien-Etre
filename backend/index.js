@@ -10,7 +10,7 @@ import paymentRoutes from "./routes/payment.js";
 import usersRoutes from "./routes/users.js";
 import connexionRoutes from "./routes/connexion.js";
 import ajoutproduitRoutes from "./routes/ajoutproduit.js";
-
+import modifierproduitRoutes from "./routes/modifierproduit.js";
 
 
 // app
@@ -46,6 +46,7 @@ app.use("/paiement",paymentRoutes );
 app.use("/inscription",usersRoutes);
 app.use("/connexion",connexionRoutes);
 app.use("/nouveauProduit",ajoutproduitRoutes);
+app.use("/modificationProduit", modifierproduitRoutes);
 
 app.listen(port, () => {
   console.log(`Successfully started server on port ${port}.`);
