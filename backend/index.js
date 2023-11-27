@@ -46,10 +46,11 @@ app.get("/", (req, res) => {
 app.use("/categories", categoryRoutes);
 app.use("/produits", productRoutes);
 app.use("/panier", cartRoutes);
-app.use("/commande",paymentRoutes );
+app.use("/commande",orderRoutes );
 app.use("/inscription",usersRoutes);
 app.use("/connexion",connexionRoutes);
 app.use("/nouveauProduit",ajoutproduitRoutes);
+app.use("/modificationProduit",modifierproduitRoutes);
 
 app.listen(port, () => {
   console.log(`Successfully started server on port ${port}.`);
