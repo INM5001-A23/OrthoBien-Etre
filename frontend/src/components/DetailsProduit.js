@@ -1,17 +1,22 @@
-import { Card, Col, Container, ListGroup, Row, Stack } from "react-bootstrap";
-
-import Button from "./Bouton";
+import {
+  Alert,
+  Button,
+  Card,
+  Col,
+  Container,
+  ListGroup,
+  Row,
+  Stack,
+} from "react-bootstrap";
 import Carrousel from "./Carrousel";
-import NomCategorie from "./NomCategorie";
-import Etoile from "./Etoile";
 import CarteCommentaire from "./CarteCommentaire";
-import { useNavigate } from "react-router-dom";
 import "./DetailsProduit.css";
-
+import Etoile from "./Etoile";
+import FormulaireEvaluation from "./FormulaireEvaluation";
+import NomCategorie from "./NomCategorie";
+import { useNavigate } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
 import { AxiosContext } from "..";
-import Evaluation from "./FormulaireEvaluation";
-import FormulaireEvaluation from "./FormulaireEvaluation";
 
 function DetailsProduit({
   produit: {
@@ -47,8 +52,60 @@ function DetailsProduit({
       });
   }, [axios]);
 
+  const productDetails = {
+    id: codeProduit,
+    name: nomProduit,
+    price: prix,
+  };
+
+  const [cart, setCart] = useState(
+    JSON.parse(localStorage.getItem("guestCartItems")) !== null
+      ? JSON.parse(localStorage.getItem("guestCartItems"))
+      : []
+  );
+
+  const [notification, setNotification] = useState(null);
+
+  const addToCart = () => {
+    const existingProduct = cart.find((item) => item.id === productDetails.id);
+
+    if (existingProduct) {
+      const updatedCart = cart.map((item) =>
+        item.id === productDetails.id
+          ? { ...item, quantity: item.quantity + 1 }
+          : item
+      );
+      setCart(updatedCart);
+      localStorage.setItem("guestCartItems", JSON.stringify(updatedCart));
+    } else {
+      const updatedCart = [...cart, { ...productDetails, quantity: 1 }];
+      setCart(updatedCart);
+      localStorage.setItem("guestCartItems", JSON.stringify(updatedCart));
+    }
+
+    setNotification(`${nomProduit} a été ajouté au panier`);
+
+    setTimeout(() => {
+      setNotification(null);
+    }, 3000);
+  };
+
   return (
     <Container>
+      {notification && (
+        <Alert
+          variant="success"
+          style={{
+            position: "absolute",
+            top: 0,
+            left: 0,
+            right: 0,
+            zIndex: 1,
+          }}
+        >
+          {notification}
+        </Alert>
+      )}
       <Row>
         <Col>
           <Carrousel
@@ -57,7 +114,7 @@ function DetailsProduit({
             className="product-images"
           />
         </Col>
-        <Col style={{}}>
+        <Col>
           <Card style={{ height: "auto" }}>
             <Card.Body
               style={{
@@ -84,7 +141,9 @@ function DetailsProduit({
                 gap={5}
                 style={{ justifyContent: "center", margin: "0px" }}
               >
-                <Button variant="outline-primary">Ajouter au panier</Button>
+                <Button variant="outline-primary" onClick={addToCart}>
+                  Ajouter au panier
+                </Button>
                 <Button variant="outline-success">Acheter maintenant</Button>
               </Stack>
             </Card.Body>

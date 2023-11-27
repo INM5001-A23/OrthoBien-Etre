@@ -6,13 +6,27 @@ import Navbar from "react-bootstrap/Navbar";
 import { useNavigate } from "react-router-dom";
 import Logo from "../components/Logo";
 import "./Navigation.module.css";
+import { useContext } from "react";
+import { UserContext } from "..";
 
 function Navigation() {
   const navigate = useNavigate();
+  const user = useContext(UserContext);
+
+  const onDeconnexionClick = () => {
+    localStorage.removeItem("token");
+    navigate(0);
+  };
 
   return (
     <Navbar expand="lg" className="bg-body-tertiary">
-      <Container fluid>
+      <Container
+        fluid
+        style={{
+          alignItems: "center",
+          textAlign: "center",
+        }}
+      >
         <Logo img="/images/bones.svg" path="/" />
         <Navbar.Brand>
           <Nav.Link onClick={() => navigate("/")}>OrthoBien-Être</Nav.Link>
@@ -31,15 +45,54 @@ function Navigation() {
             <Nav.Link onClick={() => navigate("/contacts")}>Contacts</Nav.Link>
           </Nav>
           <Form className="d-flex">
-            <Logo img="/images/user.svg" path="/connexion" />
-            <Logo img="/images/panier.svg" path="/panier" />
+            {user && (
+              <div style={{ padding: "0 10px 0 10px" }}>
+                Bienvenue {user?.prenom || "Admin"}
+              </div>
+            )}
+            {user && user?.role === "admin" && (
+              <Logo img="/images/inventaire.svg" path="/admin" />
+            )}
+            <Logo
+              img="/images/user.svg"
+              path={user ? "/compte" : "/connexion"}
+            />
+            {(!user || user?.role !== "admin") && (
+              <Logo img="/images/panier.svg" path="/panier" />
+            )}
             <Form.Control
               type="search"
               placeholder="Recherche"
               className="me-2"
               aria-label="Search"
+              style={{
+                alignSelf: "center",
+              }}
             />
-            <Button variant="outline-success">Soumettre</Button>
+            <Button
+              variant="outline-success"
+              size="sm"
+              style={{
+                height: "10%",
+                alignSelf: "center",
+                margin: "0 5px 0 0",
+              }}
+            >
+              Soumettre
+            </Button>
+            {user && (
+              <Button
+                variant="outline-danger"
+                size="sm"
+                style={{
+                  height: "10%",
+                  alignSelf: "center",
+                }}
+                onClick={onDeconnexionClick}
+              >
+                Déconnexion
+              </Button>
+            )}
           </Form>
         </Navbar.Collapse>
       </Container>

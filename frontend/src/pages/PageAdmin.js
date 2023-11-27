@@ -1,13 +1,23 @@
 import { Button, Col, Container, Row, Stack } from "react-bootstrap";
 import ModelePage from "../layout/ModelePage";
 import { useContext, useEffect, useState } from "react";
-import { AxiosContext } from "..";
-
+import { AxiosContext, UserContext } from "..";
 import CarteAdmin from "../components/CarteAdmin";
+import { useNavigate } from "react-router-dom";
+import React from "react";
 
 function PageAdmin() {
+  const navigate = useNavigate();
   const axios = useContext(AxiosContext);
+  const user = useContext(UserContext);
   const [produits, setProduits] = useState([]);
+
+  useEffect(() => {
+    if (!user || user?.role !== "admin") {
+      // TODO, faire une popup avant redirect
+      navigate("/");
+    }
+  }, []);
 
   useEffect(() => {
     axios

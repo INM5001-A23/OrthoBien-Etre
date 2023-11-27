@@ -1,17 +1,20 @@
 import express from "express";
 import mongoose from "mongoose";
 import cors from "cors";
+import "dotenv/config";
+import bodyParser from "body-parser";
 
 // import routes
 import categoryRoutes from "./routes/category.js";
 import productRoutes from "./routes/product.js";
 import cartRoutes from "./routes/cart.js";
-import paymentRoutes from "./routes/payment.js";
+import orderRoutes from "./routes/order.js";
 import usersRoutes from "./routes/users.js";
 import connexionRoutes from "./routes/connexion.js";
 import ajoutproduitRoutes from "./routes/ajoutproduit.js";
 import modifierproduitRoutes from "./routes/modifierproduit.js";
 
+import ajoutProduitRoutes from "./routes/ajoutProduit.js";
 
 // app
 const app = express();
@@ -19,6 +22,8 @@ const port = 3300;
 
 // enable cors
 app.use(cors());
+
+app.use(bodyParser.json());
 
 // db connection
 // mongoose.connect('mongodb://localhost:27017/orthobienetre',{useNewUrlParser: true});
@@ -37,16 +42,14 @@ app.get("/", (req, res) => {
   res.send("<h2>API is running...</h2>");
 });
 
-
 // Use API Routes
 app.use("/categories", categoryRoutes);
 app.use("/produits", productRoutes);
 app.use("/panier", cartRoutes);
-app.use("/paiement",paymentRoutes );
+app.use("/commande",paymentRoutes );
 app.use("/inscription",usersRoutes);
 app.use("/connexion",connexionRoutes);
 app.use("/nouveauProduit",ajoutproduitRoutes);
-app.use("/modificationProduit", modifierproduitRoutes);
 
 app.listen(port, () => {
   console.log(`Successfully started server on port ${port}.`);
