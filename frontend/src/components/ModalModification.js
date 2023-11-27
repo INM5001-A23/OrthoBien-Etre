@@ -29,6 +29,24 @@ function ModalModification({ produit, show, onHide }) {
     { name: "Oui", value: "2" },
   ];
 
+  const handleModalModification = handleSubmit((data) => {
+    console.log(data);
+    // axios
+    //   .post("/inscription", data)
+    //   .then(function (response) {
+    //     if (response.status === 200) {
+    //       navigate("/connexion", { state: { status: "success" } });
+    //     } else {
+    //       // TODO afficher message erreur
+    //     }
+    //   })
+    //   .catch(function (error) {
+    //     // handle error
+    //     // TODO afficher message erreur
+    //     console.log(error);
+    //   });
+  });
+
   return (
     <Modal
       size="lg"
@@ -42,7 +60,7 @@ function ModalModification({ produit, show, onHide }) {
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <Form>
+        <Form onSubmit={handleModalModification}>
           <Container style={{ width: "400px" }}>
             <Stack>
               {/* Input NOM DU PRODUIT */}
@@ -54,7 +72,7 @@ function ModalModification({ produit, show, onHide }) {
                 {...register("nomProduit", {
                   required: "Ce champ est obligatoire",
                   pattern: {
-                    value: /^[a-zA-Z0-9\s-]+$/,
+                    value: /^[a-zA-ZÀ-ÖØ-öø-ÿ\s\p{P}'-]+$/,
                     message: "Lettres de l'alphabet uniquement",
                   },
                   minLength: {
@@ -66,18 +84,13 @@ function ModalModification({ produit, show, onHide }) {
               <p style={{ color: "red" }}>{errors.nomProduit?.message}</p>
               {/* Input DESCRIPTION */}
               <Form.Group as={Col} controlId="description"></Form.Group>
-              <Form.Label>Nom du produit:</Form.Label>
+              <Form.Label>Description:</Form.Label>
               <Form.Control
                 as="textarea"
-                autoSize={true}
                 rows={10}
                 value={produit.description}
                 {...register("description", {
                   required: "Ce champ est obligatoire",
-                  pattern: {
-                    value: /^[a-zA-Z0-9\s-]+$/,
-                    message: "Lettres de l'alphabet uniquement",
-                  },
                   minLength: {
                     value: 20,
                     message: "Longueur minimale est de 20 caractères",
@@ -94,7 +107,7 @@ function ModalModification({ produit, show, onHide }) {
                 {...register("prix", {
                   required: "Ce champ est obligatoire",
                   pattern: {
-                    value: /^\d+(\,\d{1,2})?$/,
+                    value: /^(0(?!\.00)|[1-9]\d{0,6})\.\d{2}$/,
                     message:
                       "Veuillez entrer un nombre avec 2 decimales ex: '1,00'",
                   },
@@ -137,7 +150,11 @@ function ModalModification({ produit, show, onHide }) {
                   </ToggleButton>
                 ))}
               </ButtonGroup>
-              <Button variant="success" style={{ margin: "10px 0 0 0" }}>
+              <Button
+                type="submit"
+                variant="success"
+                style={{ margin: "10px 0 0 0" }}
+              >
                 Enregistrer les modifications
               </Button>
             </Stack>
