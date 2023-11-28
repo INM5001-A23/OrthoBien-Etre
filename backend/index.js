@@ -11,7 +11,9 @@ import cartRoutes from "./routes/cart.js";
 import orderRoutes from "./routes/order.js";
 import usersRoutes from "./routes/users.js";
 import connexionRoutes from "./routes/connexion.js";
-import ajoutProduitRoutes from "./routes/ajoutProduit.js";
+import ajoutproduitRoutes from "./routes/ajoutproduit.js";
+import modifierproduitRoutes from "./routes/modifierproduit.js";
+import supprimerproduitRoutes from "./routes/deleteproduit.js";
 
 // app
 const app = express();
@@ -43,10 +45,12 @@ app.get("/", (req, res) => {
 app.use("/categories", categoryRoutes);
 app.use("/produits", productRoutes);
 app.use("/panier", cartRoutes);
-app.use("/commande", orderRoutes);
-app.use("/inscription", usersRoutes);
-app.use("/connexion", connexionRoutes);
-app.use("/ajoutProduit", ajoutProduitRoutes);
+app.use("/commande",orderRoutes );
+app.use("/inscription",usersRoutes);
+app.use("/connexion",connexionRoutes);
+app.use("/nouveauProduit",ajoutproduitRoutes);
+app.use("/modificationProduit",modifierproduitRoutes);
+app.use("/supprimerProduit", supprimerproduitRoutes);
 
 app.listen(port, () => {
   console.log(`Successfully started server on port ${port}.`);
