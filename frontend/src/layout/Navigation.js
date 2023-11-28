@@ -66,21 +66,13 @@ function Navigation() {
               <Logo img="/images/panier.svg" path="/panier" />
             )}
 
-            <div>
+            <div className="me-2" >
              <SearchBar setResults={setResults} />
             {results && results.length > 0 && <SearchResultsList results={results} />}
 
             </div>
-            {/* <Form.Control
-              type="search"
-              placeholder="Recherche"
-              className="me-2"
-              aria-label="Search"
-              style={{
-                alignSelf: "center",
-              }}
-            /> */}
-            <Button
+           
+            {/* <Button
               variant="outline-success"
               size="sm"
               style={{
@@ -90,7 +82,8 @@ function Navigation() {
               }}
             >
               Soumettre
-            </Button> 
+              
+            </Button>  */}
             {user && (
               <Button
                 variant="outline-danger"
