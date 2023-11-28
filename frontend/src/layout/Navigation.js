@@ -8,10 +8,15 @@ import Logo from "../components/Logo";
 import "./Navigation.module.css";
 import { useContext } from "react";
 import { UserContext } from "..";
+import { SearchBar } from "../components/searchbar";
+import { SearchResultsList } from "../components/SearchResultsList";
+import React, { useState } from "react"; 
+
 
 function Navigation() {
   const navigate = useNavigate();
   const user = useContext(UserContext);
+  const [results, setResults] = useState([]);
 
   const onDeconnexionClick = () => {
     localStorage.removeItem("token");
@@ -60,7 +65,13 @@ function Navigation() {
             {(!user || user?.role !== "admin") && (
               <Logo img="/images/panier.svg" path="/panier" />
             )}
-            <Form.Control
+
+            <div>
+             <SearchBar setResults={setResults} />
+            {results && results.length > 0 && <SearchResultsList results={results} />}
+
+            </div>
+            {/* <Form.Control
               type="search"
               placeholder="Recherche"
               className="me-2"
@@ -68,7 +79,7 @@ function Navigation() {
               style={{
                 alignSelf: "center",
               }}
-            />
+            /> */}
             <Button
               variant="outline-success"
               size="sm"
@@ -79,7 +90,7 @@ function Navigation() {
               }}
             >
               Soumettre
-            </Button>
+            </Button> 
             {user && (
               <Button
                 variant="outline-danger"
