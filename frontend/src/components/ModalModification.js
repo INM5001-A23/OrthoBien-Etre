@@ -19,23 +19,28 @@ function ModalModification({ produit, show, onHide }) {
     register,
     handleSubmit,
     formState: { errors },
+    setValue,
+    getValues,
   } = useForm({
     mode: "onChange",
   });
 
-  const [radioValue, setRadioValue] = useState("1");
-
   const radios = [
-    { name: "Non", value: "1" },
-    { name: "Oui", value: "2" },
+    { name: "Non", value: false },
+    { name: "Oui", value: true },
   ];
 
   const handleModalModification = handleSubmit(async (data) => {
-    const formData = new FormData();
+    console.log(data);
+    // const formData = new FormData();
 
-    formData.append("files", data.imageProduit[0]);
+    // formData.append("files", data.imageProduit[0]);
 
-    var test = await axios.put("/modificationProduit", formData);
+    // var test = await axios.put("/modificationProduit", formData);
+  });
+
+  register("promotion", {
+    value: produit.promotion,
   });
 
   return (
@@ -124,13 +129,13 @@ function ModalModification({ produit, show, onHide }) {
                 value={produit.quantite}
                 {...register("quantite", {
                   required: "Ce champ est obligatoire",
-                  pattern: {
-                    value: /^(?:[0-9]|[1-4][0-9]|50)$/,
-                    message: "Veuillez entrer un nombre entre 0 et 50",
+                  min: {
+                    value: 1,
+                    message: "La quantité doit être d'au moins 1",
                   },
                 })}
               />
-              <p style={{ color: "red" }}>{errors.qunatite?.message}</p>
+              <p style={{ color: "red" }}>{errors.quantite?.message}</p>
 
               {/* Input EN PROMOTION */}
               <Form.Group as={Col} controlId="promotion"></Form.Group>
@@ -145,13 +150,19 @@ function ModalModification({ produit, show, onHide }) {
                     variant={idx % 2 ? "outline-primary" : "outline-secondary"}
                     name="radio"
                     value={radio.value}
-                    checked={radioValue === radio.value}
-                    onChange={(e) => setRadioValue(e.currentTarget.value)}
+                    checked={getValues("promotion") == radio.value}
+                    onChange={(e) =>
+                      setValue("promotion", e.currentTarget.value === "true", {
+                        shouldValidate: true,
+                      })
+                    }
                   >
                     {radio.name}
                   </ToggleButton>
                 ))}
               </ButtonGroup>
+              <p style={{ color: "red" }}>{errors.promotion?.message}</p>
+
               <Button
                 type="submit"
                 variant="success"
