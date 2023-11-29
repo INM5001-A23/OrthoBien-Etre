@@ -36,8 +36,7 @@ router.put("/", async (req, res) => {
     const verifProduit = await Produits.findOne({ codeProduit });
     console.log(req.files[0]);
     // console.log(req.files[0].buffer.toString("base64"));
-    res.status(200).json({ message: "marchehjuggjhghj" });
-    return;
+    res.status(200).json({ message: "hehe" });
 
     if (verifProduit) {
       verifProduit.nomProduit = nomProduit || verifProduit.nomProduit;
