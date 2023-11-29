@@ -90,6 +90,7 @@ function PageInscription() {
             <Form.Group as={Col} controlId="nom">
               <Form.Label>Nom</Form.Label>
               <Form.Control
+                type="text"
                 {...register("nom", {
                   required: "Ce champ est obligatoire",
                   pattern: {

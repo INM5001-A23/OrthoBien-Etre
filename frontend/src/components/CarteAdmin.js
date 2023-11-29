@@ -1,12 +1,14 @@
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
-import { useNavigate } from "react-router-dom";
+
 import styles from "./Carte.module.css";
 import React from "react";
 import ModalModification from "./ModalModification";
+import ModalSupprimer from "./ModalSupprimer";
 
 function CarteAdmin({ produit }) {
-  const [modalShow, setModalShow] = React.useState(false);
+  const [modalModifShow, setModalModifShow] = React.useState(false);
+  const [modalSupprimerShow, setModalSupprimerShow] = React.useState(false);
 
   return (
     <Card style={{ width: "18rem", textAlign: "center" }}>
@@ -17,16 +19,29 @@ function CarteAdmin({ produit }) {
       />
       <Card.Body>
         <Card.Title>{produit.nomProduit}</Card.Title>
-        <Button variant="outline-primary" onClick={() => setModalShow(true)}>
+        <Button
+          variant="outline-primary"
+          onClick={() => setModalModifShow(true)}
+        >
           Modifier
         </Button>
         &nbsp;&nbsp;&nbsp;
-        <Button variant="outline-danger">Supprimer</Button>
+        <Button
+          variant="outline-danger"
+          onClick={() => setModalSupprimerShow(true)}
+        >
+          Supprimer
+        </Button>
       </Card.Body>
       <ModalModification
         produit={produit}
-        show={modalShow}
-        onHide={() => setModalShow(false)}
+        show={modalModifShow}
+        onHide={() => setModalModifShow(false)}
+      />
+      <ModalSupprimer
+        produit={produit}
+        show={modalSupprimerShow}
+        onHide={() => setModalSupprimerShow(false)}
       />
     </Card>
   );

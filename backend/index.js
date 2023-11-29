@@ -3,6 +3,7 @@ import mongoose from "mongoose";
 import cors from "cors";
 import "dotenv/config";
 import bodyParser from "body-parser";
+import multer from "multer";
 
 // import routes
 import categoryRoutes from "./routes/category.js";
@@ -18,10 +19,13 @@ import ajouterimagesRoutes from "./routes/ajoutimages.js";
 // app
 const app = express();
 const port = 3300;
+const upload = multer();
 
 // enable cors
 app.use(cors());
 app.use(bodyParser.json());
+
+app.use(upload.array("files", 12));
 
 // db connection
 // mongoose.connect('mongodb://localhost:27017/orthobienetre',{useNewUrlParser: true});
@@ -48,7 +52,7 @@ app.use("/commande",orderRoutes );
 app.use("/inscription",usersRoutes);
 app.use("/connexion",connexionRoutes);
 app.use("/nouveauProduit",ajoutproduitRoutes);
-app.use("/modificationproduit",modifierproduitRoutes);
+app.use("/modificationProduit",modifierproduitRoutes);
 app.use("/supprimerProduit", supprimerproduitRoutes);
 app.use("/ajouterImages",ajouterimagesRoutes);
 
