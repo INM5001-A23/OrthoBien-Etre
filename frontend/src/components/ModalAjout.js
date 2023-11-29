@@ -13,7 +13,7 @@ import { useForm } from "react-hook-form";
 import { useContext, useState } from "react";
 import { AxiosContext } from "..";
 
-function ModalModification({ produit, show, onHide }) {
+function ModalAjout({ produit, show, onHide }) {
   const axios = useContext(AxiosContext);
   const {
     register,
@@ -23,7 +23,6 @@ function ModalModification({ produit, show, onHide }) {
     mode: "onChange",
   });
 
-  const [checked, setChecked] = useState(false);
   const [radioValue, setRadioValue] = useState("1");
 
   const radios = [
@@ -31,12 +30,12 @@ function ModalModification({ produit, show, onHide }) {
     { name: "Oui", value: "2" },
   ];
 
-  const handleModalModification = handleSubmit(async (data) => {
+  const handleModalAjout = handleSubmit(async (data) => {
     const formData = new FormData();
 
     formData.append("files", data.imageProduit[0]);
 
-    var test = await axios.put("/modificationProduit", formData);
+    // var test = await axios.put("/modificationProduit", formData);
   });
 
   return (
@@ -48,11 +47,12 @@ function ModalModification({ produit, show, onHide }) {
     >
       <Modal.Header onClick={onHide} closeButton>
         <Modal.Title id="contained-modal-title-vcenter">
-          Modification du produit: {produit.nomProduit}
+          Ajout d'un nouveau produit
         </Modal.Title>
       </Modal.Header>
+
       <Modal.Body>
-        <Form onSubmit={handleModalModification}>
+        <Form onSubmit={handleModalAjout}>
           <Container style={{ width: "400px" }}>
             <Stack>
               {/* Input IMAGE DU PRODUIT */}
@@ -71,7 +71,7 @@ function ModalModification({ produit, show, onHide }) {
               <Form.Label>Nom du produit:</Form.Label>
               <Form.Control
                 type="text"
-                value={produit.nomProduit}
+                // value={produit.nomProduit}
                 {...register("nomProduit", {
                   required: "Ce champ est obligatoire",
                   pattern: {
@@ -91,7 +91,6 @@ function ModalModification({ produit, show, onHide }) {
               <Form.Control
                 as="textarea"
                 rows={10}
-                value={produit.description}
                 {...register("description", {
                   required: "Ce champ est obligatoire",
                   minLength: {
@@ -106,7 +105,6 @@ function ModalModification({ produit, show, onHide }) {
               <Form.Label>Prix unitaire:</Form.Label>
               <Form.Control
                 type="number"
-                value={produit.prix}
                 {...register("prix", {
                   required: "Ce champ est obligatoire",
                   pattern: {
@@ -122,7 +120,6 @@ function ModalModification({ produit, show, onHide }) {
               <Form.Label>Quantité disponible:</Form.Label>
               <Form.Control
                 type="number"
-                value={produit.quantite}
                 {...register("quantite", {
                   required: "Ce champ est obligatoire",
                   pattern: {
@@ -145,7 +142,6 @@ function ModalModification({ produit, show, onHide }) {
                     type="radio"
                     variant={idx % 2 ? "outline-primary" : "outline-secondary"}
                     name="radio"
-                    value={radio.value}
                     checked={radioValue === radio.value}
                     onChange={(e) => setRadioValue(e.currentTarget.value)}
                   >
@@ -158,7 +154,7 @@ function ModalModification({ produit, show, onHide }) {
                 variant="success"
                 style={{ margin: "10px 0 0 0" }}
               >
-                Enregistrer les modifications
+                Créer le produit
               </Button>
             </Stack>
           </Container>
@@ -168,4 +164,4 @@ function ModalModification({ produit, show, onHide }) {
   );
 }
 
-export default ModalModification;
+export default ModalAjout;

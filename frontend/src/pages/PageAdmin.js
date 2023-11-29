@@ -5,12 +5,14 @@ import { AxiosContext, UserContext } from "..";
 import CarteAdmin from "../components/CarteAdmin";
 import { useNavigate } from "react-router-dom";
 import React from "react";
+import ModalAjout from "../components/ModalAjout";
 
 function PageAdmin() {
   const navigate = useNavigate();
   const axios = useContext(AxiosContext);
   const user = useContext(UserContext);
   const [produits, setProduits] = useState([]);
+  const [modalShow, setModalShow] = React.useState(false);
 
   useEffect(() => {
     if (!user || user?.role !== "admin") {
@@ -44,9 +46,14 @@ function PageAdmin() {
       >
         <h1 className="mb-2">Gestion des stocks</h1>
 
-        <Button variant="outline-success" size="lg">
+        <Button
+          variant="outline-success"
+          size="lg"
+          onClick={() => setModalShow(true)}
+        >
           Ajouter un produit
         </Button>
+        <ModalAjout show={modalShow} onHide={() => setModalShow(false)} />
 
         <Container>
           <Row xs={1} md={4} className="g-4 justify-content-center">

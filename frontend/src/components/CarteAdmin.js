@@ -1,6 +1,6 @@
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
-import { useNavigate } from "react-router-dom";
+
 import styles from "./Carte.module.css";
 import React from "react";
 import ModalModification from "./ModalModification";
