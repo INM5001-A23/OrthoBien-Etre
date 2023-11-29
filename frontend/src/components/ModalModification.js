@@ -10,9 +10,11 @@ import Col from "react-bootstrap/Col";
 
 import Modal from "react-bootstrap/Modal";
 import { useForm } from "react-hook-form";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { AxiosContext } from "..";
 
 function ModalModification({ produit, show, onHide }) {
+  const axios = useContext(AxiosContext);
   const {
     register,
     handleSubmit,
@@ -29,22 +31,12 @@ function ModalModification({ produit, show, onHide }) {
     { name: "Oui", value: "2" },
   ];
 
-  const handleModalModification = handleSubmit((data) => {
-    console.log(data);
-    // axios
-    //   .post("/inscription", data)
-    //   .then(function (response) {
-    //     if (response.status === 200) {
-    //       navigate("/connexion", { state: { status: "success" } });
-    //     } else {
-    //       // TODO afficher message erreur
-    //     }
-    //   })
-    //   .catch(function (error) {
-    //     // handle error
-    //     // TODO afficher message erreur
-    //     console.log(error);
-    //   });
+  const handleModalModification = handleSubmit(async (data) => {
+    const formData = new FormData();
+
+    formData.append("files", data.imageProduit[0]);
+
+    var test = await axios.put("/modificationProduit", formData);
   });
 
   return (
@@ -63,6 +55,17 @@ function ModalModification({ produit, show, onHide }) {
         <Form onSubmit={handleModalModification}>
           <Container style={{ width: "400px" }}>
             <Stack>
+              {/* Input IMAGE DU PRODUIT */}
+              <Form.Group as={Col} controlId="imageProduit"></Form.Group>
+              <Form.Label>Image:</Form.Label>
+              <Form.Control
+                type="file"
+                {...register("imageProduit", {
+                  required: "Ce champ est obligatoire",
+                })}
+              />
+              <p style={{ color: "red" }}>{errors.imageProduit?.message}</p>
+
               {/* Input NOM DU PRODUIT */}
               <Form.Group as={Col} controlId="nomProduit"></Form.Group>
               <Form.Label>Nom du produit:</Form.Label>
@@ -72,7 +75,7 @@ function ModalModification({ produit, show, onHide }) {
                 {...register("nomProduit", {
                   required: "Ce champ est obligatoire",
                   pattern: {
-                    value: /^[a-zA-ZÀ-ÖØ-öø-ÿ\s\p{P}'-]+$/,
+                    value: /^[a-zA-ZÀ-ÖØ-öø-ÿ\s\p'-]+$/,
                     message: "Lettres de l'alphabet uniquement",
                   },
                   minLength: {
