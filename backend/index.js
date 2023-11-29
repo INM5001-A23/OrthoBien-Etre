@@ -14,14 +14,13 @@ import connexionRoutes from "./routes/connexion.js";
 import ajoutproduitRoutes from "./routes/ajoutproduit.js";
 import modifierproduitRoutes from "./routes/modifierproduit.js";
 import supprimerproduitRoutes from "./routes/deleteproduit.js";
-
+import ajouterimagesRoutes from "./routes/ajoutimages.js";
 // app
 const app = express();
 const port = 3300;
 
 // enable cors
 app.use(cors());
-
 app.use(bodyParser.json());
 
 // db connection
@@ -49,8 +48,9 @@ app.use("/commande",orderRoutes );
 app.use("/inscription",usersRoutes);
 app.use("/connexion",connexionRoutes);
 app.use("/nouveauProduit",ajoutproduitRoutes);
-app.use("/modificationProduit",modifierproduitRoutes);
+app.use("/modificationproduit",modifierproduitRoutes);
 app.use("/supprimerProduit", supprimerproduitRoutes);
+app.use("/ajouterImages",ajouterimagesRoutes);
 
 app.listen(port, () => {
   console.log(`Successfully started server on port ${port}.`);
