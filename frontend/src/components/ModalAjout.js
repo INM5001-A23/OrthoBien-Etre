@@ -4,6 +4,7 @@ import {
   Container,
   Stack,
   ToggleButton,
+  ToggleButtonGroup,
 } from "react-bootstrap";
 import Form from "react-bootstrap/Form";
 import Col from "react-bootstrap/Col";
@@ -18,24 +19,24 @@ function ModalAjout({ produit, show, onHide }) {
   const {
     register,
     handleSubmit,
+    setValue,
+    getValues,
     formState: { errors },
   } = useForm({
     mode: "onChange",
   });
 
-  const [radioValue, setRadioValue] = useState("1");
-
   const radios = [
-    { name: "Non", value: "1" },
-    { name: "Oui", value: "2" },
+    { name: "Non", value: false },
+    { name: "Oui", value: true },
   ];
 
-  const handleModalAjout = handleSubmit(async (data) => {
-    const formData = new FormData();
+  const handleModalAjout = handleSubmit((data) => {
+    console.log(data);
+  });
 
-    formData.append("files", data.imageProduit[0]);
-
-    // var test = await axios.put("/modificationProduit", formData);
+  register("promotion", {
+    value: false,
   });
 
   return (
@@ -56,7 +57,7 @@ function ModalAjout({ produit, show, onHide }) {
           <Container style={{ width: "400px" }}>
             <Stack>
               {/* Input IMAGE DU PRODUIT */}
-              <Form.Group as={Col} controlId="imageProduit"></Form.Group>
+              {/* <Form.Group as={Col} controlId="imageProduit"></Form.Group>
               <Form.Label>Image:</Form.Label>
               <Form.Control
                 type="file"
@@ -64,71 +65,75 @@ function ModalAjout({ produit, show, onHide }) {
                   required: "Ce champ est obligatoire",
                 })}
               />
-              <p style={{ color: "red" }}>{errors.imageProduit?.message}</p>
+              <p style={{ color: "red" }}>{errors.imageProduit?.message}</p> */}
 
               {/* Input NOM DU PRODUIT */}
-              <Form.Group as={Col} controlId="nomProduit"></Form.Group>
-              <Form.Label>Nom du produit:</Form.Label>
-              <Form.Control
-                type="text"
-                // value={produit.nomProduit}
-                {...register("nomProduit", {
-                  required: "Ce champ est obligatoire",
-                  pattern: {
-                    value: /^[a-zA-ZÀ-ÖØ-öø-ÿ\s\p'-]+$/,
-                    message: "Lettres de l'alphabet uniquement",
-                  },
-                  minLength: {
-                    value: 5,
-                    message: "Longueur minimale est de 5 caractères",
-                  },
-                })}
-              />
-              <p style={{ color: "red" }}>{errors.nomProduit?.message}</p>
+              <Form.Group as={Col} controlId="nomProduit">
+                <Form.Label>Nom du produit:</Form.Label>
+                <Form.Control
+                  type="text"
+                  // value={produit.nomProduit}
+                  {...register("nomProduit", {
+                    required: "Ce champ est obligatoire",
+                    pattern: {
+                      value: /^[a-zA-ZÀ-ÖØ-öø-ÿ\s\p'-]+$/,
+                      message: "Lettres de l'alphabet uniquement",
+                    },
+                    minLength: {
+                      value: 3,
+                      message: "Longueur minimale est de 3 caractères",
+                    },
+                  })}
+                />
+                <p style={{ color: "red" }}>{errors.nomProduit?.message}</p>
+              </Form.Group>
               {/* Input DESCRIPTION */}
-              <Form.Group as={Col} controlId="description"></Form.Group>
-              <Form.Label>Description:</Form.Label>
-              <Form.Control
-                as="textarea"
-                rows={10}
-                {...register("description", {
-                  required: "Ce champ est obligatoire",
-                  minLength: {
-                    value: 20,
-                    message: "Longueur minimale est de 20 caractères",
-                  },
-                })}
-              />
+              <Form.Group as={Col} controlId="description">
+                <Form.Label>Description:</Form.Label>
+                <Form.Control
+                  as="textarea"
+                  rows={10}
+                  {...register("description", {
+                    required: "Ce champ est obligatoire",
+                    minLength: {
+                      value: 20,
+                      message: "Longueur minimale est de 20 caractères",
+                    },
+                  })}
+                />
+              </Form.Group>
               <p style={{ color: "red" }}>{errors.description?.message}</p>
               {/* Input PRIX UNITAIRE */}
-              <Form.Group as={Col} controlId="prix"></Form.Group>
-              <Form.Label>Prix unitaire:</Form.Label>
-              <Form.Control
-                type="number"
-                {...register("prix", {
-                  required: "Ce champ est obligatoire",
-                  pattern: {
-                    value: /^(0(?!\.00)|[1-9]\d{0,6})\.\d{2}$/,
-                    message:
-                      "Veuillez entrer un nombre avec 2 decimales ex: '1,00'",
-                  },
-                })}
-              />
-              <p style={{ color: "red" }}>{errors.prix?.message}</p>
+              <Form.Group as={Col} controlId="prix">
+                <Form.Label>Prix unitaire:</Form.Label>
+                <Form.Control
+                  type="number"
+                  {...register("prix", {
+                    required: "Ce champ est obligatoire",
+                    pattern: {
+                      value: /^(0(?!\.00)|[1-9]\d{0,6})\.\d{2}$/,
+                      message:
+                        "Veuillez entrer un nombre avec 2 decimales ex: '1,00'",
+                    },
+                  })}
+                />
+                <p style={{ color: "red" }}>{errors.prix?.message}</p>
+              </Form.Group>
               {/* Input QUANTITE EN STOCK */}
-              <Form.Group as={Col} controlId="quantite"></Form.Group>
-              <Form.Label>Quantité disponible:</Form.Label>
-              <Form.Control
-                type="number"
-                {...register("quantite", {
-                  required: "Ce champ est obligatoire",
-                  pattern: {
-                    value: /^(?:[0-9]|[1-4][0-9]|50)$/,
-                    message: "Veuillez entrer un nombre entre 0 et 50",
-                  },
-                })}
-              />
-              <p style={{ color: "red" }}>{errors.qunatite?.message}</p>
+              <Form.Group as={Col} controlId="quantite">
+                <Form.Label>Quantité disponible:</Form.Label>
+                <Form.Control
+                  type="number"
+                  {...register("quantite", {
+                    required: "Ce champ est obligatoire",
+                    min: {
+                      value: 1,
+                      message: "La quantité doit être d'au moins 1",
+                    },
+                  })}
+                />
+                <p style={{ color: "red" }}>{errors.quantite?.message}</p>
+              </Form.Group>
 
               {/* Input EN PROMOTION */}
               <Form.Group as={Col} controlId="promotion"></Form.Group>
@@ -142,13 +147,20 @@ function ModalAjout({ produit, show, onHide }) {
                     type="radio"
                     variant={idx % 2 ? "outline-primary" : "outline-secondary"}
                     name="radio"
-                    checked={radioValue === radio.value}
-                    onChange={(e) => setRadioValue(e.currentTarget.value)}
+                    value={radio.value}
+                    checked={getValues("promotion") == radio.value}
+                    onChange={(e) =>
+                      setValue("promotion", e.currentTarget.value === "true", {
+                        shouldValidate: true,
+                      })
+                    }
                   >
                     {radio.name}
                   </ToggleButton>
                 ))}
               </ButtonGroup>
+              <p style={{ color: "red" }}>{errors.promotion?.message}</p>
+
               <Button
                 type="submit"
                 variant="success"
