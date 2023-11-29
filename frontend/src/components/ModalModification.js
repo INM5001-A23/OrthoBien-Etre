@@ -23,7 +23,6 @@ function ModalModification({ produit, show, onHide }) {
     mode: "onChange",
   });
 
-  const [checked, setChecked] = useState(false);
   const [radioValue, setRadioValue] = useState("1");
 
   const radios = [
