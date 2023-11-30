@@ -23,9 +23,9 @@ router.get("/promotion", async (req, res) => {
 });
 
 // Fetch popular products
-router.get("/popular", async (req, res) => {
+router.get("/populaire", async (req, res) => {
   try {
-    const popularProduct = await Produits.find({ popularity: 100 });
+    const popularProduct = await Produits.find({ populaire: true });
     res.json(popularProduct);
   } catch (err) {
     res.status(500).json({ message: err.message });
