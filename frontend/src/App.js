@@ -11,6 +11,8 @@ import PageAdmin from "./pages/PageAdmin";
 import PageCompte from "./pages/PageCompte";
 import PageLivraison from "./pages/PageLivraison";
 import PageConfirmation from "./pages/PageConfirmation";
+import PageFAQ from "./pages/PageFAQ";
+import PageContact from "./pages/PageContact";
 
 const router = createBrowserRouter([
   {
@@ -75,7 +77,19 @@ const router = createBrowserRouter([
     element: <PageCompte />,
     errorElement: <Erreur />,
   },
+  {
+    path: "/faq",
+    element: <PageFAQ />,
+    errorElement: <Erreur />,
+  },
+  {
+    path: "/contacts",
+    element: <PageContact />,
+    errorElement: <Erreur />,
+  },
 ]);
+
+
 
 function App() {
   return <RouterProvider router={router} />;
