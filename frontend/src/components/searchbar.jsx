@@ -15,7 +15,7 @@ export  const SearchBar  = ({ setResults }) => {
             value &&
             Produits &&
             Produits.nomProduit &&
-            Produits.nomProduit.toLowerCase().includes(value)
+            Produits.nomProduit.toLowerCase().includes(value.toLowerCase())
           );
         });
         setResults(results);
@@ -31,7 +31,7 @@ export  const SearchBar  = ({ setResults }) => {
   };
 
   return (
-
+      <Form>
         <Form.Control
                    
             type="search"
@@ -41,8 +41,10 @@ export  const SearchBar  = ({ setResults }) => {
             style={{ alignSelf: "center",}}
             value={input}
             onChange={(e) => handleChange(e.target.value)}
-                      
+                  
+            
         />
+      </Form> 
 
    
     

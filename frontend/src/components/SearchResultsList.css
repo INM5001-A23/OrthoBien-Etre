@@ -6,11 +6,15 @@
   .result-item {
     display: flex; 
     align-items: center; 
-    margin-bottom: 10px; 
+    margin-bottom: 10px;
+    cursor: pointer; 
+    border: black;
+    
+    
   }
   
   .result-item img {
-    width: 50px; 
+    width: 90px; 
     height: 50px;
     margin-right: 10px; 
   }
@@ -27,5 +31,9 @@
     max-height: 300px;
     overflow-y: auto;
   }
-  
+
+  .link_cursor
+{
+    cursor: pointer;
+}
   
