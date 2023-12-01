@@ -45,7 +45,13 @@ function Navigation() {
           >
             <Nav.Link onClick={() => navigate("/catalogue")}>
               Catalogue
+<<<<<<< HEAD
             </Nav.Link>         
+=======
+            </Nav.Link>
+            <Nav.Link onClick={() => navigate("/faq")}>A Propos</Nav.Link>
+            <Nav.Link onClick={() => navigate("/contacts")}>Contacts</Nav.Link>
+>>>>>>> 5f62d43 (stash changes about connected user)
           </Nav>
           <Form className="d-flex">
             {user && (

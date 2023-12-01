@@ -20,6 +20,7 @@ function CarteProduit({
   const user = useContext(UserContext);
 
   const [cart, setCart] = useState(
+
     JSON.parse(localStorage.getItem("guestCartItems")) !== null
       ? JSON.parse(localStorage.getItem("guestCartItems"))
       : []

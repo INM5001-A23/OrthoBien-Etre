@@ -1,49 +1,76 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState,useContext } from "react";
 import { Badge, Button, Card, ListGroup, Stack } from "react-bootstrap";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import { useNavigate } from "react-router-dom";
 import ModelePage from "../layout/ModelePage";
+import { UserContext,AxiosContext } from "..";
+
 
 function PagePanier() {
-  const [cart, setCart] = useState(
-    JSON.parse(localStorage.getItem("guestCartItems")) !== null
-      ? JSON.parse(localStorage.getItem("guestCartItems"))
-      : []
-  );
+  const axios = useContext(AxiosContext);
+  const user = useContext(UserContext);
+
+  const [cart, setCart] = useState(JSON.parse(localStorage.getItem('guestCartItems')));
+
+  const fetchUserCart = async () => {
+    try {
+      const response = await axios.get(`/panier/${'65318b82abc29fa8de292f2d'}`);
+      setCart(response.data.articles);
+    } catch (error) {
+      console.error('Error fetching cart:', error);
+    }
+  };
+
+  useEffect(() => {
+    if (user) {
+      fetchUserCart();
+    } else {
+      console.log("the else is entered");
+      const guestCartItems = localStorage.getItem('guestCartItems');
+      //console.log(localStorage.getItem('guestCartItems'));
+      if (guestCartItems) {
+        console.log("the local storage exist at this point!!!");
+        console.log(guestCartItems);
+        setCart(JSON.parse(guestCartItems));
+        
+      }
+    }
+  }, [user]);
+
+  useEffect(() => {
+    localStorage.setItem('guestCartItems', JSON.stringify(cart));
+  }, [cart]);
 
   const cartTotal = cart.reduce(
-    (total, item) => total + item.price * item.quantity,
+    (total, item) => total + item.prix * item.qtt,
     0
   );
 
-  useEffect(() => {
-    localStorage.setItem("guestCartItems", JSON.stringify(cart));
-  }, [cart]);
-
   const increaseQuantity = (itemId) => {
     const updatedCart = cart.map((item) =>
-      item.id === itemId ? { ...item, quantity: item.quantity + 1 } : item
+      item.codeProduit === itemId ? { ...item, quantity: item.qtt + 1 } : item
     );
     setCart(updatedCart);
   };
 
   const decreaseQuantity = (itemId) => {
     const updatedCart = cart.map((item) =>
-      item.id === itemId && item.quantity > 1
-        ? { ...item, quantity: item.quantity - 1 }
+    item.codeProduit === itemId && item.quantity > 1
+        ? { ...item, quantity: item.qtt - 1 }
         : item
     );
+
     setCart(updatedCart);
   };
 
   const removeItem = (itemId) => {
-    const updatedCart = cart.filter((item) => item.id !== itemId);
+    const updatedCart = cart.filter((item) => item.codeProduit !== itemId);
     setCart(updatedCart);
   };
 
-  const cartSize = cart.reduce((size, item) => size + item.quantity, 0);
+  const cartSize = cart.reduce((size, item) => size + item.qtt, 0);
 
   const navigate = useNavigate();
 
@@ -67,7 +94,7 @@ function PagePanier() {
                 {cart.map((item) => (
                   <ListGroup.Item
                     className="d-flex justify-content-between"
-                    key={item.id}
+                    key={item.codeProduit}
                   >
                     <Stack
                       direction="horizontal"
@@ -79,7 +106,7 @@ function PagePanier() {
                         variant="outline-danger"
                         size="sm"
                         style={{ margin: "10px" }}
-                        onClick={() => removeItem(item.id)}
+                        onClick={() => removeItem(item.codeProduit)}
                       >
                         <img
                           style={{ width: "20px" }}
@@ -90,11 +117,11 @@ function PagePanier() {
                       <img
                         className="p-2"
                         style={{ width: "80px" }}
-                        src={`/images/produits/${item.id}.jpeg`}
+                        src={`/images/produits/${item.codeProduit}.jpeg`}
                         alt="Produit"
                       />
                       <h6 style={{ fontSize: "20px" }} className="my-0 p-2">
-                        {item.name}
+                        {item.nomProduit}
                       </h6>
 
                       {/* <small className="text-muted">{item.description}</small> */}
@@ -104,7 +131,7 @@ function PagePanier() {
                         variant="outline-secondary"
                         size="sm"
                         style={{ margin: "10px" }}
-                        onClick={() => decreaseQuantity(item.id)}
+                        onClick={() => decreaseQuantity(item.codeProduit)}
                       >
                         -
                       </Button>
@@ -113,13 +140,13 @@ function PagePanier() {
                         variant="outline-secondary"
                         size="sm"
                         style={{ margin: "10px" }}
-                        onClick={() => increaseQuantity(item.id)}
+                        onClick={() => increaseQuantity(item.codeProduit)}
                       >
                         +
                       </Button>
 
                       <span className="text-muted" style={{ fontSize: "20px" }}>
-                        {item.price?.toFixed(2)} $
+                        {item.prix?.toFixed(2)} $
                         <span style={{ fontSize: "16px" }}> / unité</span>
                       </span>
                     </div>

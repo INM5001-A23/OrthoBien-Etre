@@ -85,7 +85,8 @@ router.post("/", async (req, res) => {
           codeAdmin: admin.codeAdmin,
         };
 
-        const token = jwt.sign(auth, process.env.JWT_SECRET);
+        // secret can be replaced by process.env.JWT_SECRET 
+        const token = jwt.sign(auth, 'secret');
 
         return res.status(200).json({
           success: true,
@@ -99,7 +100,7 @@ router.post("/", async (req, res) => {
       }
     }
   } catch (error) {
-    console.log("He is sure not connected" + error.message);
+    console.log("He is sure not connected " + error.message);
     res.status(510).json({ erreur: "definetly not connected at all lol" });
   }
 });
