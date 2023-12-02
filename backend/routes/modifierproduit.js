@@ -24,6 +24,7 @@ router.put("/", async (req, res) => {
       codeCategorie,
       prix,
       promotion,
+      populaire,
     } = req.body;
     //const user = jwt.verify(token,process.env.JWT_SECRET);
     /*if(user.role !== "admin"){
@@ -34,18 +35,22 @@ router.put("/", async (req, res) => {
         }*/
 
     const verifProduit = await Produits.findOne({ codeProduit });
-    console.log(req.files[0]);
-    // console.log(req.files[0].buffer.toString("base64"));
-    res.status(200).json({ message: "hehe" });
+    // console.log(req.files[0]);
+    // // console.log(req.files[0].buffer.toString("base64"));
+    // res.status(200).json({ message: "hehe" });
+
+    console.log(req.body);
 
     if (verifProduit) {
-      verifProduit.nomProduit = nomProduit || verifProduit.nomProduit;
-      verifProduit.pDescription = pDescription || verifProduit.pDescription;
-      verifProduit.quantite = quantite || verifProduit.quantite;
-      verifProduit.description = description || verifProduit.description;
-      verifProduit.codeCategorie = codeCategorie || verifProduit.codeCategorie;
-      verifProduit.prix = prix || verifProduit.prix;
-      verifProduit.promotion = promotion || verifProduit.promotion;
+      verifProduit.nomProduit =
+        nomProduit != undefined ? nomProduit : verifProduit.nomProduit;
+      pDescription != undefined ? pDescription : verifProduit.pDescription;
+      quantite != undefined ? quantite : verifProduit.quantite;
+      description != undefined ? description : verifProduit.description;
+      codeCategorie != undefined ? codeCategorie : verifProduit.codeCategorie;
+      prix != undefined ? prix : verifProduit.prix;
+      promotion != undefined ? promotion : verifProduit.promotion;
+      populaire != undefined ? populaire : verifProduit.populaire;
 
       await verifProduit.save();
       res
