@@ -27,6 +27,18 @@ function CarteAdmin({ produit }) {
           >
             {produit.promotion ? "En promotion" : ""}
           </Badge>
+          <Badge
+            pill
+            bg="info"
+            text="dark"
+            style={{
+              position: "absolute",
+              top: "40px",
+              right: "10px",
+            }}
+          >
+            {produit.populaire ? "Produit populaire!" : ""}
+          </Badge>
         </h5>
       </div>
       <Card.Body>
