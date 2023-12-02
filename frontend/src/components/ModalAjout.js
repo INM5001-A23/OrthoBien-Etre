@@ -4,15 +4,13 @@ import {
   Container,
   Stack,
   ToggleButton,
-  ToggleButtonGroup,
 } from "react-bootstrap";
 import Form from "react-bootstrap/Form";
 import Col from "react-bootstrap/Col";
-
 import Modal from "react-bootstrap/Modal";
 import { useForm } from "react-hook-form";
 import { useContext, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { AxiosContext } from "..";
 
 function ModalAjout({ show, onHide }) {

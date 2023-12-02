@@ -8,14 +8,11 @@ import {
 } from "react-bootstrap";
 import Form from "react-bootstrap/Form";
 import Col from "react-bootstrap/Col";
-
 import Modal from "react-bootstrap/Modal";
 import { useForm } from "react-hook-form";
 import { useContext, useState, useEffect } from "react";
 import { AxiosContext } from "..";
-import NomCategorie from "./NomCategorie";
 import FiltreCategorie from "./FiltreCategorie";
-import { useSearchParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
 function ModalModification({ produit, show, onHide }) {
