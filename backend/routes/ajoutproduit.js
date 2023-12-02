@@ -55,7 +55,7 @@ router.post("/", async (req, res) => {
       });
 
       await newProduit.save();
-      res.status(220).json({ message: "Le produit a été ajouté !" });
+      res.status(200).json({ message: "Le produit a été ajouté !" });
     } else {
       res.status(520).json({ message: "Ce produit existe déjà" });
     }

@@ -1,9 +1,9 @@
-import { Button, Col, Container, Row, Stack } from "react-bootstrap";
+import { Alert, Button, Col, Container, Row, Stack } from "react-bootstrap";
 import ModelePage from "../layout/ModelePage";
 import { useContext, useEffect, useState } from "react";
 import { AxiosContext, UserContext } from "..";
 import CarteAdmin from "../components/CarteAdmin";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import React from "react";
 import ModalAjout from "../components/ModalAjout";
 
@@ -13,6 +13,8 @@ function PageAdmin() {
   const user = useContext(UserContext);
   const [produits, setProduits] = useState([]);
   const [modalShow, setModalShow] = React.useState(false);
+  const { state } = useLocation();
+  const status = state?.status;
 
   useEffect(() => {
     if (!user || user?.role !== "admin") {
@@ -44,6 +46,13 @@ function PageAdmin() {
         className="d-flex flex-column align-items-center justify-content-center"
         gap={3}
       >
+        {status === "success" && (
+          <Alert variant="success">
+            <Alert.Heading>
+              Création d'un nouveau produit réussie!
+            </Alert.Heading>
+          </Alert>
+        )}
         <h1 className="mb-2">Gestion des stocks</h1>
 
         <Button

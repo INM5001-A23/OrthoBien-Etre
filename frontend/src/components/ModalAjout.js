@@ -12,9 +12,11 @@ import Col from "react-bootstrap/Col";
 import Modal from "react-bootstrap/Modal";
 import { useForm } from "react-hook-form";
 import { useContext, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import { AxiosContext } from "..";
 
-function ModalAjout({ produit, show, onHide }) {
+function ModalAjout({ show, onHide }) {
+  const navigate = useNavigate();
   const axios = useContext(AxiosContext);
   const {
     register,
@@ -23,7 +25,7 @@ function ModalAjout({ produit, show, onHide }) {
     getValues,
     formState: { errors },
   } = useForm({
-    mode: "onChange",
+    mode: "onBlur",
   });
 
   const radios = [
@@ -32,6 +34,20 @@ function ModalAjout({ produit, show, onHide }) {
   ];
 
   const handleModalAjout = handleSubmit((data) => {
+    axios
+      .post("/nouveauProduit", data)
+      .then(function (response) {
+        if (response.status === 200) {
+          navigate("/admin", { state: { status: "success" } });
+        } else {
+          // TODO afficher message erreur
+        }
+      })
+      .catch(function (error) {
+        // handle error
+        // TODO afficher message erreur
+        console.log(error);
+      });
     console.log(data);
   });
 
@@ -57,7 +73,7 @@ function ModalAjout({ produit, show, onHide }) {
           <Container style={{ width: "400px" }}>
             <Stack>
               {/* Input IMAGE DU PRODUIT */}
-              {/* <Form.Group as={Col} controlId="imageProduit"></Form.Group>
+              <Form.Group as={Col} controlId="imageProduit"></Form.Group>
               <Form.Label>Image:</Form.Label>
               <Form.Control
                 type="file"
@@ -65,7 +81,7 @@ function ModalAjout({ produit, show, onHide }) {
                   required: "Ce champ est obligatoire",
                 })}
               />
-              <p style={{ color: "red" }}>{errors.imageProduit?.message}</p> */}
+              <p style={{ color: "red" }}>{errors.imageProduit?.message}</p>
 
               {/* Input NOM DU PRODUIT */}
               <Form.Group as={Col} controlId="nomProduit">
