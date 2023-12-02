@@ -46,8 +46,6 @@ function Navigation() {
             <Nav.Link onClick={() => navigate("/catalogue")}>
               Catalogue
             </Nav.Link>
-            <Nav.Link onClick={() => navigate("/faq")}>A Propos</Nav.Link>
-            <Nav.Link onClick={() => navigate("/contacts")}>Contacts</Nav.Link>
           </Nav>
           <Form className="d-flex">
             {user && (
