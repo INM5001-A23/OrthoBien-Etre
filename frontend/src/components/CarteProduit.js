@@ -16,11 +16,10 @@ function CarteProduit({
     name: nomProduit,
     price: prix,
   };
-
+  console.log(codeProduit);
   const user = useContext(UserContext);
 
   const [cart, setCart] = useState(
-
     JSON.parse(localStorage.getItem("guestCartItems")) !== null
       ? JSON.parse(localStorage.getItem("guestCartItems"))
       : []

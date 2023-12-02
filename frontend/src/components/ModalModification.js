@@ -1,5 +1,4 @@
 import {
-  Alert,
   Button,
   ButtonGroup,
   Container,
@@ -29,6 +28,7 @@ function ModalModification({ produit, show, onHide }) {
     mode: "onChange",
     values: {
       nomProduit: produit.nomProduit,
+      pDescription: produit.pDescription,
       description: produit.description,
       quantite: produit.quantite,
       codeCategorie: produit.codeCategorie,
@@ -62,7 +62,7 @@ function ModalModification({ produit, show, onHide }) {
             state: {
               status: {
                 type: "success",
-                message: `Les modifications du ${produit.nomProduit} ont bien été enregistrées`,
+                message: `Les modifications du produit ${produit.nomProduit} ont bien été enregistrées`,
               },
             },
           });
@@ -107,7 +107,7 @@ function ModalModification({ produit, show, onHide }) {
           <Container style={{ width: "400px" }}>
             <Stack>
               {/* Input IMAGE DU PRODUIT */}
-              <Form.Group as={Col} controlId="imageProduit">
+              {/* <Form.Group as={Col} controlId="imageProduit">
                 <Form.Label>Image:</Form.Label>
                 <Form.Control
                   type="file"
@@ -116,7 +116,7 @@ function ModalModification({ produit, show, onHide }) {
                   })}
                 />
                 <p style={{ color: "red" }}>{errors.imageProduit?.message}</p>
-              </Form.Group>
+              </Form.Group> */}
 
               {/* Input NOM DU PRODUIT */}
               <Form.Group as={Col} controlId="nomProduit">
@@ -149,6 +149,23 @@ function ModalModification({ produit, show, onHide }) {
                     })
                   }
                 />
+              </Form.Group>
+
+              {/* Input PETITE DESCRIPTION */}
+              <Form.Group as={Col} controlId="pDescription">
+                <Form.Label>Petite description:</Form.Label>
+                <Form.Control
+                  as="textarea"
+                  rows={3}
+                  {...register("pDescription", {
+                    required: "Ce champ est obligatoire",
+                    minLength: {
+                      value: 5,
+                      message: "Longueur minimale est de 5 caractères",
+                    },
+                  })}
+                />
+                <p style={{ color: "red" }}>{errors.pDescription?.message}</p>
               </Form.Group>
 
               {/* Input DESCRIPTION */}
