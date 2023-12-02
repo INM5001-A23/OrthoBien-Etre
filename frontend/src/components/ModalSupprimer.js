@@ -1,7 +1,5 @@
 import { Button, Container, Stack } from "react-bootstrap";
 import Form from "react-bootstrap/Form";
-import Col from "react-bootstrap/Col";
-
 import Modal from "react-bootstrap/Modal";
 import { useContext, useState } from "react";
 import { AxiosContext } from "..";
@@ -22,7 +20,7 @@ function ModalSupprimer({ produit, show, onHide }) {
             state: {
               status: {
                 type: "success",
-                message: `delete`,
+                message: `Le produit est supprimé`,
               },
             },
           });
