@@ -1,4 +1,5 @@
 import {
+  Alert,
   Button,
   ButtonGroup,
   Container,
@@ -15,8 +16,10 @@ import { AxiosContext } from "..";
 import NomCategorie from "./NomCategorie";
 import FiltreCategorie from "./FiltreCategorie";
 import { useSearchParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function ModalModification({ produit, show, onHide }) {
+  const navigate = useNavigate();
   const axios = useContext(AxiosContext);
 
   const {
@@ -32,6 +35,10 @@ function ModalModification({ produit, show, onHide }) {
       description: produit.description,
       quantite: produit.quantite,
       codeCategorie: produit.codeCategorie,
+      prix: produit.prix,
+      quantite: produit.quantite,
+      populaire: produit.populaire,
+      promotion: produit.promotion,
     },
   });
 
@@ -45,15 +52,25 @@ function ModalModification({ produit, show, onHide }) {
     axios
       .put("/modificationProduit", body)
       .then(function (response) {
-        // handle success
+        if (response.status === 200) {
+          onHide();
+          navigate("/admin", {
+            state: {
+              status: {
+                type: "success",
+                message: `Les modifications du ${produit.nomProduit} ont bien été enregistrées`,
+              },
+            },
+          });
+          navigate(0);
+        } else {
+          // TODO afficher message erreur
+        }
         console.log(response);
       })
       .catch(function (error) {
         // handle error
         console.log(error);
-      })
-      .finally(function () {
-        // always executed
       });
   });
 

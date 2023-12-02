@@ -39,8 +39,6 @@ router.put("/", async (req, res) => {
     // // console.log(req.files[0].buffer.toString("base64"));
     // res.status(200).json({ message: "hehe" });
 
-    console.log(req.body);
-
     if (verifProduit) {
       verifProduit.nomProduit =
         nomProduit != undefined ? nomProduit : verifProduit.nomProduit;

@@ -2,10 +2,10 @@ import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 
 import styles from "./Carte.module.css";
-import React from "react";
+import React, { useState } from "react";
 import ModalModification from "./ModalModification";
 import ModalSupprimer from "./ModalSupprimer";
-import { Badge } from "react-bootstrap";
+import { Alert, Badge } from "react-bootstrap";
 
 function CarteAdmin({ produit }) {
   const [modalModifShow, setModalModifShow] = React.useState(false);

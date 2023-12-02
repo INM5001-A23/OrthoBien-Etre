@@ -16,6 +16,8 @@ function PageAdmin() {
   const { state } = useLocation();
   const status = state?.status;
 
+  console.log(status);
+
   useEffect(() => {
     if (!user || user?.role !== "admin") {
       // TODO, faire une popup avant redirect
@@ -46,11 +48,9 @@ function PageAdmin() {
         className="d-flex flex-column align-items-center justify-content-center"
         gap={3}
       >
-        {status === "success" && (
+        {status?.type === "success" && (
           <Alert variant="success">
-            <Alert.Heading>
-              Création d'un nouveau produit réussie!
-            </Alert.Heading>
+            <Alert.Heading>{status?.message}</Alert.Heading>
           </Alert>
         )}
         <h1 className="mb-2">Gestion des stocks</h1>
