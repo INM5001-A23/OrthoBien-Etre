@@ -46,8 +46,15 @@ function ModalModification({ produit, show, onHide }) {
 
   const handleModalModification = handleSubmit((data) => {
     const body = { ...data, codeProduit: produit.codeProduit };
+
+    const formData = new FormData();
+    formData.append("files", data.imageProduit);
+    Object.entries(body).forEach(([key, value], index) =>
+      formData.append(key, value)
+    );
+
     axios
-      .put("/modificationProduit", body)
+      .put("/modificationProduit", formData)
       .then(function (response) {
         if (response.status === 200) {
           onHide();
@@ -99,7 +106,7 @@ function ModalModification({ produit, show, onHide }) {
         <Form onSubmit={handleModalModification}>
           <Container style={{ width: "400px" }}>
             <Stack>
-              {/* Input IMAGE DU PRODUIT
+              {/* Input IMAGE DU PRODUIT */}
               <Form.Group as={Col} controlId="imageProduit">
                 <Form.Label>Image:</Form.Label>
                 <Form.Control
@@ -109,7 +116,7 @@ function ModalModification({ produit, show, onHide }) {
                   })}
                 />
                 <p style={{ color: "red" }}>{errors.imageProduit?.message}</p>
-              </Form.Group> */}
+              </Form.Group>
 
               {/* Input NOM DU PRODUIT */}
               <Form.Group as={Col} controlId="nomProduit">
@@ -123,8 +130,8 @@ function ModalModification({ produit, show, onHide }) {
                       message: "Lettres de l'alphabet uniquement",
                     },
                     minLength: {
-                      value: 5,
-                      message: "Longueur minimale est de 5 caractères",
+                      value: 3,
+                      message: "Longueur minimale est de 3 caractères",
                     },
                   })}
                 />
@@ -225,7 +232,6 @@ function ModalModification({ produit, show, onHide }) {
               {/* Input EN PROMOTION */}
               <Form.Group as={Col} controlId="promotion" />
               <Form.Label>En promotion:</Form.Label>
-
               <ButtonGroup>
                 {radios.map((radio, idx) => (
                   <ToggleButton
