@@ -27,6 +27,12 @@ function ModalModification({ produit, show, onHide }) {
     getValues,
   } = useForm({
     mode: "onChange",
+    values: {
+      nomProduit: produit.nomProduit,
+      description: produit.description,
+      quantite: produit.quantite,
+      codeCategorie: produit.codeCategorie,
+    },
   });
 
   const radios = [
@@ -34,13 +40,21 @@ function ModalModification({ produit, show, onHide }) {
     { name: "Oui", value: true },
   ];
 
-  const handleModalModification = handleSubmit(async (data) => {
-    console.log(data);
-    // const formData = new FormData();
-
-    // formData.append("files", data.imageProduit[0]);
-
-    // var test = await axios.put("/modificationProduit", formData);
+  const handleModalModification = handleSubmit((data) => {
+    const body = { ...data, codeProduit: produit.codeProduit };
+    axios
+      .put("/modificationProduit", body)
+      .then(function (response) {
+        // handle success
+        console.log(response);
+      })
+      .catch(function (error) {
+        // handle error
+        console.log(error);
+      })
+      .finally(function () {
+        // always executed
+      });
   });
 
   register("promotion", {
@@ -51,7 +65,7 @@ function ModalModification({ produit, show, onHide }) {
     value: produit.populaire,
   });
 
-  register("categorie", {
+  register("codeCategorie", {
     value: produit.codeCategorie,
   });
 
@@ -88,7 +102,6 @@ function ModalModification({ produit, show, onHide }) {
                 <Form.Label>Nom du produit:</Form.Label>
                 <Form.Control
                   type="text"
-                  value={produit.nomProduit}
                   {...register("nomProduit", {
                     required: "Ce champ est obligatoire",
                     pattern: {
@@ -108,9 +121,9 @@ function ModalModification({ produit, show, onHide }) {
               <Form.Group as={Col} controlId="nomCategorie">
                 <Form.Label>Nom de la catégorie:</Form.Label>
                 <FiltreCategorie
-                  filtre={getValues("categorie")}
+                  filtre={getValues("codeCategorie")}
                   setFiltre={(value) =>
-                    setValue("categorie", value, {
+                    setValue("codeCategorie", value, {
                       shouldValidate: true,
                     })
                   }
@@ -123,7 +136,6 @@ function ModalModification({ produit, show, onHide }) {
                 <Form.Control
                   as="textarea"
                   rows={10}
-                  value={produit.description}
                   {...register("description", {
                     required: "Ce champ est obligatoire",
                     minLength: {
@@ -143,6 +155,7 @@ function ModalModification({ produit, show, onHide }) {
                   value={produit.prix}
                   {...register("prix", {
                     required: "Ce champ est obligatoire",
+                    valueAsNumber: true,
                     pattern: {
                       value: /^(0(?!\.00)|[1-9]\d{0,6})\.\d{2}$/,
                       message:
@@ -161,6 +174,7 @@ function ModalModification({ produit, show, onHide }) {
                   value={produit.quantite}
                   {...register("quantite", {
                     required: "Ce champ est obligatoire",
+                    valueAsNumber: true,
                     min: {
                       value: 1,
                       message: "La quantité doit être d'au moins 1",

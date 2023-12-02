@@ -44,13 +44,19 @@ router.put("/", async (req, res) => {
     if (verifProduit) {
       verifProduit.nomProduit =
         nomProduit != undefined ? nomProduit : verifProduit.nomProduit;
-      pDescription != undefined ? pDescription : verifProduit.pDescription;
-      quantite != undefined ? quantite : verifProduit.quantite;
-      description != undefined ? description : verifProduit.description;
-      codeCategorie != undefined ? codeCategorie : verifProduit.codeCategorie;
-      prix != undefined ? prix : verifProduit.prix;
-      promotion != undefined ? promotion : verifProduit.promotion;
-      populaire != undefined ? populaire : verifProduit.populaire;
+      verifProduit.pDescription =
+        pDescription != undefined ? pDescription : verifProduit.pDescription;
+      verifProduit.quantite =
+        quantite != undefined ? quantite : verifProduit.quantite;
+      verifProduit.description =
+        description != undefined ? description : verifProduit.description;
+      verifProduit.codeCategorie =
+        codeCategorie != undefined ? codeCategorie : verifProduit.codeCategorie;
+      verifProduit.prix = prix != undefined ? prix : verifProduit.prix;
+      verifProduit.promotion =
+        promotion != undefined ? promotion : verifProduit.promotion;
+      verifProduit.populaire =
+        populaire != undefined ? populaire : verifProduit.populaire;
 
       await verifProduit.save();
       res

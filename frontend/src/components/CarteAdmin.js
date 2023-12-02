@@ -5,6 +5,7 @@ import styles from "./Carte.module.css";
 import React from "react";
 import ModalModification from "./ModalModification";
 import ModalSupprimer from "./ModalSupprimer";
+import { Badge } from "react-bootstrap";
 
 function CarteAdmin({ produit }) {
   const [modalModifShow, setModalModifShow] = React.useState(false);
@@ -12,11 +13,22 @@ function CarteAdmin({ produit }) {
 
   return (
     <Card style={{ width: "18rem", textAlign: "center" }}>
-      <Card.Img
-        className={styles["header-img"]}
-        variant="top"
-        src={`/images/produits/${produit.codeProduit}.jpeg`}
-      />
+      <div>
+        <Card.Img
+          className={styles["header-img"]}
+          variant="top"
+          src={`/images/produits/${produit.codeProduit}.jpeg`}
+        />
+        <h5>
+          <Badge
+            pill
+            bg="danger"
+            style={{ position: "absolute", top: "10px", right: "10px" }}
+          >
+            {produit.promotion ? "En promotion" : ""}
+          </Badge>
+        </h5>
+      </div>
       <Card.Body>
         <Card.Title>{produit.nomProduit}</Card.Title>
         <Button
