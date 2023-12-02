@@ -22,6 +22,7 @@ function DetailsProduit({
   produit: {
     nomProduit,
     codeProduit,
+    pDescription,
     description,
     codeCategorie,
     prix,
@@ -135,6 +136,7 @@ function DetailsProduit({
               </Card.Subtitle>
               {prix && <ListGroup.Item>{prix}</ListGroup.Item>}
               <Card.Subtitle className="mb-2 text-muted" />
+              <Card.Text>{pDescription}</Card.Text>
               <Card.Text>{description}</Card.Text>
               <Stack
                 direction="horizontal"
