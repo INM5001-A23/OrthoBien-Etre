@@ -8,7 +8,14 @@ import { useContext } from "react";
 import { UserContext } from "..";
 
 function CarteProduit({
-  produit: { codeProduit, nomProduit, codeCategorie, prix, promotion },
+  produit: {
+    codeProduit,
+    nomProduit,
+    codeCategorie,
+    prix,
+    promotion,
+    populaire,
+  },
 }) {
   const navigate = useNavigate();
   const productDetails = {
@@ -89,6 +96,18 @@ function CarteProduit({
             style={{ position: "absolute", top: "10px", right: "10px" }}
           >
             {promotion ? "En promotion" : ""}
+          </Badge>
+          <Badge
+            pill
+            bg="info"
+            text="dark"
+            style={{
+              position: "absolute",
+              top: "40px",
+              right: "10px",
+            }}
+          >
+            {populaire ? "Produit populaire!" : ""}
           </Badge>
         </h5>
       </div>
