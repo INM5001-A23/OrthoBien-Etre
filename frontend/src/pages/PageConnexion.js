@@ -39,12 +39,10 @@ function PageConnexion() {
           navigate(0);
         } else {
           setError("backend", res?.data?.erreur);
-          reset({ keepValues: true });
         }
       })
       .catch((error) => {
         setError("backend", { message: error.response?.data?.erreur });
-        reset({ keepValues: true });
       });
   });
 
@@ -79,7 +77,6 @@ function PageConnexion() {
             />
             <p style={{ color: "red" }}>{errors.courriel?.message}</p>
           </Form.Group>
-
           <Form.Group className="mb-3" controlId="mdp">
             <Form.Label>Mot de passe</Form.Label>
             <Form.Control
@@ -108,9 +105,6 @@ function PageConnexion() {
               )}
             </p>
           </Form.Group>
-
-          <p style={{ color: "red" }}>{errors.backend?.message}</p>
-
           <div className="d-grid gap-2">
             <Button variant="primary" type="submit" size="lg" className="w-100">
               Se connecter
@@ -121,6 +115,21 @@ function PageConnexion() {
               </Button>
             </Nav.Link>
           </div>
+          {errors?.backend && (
+            <Alert
+              variant="warning"
+              style={{
+                textAlign: "center",
+                margin: "10px",
+              }}
+            >
+              <Alert.Heading>{errors.backend?.message}</Alert.Heading>
+            </Alert>
+          )}
+
+          {/* <p style={{ color: "red", textAlign: "center", fontSize: "1.5rem" }}>
+            {errors.backend?.message}
+          </p> */}
         </Form>
       </div>
     </ModelePage>

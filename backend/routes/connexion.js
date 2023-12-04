@@ -39,7 +39,7 @@ router.post("/", async (req, res) => {
       if (!user) {
         return res
           .status(501)
-          .json({ erreur: "Votre courriel ou mot de passe est incorrecte" });
+          .json({ erreur: "Votre courriel ou mot de passe est incorrect" });
       }
 
       //return : message d'accueil + valeurs pour page profil
@@ -69,7 +69,7 @@ router.post("/", async (req, res) => {
       } else {
         return res
           .status(401)
-          .json({ erreur: "Votre courriel ou mot de passe est incorrecte" });
+          .json({ erreur: "Votre courriel ou mot de passe est incorrect" });
       }
     } else {
       if (admin.mdp == mdp) {
@@ -85,8 +85,8 @@ router.post("/", async (req, res) => {
           codeAdmin: admin.codeAdmin,
         };
 
-        // secret can be replaced by process.env.JWT_SECRET 
-        const token = jwt.sign(auth, 'secret');
+        // secret can be replaced by process.env.JWT_SECRET
+        const token = jwt.sign(auth, "secret");
 
         return res.status(200).json({
           success: true,
