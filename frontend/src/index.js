@@ -10,7 +10,7 @@ export const AxiosContext = createContext();
 export const UserContext = createContext();
 
 const instance = axios.create({
-  baseURL: process.env.REACT_APP_BACKEND_URL,
+  baseURL: 'http://localhost:3300',
 });
 
 const user = localStorage.getItem("token")

@@ -11,12 +11,13 @@ import { UserContext,AxiosContext } from "..";
 function PagePanier() {
   const axios = useContext(AxiosContext);
   const user = useContext(UserContext);
+  const userId = '65318b82abc29fa8de292f2d';
 
   const [cart, setCart] = useState(JSON.parse(localStorage.getItem('guestCartItems')));
 
   const fetchUserCart = async () => {
     try {
-      const response = await axios.get(`/panier/${'65318b82abc29fa8de292f2d'}`);
+      const response = await axios.get(`/panier/${userId}`);
       setCart(response.data.articles);
     } catch (error) {
       console.error('Error fetching cart:', error);
@@ -27,14 +28,10 @@ function PagePanier() {
     if (user) {
       fetchUserCart();
     } else {
-      console.log("the else is entered");
       const guestCartItems = localStorage.getItem('guestCartItems');
-      //console.log(localStorage.getItem('guestCartItems'));
       if (guestCartItems) {
-        console.log("the local storage exist at this point!!!");
         console.log(guestCartItems);
         setCart(JSON.parse(guestCartItems));
-        
       }
     }
   }, [user]);
@@ -50,15 +47,15 @@ function PagePanier() {
 
   const increaseQuantity = (itemId) => {
     const updatedCart = cart.map((item) =>
-      item.codeProduit === itemId ? { ...item, quantity: item.qtt + 1 } : item
+      item.codeProduit === itemId ? { ...item, qtt: item.qtt + 1 } : item
     );
     setCart(updatedCart);
   };
 
   const decreaseQuantity = (itemId) => {
     const updatedCart = cart.map((item) =>
-    item.codeProduit === itemId && item.quantity > 1
-        ? { ...item, quantity: item.qtt - 1 }
+    item.codeProduit === itemId && item.qtt > 1
+        ? { ...item, qtt: item.qtt - 1 }
         : item
     );
 
@@ -135,7 +132,7 @@ function PagePanier() {
                       >
                         -
                       </Button>
-                      {item.quantity}
+                      {item.qtt}
                       <Button
                         variant="outline-secondary"
                         size="sm"

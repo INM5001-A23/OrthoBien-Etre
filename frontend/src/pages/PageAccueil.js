@@ -34,7 +34,7 @@ function PageAccueil() {
 
   useEffect(() => {
     axios
-      .get("/produits/popular")
+      .get("/produits/populaire")
       .then(function (response) {
         // handle success
         console.log(response);
@@ -71,7 +71,6 @@ function PageAccueil() {
       .get("/produits/promotion")
       .then(function (response) {
         // handle success
-        console.log(response);
         setPromotions(response.data);
       })
       .catch(function (error) {
