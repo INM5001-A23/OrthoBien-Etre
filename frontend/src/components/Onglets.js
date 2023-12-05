@@ -6,6 +6,7 @@ import { Container, Form, Stack } from "react-bootstrap";
 import { AxiosContext } from "..";
 import { useForm } from "react-hook-form";
 import Col from "react-bootstrap/Col";
+import CarteCommande from "./CarteCommande";
 
 function Onglets() {
   const axios = useContext(AxiosContext);
@@ -175,8 +176,8 @@ function Onglets() {
         </Form>
       </Tab>
       {(!user || user?.role !== "admin") && (
-        <Tab eventKey="commandes" title="Historique des commandes">
-          Tab content for Profile
+        <Tab eventKey="commande" title="Historique des commandes">
+          <CarteCommande />
         </Tab>
       )}
     </Tabs>
