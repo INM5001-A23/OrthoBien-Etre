@@ -27,13 +27,8 @@ function Onglets() {
   });
   console.log(user);
   return (
-    <Tabs
-      defaultActiveKey="profile"
-      id="fill-tab-example"
-      className="mb-3"
-      fill
-    >
-      <Tab eventKey="profile" title="Profile">
+    <Tabs defaultActiveKey="profil" id="fill-tab-example" className="mb-3" fill>
+      <Tab eventKey="profil" title="Profil">
         <Form onSubmit={handleFormulaire}>
           <Container style={{ width: "400px" }}>
             <Stack>
