@@ -49,7 +49,7 @@ app.use("/categories", categoryRoutes);
 app.use("/produits", productRoutes);
 app.use("/panier", cartRoutes);
 app.use("/commande", orderRoutes);
-app.use("/inscription", usersRoutes);
+app.use("/utilisateur", usersRoutes);
 app.use("/connexion", connexionRoutes);
 app.use("/nouveauProduit", ajoutproduitRoutes);
 app.use("/modificationProduit", modifierproduitRoutes);

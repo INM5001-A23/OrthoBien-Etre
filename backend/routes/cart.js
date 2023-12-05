@@ -1,15 +1,18 @@
 import express from 'express';
 import Cart from '../models/Panier.js';
+import axios from "axios";
+
 
 const router = express.Router();
 
-// by user
+// by userid
 router.get("/:clientid", async (req, res) => {
   const clientid = req.params.clientid;
   
   try {
     const cart = await Cart.findOne({ 'client.infosClient': clientid });
   if (cart && cart.articles.length > 0) {
+    console.log(cart)
     res.json(cart);
   } else {
     res.send(null);

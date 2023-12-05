@@ -11,13 +11,15 @@ import { UserContext,AxiosContext } from "..";
 function PagePanier() {
   const axios = useContext(AxiosContext);
   const user = useContext(UserContext);
-  const userId = '65318b82abc29fa8de292f2d';
 
   const [cart, setCart] = useState(JSON.parse(localStorage.getItem('guestCartItems')));
 
   const fetchUserCart = async () => {
     try {
-      const response = await axios.get(`/panier/${userId}`);
+      const userIdResponse = await axios.get(`/utilisateur/find/${user.courriel}`);
+
+      const response = await axios.get(`/panier/${userIdResponse.data}`);
+      console.log(response.data);
       setCart(response.data.articles);
     } catch (error) {
       console.error('Error fetching cart:', error);
@@ -40,24 +42,23 @@ function PagePanier() {
     localStorage.setItem('guestCartItems', JSON.stringify(cart));
   }, [cart]);
 
-  const cartTotal = cart.reduce(
-    (total, item) => total + item.prix * item.qtt,
-    0
-  );
+  const cartTotal = cart
+  ? cart.reduce((total, item) => total + item.prix * item.qtt, 0)
+  : 0;
 
   const increaseQuantity = (itemId) => {
-    const updatedCart = cart.map((item) =>
+    const updatedCart = cart ? cart.map((item) =>
       item.codeProduit === itemId ? { ...item, qtt: item.qtt + 1 } : item
-    );
+    ) : 0;
     setCart(updatedCart);
   };
 
   const decreaseQuantity = (itemId) => {
-    const updatedCart = cart.map((item) =>
+    const updatedCart = cart? cart.map((item) =>
     item.codeProduit === itemId && item.qtt > 1
         ? { ...item, qtt: item.qtt - 1 }
         : item
-    );
+    ) : 0;
 
     setCart(updatedCart);
   };
@@ -67,7 +68,9 @@ function PagePanier() {
     setCart(updatedCart);
   };
 
-  const cartSize = cart.reduce((size, item) => size + item.qtt, 0);
+  const cartSize = cart
+  ? cart.reduce((size, item) => size + item.qtt, 0)
+  : 0;
 
   const navigate = useNavigate();
 
@@ -88,7 +91,8 @@ function PagePanier() {
           <Col xs={9}>
             <Card>
               <ListGroup variant="flush">
-                {cart.map((item) => (
+          
+                { cart && cart.map((item) => (
                   <ListGroup.Item
                     className="d-flex justify-content-between"
                     key={item.codeProduit}
@@ -161,8 +165,7 @@ function PagePanier() {
               <Card.Body>
                 <Card.Title>Paiement</Card.Title>
                 <Card.Text>
-                  Sous-total ({cart.length} articles) : {cartTotal?.toFixed(2)}{" "}
-                  $
+                  Sous-total ({cart ? cart.length : 0} articles) : {cartTotal?.toFixed(2)} $
                 </Card.Text>
                 <Button
                   variant="primary"

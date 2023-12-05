@@ -18,6 +18,7 @@ function Navigation() {
   const [results, setResults] = useState([]);
 
   const onDeconnexionClick = () => {
+    localStorage.removeItem('guestCartItems')
     localStorage.removeItem("token");
     navigate("/");
     navigate(0);
