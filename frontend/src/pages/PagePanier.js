@@ -17,9 +17,7 @@ function PagePanier() {
   const fetchUserCart = async () => {
     try {
       const userIdResponse = await axios.get(`/utilisateur/find/${user.courriel}`);
-
-      const response = await axios.get(`/panier/${userIdResponse.data}`);
-      console.log(response.data);
+      const response = await axios.get(`/panier/${userIdResponse.data._id}`);
       setCart(response.data.articles);
     } catch (error) {
       console.error('Error fetching cart:', error);

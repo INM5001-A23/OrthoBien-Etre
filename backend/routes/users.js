@@ -50,7 +50,7 @@ router.get("/find/:useremail", async (req, res) => {
       res.status(404).json({ message: "User not found." });
       return;
     }
-    res.json(theUser._id);
+    res.json(theUser);
 
   } catch (error) {
     res.status(500).send();

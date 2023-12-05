@@ -7,6 +7,8 @@ const Confirmation = () => {
     const location = useLocation();     
     const navigate = useNavigate();
 
+    localStorage.removeItem('guestCartItems');
+
     const messageConfirmation = "Votre commande a été complété avec succès!";
 
     return(
