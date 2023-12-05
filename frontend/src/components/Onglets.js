@@ -5,7 +5,6 @@ import { UserContext } from "..";
 import { Container, Form, ListGroup, Stack, Row, Col } from "react-bootstrap";
 import { AxiosContext } from "..";
 import { useForm } from "react-hook-form";
-import Col from "react-bootstrap/Col";
 import CarteCommande from "./CarteCommande";
 
 function Onglets() {
