@@ -5,7 +5,7 @@
 1. Accédez au répertoire frontend du projet :
 
 ```bash
-cd .\frontend\
+    cd .\frontend\
 ```
 
 2. Installer les dépendances
@@ -17,7 +17,7 @@ cd .\frontend\
 3. Démarrer le serveur
 
 ```bash
-npm start
+    npm start
 ```
 
 4. Accédez à l'application dans votre navigateur : http://localhost:3000
