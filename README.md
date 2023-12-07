@@ -25,21 +25,21 @@ L'hébergement du frontend se fait avec Cloudfare, le backend avec Render et la 
 ```bash
 git clone https://github.com/INM5001-A23/OrthoBien-Etre.git
 ```
-3. Accédez au répertoire du projet :
+2. Accédez au répertoire du projet :
 ```bash
 cd nom-du-projet
 ```
-4. Installez les dépendances :
+3. Installez les dépendances :
 ```bash
 npm install
 ```
 
 ## Utilisation
-5. Démarrez l'application en mode développement :
+1. Démarrez l'application en mode développement :
 ```bash
 npm start
 ```
-6. Accédez à l'application dans votre navigateur :
+2. Accédez à l'application dans votre navigateur :
 ```bash
 http://localhost:3000
 ```
