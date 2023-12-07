@@ -13,7 +13,7 @@ import PageLivraison from "./pages/PageLivraison";
 import PageConfirmation from "./pages/PageConfirmation";
 import PageFAQ from "./pages/PageFAQ";
 import PageContact from "./pages/PageContact";
-import Recherche from "./pages/Recherche";
+import PageRecherche from "./pages/PageRecherche";
 
 const router = createBrowserRouter([
   {
@@ -90,7 +90,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/Recherche",
-    element: <Recherche />,
+    element: <PageRecherche />,
     errorElement: <Erreur />,
   },
 ]);

@@ -11,10 +11,15 @@ import FiltreCategorie from "../components/FiltreCategorie";
 //import PropTypes from 'prop-types';
 import {SearchBar } from "../components/searchbar"
 import { SearchResultsList} from "../components/SearchResultsList"
-
+import { useLocation } from "react-router-dom";
 
 function Recherche  ({ }){
-  const [results, setResults] = useState([]);
+  
+  const location = useLocation();
+ 
+  const results = location.state.total;
+
+  const [ setResults] = useState([]);
   const axios = useContext(AxiosContext);
   const [searchParams] = useSearchParams();
   const [filtreCategorie, setFiltreCategorie] = useState(
@@ -24,9 +29,8 @@ function Recherche  ({ }){
   const [filtre, setFiltre] = useState("");
 
   useEffect(() => {
-    <SearchBar results={setResults} />;
-    <SearchResultsList setResults={results} />;
-   // console.log(results)
+    
+   console.log(results)
 
     if (results && results.length > 0) {
       // Search results are already provided, no need to fetch

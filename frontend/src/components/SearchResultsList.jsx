@@ -3,15 +3,13 @@ import "../components/SearchResultsList.css";
 import { useNavigate } from "react-router-dom";
 import Form from "react-bootstrap/Form";
 import SearchResultPortal from "../components/SearchResultPortal";
+import { useLocation } from "react-router-dom";
 
 export const SearchResultsList = ({ results }) => {
 const navigate = useNavigate();
 const firstFourResults = results.slice(0, 4);
 
-const handleRedirect = () => {
-  
-  navigate(`/catalogue`);
-};
+
   return (
     <SearchResultPortal>
     <Form  style={{ position: "absolute"}} >
@@ -22,27 +20,31 @@ const handleRedirect = () => {
          
 
           <div 
+          onClick={() => navigate(`/produit/${result.codeProduit}`)}
           key={id} 
           className="result-item"  
-          onClick={() => navigate(`/produit/${result.codeProduit}`)}
+          
           >
-           <input type="image" img 
-              style={{ width: "100px" ,  display: "inline-block"}}
+           <input 
+            type="image"  
+              style={{ width: "150px", height: "100px" , display: "inline-block"}}
               src={`/images/produits/${result.codeProduit}.jpeg`} 
               alt={`Image for ${result.nomProduit}`}
             />
+            <p>
             {result.nomProduit}
-              
+            </p> 
           </div>
 
         )
-
-        
         
       })}
 
       <Button
-          onClick={handleRedirect}
+          onClick={() => navigate(`/recherche` ,{
+            state: { total:results },
+          })
+        }
           variant="outline-success"
           size="sm"
           style={{
@@ -50,6 +52,7 @@ const handleRedirect = () => {
             alignSelf: "center",
             margin: "0 5px 0 0",
             
+           
           }}
       >
           Voir plus 
