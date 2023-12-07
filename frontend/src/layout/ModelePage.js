@@ -5,8 +5,13 @@ import PiedDePage from "./PiedDePage";
 function ModelePage({ children }) {
   return (
     <Stack gap={3} className="min-vh-100">
-      <Navigation />
-      <div className="flex-grow-1">{children}</div>
+      <Navigation style={{ position: "absolute"}}/>
+      <div className="flex-grow-1" style={{ position: "relative"}} >{children}
+      
+      </div>
+
+       <div id="search-result-portal" 
+        style={{ position: "absolute", top: 40, right: 240, zIndex: 1000 }} />
       <PiedDePage />
     </Stack>
   );

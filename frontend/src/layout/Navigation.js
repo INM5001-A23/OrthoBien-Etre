@@ -10,7 +10,8 @@ import { useContext } from "react";
 import { UserContext } from "..";
 import { SearchBar } from "../components/searchbar";
 import { SearchResultsList } from "../components/SearchResultsList";
-import React, { useState } from "react";
+import React, { useState } from "react"; 
+
 
 function Navigation() {
   const navigate = useNavigate();
@@ -19,7 +20,6 @@ function Navigation() {
 
   const onDeconnexionClick = () => {
     localStorage.removeItem("token");
-    navigate("/");
     navigate(0);
   };
 
@@ -30,6 +30,7 @@ function Navigation() {
         style={{
           alignItems: "center",
           textAlign: "center",
+          
         }}
       >
         <Logo img="/images/bones.svg" path="/" />
@@ -66,13 +67,12 @@ function Navigation() {
               <Logo img="/images/panier.svg" path="/panier" />
             )}
 
-            <div className="me-2">
-              <SearchBar setResults={setResults} />
-              {results && results.length > 0 && (
-                <SearchResultsList results={results} />
-              )}
-            </div>
+            <div className="me-2" >
+             <SearchBar setResults={setResults} />
+            {results && results.length > 0 && <SearchResultsList results={results} />}
 
+            </div>
+           
             {/* <Button
               variant="outline-success"
               size="sm"

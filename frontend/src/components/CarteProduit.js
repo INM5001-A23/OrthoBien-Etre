@@ -56,6 +56,7 @@ function CarteProduit({
         width: "18rem",
         textAlign: "center",
         cursor: "pointer",
+        position: "relative"
       }}
     >
       {notification && (

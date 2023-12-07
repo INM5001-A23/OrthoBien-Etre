@@ -13,6 +13,7 @@ import PageLivraison from "./pages/PageLivraison";
 import PageConfirmation from "./pages/PageConfirmation";
 import PageFAQ from "./pages/PageFAQ";
 import PageContact from "./pages/PageContact";
+import Recherche from "./pages/Recherche";
 
 const router = createBrowserRouter([
   {
@@ -85,6 +86,11 @@ const router = createBrowserRouter([
   {
     path: "/contacts",
     element: <PageContact />,
+    errorElement: <Erreur />,
+  },
+  {
+    path: "/Recherche",
+    element: <Recherche />,
     errorElement: <Erreur />,
   },
 ]);
