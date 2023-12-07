@@ -111,7 +111,15 @@ function DetailsProduit({
       )}
       <Row>
         <Col>
-          <Card.Img src={`/images/produits/${codeProduit}.jpeg`} />
+          <Card.Img
+            src={`/images/produits/${codeProduit}.jpeg`}
+            style={{
+              maxWidth: "auto",
+              height: "100%",
+              maxWidth: "700px",
+              textAlign: "center",
+            }}
+          />
         </Col>
         <Col>
           <Card style={{ height: "auto" }}>
