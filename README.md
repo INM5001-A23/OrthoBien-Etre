@@ -1,7 +1,5 @@
 # OrthoBien-Etre
 
-Bienvenue sur la plateforme e-commerce OrthoBien-Etre développée en utilisant React.
-
 ## Description
 
 OrthoBien-Etre est une application e-commerce avec le MERN stack (MongoDB, Express, React, Node). 
