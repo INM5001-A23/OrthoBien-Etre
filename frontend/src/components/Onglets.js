@@ -5,7 +5,6 @@ import { UserContext } from "..";
 import { Container, Form, ListGroup, Stack, Row, Col } from "react-bootstrap";
 import { AxiosContext } from "..";
 import { useForm } from "react-hook-form";
-import CarteCommande from "./CarteCommande";
 
 function Onglets() {
   const axios = useContext(AxiosContext);

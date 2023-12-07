@@ -7,46 +7,60 @@ import { useNavigate } from "react-router-dom";
 import ModelePage from "../layout/ModelePage";
 import { UserContext,AxiosContext } from "..";
 
+
 function PagePanier() {
   const axios = useContext(AxiosContext);
   const user = useContext(UserContext);
 
   const [cart, setCart] = useState(localStorage.getItem("guestCartItems") ? JSON.parse((localStorage.getItem("guestCartItems")))  : []);
 
-  const fetchUserCart = async () => {
-    try {
-      const userIdResponse = await axios.get(`/utilisateur/find/${user.courriel}`);
-      const response = await axios.get(`/panier/${userIdResponse.data._id}`);
-      localStorage.setItem('guestCartItems', JSON.stringify(response.data.articles));
-
-    } catch (error) {
-      console.error('Error fetching cart:', error);
-    }
-  };
-
-  const updateUserCart = async () => {
-    try {
-      const guestCartItems = JSON.parse(localStorage.getItem('guestCartItems'));
-      const userIdResponse = await axios.get(`/utilisateur/find/${user.courriel}`);
-      const response = await axios.put(`/panier/update/${userIdResponse.data._id}`, {guestCartItems});
-      console.log(response.data);
-    } catch (error) {
-      console.error('Error updating cart:', error);
-    }
-  }
-
   // fetch cart from api or localStorage
   useEffect(() => {
-    if(user) fetchUserCart();
+    if (user) {
+     (
+      async () => {
+        try {
+          const userIdResponse = await axios.get(`/utilisateur/find/${user.courriel}`);
+          const response = await axios.get(`/panier/${userIdResponse.data._id}`);
+          localStorage.setItem('guestCartItems', JSON.stringify(response.data.articles));
+
+        } catch (error) {
+          console.error('Error fetching cart:', error);
+        }
+      }
+     )();
+    }
+
     setCart(localStorage.getItem("guestCartItems") ? JSON.parse((localStorage.getItem("guestCartItems")))  : []);
-  }, []);
+  }, [user]);
 
   // update cart in localStorage or userCart
   useEffect(() => {
+
+    console.log("updating local storage...")
     localStorage.setItem('guestCartItems', JSON.stringify(cart));
-    if(user) updateUserCart();
-    
-  }, [cart]);
+    console.log(JSON.parse(localStorage.getItem('guestCartItems')))
+
+    console.log("updating cart...")
+    console.log(cart)
+
+    if(user) {
+      (async () => {
+        try {
+          const guestCartItems = JSON.parse(localStorage.getItem('guestCartItems'));
+          const userIdResponse = await axios.get(`/utilisateur/find/${user.courriel}`);
+          const response = await axios.put(`/panier/update/${userIdResponse.data._id}`, {guestCartItems});
+          console.log("inside guest Cart Items Variables...")
+          console.log(guestCartItems)
+          console.log("Response Data...")
+          console.log(response.data.articles)
+
+        } catch (error) {
+          console.error('Error updating cart:', error);
+        }
+      })();
+    }
+  }, [cart,user]);
 
   const cartTotal = cart
   ? cart.reduce((total, item) => total + item.prix * item.qtt, 0)

@@ -1,13 +1,32 @@
-import React from "react";
+import {React, useContext, useEffect} from "react";
 import ModelePage from "../layout/ModelePage";
 import { Container, Stack } from "react-bootstrap";
 import { useLocation,useNavigate } from "react-router-dom";
+import { UserContext,AxiosContext } from "..";
 
 const Confirmation = () => {
     const location = useLocation();     
     const navigate = useNavigate();
 
-    localStorage.removeItem('guestCartItems');
+    const axios = useContext(AxiosContext);
+    const user = useContext(UserContext);
+
+    useEffect( () => {
+        clearCart();
+    }, [])
+
+    const clearCart = async () => {
+        localStorage.removeItem('guestCartItems');
+        
+        if(user){
+            try {
+                const userIdResponse = await axios.get(`/utilisateur/find/${user.courriel}`);
+                const response = await axios.put(`/panier/clear/${userIdResponse.data._id}`);
+            } catch (error) {
+                console.error('Error clearing cart:', error);
+            }
+        }
+      };
 
     const messageConfirmation = "Votre commande a été complété avec succès!";
 
