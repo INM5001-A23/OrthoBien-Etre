@@ -9,7 +9,10 @@ cd .\frontend\
 ```
 
 2. Installer les dépendances
-   $ npm install
+
+```bash
+   npm install
+```
 
 3. Démarrer le serveur
 
