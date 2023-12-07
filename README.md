@@ -6,6 +6,16 @@ OrthoBien-Etre est une application e-commerce avec le MERN stack (MongoDB, Expre
 Elle permet une expérience utilisateur client intuitive pour parcourir les produits, effectuer des achats et gérer le panier. Elle permet aussi une expérience utilisateur en tant qu'administrateur pour gérer le stock disponible à la vente.
 L'hébergement du frontend se fait avec Cloudfare, le backend avec Render et la base de données avec MongoDB.
 
+# Installation
+1. Clonez le dépôt :
+```bash
+git clone https://github.com/INM5001-A23/OrthoBien-Etre.git
+```
+
+2. Accédez au répertoire du projet :
+```bash
+cd nom-du-projet
+```
 
 ## Fonctionnalités
 
@@ -18,36 +28,6 @@ L'hébergement du frontend se fait avec Cloudfare, le backend avec Render et la 
 - L’utilisateur client peut s'inscrire et se connecter pour suivre ses commandes et accéder à ses informations.
 - Accès à une interface simplifiée pour que l'administrateur puisse ajouter, supprimer ou modifier des produits (par exemple, appliquer une promotion) dans la base de données/catalogue de produits.
 - Page de contact dans laquelle il y a une section pour que les clients puissent contacter l'équipe du site pour des questions ou des retours.
-
-## Installation
-
-1. Clonez le dépôt :
-```bash
-git clone https://github.com/INM5001-A23/OrthoBien-Etre.git
-```
-2. Accédez au répertoire du projet :
-```bash
-cd nom-du-projet
-```
-3. Installez les dépendances :
-```bash
-npm install
-```
-
-## Utilisation
-1. Démarrez l'application en mode développement :
-```bash
-npm start
-```
-2. Accédez à l'application dans votre navigateur :
-```bash
-http://localhost:3000
-```
-
-## Configuration
-
-1. Copiez le fichier `.env.example` et renommez-le en `.env`.
-2. Configurez les variables d'environnement nécessaires, telles que les clés d'API, les URL de base, etc.
 
 ## Captures d'écran
 ### Page accueil
