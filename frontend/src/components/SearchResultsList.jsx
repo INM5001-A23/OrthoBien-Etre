@@ -2,22 +2,15 @@ import Button from "react-bootstrap/Button";
 import "../components/SearchResultsList.css";
 import { useNavigate } from "react-router-dom";
 import Form from "react-bootstrap/Form";
-//import Dropdown from "react-bootstrap/Dropdown";
-//import DropdownButton from "react-bootstrap/DropdownButton";
 import SearchResultPortal from "../components/SearchResultPortal";
 
 export const SearchResultsList = ({ results }) => {
 const navigate = useNavigate();
 const firstFourResults = results.slice(0, 4);
 
-// const handleSearchSubmit = (e) => {
-//   e.preventDefault();
-//   results(results);
-// };
-
 const handleRedirect = () => {
   
-  navigate(`/Recherche`);
+  navigate(`/catalogue`);
 };
   return (
     <SearchResultPortal>
@@ -32,7 +25,6 @@ const handleRedirect = () => {
           key={id} 
           className="result-item"  
           onClick={() => navigate(`/produit/${result.codeProduit}`)}
-          
           >
            <input type="image" img 
               style={{ width: "100px" ,  display: "inline-block"}}
