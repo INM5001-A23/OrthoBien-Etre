@@ -206,6 +206,13 @@ function PageInscription() {
               >
                 <option>Québec</option>
                 <option>Ontario</option>
+                <option>Alberta</option>
+                <option>Colombie-Britannique</option>
+                <option>Manitoba</option>
+                <option>Nouveau-Brunswick</option>
+                <option>Nouvelle-Écosse</option>
+                <option>Saskatchewan</option>
+                <option>Terre-Neuve-et-Labrador</option>
               </Form.Select>
               <p style={{ color: "red" }}>{errors.province?.message}</p>
             </Form.Group>
