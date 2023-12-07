@@ -23,6 +23,7 @@ router.post("/", async (req, res) => {
       codeCategorie,
       prix,
       promotion,
+      populaire,
       token,
     } = req.body;
 
@@ -52,14 +53,16 @@ router.post("/", async (req, res) => {
         prix,
         promotion,
         quantite,
+        populaire,
       });
 
       await newProduit.save();
-      res.status(220).json({ message: "Le produit a été ajouté !" });
+      res.status(200).json({ message: "Le produit a été ajouté !" });
     } else {
       res.status(520).json({ message: "Ce produit existe déjà" });
     }
   } catch (error) {
+    console.log(error);
     res.status(550).json({ erreur: "Could not add product " });
   }
 });

@@ -1,9 +1,26 @@
 import express from 'express';
 import Cart from '../models/Panier.js';
 
+
 const router = express.Router();
 
-// Fetch all cart
+// by userid
+router.get("/:clientid", async (req, res) => {
+  const clientid = req.params.clientid;
+  
+  try {
+    const cart = await Cart.findOne({ 'client.infosClient': clientid });
+  if (cart && cart.articles.length > 0) {
+    res.json(cart);
+  } else {
+    res.send(null);
+  }
+  } catch (error) {
+      res.status(500).send();
+  }
+  });
+
+// Fetch cart by cartid
 router.get('/:cartid', async (req, res) => {
     try{
         const cartId = req.params.cartid;
@@ -14,7 +31,7 @@ router.get('/:cartid', async (req, res) => {
     }
 });
 
-// Fetch cart by cartid
+// Fetch all cart
 router.get('/', async (req, res) => {
     try{
         const cart = await Cart.find()

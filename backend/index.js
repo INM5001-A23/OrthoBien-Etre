@@ -48,13 +48,13 @@ app.get("/", (req, res) => {
 app.use("/categories", categoryRoutes);
 app.use("/produits", productRoutes);
 app.use("/panier", cartRoutes);
-app.use("/commande",orderRoutes );
-app.use("/inscription",usersRoutes);
-app.use("/connexion",connexionRoutes);
-app.use("/nouveauProduit",ajoutproduitRoutes);
-app.use("/modificationProduit",modifierproduitRoutes);
+app.use("/commande", orderRoutes);
+app.use("/utilisateur", usersRoutes);
+app.use("/connexion", connexionRoutes);
+app.use("/nouveauProduit", ajoutproduitRoutes);
+app.use("/modificationProduit", modifierproduitRoutes);
 app.use("/supprimerProduit", supprimerproduitRoutes);
-app.use("/ajouterImages",ajouterimagesRoutes);
+app.use("/ajouterImages", ajouterimagesRoutes);
 
 app.listen(port, () => {
   console.log(`Successfully started server on port ${port}.`);

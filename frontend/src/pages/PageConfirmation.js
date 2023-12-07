@@ -7,6 +7,8 @@ const Confirmation = () => {
     const location = useLocation();     
     const navigate = useNavigate();
 
+    localStorage.removeItem('guestCartItems');
+
     const messageConfirmation = "Votre commande a été complété avec succès!";
 
     return(
@@ -17,7 +19,6 @@ const Confirmation = () => {
                         <h3 style={ {color:"green"}}>{messageConfirmation}</h3>
                         <p style={{fontWeight:"bold"}}>Cout total de la commande: {location.state.total} CAD</p>
                         <p style={{fontWeight:"bold"}}>Numéro de confirmation de la commande: {location.state.orderID}</p>
-                        <p style={{fontWeight:"bold"}}>Numéro de confirmation du paiement: {location.state.paymentID}</p>
                     </div>
                     <div>
                         <h3  style={ {color:"blue", cursor: "pointer",textDecorationLine: 'underline'}} onClick={() => navigate("/")}>Retourner Magasiner</h3>

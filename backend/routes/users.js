@@ -5,7 +5,7 @@ const router = express.Router();
 router.use(express.json());
 
 //ajouter un client dans la base de donnee
-router.post("/", async (req, res) => {
+router.post("/inscription", async (req, res) => {
   try {
     const {
       prenom,
@@ -39,5 +39,22 @@ router.post("/", async (req, res) => {
     res.status(500).json({ erreur: "Nobody knows !" });
   }
 });
+
+// Find user by email address
+router.get("/find/:useremail", async (req, res) => {
+  const userEmail = req.params.useremail;
+  try {
+    const theUser = await Clients.findOne({'courriel':userEmail});
+
+    if (!theUser) {
+      res.status(404).json({ message: "User not found." });
+      return;
+    }
+    res.json(theUser);
+
+  } catch (error) {
+    res.status(500).send();
+  }
+})
 
 export default router;

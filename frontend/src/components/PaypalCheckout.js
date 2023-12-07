@@ -12,8 +12,6 @@ const Checkout = (props) => {
         orderDetails.orderId = orderId;
         orderDetails.paymentId = paymentId;
 
-        console.log(orderDetails);
-
         axios
             .post("/commande", orderDetails)
             .then(function (response) {

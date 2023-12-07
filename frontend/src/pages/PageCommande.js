@@ -1,21 +1,25 @@
 
-import React from "react"
+import {React,useContext} from "react"
 import ModelePage from "../layout/ModelePage";
 import { Container, Row, Col, Card, ListGroup } from "react-bootstrap"
 import { useLocation } from "react-router-dom";
 import { PayPalScriptProvider } from "@paypal/react-paypal-js"
 import Checkout from "../components/PaypalCheckout"
+import { UserContext} from "..";
 
 function PageCommande() {
 
   const location = useLocation();
+  const user = useContext(UserContext);
   
   const cartItems = location.state.cartItems;
   const shippingInfos = location.state.shippingInfos;
   const cartItemsOrder = location.state.cartItems.map((item) => {
-    const itemCart = {codeProduit: item.id, prix: item.price, quantite: item.quantity}
+    const itemCart = {codeProduit: item.codeProduit, prix: item.prix, qtt: item.qtt}
     return(itemCart);
   }); 
+
+  console.log(cartItems)
 
   const totalAvantTaxes = location.state.total.toFixed(2);
   const tps = (totalAvantTaxes*(5/100)).toFixed(2);
@@ -23,9 +27,12 @@ function PageCommande() {
   const fraisLivraison = (totalAvantTaxes*(2/100)).toFixed(2);
   const totalApresTaxes = (Number(totalAvantTaxes) + Number(tvq)  + Number(tps)  + Number(fraisLivraison)).toFixed(2);
 
+  const isAClient = (user) ? true : false;
+
   const orderApprovedDetails = {
     orderId: "",
     paymentId:"",
+    isClient:  isAClient,
     shipping: shippingInfos,
     cart: cartItemsOrder,
     sousTotal: totalAvantTaxes,
@@ -50,28 +57,28 @@ function PageCommande() {
                     <ListGroup variant="flush">
                       {cartItems.map((item) => (
                         <ListGroup.Item 
-                          key={item.id}
+                          key={item.codeProduit}
                         >
                           <Row style={{textAlign:"center"}}>
                             <Col xs={3}>
                               <img
                                 className="p-2"
                                 style={{ width: "60px" }}
-                                src={`/images/produits/${item.id}.jpeg`}
+                                src={`/images/produits/${item.codeProduit}.jpeg`}
                                 alt="Produit"
                               />
                             </Col>
                             <Col xs={4}>
-                              <h6  style={{ fontSize: "16px" }} className="my-0 p-2">{item.name}</h6>
+                              <h6  style={{ fontSize: "16px" }} className="my-0 p-2">{item.nomProduit}</h6>
                             </Col>
                             <Col xs={5} className="text-muted">
                               <Row>
                                 <span style={{ fontSize: "16px" }}>
-                                  {item.price?.toFixed(2)} CAD / Unité
+                                  {item.prix?.toFixed(2)} CAD / Unité
                                 </span>
                               </Row>
                               <Row>
-                                <span style={{ fontSize: "14px" }}>Quantité: {item.quantity}</span>
+                                <span style={{ fontSize: "14px" }}>Quantité: {item.qtt}</span>
                               </Row>
                             </Col>
                           </Row>

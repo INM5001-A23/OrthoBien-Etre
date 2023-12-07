@@ -4,18 +4,20 @@ import {
   Container,
   Stack,
   ToggleButton,
-  ToggleButtonGroup,
 } from "react-bootstrap";
 import Form from "react-bootstrap/Form";
 import Col from "react-bootstrap/Col";
-
 import Modal from "react-bootstrap/Modal";
 import { useForm } from "react-hook-form";
 import { useContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { AxiosContext } from "..";
+import FiltreCategorie from "./FiltreCategorie";
 
-function ModalAjout({ produit, show, onHide }) {
+function ModalAjout({ show, onHide }) {
+  const navigate = useNavigate();
   const axios = useContext(AxiosContext);
+  const token = localStorage.getItem("token");
   const {
     register,
     handleSubmit,
@@ -23,7 +25,7 @@ function ModalAjout({ produit, show, onHide }) {
     getValues,
     formState: { errors },
   } = useForm({
-    mode: "onChange",
+    mode: "onBlur",
   });
 
   const radios = [
@@ -32,10 +34,38 @@ function ModalAjout({ produit, show, onHide }) {
   ];
 
   const handleModalAjout = handleSubmit((data) => {
-    console.log(data);
+    const body = { ...data, token };
+    axios
+      .post("/nouveauProduit", body)
+      .then(function (response) {
+        if (response.status === 200) {
+          onHide();
+          navigate("/admin", {
+            state: {
+              status: {
+                type: "success",
+                message: `Le produit a bien été créé`,
+              },
+            },
+          });
+          navigate(0);
+        } else {
+          // TODO afficher message erreur
+        }
+        console.log(response);
+      })
+      .catch(function (error) {
+        // handle error
+        // TODO afficher message erreur
+        console.log(error);
+      });
   });
 
   register("promotion", {
+    value: false,
+  });
+
+  register("populaire", {
     value: false,
   });
 
@@ -48,7 +78,7 @@ function ModalAjout({ produit, show, onHide }) {
     >
       <Modal.Header onClick={onHide} closeButton>
         <Modal.Title id="contained-modal-title-vcenter">
-          Ajout d'un nouveau produit
+          Création d'un nouveau produit
         </Modal.Title>
       </Modal.Header>
 
@@ -67,12 +97,27 @@ function ModalAjout({ produit, show, onHide }) {
               />
               <p style={{ color: "red" }}>{errors.imageProduit?.message}</p> */}
 
+              {/* Input CODE DU PRODUIT */}
+              <Form.Group as={Col} controlId="codeProduit">
+                <Form.Label>Code du produit:</Form.Label>
+                <Form.Control
+                  type="text"
+                  {...register("codeProduit", {
+                    required: "Ce champ est obligatoire",
+                    pattern: {
+                      value: /^2\d{3}$/,
+                      message: "Le code produit doit respecter ce format: 2000",
+                    },
+                  })}
+                />
+                <p style={{ color: "red" }}>{errors.codeProduit?.message}</p>
+              </Form.Group>
+
               {/* Input NOM DU PRODUIT */}
               <Form.Group as={Col} controlId="nomProduit">
                 <Form.Label>Nom du produit:</Form.Label>
                 <Form.Control
                   type="text"
-                  // value={produit.nomProduit}
                   {...register("nomProduit", {
                     required: "Ce champ est obligatoire",
                     pattern: {
@@ -87,6 +132,37 @@ function ModalAjout({ produit, show, onHide }) {
                 />
                 <p style={{ color: "red" }}>{errors.nomProduit?.message}</p>
               </Form.Group>
+
+              {/* Input NOM DE LA CATÉGORIE */}
+              <Form.Group as={Col} controlId="nomCategorie">
+                <Form.Label>Nom de la catégorie:</Form.Label>
+                <FiltreCategorie
+                  filtre={getValues("codeCategorie")}
+                  setFiltre={(value) =>
+                    setValue("codeCategorie", value, {
+                      shouldValidate: true,
+                    })
+                  }
+                />
+              </Form.Group>
+
+              {/* Input PETITE DESCRIPTION */}
+              <Form.Group as={Col} controlId="pDescription">
+                <Form.Label>Petite description:</Form.Label>
+                <Form.Control
+                  as="textarea"
+                  rows={5}
+                  {...register("pDescription", {
+                    required: "Ce champ est obligatoire",
+                    minLength: {
+                      value: 5,
+                      message: "Longueur minimale est de 5 caractères",
+                    },
+                  })}
+                />
+                <p style={{ color: "red" }}>{errors.pDescription?.message}</p>
+              </Form.Group>
+
               {/* Input DESCRIPTION */}
               <Form.Group as={Col} controlId="description">
                 <Form.Label>Description:</Form.Label>
@@ -103,13 +179,16 @@ function ModalAjout({ produit, show, onHide }) {
                 />
               </Form.Group>
               <p style={{ color: "red" }}>{errors.description?.message}</p>
+
               {/* Input PRIX UNITAIRE */}
               <Form.Group as={Col} controlId="prix">
                 <Form.Label>Prix unitaire:</Form.Label>
                 <Form.Control
                   type="number"
+                  step={0.01}
                   {...register("prix", {
                     required: "Ce champ est obligatoire",
+                    valueAsNumber: true,
                     pattern: {
                       value: /^(0(?!\.00)|[1-9]\d{0,6})\.\d{2}$/,
                       message:
@@ -119,6 +198,7 @@ function ModalAjout({ produit, show, onHide }) {
                 />
                 <p style={{ color: "red" }}>{errors.prix?.message}</p>
               </Form.Group>
+
               {/* Input QUANTITE EN STOCK */}
               <Form.Group as={Col} controlId="quantite">
                 <Form.Label>Quantité disponible:</Form.Label>
@@ -126,6 +206,7 @@ function ModalAjout({ produit, show, onHide }) {
                   type="number"
                   {...register("quantite", {
                     required: "Ce champ est obligatoire",
+                    valueAsNumber: true,
                     min: {
                       value: 1,
                       message: "La quantité doit être d'au moins 1",
@@ -135,18 +216,41 @@ function ModalAjout({ produit, show, onHide }) {
                 <p style={{ color: "red" }}>{errors.quantite?.message}</p>
               </Form.Group>
 
-              {/* Input EN PROMOTION */}
-              <Form.Group as={Col} controlId="promotion"></Form.Group>
-              <Form.Label>En promotion:</Form.Label>
-
+              {/* Input POPULAIRE */}
+              <Form.Group as={Col} controlId="populaire" />
+              <Form.Label>Produit populaire:</Form.Label>
               <ButtonGroup>
                 {radios.map((radio, idx) => (
                   <ToggleButton
                     key={idx}
-                    id={`radio-${idx}`}
+                    id={`radio-populaire-${idx}`}
                     type="radio"
                     variant={idx % 2 ? "outline-primary" : "outline-secondary"}
-                    name="radio"
+                    name="radio-populaire"
+                    value={radio.value}
+                    checked={getValues("populaire") == radio.value}
+                    onChange={(e) =>
+                      setValue("populaire", e.currentTarget.value === "true", {
+                        shouldValidate: true,
+                      })
+                    }
+                  >
+                    {radio.name}
+                  </ToggleButton>
+                ))}
+              </ButtonGroup>
+
+              {/* Input EN PROMOTION */}
+              <Form.Group as={Col} controlId="promotion"></Form.Group>
+              <Form.Label>En promotion:</Form.Label>
+              <ButtonGroup>
+                {radios.map((radio, idx) => (
+                  <ToggleButton
+                    key={idx}
+                    id={`radio-promotion${idx}`}
+                    type="radio"
+                    variant={idx % 2 ? "outline-primary" : "outline-secondary"}
+                    name="radio-promotion"
                     value={radio.value}
                     checked={getValues("promotion") == radio.value}
                     onChange={(e) =>

@@ -23,8 +23,8 @@ function FiltreCategorie({ filtre, setFiltre }) {
       });
   }, [axios]);
 
-  const onFormulaireFiltreChange = (e) => {
-    setFiltre(e.target.value);
+  const onCategorieChange = (e) => {
+    setFiltre(parseInt(e.target.value));
   };
 
   const getNomFiltre = () => {
@@ -47,26 +47,26 @@ function FiltreCategorie({ filtre, setFiltre }) {
       style={{ margin: "0px 0px 15px 0px" }}
       autoClose="outside"
     >
-      <Form onChange={onFormulaireFiltreChange}>
-        {categories.map((categorie) => (
-          <a className="dropdown-item">
-            <Form.Check>
-              <Form.Check.Input
-                type="radio"
-                id={`categorie-${categorie.codeCategorie}`}
-                name="formulaire-categorie-trier"
-                value={categorie.codeCategorie}
-              />
-              <Form.Check.Label
-                htmlFor={`categorie-${categorie.codeCategorie}`}
-                style={{ width: "100%" }}
-              >
-                {categorie.nomCategorie}
-              </Form.Check.Label>
-            </Form.Check>
-          </a>
-        ))}
-      </Form>
+      {categories.map((categorie) => (
+        <a className="dropdown-item" key={categorie.codeCategorie}>
+          <Form.Check>
+            <Form.Check.Input
+              type="radio"
+              id={`categorie-${categorie.codeCategorie}`}
+              name="formulaire-categorie-trier"
+              value={categorie.codeCategorie}
+              checked={filtre === categorie.codeCategorie}
+              onChange={onCategorieChange}
+            />
+            <Form.Check.Label
+              htmlFor={`categorie-${categorie.codeCategorie}`}
+              style={{ width: "100%" }}
+            >
+              {categorie.nomCategorie}
+            </Form.Check.Label>
+          </Form.Check>
+        </a>
+      ))}
     </DropdownButton>
   );
 }

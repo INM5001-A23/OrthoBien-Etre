@@ -29,7 +29,7 @@ function PageInscription() {
 
   const handleFormulaireInscription = handleSubmit((data) => {
     axios
-      .post("/inscription", data)
+      .post("/utilisateur/inscription", data)
       .then(function (response) {
         if (response.status === 200) {
           navigate("/connexion", { state: { status: "success" } });

@@ -22,7 +22,7 @@ const commandesSchema = new mongoose.Schema({
         ref: 'Clients'
     },
 
-    invite:{
+    shippingInfos:{
         nomClient:{type: String,required: true },
         prenomClient:{type: String,required: true },
         courriel:{type: String,required: true },

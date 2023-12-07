@@ -1,11 +1,11 @@
 import Tab from "react-bootstrap/Tab";
 import Tabs from "react-bootstrap/Tabs";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { UserContext } from "..";
-import { Container, Form, Stack } from "react-bootstrap";
+import { Container, Form, ListGroup, Stack, Row, Col } from "react-bootstrap";
 import { AxiosContext } from "..";
 import { useForm } from "react-hook-form";
-import Col from "react-bootstrap/Col";
+import CarteCommande from "./CarteCommande";
 
 function Onglets() {
   const axios = useContext(AxiosContext);
@@ -18,6 +18,22 @@ function Onglets() {
   });
   const user = useContext(UserContext);
 
+  const [orderHistory, setOrderHistory] = useState([])
+
+  const handleOrderHistory = async (req, res) => {
+    try {
+      const response = await axios.get(`/commande/${user.courriel}`);
+      console.log(response.data)
+      setOrderHistory(response.data);
+    } catch (error) {
+      console.error('Error fetching cart:', error);
+    }
+  }
+
+  useEffect( () => {
+    handleOrderHistory();
+  }, [user]);
+
   const handleFormulaire = handleSubmit(async (data) => {
     const formData = new FormData();
 
@@ -25,17 +41,12 @@ function Onglets() {
 
     var test = await axios.put("/modificationProduit", formData);
   });
-  console.log(user);
+
   return (
-    <Tabs
-      defaultActiveKey="profile"
-      id="fill-tab-example"
-      className="mb-3"
-      fill
-    >
-      <Tab eventKey="profile" title="Profile">
+    <Tabs defaultActiveKey="profil" id="fill-tab-example" className="mb-3" fill>
+      <Tab eventKey="profil" title="Profil">
         <Form onSubmit={handleFormulaire}>
-          <Container style={{ width: "400px" }}>
+          <Container style={{ width: "600px" }}>
             <Stack>
               {/* Input PRENOM */}
               <Form.Group as={Col} controlId="prenom">
@@ -181,7 +192,28 @@ function Onglets() {
       </Tab>
       {(!user || user?.role !== "admin") && (
         <Tab eventKey="commandes" title="Historique des commandes">
-          Tab content for Profile
+          <ListGroup variant="flush">
+          {orderHistory && orderHistory.map( (item) => (
+              <ListGroup.Item mb={2}>
+                <Stack
+                      direction="vertical"
+                      gap={1}
+                      style={{ justifyContent: "center", margin: "0px" }}
+                    >
+                      <Row>
+                        <Col><h5>Order to: {item.shippingInfos.prenomClient} {item.shippingInfos.nomClient}</h5></Col>
+                        
+                      </Row>
+                      <Row><p>Order Id: {item.orderId}</p></Row>
+                      <Row>
+                        <Col>Status: {item.status}</Col>
+                        <Col>Total: ${item.total} </Col>
+                      </Row>
+                    </Stack>
+              </ListGroup.Item>
+          ))
+          }
+          </ListGroup>
         </Tab>
       )}
     </Tabs>

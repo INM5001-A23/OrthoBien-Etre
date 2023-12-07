@@ -1,49 +1,74 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState,useContext } from "react";
 import { Badge, Button, Card, ListGroup, Stack } from "react-bootstrap";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import { useNavigate } from "react-router-dom";
 import ModelePage from "../layout/ModelePage";
+import { UserContext,AxiosContext } from "..";
+
 
 function PagePanier() {
-  const [cart, setCart] = useState(
-    JSON.parse(localStorage.getItem("guestCartItems")) !== null
-      ? JSON.parse(localStorage.getItem("guestCartItems"))
-      : []
-  );
+  const axios = useContext(AxiosContext);
+  const user = useContext(UserContext);
 
-  const cartTotal = cart.reduce(
-    (total, item) => total + item.price * item.quantity,
-    0
-  );
+  const [cart, setCart] = useState(JSON.parse(localStorage.getItem('guestCartItems')));
+
+  const fetchUserCart = async () => {
+    try {
+      const userIdResponse = await axios.get(`/utilisateur/find/${user.courriel}`);
+      const response = await axios.get(`/panier/${userIdResponse.data._id}`);
+      setCart(response.data.articles);
+    } catch (error) {
+      console.error('Error fetching cart:', error);
+    }
+  };
 
   useEffect(() => {
-    localStorage.setItem("guestCartItems", JSON.stringify(cart));
+    if (user) {
+      fetchUserCart();
+    } else {
+      const guestCartItems = localStorage.getItem('guestCartItems');
+      if (guestCartItems) {
+        console.log(guestCartItems);
+        setCart(JSON.parse(guestCartItems));
+      }
+    }
+  }, [user]);
+
+  useEffect(() => {
+    localStorage.setItem('guestCartItems', JSON.stringify(cart));
   }, [cart]);
 
+  const cartTotal = cart
+  ? cart.reduce((total, item) => total + item.prix * item.qtt, 0)
+  : 0;
+
   const increaseQuantity = (itemId) => {
-    const updatedCart = cart.map((item) =>
-      item.id === itemId ? { ...item, quantity: item.quantity + 1 } : item
-    );
+    const updatedCart = cart ? cart.map((item) =>
+      item.codeProduit === itemId ? { ...item, qtt: item.qtt + 1 } : item
+    ) : 0;
     setCart(updatedCart);
   };
 
   const decreaseQuantity = (itemId) => {
-    const updatedCart = cart.map((item) =>
-      item.id === itemId && item.quantity > 1
-        ? { ...item, quantity: item.quantity - 1 }
+    const updatedCart = cart? cart.map((item) =>
+    item.codeProduit === itemId && item.qtt > 1
+        ? { ...item, qtt: item.qtt - 1 }
         : item
-    );
+    ) : 0;
+
     setCart(updatedCart);
   };
 
   const removeItem = (itemId) => {
-    const updatedCart = cart.filter((item) => item.id !== itemId);
+    const updatedCart = cart.filter((item) => item.codeProduit !== itemId);
     setCart(updatedCart);
   };
 
-  const cartSize = cart.reduce((size, item) => size + item.quantity, 0);
+  const cartSize = cart
+  ? cart.reduce((size, item) => size + item.qtt, 0)
+  : 0;
 
   const navigate = useNavigate();
 
@@ -64,10 +89,11 @@ function PagePanier() {
           <Col xs={9}>
             <Card>
               <ListGroup variant="flush">
-                {cart.map((item) => (
+          
+                { cart && cart.map((item) => (
                   <ListGroup.Item
                     className="d-flex justify-content-between"
-                    key={item.id}
+                    key={item.codeProduit}
                   >
                     <Stack
                       direction="horizontal"
@@ -79,7 +105,7 @@ function PagePanier() {
                         variant="outline-danger"
                         size="sm"
                         style={{ margin: "10px" }}
-                        onClick={() => removeItem(item.id)}
+                        onClick={() => removeItem(item.codeProduit)}
                       >
                         <img
                           style={{ width: "20px" }}
@@ -90,11 +116,11 @@ function PagePanier() {
                       <img
                         className="p-2"
                         style={{ width: "80px" }}
-                        src={`/images/produits/${item.id}.jpeg`}
+                        src={`/images/produits/${item.codeProduit}.jpeg`}
                         alt="Produit"
                       />
                       <h6 style={{ fontSize: "20px" }} className="my-0 p-2">
-                        {item.name}
+                        {item.nomProduit}
                       </h6>
 
                       {/* <small className="text-muted">{item.description}</small> */}
@@ -104,22 +130,22 @@ function PagePanier() {
                         variant="outline-secondary"
                         size="sm"
                         style={{ margin: "10px" }}
-                        onClick={() => decreaseQuantity(item.id)}
+                        onClick={() => decreaseQuantity(item.codeProduit)}
                       >
                         -
                       </Button>
-                      {item.quantity}
+                      {item.qtt}
                       <Button
                         variant="outline-secondary"
                         size="sm"
                         style={{ margin: "10px" }}
-                        onClick={() => increaseQuantity(item.id)}
+                        onClick={() => increaseQuantity(item.codeProduit)}
                       >
                         +
                       </Button>
 
                       <span className="text-muted" style={{ fontSize: "20px" }}>
-                        {item.price?.toFixed(2)} $
+                        {item.prix?.toFixed(2)} $
                         <span style={{ fontSize: "16px" }}> / unité</span>
                       </span>
                     </div>
@@ -137,8 +163,7 @@ function PagePanier() {
               <Card.Body>
                 <Card.Title>Paiement</Card.Title>
                 <Card.Text>
-                  Sous-total ({cart.length} articles) : {cartTotal?.toFixed(2)}{" "}
-                  $
+                  Sous-total ({cart ? cart.length : 0} articles) : {cartTotal?.toFixed(2)} $
                 </Card.Text>
                 <Button
                   variant="primary"

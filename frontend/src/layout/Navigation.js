@@ -19,6 +19,7 @@ function Navigation() {
   const [results, setResults] = useState([]);
 
   const onDeconnexionClick = () => {
+    localStorage.removeItem('guestCartItems')
     localStorage.removeItem("token");
     navigate(0);
   };
@@ -47,8 +48,6 @@ function Navigation() {
             <Nav.Link onClick={() => navigate("/catalogue")}>
               Catalogue
             </Nav.Link>
-            <Nav.Link onClick={() => navigate("/faq")}>F.A.Q.</Nav.Link>
-            <Nav.Link onClick={() => navigate("/contacts")}>Contacts</Nav.Link>
           </Nav>
           <Form className="d-flex">
             {user && (

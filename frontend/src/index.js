@@ -10,8 +10,7 @@ export const AxiosContext = createContext();
 export const UserContext = createContext();
 
 const instance = axios.create({
-  // TODO: CHANGE FOR REAL API
-  baseURL: "http://localhost:3300",
+  baseURL: 'http://localhost:3300',
 });
 
 const user = localStorage.getItem("token")

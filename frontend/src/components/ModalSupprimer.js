@@ -1,42 +1,40 @@
-import {
-  Button,
-  ButtonGroup,
-  Container,
-  Stack,
-  ToggleButton,
-} from "react-bootstrap";
+import { Button, Container, Stack } from "react-bootstrap";
 import Form from "react-bootstrap/Form";
-import Col from "react-bootstrap/Col";
-
 import Modal from "react-bootstrap/Modal";
-import { useForm } from "react-hook-form";
 import { useContext, useState } from "react";
 import { AxiosContext } from "..";
+import { useNavigate } from "react-router-dom";
 
 function ModalSupprimer({ produit, show, onHide }) {
+  const navigate = useNavigate();
   const axios = useContext(AxiosContext);
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm({
-    mode: "onChange",
-  });
 
-  const [radioValue, setRadioValue] = useState("1");
+  const handleModalSupprimer = () => {
+    const body = { codeProduit: produit.codeProduit };
 
-  const radios = [
-    { name: "Non", value: "1" },
-    { name: "Oui", value: "2" },
-  ];
-
-  const handleModalModification = handleSubmit(async (data) => {
-    const formData = new FormData();
-
-    formData.append("files", data.imageProduit[0]);
-
-    var test = await axios.put("/modificationProduit", formData);
-  });
+    axios
+      .delete("/supprimerProduit", { data: body })
+      .then(function (response) {
+        if (response.status === 200) {
+          navigate("/admin", {
+            state: {
+              status: {
+                type: "success",
+                message: `Le produit est supprimé`,
+              },
+            },
+          });
+          navigate(0);
+        } else {
+          // TODO afficher message erreur
+        }
+        console.log(response);
+      })
+      .catch(function (error) {
+        // handle error
+        console.log(error);
+      });
+  };
 
   return (
     <Modal
@@ -54,11 +52,9 @@ function ModalSupprimer({ produit, show, onHide }) {
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <Form onSubmit={handleModalModification}>
+        <Form onSubmit={handleModalSupprimer}>
           <Container style={{ width: "400px" }}>
             <Stack>
-              {/* Input EN PROMOTION */}
-              <Form.Group as={Col} controlId="promotion"></Form.Group>
               <Form.Label>
                 Souhaitez-vous vraiment supprimer ce produit?
               </Form.Label>
