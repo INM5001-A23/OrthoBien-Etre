@@ -24,20 +24,32 @@
   }
   
 
-  .results-list {
-    width: 100%;
-    background-color: white;
-    display: flex;
-    flex-direction: column;
-    box-shadow: 0px 0px 8px #ddd;
-    border-radius: 10px;
-    margin-top: 1rem;
-    max-height: 300px;
-    overflow-y: auto;
-  }
-
-  .link_cursor
-{
-    cursor: pointer;
+.result-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  cursor: pointer;
+  border: black;
 }
-  
+
+.result-item img {
+  width: 90px;
+  height: 50px;
+  margin-right: 10px;
+}
+
+.results-list {
+  width: 100%;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0px 0px 8px #ddd;
+  border-radius: 10px;
+  margin-top: 1rem;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.link_cursor {
+  cursor: pointer;
+}
