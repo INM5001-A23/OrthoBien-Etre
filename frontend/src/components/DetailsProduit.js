@@ -17,6 +17,7 @@ import NomCategorie from "./NomCategorie";
 import { useNavigate } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
 import { AxiosContext } from "..";
+import { UserContext } from "..";
 
 function DetailsProduit({
   produit: {
@@ -32,6 +33,7 @@ function DetailsProduit({
   const navigate = useNavigate();
   const axios = useContext(AxiosContext);
   const [produit, setProduit] = useState(null);
+  const user = useContext(UserContext);
 
   useEffect(() => {
     axios
@@ -109,10 +111,14 @@ function DetailsProduit({
       )}
       <Row>
         <Col>
-          <Carrousel
-            images={[`/images/produits/${codeProduit}.jpeg`]}
-            itemHeight="500px"
-            className="product-images"
+          <Card.Img
+            src={`/images/produits/${codeProduit}.jpeg`}
+            style={{
+              maxWidth: "auto",
+              height: "100%",
+              maxWidth: "700px",
+              textAlign: "center",
+            }}
           />
         </Col>
         <Col>
@@ -123,7 +129,7 @@ function DetailsProduit({
               }}
             >
               <div style={{ display: "flex" }}>
-                <Etoile evaluation={evaluation} size="30" />
+                <Etoile evaluation={4} size="30" />
                 <div style={{ display: "flex", alignItems: "center" }}>
                   <Card.Link href="#">(0)</Card.Link>
                 </div>
@@ -138,16 +144,18 @@ function DetailsProduit({
               <Card.Subtitle className="mb-2 text-muted" />
               <Card.Text>{pDescription}</Card.Text>
               <Card.Text>{description}</Card.Text>
-              <Stack
-                direction="horizontal"
-                gap={5}
-                style={{ justifyContent: "center", margin: "0px" }}
-              >
-                <Button variant="outline-primary" onClick={addToCart}>
-                  Ajouter au panier
-                </Button>
-                <Button variant="outline-success">Acheter maintenant</Button>
-              </Stack>
+              {(!user || user?.role !== "admin") && (
+                <Stack
+                  direction="horizontal"
+                  gap={5}
+                  style={{ justifyContent: "center", margin: "0px" }}
+                >
+                  <Button variant="outline-primary" onClick={addToCart}>
+                    Ajouter au panier
+                  </Button>
+                  <Button variant="outline-success">Acheter maintenant</Button>
+                </Stack>
+              )}
             </Card.Body>
           </Card>
         </Col>
