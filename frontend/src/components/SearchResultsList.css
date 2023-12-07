@@ -1,35 +1,19 @@
-
 .results-list {
-    position:"fixed";
-    overflow-y: auto;
-    border-color: black;
-    border-width: 1cm;
-  }
-  
-  .result-item {
-    display: flex; 
-    align-items: center; 
-    margin-bottom: 10px;
-    cursor: pointer; 
-    border-color: black;
-    position:"fixed";
-    background-color: #fff0;
-    width: 215px;
-  }
-  
-  .result-item img {
-    width: 90px; 
-    height: 50px;
-    margin-right: 10px; 
-  }
-  
+  position: "fixed";
+  overflow-y: auto;
+  border-color: black;
+  border-width: 1cm;
+}
 
 .result-item {
   display: flex;
   align-items: center;
   margin-bottom: 10px;
   cursor: pointer;
-  border: black;
+  border-color: black;
+  position: "fixed";
+  background-color: #fff0;
+  width: 215px;
 }
 
 .result-item img {
