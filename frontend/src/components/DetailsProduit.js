@@ -56,9 +56,9 @@ function DetailsProduit({
   }, [axios]);
 
   const productDetails = {
-    id: codeProduit,
-    name: nomProduit,
-    price: prix,
+    codeProduit: codeProduit,
+    nomProduit: nomProduit,
+    prix: prix,
   };
 
   const [cart, setCart] = useState(
@@ -70,18 +70,18 @@ function DetailsProduit({
   const [notification, setNotification] = useState(null);
 
   const addToCart = () => {
-    const existingProduct = cart.find((item) => item.id === productDetails.id);
+    const existingProduct = cart.find((item) => item.codeProduit === productDetails.codeProduit);
 
     if (existingProduct) {
       const updatedCart = cart.map((item) =>
-        item.id === productDetails.id
-          ? { ...item, quantity: item.quantity + 1 }
+        item.codeProduit === productDetails.codeProduit
+          ? { ...item, quantity: item.qtt + 1 }
           : item
       );
       setCart(updatedCart);
       localStorage.setItem("guestCartItems", JSON.stringify(updatedCart));
     } else {
-      const updatedCart = [...cart, { ...productDetails, quantity: 1 }];
+      const updatedCart = [...cart, { ...productDetails, qtt: 1 }];
       setCart(updatedCart);
       localStorage.setItem("guestCartItems", JSON.stringify(updatedCart));
     }
