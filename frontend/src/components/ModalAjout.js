@@ -35,8 +35,15 @@ function ModalAjout({ show, onHide }) {
 
   const handleModalAjout = handleSubmit((data) => {
     const body = { ...data, token };
+
+    const formData = new FormData();
+    formData.append("files", data.imageProduit[0]);
+    Object.entries(body).forEach(([key, value], index) =>
+      formData.append(key, value)
+    );
+
     axios
-      .post("/nouveauProduit", body)
+      .post("/nouveauProduit", formData)
       .then(function (response) {
         if (response.status === 200) {
           onHide();
@@ -87,7 +94,7 @@ function ModalAjout({ show, onHide }) {
           <Container style={{ width: "400px" }}>
             <Stack>
               {/* Input IMAGE DU PRODUIT */}
-              {/* <Form.Group as={Col} controlId="imageProduit"></Form.Group>
+              <Form.Group as={Col} controlId="imageProduit"></Form.Group>
               <Form.Label>Image:</Form.Label>
               <Form.Control
                 type="file"
@@ -95,7 +102,7 @@ function ModalAjout({ show, onHide }) {
                   required: "Ce champ est obligatoire",
                 })}
               />
-              <p style={{ color: "red" }}>{errors.imageProduit?.message}</p> */}
+              <p style={{ color: "red" }}>{errors.imageProduit?.message}</p>
 
               {/* Input CODE DU PRODUIT */}
               <Form.Group as={Col} controlId="codeProduit">

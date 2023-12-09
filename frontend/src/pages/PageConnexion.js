@@ -22,6 +22,7 @@ function PageConnexion() {
     unregister,
     reset,
     setError,
+    clearErrors,
     formState: { errors },
   } = useForm({
     mode: "onBlur",
@@ -42,6 +43,7 @@ function PageConnexion() {
         }
       })
       .catch((error) => {
+        console.error("Error submitting form:", error);
         setError("backend", { message: error.response?.data?.erreur });
       });
   });
@@ -61,7 +63,14 @@ function PageConnexion() {
           Sinon veuillez vous inscrire.
         </p>
 
-        <Form className="w-25 mb-5" onSubmit={handleFormulaireConnexion}>
+        <Form
+          className="w-25 mb-5"
+          onSubmit={(e) => {
+            e.preventDefault();
+            clearErrors();
+            handleFormulaireConnexion();
+          }}
+        >
           <Form.Group className="mb-3 mx-auto" controlId="courriel">
             <Form.Label>Adresse courriel</Form.Label>
             <Form.Control

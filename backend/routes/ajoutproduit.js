@@ -1,6 +1,7 @@
 import express from "express";
 import Produits from "../models/Produits.js";
 import jwt from "jsonwebtoken";
+import Images from "../models/Images.js";
 
 const router = express.Router();
 router.use(express.json());
@@ -57,6 +58,17 @@ router.post("/", async (req, res) => {
       });
 
       await newProduit.save();
+
+      for (const { mimetype, buffer } of req.files) {
+        const newImage = new Images({
+          codeProduit,
+          image: buffer.toString("base64"),
+          mimeType: mimetype,
+        });
+
+        await newImage.save();
+      }
+
       res.status(200).json({ message: "Le produit a été ajouté !" });
     } else {
       res.status(520).json({ message: "Ce produit existe déjà" });

@@ -5,8 +5,13 @@ const router = express.Router();
 
 router.get("/", async (req, res) => {
   try {
-    const produit = await Produits.find({});
-    res.json(produit);
+    const produits = await Produits.aggregate().lookup({
+      from: "Images",
+      localField: "codeProduit",
+      foreignField: "codeProduit",
+      as: "images",
+    });
+    res.json(produits);
   } catch (err) {
     res.status(500).json({ message: err.message });
   }

@@ -1,5 +1,7 @@
 import express from "express";
 import Produits from "../models/Produits.js";
+import jwt from "jsonwebtoken";
+import Images from "../models/Images.js";
 
 const router = express.Router();
 router.use(express.json());
@@ -25,19 +27,20 @@ router.put("/", async (req, res) => {
       prix,
       promotion,
       populaire,
+      token,
     } = req.body;
-    //const user = jwt.verify(token,process.env.JWT_SECRET);
-    /*if(user.role !== "admin"){
-            res.status(401).json({
-                message: "Vous n'avez pas les autorisations nécessaires pour ajouter un produit."
-            });
-            return;
-        }*/
+
+    const user = jwt.verify(token, process.env.JWT_SECRET);
+
+    if (user.role !== "admin") {
+      res.status(401).json({
+        message:
+          "Vous n'avez pas les autorisations nécessaires pour ajouter un produit.",
+      });
+      return;
+    }
 
     const verifProduit = await Produits.findOne({ codeProduit });
-    // console.log(req.files[0]);
-    // // console.log(req.files[0].buffer.toString("base64"));
-    // res.status(200).json({ message: "hehe" });
 
     if (verifProduit) {
       verifProduit.nomProduit =
@@ -57,6 +60,17 @@ router.put("/", async (req, res) => {
         populaire != undefined ? populaire : verifProduit.populaire;
 
       await verifProduit.save();
+
+      for (const { mimetype, buffer } of req.files) {
+        const newImage = new Images({
+          codeProduit,
+          image: buffer.toString("base64"),
+          mimeType: mimetype,
+        });
+
+        await newImage.save();
+      }
+
       res
         .status(200)
         .json({ message: "Le produit a été modifié avec succès !" });

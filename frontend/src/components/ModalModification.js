@@ -17,7 +17,7 @@ import { useNavigate } from "react-router-dom";
 function ModalModification({ produit, show, onHide }) {
   const navigate = useNavigate();
   const axios = useContext(AxiosContext);
-
+  const token = localStorage.getItem("token");
   const {
     register,
     handleSubmit,
@@ -45,10 +45,10 @@ function ModalModification({ produit, show, onHide }) {
   ];
 
   const handleModalModification = handleSubmit((data) => {
-    const body = { ...data, codeProduit: produit.codeProduit };
+    const body = { ...data, codeProduit: produit.codeProduit, token };
 
     const formData = new FormData();
-    formData.append("files", data.imageProduit);
+    formData.append("files", data.imageProduit[0]);
     Object.entries(body).forEach(([key, value], index) =>
       formData.append(key, value)
     );
@@ -107,7 +107,7 @@ function ModalModification({ produit, show, onHide }) {
           <Container style={{ width: "400px" }}>
             <Stack>
               {/* Input IMAGE DU PRODUIT */}
-              {/* <Form.Group as={Col} controlId="imageProduit">
+              <Form.Group as={Col} controlId="imageProduit">
                 <Form.Label>Image:</Form.Label>
                 <Form.Control
                   type="file"
@@ -116,7 +116,9 @@ function ModalModification({ produit, show, onHide }) {
                   })}
                 />
                 <p style={{ color: "red" }}>{errors.imageProduit?.message}</p>
-              </Form.Group> */}
+              </Form.Group>
+
+              {produit.codeProduit}
 
               {/* Input NOM DU PRODUIT */}
               <Form.Group as={Col} controlId="nomProduit">
