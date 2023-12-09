@@ -51,19 +51,32 @@ router.get("/:clientid", async (req, res) => {
   // Update cart with userID
   router.put('/update/:userid', async (req, res) => {
     const userId = req.params.userid;
-    const newCart = req.body;
+    const newCart = req.body.guestCartItems;
+
+    console.log(newCart)
+
+    let cartSize = 0;
+    let cartTotal = 0;
+
+    if (newCart && Array.isArray(newCart)) {
+      cartSize = newCart.reduce((size, item) => size + item.qtt, 0);
+      cartTotal = newCart.reduce((total, item) => total + item.prix * item.qtt, 0);
+    }
+
+    console.log("Cart Size: " + cartSize)
+    console.log("Cart Total: " + cartTotal.toFixed(2))
 
     try {
       const updateCart = await Cart.findOneAndUpdate(
         { 'client.infosClient': userId },
         {
           $set: {
-            articles: newCart.articles,
-            nombreArticles: newCart.nombreArticles,
-            montantAvantTaxes: newCart.montantAvantTaxes,
+            articles: newCart,
+            nombreArticles: cartSize,
+            montantAvantTaxes: cartTotal
           },
         },
-        { new: true } // Return the updated document
+        { new: true }
       );
   
       if (updateCart) {

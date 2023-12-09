@@ -43,9 +43,7 @@ function CarteProduit({
   };
 
   const addToCart = () => {
-    const existingProduct = cart.find(
-      (item) => item.codeProduit === productDetails.codeProduit
-    );
+    const existingProduct = cart.find((item) => item.codeProduit === productDetails.codeProduit);
 
     if (existingProduct) {
       const updatedCart = cart.map((item) =>
@@ -74,7 +72,6 @@ function CarteProduit({
         width: "18rem",
         textAlign: "center",
         cursor: "pointer",
-        position: "relative",
       }}
     >
       {notification && (
