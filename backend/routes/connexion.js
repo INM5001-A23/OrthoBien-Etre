@@ -80,7 +80,7 @@ router.post("/", async (req, res) => {
           message:
             "Bonjour " +
             admin.prenomAdmin +
-            " vous êtes connectés comme administrateur",
+            " vous êtes connecté comme administrateur",
           prenomAdmin: admin.prenomAdmin,
           codeAdmin: admin.codeAdmin,
         };
