@@ -2,26 +2,17 @@ import Button from "react-bootstrap/Button";
 import "../components/SearchResultsList.css";
 import { useNavigate } from "react-router-dom";
 import Form from "react-bootstrap/Form";
-//import Dropdown from "react-bootstrap/Dropdown";
-//import DropdownButton from "react-bootstrap/DropdownButton";
+import SearchResultPortal from "../components/SearchResultPortal";
+import { useLocation } from "react-router-dom";
 
-
-export const SearchResultsList = ({ results, result }) => {
+export const SearchResultsList = ({ results }) => {
 const navigate = useNavigate();
 const firstFourResults = results.slice(0, 4);
 
-// const handleSearchSubmit = (e) => {
-//   e.preventDefault();
-//   results(results);
-// };
 
-const handleRedirect = () => {
-  // Assuming '/search-results' is the path to your results page
-  navigate(`/catalogue/${results}`);
-};
   return (
-    
-    <Form >
+    <SearchResultPortal>
+    <Form  style={{ position: "absolute"}} >
     <div className="results-list">
       {firstFourResults.map((result, id) => {
        
@@ -29,29 +20,31 @@ const handleRedirect = () => {
          
 
           <div 
+          onClick={() => navigate(`/produit/${result.codeProduit}`)}
           key={id} 
           className="result-item"  
-          style={{ width: "100px"}}
-          onClick={() => navigate(`/produit/${result.codeProduit}`)}
           
           >
-           <input type="image" img 
-              style={{ width: "100px" , position: "relative", display: "inline-block"}}
+           <input 
+            type="image"  
+              style={{ width: "150px", height: "100px" , display: "inline-block"}}
               src={`/images/produits/${result.codeProduit}.jpeg`} 
               alt={`Image for ${result.nomProduit}`}
             />
+            <p>
             {result.nomProduit}
-              
+            </p> 
           </div>
 
         )
-
-        
         
       })}
 
       <Button
-          onClick={handleRedirect}
+          onClick={() => navigate(`/recherche` ,{
+            state: { total:results },
+          })
+        }
           variant="outline-success"
           size="sm"
           style={{
@@ -59,6 +52,7 @@ const handleRedirect = () => {
             alignSelf: "center",
             margin: "0 5px 0 0",
             
+           
           }}
       >
           Voir plus 
@@ -66,7 +60,7 @@ const handleRedirect = () => {
 
     </div>
     </Form>
-    
+    </SearchResultPortal>
   );
 };
 

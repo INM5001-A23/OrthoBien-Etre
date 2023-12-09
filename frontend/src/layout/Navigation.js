@@ -18,14 +18,13 @@ function Navigation() {
   const [results, setResults] = useState([]);
 
   const onDeconnexionClick = () => {
-    localStorage.removeItem('guestCartItems')
+    localStorage.removeItem("guestCartItems");
     localStorage.removeItem("token");
-    navigate("/");
     navigate(0);
   };
 
   return (
-    <Navbar expand="lg" className="bg-body-tertiary">
+    <Navbar expand="lg" className="bg-body-tertiary" fixed="top">
       <Container
         fluid
         style={{
@@ -65,25 +64,6 @@ function Navigation() {
               <Logo img="/images/panier.svg" path="/panier" />
             )}
 
-            <div className="me-2">
-              <SearchBar setResults={setResults} />
-              {results && results.length > 0 && (
-                <SearchResultsList results={results} />
-              )}
-            </div>
-
-            {/* <Button
-              variant="outline-success"
-              size="sm"
-              style={{
-                height: "10%",
-                alignSelf: "center",
-                margin: "0 5px 0 0",
-              }}
-            >
-              Soumettre
-              
-            </Button>  */}
             {user && (
               <Button
                 variant="outline-danger"
@@ -97,6 +77,12 @@ function Navigation() {
                 Déconnexion
               </Button>
             )}
+            <div className="me-2">
+              <SearchBar setResults={setResults} />
+              {results && results.length > 0 && (
+                <SearchResultsList results={results} />
+              )}
+            </div>
           </Form>
         </Navbar.Collapse>
       </Container>
