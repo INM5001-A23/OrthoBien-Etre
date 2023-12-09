@@ -8,9 +8,10 @@ import { useNavigate } from "react-router-dom";
 function ModalSupprimer({ produit, show, onHide }) {
   const navigate = useNavigate();
   const axios = useContext(AxiosContext);
+  const token = localStorage.getItem("token");
 
   const handleModalSupprimer = () => {
-    const body = { codeProduit: produit.codeProduit };
+    const body = { codeProduit: produit.codeProduit, token };
 
     axios
       .delete("/supprimerProduit", { data: body })

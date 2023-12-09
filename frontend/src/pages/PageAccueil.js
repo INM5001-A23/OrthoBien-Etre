@@ -86,7 +86,7 @@ function PageAccueil() {
     <ModelePage>
       <Stack gap={3}>
         <Carrousel
-          images={produitsPhare.map((produit) => produit.codeProduit).slice(0, 5)}
+          images={produitsPhare.map((produit) => produit.images[0]).slice(0, 5)}
         />
 
         <Container className="text-center">

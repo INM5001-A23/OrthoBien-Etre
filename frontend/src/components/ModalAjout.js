@@ -26,6 +26,9 @@ function ModalAjout({ show, onHide }) {
     formState: { errors },
   } = useForm({
     mode: "onBlur",
+    defaultValues: {
+      codeCategorie: 1000,
+    },
   });
 
   const radios = [
@@ -35,8 +38,17 @@ function ModalAjout({ show, onHide }) {
 
   const handleModalAjout = handleSubmit((data) => {
     const body = { ...data, token };
+
+    const formData = new FormData();
+    for (const file of data.imageProduit) {
+      formData.append("files", file);
+    }
+    Object.entries(body).forEach(([key, value], index) =>
+      formData.append(key, value)
+    );
+
     axios
-      .post("/nouveauProduit", body)
+      .post("/nouveauProduit", formData)
       .then(function (response) {
         if (response.status === 200) {
           onHide();
@@ -87,15 +99,17 @@ function ModalAjout({ show, onHide }) {
           <Container style={{ width: "400px" }}>
             <Stack>
               {/* Input IMAGE DU PRODUIT */}
-              {/* <Form.Group as={Col} controlId="imageProduit"></Form.Group>
-              <Form.Label>Image:</Form.Label>
-              <Form.Control
-                type="file"
-                {...register("imageProduit", {
-                  required: "Ce champ est obligatoire",
-                })}
-              />
-              <p style={{ color: "red" }}>{errors.imageProduit?.message}</p> */}
+              <Form.Group as={Col} controlId="imageProduit">
+                <Form.Label>Ajout image(s):</Form.Label>
+                <Form.Control
+                  type="file"
+                  multiple
+                  {...register("imageProduit", {
+                    required: "Ce champ est obligatoire",
+                  })}
+                />
+                <p style={{ color: "red" }}>{errors.imageProduit?.message}</p>
+              </Form.Group>
 
               {/* Input CODE DU PRODUIT */}
               <Form.Group as={Col} controlId="codeProduit">

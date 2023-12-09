@@ -11,13 +11,21 @@ function CarteAdmin({ produit }) {
   const [modalModifShow, setModalModifShow] = React.useState(false);
   const [modalSupprimerShow, setModalSupprimerShow] = React.useState(false);
 
+  const convertToDataUrl = (image) => {
+    if (!image) {
+      return "";
+    }
+
+    return `data:${image.mimeType};base64,${image.image}`;
+  };
+
   return (
     <Card style={{ width: "18rem", textAlign: "center" }}>
       <div>
         <Card.Img
           className={styles["header-img"]}
           variant="top"
-          src={`/images/produits/${produit.codeProduit}.jpeg`}
+          src={convertToDataUrl(produit.images[0])}
         />
         <h5>
           <Badge
