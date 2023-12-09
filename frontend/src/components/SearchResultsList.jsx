@@ -9,6 +9,13 @@ export const SearchResultsList = ({ results }) => {
 const navigate = useNavigate();
 const firstFourResults = results.slice(0, 4);
 
+  const convertToDataUrl = (image) => {
+    if (!image) {
+      return "";
+    }
+
+    return `data:${image.mimeType};base64,${image.image}`;
+  };
 
   return (
     <SearchResultPortal>
@@ -28,7 +35,7 @@ const firstFourResults = results.slice(0, 4);
            <input 
             type="image"  
               style={{ width: "150px", height: "100px" , display: "inline-block"}}
-              src={`/images/produits/${result.codeProduit}.jpeg`} 
+              src={convertToDataUrl(result.images[0])} 
               alt={`Image for ${result.nomProduit}`}
             />
             <p>

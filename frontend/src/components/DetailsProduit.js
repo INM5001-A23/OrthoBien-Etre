@@ -28,6 +28,7 @@ function DetailsProduit({
     codeCategorie,
     prix,
     evaluation,
+    images,
   },
 }) {
   const navigate = useNavigate();
@@ -70,7 +71,9 @@ function DetailsProduit({
   const [notification, setNotification] = useState(null);
 
   const addToCart = () => {
-    const existingProduct = cart.find((item) => item.codeProduit === productDetails.codeProduit);
+    const existingProduct = cart.find(
+      (item) => item.codeProduit === productDetails.codeProduit
+    );
 
     if (existingProduct) {
       const updatedCart = cart.map((item) =>
@@ -111,8 +114,8 @@ function DetailsProduit({
       )}
       <Row>
         <Col>
-          <Card.Img
-            src={`/images/produits/${codeProduit}.jpeg`}
+          <Carrousel
+            images={images}
             style={{
               maxWidth: "auto",
               height: "100%",

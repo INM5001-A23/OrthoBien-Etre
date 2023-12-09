@@ -20,7 +20,14 @@ router.get("/", async (req, res) => {
 // Fetch products in promotion
 router.get("/promotion", async (req, res) => {
   try {
-    const popularProduct = await Produits.find({ promotion: true });
+    const popularProduct = await Produits.aggregate()
+      .lookup({
+        from: "Images",
+        localField: "codeProduit",
+        foreignField: "codeProduit",
+        as: "images",
+      })
+      .match({ promotion: true });
     res.json(popularProduct);
   } catch (err) {
     res.status(500).json({ message: err.message });
@@ -30,7 +37,14 @@ router.get("/promotion", async (req, res) => {
 // Fetch popular products
 router.get("/populaire", async (req, res) => {
   try {
-    const popularProduct = await Produits.find({ populaire: true });
+    const popularProduct = await Produits.aggregate()
+      .lookup({
+        from: "Images",
+        localField: "codeProduit",
+        foreignField: "codeProduit",
+        as: "images",
+      })
+      .match({ populaire: true });
     res.json(popularProduct);
   } catch (err) {
     res.status(500).json({ message: err.message });
@@ -40,7 +54,14 @@ router.get("/populaire", async (req, res) => {
 // Fetch produits phares
 router.get("/produitPhare", async (req, res) => {
   try {
-    const produitPhare = await Produits.find({ produitPhare: 1 });
+    const produitPhare = await Produits.aggregate()
+      .lookup({
+        from: "Images",
+        localField: "codeProduit",
+        foreignField: "codeProduit",
+        as: "images",
+      })
+      .match({ produitPhare: 1 });
     res.json(produitPhare);
   } catch (err) {
     res.status(500).json({ message: err.message });
@@ -52,7 +73,15 @@ router.get("/grandprix", async (req, res) => {
   try {
     const query = {};
     const sort = { prix: -1 };
-    const produitPhare = await Produits.find(query).sort(sort);
+    const produitPhare = await Produits.aggregate()
+      .lookup({
+        from: "Images",
+        localField: "codeProduit",
+        foreignField: "codeProduit",
+        as: "images",
+      })
+      .match(query)
+      .sort(sort);
     res.json(produitPhare);
   } catch (err) {
     res.status(500).json({ message: err.message });
@@ -64,7 +93,15 @@ router.get("/petitprix", async (req, res) => {
   try {
     const query = {};
     const sort = { prix: 1 };
-    const produitPhare = await Produits.find(query).sort(sort);
+    const produitPhare = await Produits.aggregate()
+      .lookup({
+        from: "Images",
+        localField: "codeProduit",
+        foreignField: "codeProduit",
+        as: "images",
+      })
+      .match(query)
+      .sort(sort);
     res.json(produitPhare);
   } catch (err) {
     res.status(500).json({ message: err.message });
@@ -74,8 +111,18 @@ router.get("/petitprix", async (req, res) => {
 // Fetch product
 router.get("/:codeProduit", async (req, res) => {
   try {
-    const codeProduit = req.params.codeProduit;
-    const produit = await Produits.findOne({ codeProduit });
+    const codeProduit = Number.parseInt(req.params.codeProduit);
+    const produit = await Produits.aggregate()
+      .lookup({
+        from: "Images",
+        localField: "codeProduit",
+        foreignField: "codeProduit",
+        as: "images",
+      })
+      .match({ codeProduit })
+      .limit(1)
+      .cursor()
+      .next();
     if (!produit) {
       res.status(404).json({ message: "Product not found." });
       return;
@@ -85,15 +132,4 @@ router.get("/:codeProduit", async (req, res) => {
     res.status(500).json({ message: err.message });
   }
 });
-
-//  // Fetch products by category
-//  router.get("/:codeCategorie", async (req, res) => {
-//   try {
-//     const codeCategorie = req.params.codeCategorie;
-//     const produit = await Produits.find({ codeCategorie });
-//     res.json(produit);
-//   } catch (err) {
-//     res.status(500).json({ message: err.message });
-//   }
-// });
 export default router;

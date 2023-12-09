@@ -15,6 +15,7 @@ function CarteProduit({
     prix,
     promotion,
     populaire,
+    images,
   },
 }) {
   const navigate = useNavigate();
@@ -23,7 +24,6 @@ function CarteProduit({
     nomProduit: nomProduit,
     prix: prix,
   };
-  console.log(codeProduit);
   const user = useContext(UserContext);
 
   const [cart, setCart] = useState(
@@ -33,6 +33,14 @@ function CarteProduit({
   );
 
   const [notification, setNotification] = useState(null);
+
+  const convertToDataUrl = (image) => {
+    if (!image) {
+      return "";
+    }
+
+    return `data:${image.mimeType};base64,${image.image}`;
+  };
 
   const addToCart = () => {
     const existingProduct = cart.find(
@@ -59,6 +67,7 @@ function CarteProduit({
       setNotification(null);
     }, 3000);
   };
+
   return (
     <Card
       style={{
@@ -90,7 +99,7 @@ function CarteProduit({
         <Card.Img
           className={styles["header-img"]}
           variant="top"
-          src={`/images/produits/${codeProduit}.jpeg`}
+          src={convertToDataUrl(images[0])}
         />
         <h5>
           <Badge

@@ -12,6 +12,8 @@ function PageProduit() {
   const [produit, setProduit] = useState(null);
 
   useEffect(() => {
+    if (!codeProduit) return;
+
     axios
       .get(`/produits/${codeProduit}`)
       .then(function (response) {
@@ -29,9 +31,7 @@ function PageProduit() {
       .finally(function () {
         // always executed
       });
-  }, [axios]);
-
-  console.log(produit);
+  }, [axios, codeProduit]);
 
   return (
     <ModelePage>
