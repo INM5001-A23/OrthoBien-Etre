@@ -75,7 +75,7 @@ function DetailsProduit({
     if (existingProduct) {
       const updatedCart = cart.map((item) =>
         item.codeProduit === productDetails.codeProduit
-          ? { ...item, quantity: item.qtt + 1 }
+          ? { ...item, qtt: item.qtt + 1 }
           : item
       );
       setCart(updatedCart);
