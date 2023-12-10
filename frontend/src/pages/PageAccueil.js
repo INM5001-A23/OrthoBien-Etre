@@ -5,7 +5,7 @@ import { useContext, useEffect, useState } from "react";
 import { AxiosContext } from "..";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
-import Carrousel from "../components/Carrousel";
+import Carrousel from "../components/CarrouselAccueil";
 import CarteCategorie from "../components/CarteCategorie";
 // import Images from '../../public/images/carousel'
 
