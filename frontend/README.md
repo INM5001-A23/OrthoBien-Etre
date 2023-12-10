@@ -22,7 +22,23 @@
 
 4. Accédez à l'application dans votre navigateur : http://localhost:3000
 
+## Déploiement
+
+Pour déployer l'application en production, utilisez la commande:
+
+```bash
+    npm run build
+```
+
 ## Configuration
 
 1. Copiez le fichier `.env.example` et renommez-le en `.env`.
-2. Configurez les variables d'environnement nécessaires, telles que les clés d'API, les URL de base, etc.
+
+## Structure du Projet
+
+    `/public`: Contient les fichiers statiques.
+    `/src`: Contient le code source de l'application.
+        `/components`: Composants précis réutilisables.
+        `/layout`: Composants apparaissants sur chaque page de l'application.
+        `/pages`: Composants représantants chaque page.
+        `/utils`: Utilitaires et fonctions auxiliaires.
