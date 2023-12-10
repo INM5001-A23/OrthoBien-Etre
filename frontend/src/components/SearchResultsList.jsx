@@ -4,18 +4,11 @@ import { useNavigate } from "react-router-dom";
 import Form from "react-bootstrap/Form";
 import SearchResultPortal from "../components/SearchResultPortal";
 import { useLocation } from "react-router-dom";
+import { convertToDataUrl } from "../utils";
 
 export const SearchResultsList = ({ results }) => {
 const navigate = useNavigate();
 const firstFourResults = results.slice(0, 4);
-
-  const convertToDataUrl = (image) => {
-    if (!image) {
-      return "";
-    }
-
-    return `data:${image.mimeType};base64,${image.image}`;
-  };
 
   return (
     <SearchResultPortal>

@@ -6,18 +6,11 @@ import React, { useState } from "react";
 import ModalModification from "./ModalModification";
 import ModalSupprimer from "./ModalSupprimer";
 import { Alert, Badge } from "react-bootstrap";
+import { convertToDataUrl } from "../utils";
 
 function CarteAdmin({ produit }) {
   const [modalModifShow, setModalModifShow] = React.useState(false);
   const [modalSupprimerShow, setModalSupprimerShow] = React.useState(false);
-
-  const convertToDataUrl = (image) => {
-    if (!image) {
-      return "";
-    }
-
-    return `data:${image.mimeType};base64,${image.image}`;
-  };
 
   return (
     <Card style={{ width: "18rem", textAlign: "center" }}>

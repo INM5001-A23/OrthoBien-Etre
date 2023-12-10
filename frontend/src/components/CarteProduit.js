@@ -6,6 +6,8 @@ import styles from "./Carte.module.css";
 import NomCategorie from "./NomCategorie";
 import { useContext } from "react";
 import { UserContext } from "..";
+import { calculMoyenneAvis, convertToDataUrl } from "../utils";
+import Etoile from "./Etoile";
 
 function CarteProduit({
   produit: {
@@ -16,6 +18,7 @@ function CarteProduit({
     promotion,
     populaire,
     images,
+    avis,
   },
 }) {
   const navigate = useNavigate();
@@ -33,14 +36,6 @@ function CarteProduit({
   );
 
   const [notification, setNotification] = useState(null);
-
-  const convertToDataUrl = (image) => {
-    if (!image) {
-      return "";
-    }
-
-    return `data:${image.mimeType};base64,${image.image}`;
-  };
 
   const addToCart = () => {
     const existingProduct = cart.find(
@@ -154,6 +149,7 @@ function CarteProduit({
             )
           )}
         </Stack>
+        <Etoile evaluation={calculMoyenneAvis(avis)} size="25" />
       </Card.Body>
       <Row className="p-2 mb-3">
         <Stack

@@ -5,12 +5,19 @@ const router = express.Router();
 
 router.get("/", async (req, res) => {
   try {
-    const produits = await Produits.aggregate().lookup({
-      from: "Images",
-      localField: "codeProduit",
-      foreignField: "codeProduit",
-      as: "images",
-    });
+    const produits = await Produits.aggregate()
+      .lookup({
+        from: "Avis",
+        localField: "codeProduit",
+        foreignField: "codeProduit",
+        as: "avis",
+      })
+      .lookup({
+        from: "Images",
+        localField: "codeProduit",
+        foreignField: "codeProduit",
+        as: "images",
+      });
     res.json(produits);
   } catch (err) {
     res.status(500).json({ message: err.message });
@@ -21,6 +28,12 @@ router.get("/", async (req, res) => {
 router.get("/promotion", async (req, res) => {
   try {
     const popularProduct = await Produits.aggregate()
+      .lookup({
+        from: "Avis",
+        localField: "codeProduit",
+        foreignField: "codeProduit",
+        as: "avis",
+      })
       .lookup({
         from: "Images",
         localField: "codeProduit",
@@ -39,6 +52,12 @@ router.get("/populaire", async (req, res) => {
   try {
     const popularProduct = await Produits.aggregate()
       .lookup({
+        from: "Avis",
+        localField: "codeProduit",
+        foreignField: "codeProduit",
+        as: "avis",
+      })
+      .lookup({
         from: "Images",
         localField: "codeProduit",
         foreignField: "codeProduit",
@@ -55,6 +74,12 @@ router.get("/populaire", async (req, res) => {
 router.get("/produitPhare", async (req, res) => {
   try {
     const produitPhare = await Produits.aggregate()
+      .lookup({
+        from: "Avis",
+        localField: "codeProduit",
+        foreignField: "codeProduit",
+        as: "avis",
+      })
       .lookup({
         from: "Images",
         localField: "codeProduit",
@@ -74,6 +99,12 @@ router.get("/grandprix", async (req, res) => {
     const query = {};
     const sort = { prix: -1 };
     const produitPhare = await Produits.aggregate()
+      .lookup({
+        from: "Avis",
+        localField: "codeProduit",
+        foreignField: "codeProduit",
+        as: "avis",
+      })
       .lookup({
         from: "Images",
         localField: "codeProduit",
@@ -95,6 +126,12 @@ router.get("/petitprix", async (req, res) => {
     const sort = { prix: 1 };
     const produitPhare = await Produits.aggregate()
       .lookup({
+        from: "Avis",
+        localField: "codeProduit",
+        foreignField: "codeProduit",
+        as: "avis",
+      })
+      .lookup({
         from: "Images",
         localField: "codeProduit",
         foreignField: "codeProduit",
@@ -113,6 +150,12 @@ router.get("/:codeProduit", async (req, res) => {
   try {
     const codeProduit = Number.parseInt(req.params.codeProduit);
     const produit = await Produits.aggregate()
+      .lookup({
+        from: "Avis",
+        localField: "codeProduit",
+        foreignField: "codeProduit",
+        as: "avis",
+      })
       .lookup({
         from: "Images",
         localField: "codeProduit",

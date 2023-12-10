@@ -1,19 +1,12 @@
 import Carousel from "react-bootstrap/Carousel";
+import { convertToDataUrl } from "../utils";
 
 function Carrousel({
   images,
-  itemHeight = "650px",
+  itemHeight = "600px",
   style = {},
   className = "",
 }) {
-  const convertToDataUrl = (image) => {
-    if (!image) {
-      return "";
-    }
-
-    return `data:${image.mimeType};base64,${image.image}`;
-  };
-
   return (
     <Carousel style={style} variant="dark" className={className}>
       {images.map((image) => (

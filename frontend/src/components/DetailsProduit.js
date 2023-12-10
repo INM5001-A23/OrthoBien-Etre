@@ -18,6 +18,7 @@ import { useNavigate } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
 import { AxiosContext } from "..";
 import { UserContext } from "..";
+import { calculMoyenneAvis } from "../utils";
 
 function DetailsProduit({
   produit: {
@@ -27,9 +28,9 @@ function DetailsProduit({
     description,
     codeCategorie,
     prix,
-    evaluation,
     images,
     promotion,
+    avis,
   },
 }) {
   const navigate = useNavigate();
@@ -118,15 +119,7 @@ function DetailsProduit({
       )}
       <Row>
         <Col>
-          <Carrousel
-            images={images}
-            style={{
-              maxWidth: "auto",
-              height: "100%",
-              maxWidth: "700px",
-              textAlign: "center",
-            }}
-          />
+          <Carrousel images={images} />
         </Col>
         <Col>
           <Card style={{ height: "auto" }}>
@@ -136,9 +129,9 @@ function DetailsProduit({
               }}
             >
               <div style={{ display: "flex" }}>
-                <Etoile evaluation={4} size="30" />
+                <Etoile evaluation={calculMoyenneAvis(avis)} size="30" />
                 <div style={{ display: "flex", alignItems: "center" }}>
-                  <Card.Link href="#">(0)</Card.Link>
+                  <Card.Link href="#commentaires">({avis.length})</Card.Link>
                 </div>
               </div>
               <Card.Title>{nomProduit}</Card.Title>
@@ -190,20 +183,25 @@ function DetailsProduit({
           </Card>
         </Col>
       </Row>
-      <Stack>
-        <Row style={{ padding: "10px 0 20px 0" }}></Row>
-        {/* TODO 
-        Affiche sil y a des commentaires pour le produit */}
-        <CarteCommentaire
-          nomClient={"Nom du client"}
-          titre={"Titre du commentaire"}
-          commentaire={
-            "Some quick example text to build on the card title and make up the bulk of the card's content."
-          }
-          evaluation={4}
-        />
-        <FormulaireEvaluation etoiles={"4"} />
+      <Row style={{ padding: "10px 0 20px 0" }} className="mx-auto"></Row>
+      <h3 id="commentaires" style={{ textAlign: "center" }}>
+        Commentaires des clients
+      </h3>
+      <Stack
+        direction="horizontal"
+        gap={5}
+        style={{ justifyContent: "center" }}
+      >
+        {avis.map(({ prenomClient, date, commentaire, note }) => (
+          <CarteCommentaire
+            nomClient={prenomClient}
+            titre={date}
+            commentaire={commentaire}
+            evaluation={note}
+          />
+        ))}
       </Stack>
+      <FormulaireEvaluation etoiles={"4"} />
     </Container>
   );
 }

@@ -1,6 +1,5 @@
 import { useState } from "react";
-import { AiOutlineStar } from "react-icons/ai";
-import { FaStar, FaStarHalfAlt } from "react-icons/fa";
+import { FaStar } from "react-icons/fa";
 
 const Etoile = ({ evaluation, size }) => {
   const [rating, setRating] = useState(evaluation);
