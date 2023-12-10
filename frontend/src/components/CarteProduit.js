@@ -43,7 +43,9 @@ function CarteProduit({
   };
 
   const addToCart = () => {
-    const existingProduct = cart.find((item) => item.codeProduit === productDetails.codeProduit);
+    const existingProduct = cart.find(
+      (item) => item.codeProduit === productDetails.codeProduit
+    );
 
     if (existingProduct) {
       const updatedCart = cart.map((item) =>
@@ -65,6 +67,9 @@ function CarteProduit({
       setNotification(null);
     }, 3000);
   };
+
+  const prixInitial = prix || 0;
+  const prixBarre = promotion ? (prixInitial * 1.15).toFixed(2) : "";
 
   return (
     <Card
@@ -126,9 +131,29 @@ function CarteProduit({
         <Row>
           {codeCategorie && <NomCategorie codeCategorie={codeCategorie} />}
         </Row>
-        <Row className="p-2">
-          {prix && <ListGroup.Item>{prix} CAD</ListGroup.Item>}
-        </Row>
+        <Stack direction="horizontal">
+          {promotion ? (
+            <>
+              <ListGroup.Item
+                className="mx-auto"
+                style={{ color: "red", fontWeight: "bold" }}
+              >
+                {prix} CAD
+              </ListGroup.Item>
+              {prixBarre && (
+                <ListGroup.Item className="mx-auto">
+                  <del>{prixBarre} CAD</del>
+                </ListGroup.Item>
+              )}
+            </>
+          ) : (
+            prixInitial && (
+              <ListGroup.Item className="mx-auto">
+                {prixInitial} CAD
+              </ListGroup.Item>
+            )
+          )}
+        </Stack>
       </Card.Body>
       <Row className="p-2 mb-3">
         <Stack

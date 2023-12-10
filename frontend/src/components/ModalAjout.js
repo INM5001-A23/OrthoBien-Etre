@@ -98,19 +98,6 @@ function ModalAjout({ show, onHide }) {
         <Form onSubmit={handleModalAjout}>
           <Container style={{ width: "400px" }}>
             <Stack>
-              {/* Input IMAGE DU PRODUIT */}
-              <Form.Group as={Col} controlId="imageProduit">
-                <Form.Label>Ajout image(s):</Form.Label>
-                <Form.Control
-                  type="file"
-                  multiple
-                  {...register("imageProduit", {
-                    required: "Ce champ est obligatoire",
-                  })}
-                />
-                <p style={{ color: "red" }}>{errors.imageProduit?.message}</p>
-              </Form.Group>
-
               {/* Input CODE DU PRODUIT */}
               <Form.Group as={Col} controlId="codeProduit">
                 <Form.Label>Code du produit:</Form.Label>
@@ -125,6 +112,19 @@ function ModalAjout({ show, onHide }) {
                   })}
                 />
                 <p style={{ color: "red" }}>{errors.codeProduit?.message}</p>
+              </Form.Group>
+
+              {/* Input IMAGE DU PRODUIT */}
+              <Form.Group as={Col} controlId="imageProduit">
+                <Form.Label>Ajout image(s):</Form.Label>
+                <Form.Control
+                  type="file"
+                  multiple
+                  {...register("imageProduit", {
+                    required: "Ce champ est obligatoire",
+                  })}
+                />
+                <p style={{ color: "red" }}>{errors.imageProduit?.message}</p>
               </Form.Group>
 
               {/* Input NOM DU PRODUIT */}

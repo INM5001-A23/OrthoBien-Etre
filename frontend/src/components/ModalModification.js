@@ -9,7 +9,7 @@ import Form from "react-bootstrap/Form";
 import Col from "react-bootstrap/Col";
 import Modal from "react-bootstrap/Modal";
 import { useForm } from "react-hook-form";
-import { useContext, useState, useEffect } from "react";
+import { useContext } from "react";
 import { AxiosContext } from "..";
 import FiltreCategorie from "./FiltreCategorie";
 import { useNavigate } from "react-router-dom";
@@ -32,6 +32,7 @@ function ModalModification({ produit, show, onHide }) {
       description: produit.description,
       quantite: produit.quantite,
       codeCategorie: produit.codeCategorie,
+      codeProduit: produit.codeProduit,
       prix: produit.prix,
       quantite: produit.quantite,
       populaire: produit.populaire,
@@ -92,6 +93,10 @@ function ModalModification({ produit, show, onHide }) {
     value: produit.codeCategorie,
   });
 
+  register("codeProduit", {
+    value: produit.codeProduit,
+  });
+
   return (
     <Modal
       size="lg"
@@ -108,6 +113,12 @@ function ModalModification({ produit, show, onHide }) {
         <Form onSubmit={handleModalModification}>
           <Container style={{ width: "400px" }}>
             <Stack>
+              {/* Input CODE DU PRODUIT */}
+              <Form.Group as={Col} controlId="codeProduit">
+                <Form.Label>Code du produit:</Form.Label>
+                <Form.Control {...register("codeProduit")} disabled />
+              </Form.Group>
+
               {/* Input IMAGE DU PRODUIT */}
               <Form.Group as={Col} controlId="imageProduit">
                 <Form.Label>Ajout image(s):</Form.Label>
@@ -118,8 +129,6 @@ function ModalModification({ produit, show, onHide }) {
                 />
                 <p style={{ color: "red" }}>{errors.imageProduit?.message}</p>
               </Form.Group>
-
-              {produit.codeProduit}
 
               {/* Input NOM DU PRODUIT */}
               <Form.Group as={Col} controlId="nomProduit">
@@ -193,6 +202,7 @@ function ModalModification({ produit, show, onHide }) {
                 <Form.Label>Prix unitaire:</Form.Label>
                 <Form.Control
                   type="number"
+                  step={0.01}
                   {...register("prix", {
                     required: "Ce champ est obligatoire",
                     valueAsNumber: true,

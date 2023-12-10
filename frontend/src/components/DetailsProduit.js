@@ -29,6 +29,7 @@ function DetailsProduit({
     prix,
     evaluation,
     images,
+    promotion,
   },
 }) {
   const navigate = useNavigate();
@@ -96,6 +97,9 @@ function DetailsProduit({
     }, 3000);
   };
 
+  const prixInitial = prix || 0;
+  const prixBarre = promotion ? (prixInitial * 1.15).toFixed(2) : "";
+
   return (
     <Container>
       {notification && (
@@ -143,7 +147,30 @@ function DetailsProduit({
                   <NomCategorie codeCategorie={codeCategorie} />
                 )}
               </Card.Subtitle>
-              {prix && <ListGroup.Item>{prix}</ListGroup.Item>}
+              <Stack direction="horizontal">
+                {promotion ? (
+                  <>
+                    <ListGroup.Item
+                      style={{
+                        color: "red",
+                        fontWeight: "bold",
+                        margin: "0 20px 0 0",
+                      }}
+                    >
+                      {prix} CAD
+                    </ListGroup.Item>
+                    {prixBarre && (
+                      <ListGroup.Item>
+                        <del>{prixBarre} CAD</del>
+                      </ListGroup.Item>
+                    )}
+                  </>
+                ) : (
+                  prixInitial && (
+                    <ListGroup.Item>{prixInitial} CAD</ListGroup.Item>
+                  )
+                )}
+              </Stack>
               <Card.Subtitle className="mb-2 text-muted" />
               <Card.Text>{pDescription}</Card.Text>
               <Card.Text>{description}</Card.Text>
