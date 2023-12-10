@@ -7,14 +7,9 @@ function Carrousel({
   style = {},
   className = "",
 }) {
-    const imagesCode = [1001,1002,1003];
-    const imagesList = imagesCode.map((item) => {
-      return `./images/${item}.png`
-    });
-
   return (
     <Carousel style={style} variant="dark" className={className}>
-      {imagesList.map((image) => (
+      {images.map((image) => (
         <Carousel.Item style={{ height: itemHeight }}>
           <img
             className="d-block w-100 h-100 object-fit-cover"

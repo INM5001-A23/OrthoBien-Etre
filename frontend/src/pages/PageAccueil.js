@@ -7,7 +7,6 @@ import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Carrousel from "../components/CarrouselAccueil";
 import CarteCategorie from "../components/CarteCategorie";
-// import Images from '../../public/images/carousel'
 
 function PageAccueil() {
   const axios = useContext(AxiosContext);
@@ -15,11 +14,11 @@ function PageAccueil() {
   const [produitsPopulaire, setProduitsPopulaire] = useState([]);
   const [categories, setCategories] = useState([]);
 
-  const imagesCode = [1001,1002,1003];
+  const imagesCode = [1001, 1002, 1003];
   const imagesList = imagesCode.map((item) => {
-    return `./images/${item}.png`
+    return `./images/${item}.png`;
   });
-  
+
   useEffect(() => {
     axios
       .get("/categories")
@@ -72,9 +71,7 @@ function PageAccueil() {
   return (
     <ModelePage>
       <Stack gap={3}>
-        <Carrousel
-          images={imagesList}
-        />
+        <Carrousel images={imagesList} />
 
         <Container className="text-center">
           <Row className="p-3">
