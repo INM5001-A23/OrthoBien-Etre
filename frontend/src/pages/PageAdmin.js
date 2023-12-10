@@ -1,11 +1,10 @@
+import React, { useContext, useEffect, useState } from "react";
 import { Alert, Button, Col, Container, Row, Stack } from "react-bootstrap";
-import ModelePage from "../layout/ModelePage";
-import { useContext, useEffect, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import { AxiosContext, UserContext } from "..";
 import CarteAdmin from "../components/CarteAdmin";
-import { useLocation, useNavigate } from "react-router-dom";
-import React from "react";
 import ModalAjout from "../components/ModalAjout";
+import ModelePage from "../layout/ModelePage";
 
 function PageAdmin() {
   const navigate = useNavigate();

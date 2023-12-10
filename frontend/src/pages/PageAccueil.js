@@ -1,12 +1,12 @@
-import { Container, Stack } from "react-bootstrap";
-import ModelePage from "../layout/ModelePage";
-import CarteProduit from "../components/CarteProduit";
 import { useContext, useEffect, useState } from "react";
-import { AxiosContext } from "..";
+import { Container, Stack } from "react-bootstrap";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
+import { AxiosContext } from "..";
 import Carrousel from "../components/CarrouselAccueil";
 import CarteCategorie from "../components/CarteCategorie";
+import CarteProduit from "../components/CarteProduit";
+import ModelePage from "../layout/ModelePage";
 
 function PageAccueil() {
   const axios = useContext(AxiosContext);

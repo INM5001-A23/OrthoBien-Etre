@@ -100,8 +100,7 @@ router.post("/", async (req, res) => {
       }
     }
   } catch (error) {
-    console.log("He is sure not connected " + error.message);
-    res.status(510).json({ erreur: "definetly not connected at all lol" });
+    res.status(510).json({ erreur: "Utilisateur n'est pas existant" });
   }
 });
 

@@ -1,3 +1,4 @@
+import { useContext, useEffect, useState } from "react";
 import {
   Alert,
   Button,
@@ -8,17 +9,15 @@ import {
   Row,
   Stack,
 } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
+import { AxiosContext, UserContext } from "..";
+import { calculMoyenneAvis } from "../utils";
 import Carrousel from "./Carrousel";
 import CarteCommentaire from "./CarteCommentaire";
 import "./DetailsProduit.css";
 import Etoile from "./Etoile";
 import FormulaireEvaluation from "./FormulaireEvaluation";
 import NomCategorie from "./NomCategorie";
-import { useNavigate } from "react-router-dom";
-import { useContext, useEffect, useState } from "react";
-import { AxiosContext } from "..";
-import { UserContext } from "..";
-import { calculMoyenneAvis } from "../utils";
 
 function DetailsProduit({
   produit: {

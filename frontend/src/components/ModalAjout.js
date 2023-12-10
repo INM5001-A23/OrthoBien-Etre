@@ -1,3 +1,4 @@
+import { useContext } from "react";
 import {
   Button,
   ButtonGroup,
@@ -5,11 +6,10 @@ import {
   Stack,
   ToggleButton,
 } from "react-bootstrap";
-import Form from "react-bootstrap/Form";
 import Col from "react-bootstrap/Col";
+import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
 import { useForm } from "react-hook-form";
-import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AxiosContext } from "..";
 import FiltreCategorie from "./FiltreCategorie";

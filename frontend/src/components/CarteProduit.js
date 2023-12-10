@@ -1,13 +1,12 @@
-import { default as React, useState } from "react";
+import { default as React, useContext, useState } from "react";
 import { Alert, Badge, Button, Card, Row, Stack } from "react-bootstrap";
 import ListGroup from "react-bootstrap/ListGroup";
 import { useNavigate } from "react-router-dom";
-import styles from "./Carte.module.css";
-import NomCategorie from "./NomCategorie";
-import { useContext } from "react";
 import { UserContext } from "..";
 import { calculMoyenneAvis, convertToDataUrl } from "../utils";
+import styles from "./Carte.module.css";
 import Etoile from "./Etoile";
+import NomCategorie from "./NomCategorie";
 
 function CarteProduit({
   produit: {

@@ -1,13 +1,13 @@
-import ModelePage from "../layout/ModelePage";
-import CarteProduit from "../components/CarteProduit";
+import { useContext, useEffect, useState } from "react";
+import { Button, Container, Stack } from "react-bootstrap";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
-import { useContext, useEffect, useState } from "react";
-import { AxiosContext } from "..";
-import { Button, Container, Stack } from "react-bootstrap";
-import FiltreCatalogue from "../components/FiltreCatalogue";
 import { useSearchParams } from "react-router-dom";
+import { AxiosContext } from "..";
+import CarteProduit from "../components/CarteProduit";
+import FiltreCatalogue from "../components/FiltreCatalogue";
 import FiltreCategorie from "../components/FiltreCategorie";
+import ModelePage from "../layout/ModelePage";
 
 function PageCatalogue() {
   const axios = useContext(AxiosContext);

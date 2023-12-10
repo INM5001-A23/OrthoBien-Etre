@@ -1,9 +1,9 @@
+import { useContext } from "react";
 import { Button, Container, Stack } from "react-bootstrap";
 import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
-import { useContext, useState } from "react";
-import { AxiosContext } from "..";
 import { useNavigate } from "react-router-dom";
+import { AxiosContext } from "..";
 
 function ModalSupprimer({ produit, show, onHide }) {
   const navigate = useNavigate();

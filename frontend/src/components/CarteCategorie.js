@@ -1,17 +1,15 @@
 import Card from "react-bootstrap/Card";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function CarteCategorie({ categorie: { img, nomCategorie, codeCategorie } }) {
   const navigate = useNavigate();
   return (
     <Card
-      onClick={() =>
-        navigate(`/catalogue?filtreCategorie=${codeCategorie}`)
-      }
+      onClick={() => navigate(`/catalogue?filtreCategorie=${codeCategorie}`)}
       style={{
         width: "16rem",
         textAlign: "center",
-        cursor: "pointer"
+        cursor: "pointer",
       }}
     >
       <Card.Body>

@@ -12,9 +12,24 @@ function PiedDePage() {
         <div className="row align-items-center justify-content-between">
           <div className="col-auto">
             <Nav className="justify-content-center">
-              <Nav.Link onClick={() => navigate("/catalogue")} className="highlight-on-hover">Catalogue</Nav.Link>
-              <Nav.Link onClick={() => navigate("/faq")} className="highlight-on-hover">F.A.Q.</Nav.Link>
-              <Nav.Link onClick={() => navigate("/contacts")} className="highlight-on-hover">Contacts</Nav.Link>
+              <Nav.Link
+                onClick={() => navigate("/catalogue")}
+                className="highlight-on-hover"
+              >
+                Catalogue
+              </Nav.Link>
+              <Nav.Link
+                onClick={() => navigate("/faq")}
+                className="highlight-on-hover"
+              >
+                F.A.Q.
+              </Nav.Link>
+              <Nav.Link
+                onClick={() => navigate("/contacts")}
+                className="highlight-on-hover"
+              >
+                Contacts
+              </Nav.Link>
             </Nav>
           </div>
           <div className="col-auto">
