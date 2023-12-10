@@ -1,34 +1,51 @@
-import { Button, Card, Container, Form, Row, Stack } from "react-bootstrap";
-
-import Etoile from "./Etoile";
-import { useContext, useEffect, useState } from "react";
+import React, { useContext } from "react";
+import { Button, Card, Container, Form, Stack } from "react-bootstrap";
+import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 import { AxiosContext } from "..";
-import { Link, useNavigate } from "react-router-dom";
+import Etoile from "./Etoile";
 
-function FormulaireEvaluation() {
+function FormulaireEvaluation({ codeProduit }) {
   const navigate = useNavigate();
   const axios = useContext(AxiosContext);
-  const [produit, setProduit] = useState(null);
+  const token = localStorage.getItem("token");
+  const {
+    setValue,
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    mode: "onBlur",
+  });
 
-  // useEffect(() => {
-  //   axios
-  //     .get(`/produits/${codeProduit}`)
-  //     .then(function (response) {
-  //       // handle success
-  //       console.log(response);
-  //       setProduit(response.data);
-  //     })
-  //     .catch(function (error) {
-  //       // handle error
-  //       console.log(error);
-  //       if (error.response.status === 404) {
-  //         navigate("/product-not-found");
-  //       }
-  //     })
-  //     .finally(function () {
-  //       // always executed
-  //     });
-  // }, [axios]);
+  const handleFormulaireEvaluation = handleSubmit((data) => {
+    const body = { ...data, codeProduit, token };
+
+    axios
+      .post("/avis", body)
+      .then(function (response) {
+        if (response.status === 200) {
+          navigate(0, {
+            state: {
+              status: {
+                type: "success",
+                message: `Votre évaluation client pour ce produit a bien été publiée.`,
+              },
+            },
+          });
+        }
+        console.log(response);
+      })
+      .catch(function (error) {
+        // handle error
+        // TODO afficher message erreur
+        console.log(error);
+      });
+  });
+
+  register("note", {
+    value: 0,
+  });
 
   return (
     <Container
@@ -41,38 +58,51 @@ function FormulaireEvaluation() {
       <h3 style={{ margin: "30px 0 0 0" }}>Créer une évaluation client</h3>
 
       <Stack gap={2}>
-        <h2 style={{ textAlign: "center" }}></h2>
-        <Container
-          style={{
-            backgroundColor: "#80808014",
-            borderRadius: "10px",
-            padding: "10px",
-          }}
-        >
-          <Card.Body>
-            <Card.Subtitle style={{ margin: "0 0 5px 0" }}>
-              Note globale
-            </Card.Subtitle>
-            <Etoile size="30px" />
+        <Form onSubmit={handleFormulaireEvaluation}>
+          <h2 style={{ textAlign: "center" }}></h2>
+          <Container
+            style={{
+              backgroundColor: "#80808014",
+              borderRadius: "10px",
+              padding: "10px",
+            }}
+          >
+            <Card.Body>
+              <Form.Group className="mb-3 mx-auto" controlId="note">
+                <Card.Subtitle style={{ margin: "0 0 5px 0" }}>
+                  Note globale
+                </Card.Subtitle>
+                <Etoile
+                  size="30px"
+                  onChange={(value) => setValue("note", value)}
+                />
+              </Form.Group>
 
-            <Card.Subtitle style={{ margin: "15px 0 5px 0" }}>
-              Ajouter un commentaire
-            </Card.Subtitle>
-            <Form.Control
-              as="textarea"
-              placeholder="Écrirez votre commentaire ici..."
-              style={{ height: "100px" }}
-            />
+              <Form.Group className="mb-3 mx-auto" controlId="commentaire">
+                <Card.Subtitle style={{ margin: "15px 0 5px 0" }}>
+                  Ajouter un commentaire
+                </Card.Subtitle>
+                <Form.Control
+                  as="textarea"
+                  placeholder="Écrirez votre commentaire ici..."
+                  style={{ height: "100px" }}
+                  {...register("commentaire", {
+                    required: "Ce champ est obligatoire",
+                  })}
+                />
+                <p style={{ color: "red" }}>{errors.commentaire?.message}</p>
+              </Form.Group>
 
-            <Button variant="secondary" style={{ margin: "10px 0 0 0" }}>
-              <Card.Subtitle
-              // onClick={() => navigate(`/produit/${codeProduit}/evaluation`)}
+              <Button
+                variant="secondary"
+                type="submit"
+                style={{ margin: "10px 0 0 0" }}
               >
-                Soumettre
-              </Card.Subtitle>
-            </Button>
-          </Card.Body>
-        </Container>
+                <Card.Subtitle>Soumettre</Card.Subtitle>
+              </Button>
+            </Card.Body>
+          </Container>
+        </Form>
       </Stack>
     </Container>
   );

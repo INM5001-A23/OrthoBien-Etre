@@ -19,16 +19,12 @@ function PageConnexion() {
   const {
     register,
     handleSubmit,
-    unregister,
-    reset,
     setError,
     clearErrors,
     formState: { errors },
   } = useForm({
     mode: "onBlur",
   });
-
-  React.useEffect(() => {}, [unregister]);
 
   const handleFormulaireConnexion = handleSubmit((data) => {
     axios
@@ -135,10 +131,6 @@ function PageConnexion() {
               <Alert.Heading>{errors.backend?.message}</Alert.Heading>
             </Alert>
           )}
-
-          {/* <p style={{ color: "red", textAlign: "center", fontSize: "1.5rem" }}>
-            {errors.backend?.message}
-          </p> */}
         </Form>
       </div>
     </ModelePage>

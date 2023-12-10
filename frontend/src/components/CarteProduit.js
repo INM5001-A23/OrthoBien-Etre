@@ -149,7 +149,17 @@ function CarteProduit({
             )
           )}
         </Stack>
-        <Etoile evaluation={avis && calculMoyenneAvis(avis)} size="25" />
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <Etoile evaluation={avis && calculMoyenneAvis(avis)} size="25" />
+
+          <Card.Link href="#commentaires">({avis.length})</Card.Link>
+        </div>
       </Card.Body>
       <Row className="p-2 mb-3">
         <Stack

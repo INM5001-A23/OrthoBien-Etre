@@ -1,9 +1,15 @@
 import { useState } from "react";
 import { FaStar } from "react-icons/fa";
 
-const Etoile = ({ evaluation, size }) => {
+const Etoile = ({ evaluation, onChange, size }) => {
   const [rating, setRating] = useState(evaluation);
   const [hover, setHover] = useState(null);
+
+  const handleOnClick = (currentRating) => {
+    setRating(currentRating);
+    onChange(currentRating);
+  };
+
   return (
     <div>
       {[...Array(5)].map((star, index) => {
@@ -15,7 +21,9 @@ const Etoile = ({ evaluation, size }) => {
               type="radio"
               name="rating"
               value={currentRating}
-              onClick={() => (!evaluation ? setRating(currentRating) : null)}
+              onClick={() =>
+                !evaluation ? handleOnClick(currentRating) : null
+              }
             />
             <FaStar
               style={{ cursor: "pointer" }}

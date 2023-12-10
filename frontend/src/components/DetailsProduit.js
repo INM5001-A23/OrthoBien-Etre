@@ -197,7 +197,7 @@ function DetailsProduit({
         ))}
       </Stack>
       {user && user?.role !== "admin" ? (
-        <FormulaireEvaluation etoiles={"4"} />
+        <FormulaireEvaluation codeProduit={codeProduit} />
       ) : (
         <div>non</div>
       )}

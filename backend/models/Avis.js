@@ -1,41 +1,36 @@
-import mongoose from 'mongoose';
-
+import mongoose from "mongoose";
 
 const avisSchema = new mongoose.Schema({
+  produit: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Produits",
+  },
+  codeProduit: {
+    type: Number,
+    required: true,
+  },
 
-    produit:{
-        type:mongoose.Schema.Types.ObjectId,
-        ref:'Produits'   
-    },
-    codeProduit:{
-        type:Number,
-        required: true,
-    },
+  prenomClient: {
+    type: String,
+    required: true,
+  },
 
-    prenomClient:{
-        type:String,
-        required: true
-    },
+  note: {
+    type: Number,
+    required: true,
+    min: 1,
+    max: 5,
+  },
 
-    note:{
-        type: Number,
-        required: true,
-        min:1,
-        max:5
+  commentaire: {
+    type: String,
+    required: false,
+  },
 
-    },
-
-    commentaire:{
-        type: String,
-        required: false,
-    },
-
-    date:{
-        type:Date,
-        default:Date.now
-    },
-
+  date: {
+    type: Date,
+    default: Date.now,
+  },
 });
 
-const Avis = mongoose.model('Avis', avisSchema);
-module.exports = Avis;
+export default mongoose.model("Avis", avisSchema, "Avis");

@@ -1,15 +1,17 @@
-import { Spinner, Stack } from "react-bootstrap";
+import { Alert, Spinner, Stack } from "react-bootstrap";
 import ModelePage from "../layout/ModelePage";
 import { useContext, useEffect, useState } from "react";
 import { AxiosContext } from "..";
 import DetailsProduit from "../components/DetailsProduit";
-import { useNavigate, useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 
 function PageProduit() {
   const axios = useContext(AxiosContext);
   const navigate = useNavigate();
   const { codeProduit } = useParams();
   const [produit, setProduit] = useState(null);
+  const { state } = useLocation();
+  const status = state?.status;
 
   useEffect(() => {
     if (!codeProduit) return;
@@ -36,6 +38,12 @@ function PageProduit() {
   return (
     <ModelePage>
       <Stack gap={3}>
+        {status?.type === "success" && (
+          <Alert variant="success">
+            <Alert.Heading>{status?.message}</Alert.Heading>
+          </Alert>
+        )}
+
         {produit ? (
           <DetailsProduit produit={produit} />
         ) : (

@@ -16,8 +16,6 @@ function PageAdmin() {
   const { state } = useLocation();
   const status = state?.status;
 
-  console.log(status);
-
   useEffect(() => {
     if (!user || user?.role !== "admin") {
       // TODO, faire une popup avant redirect

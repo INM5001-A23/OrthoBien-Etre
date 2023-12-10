@@ -6,6 +6,7 @@ import bodyParser from "body-parser";
 import multer from "multer";
 
 // import routes
+import avisRoutes from "./routes/avis.js";
 import categoryRoutes from "./routes/category.js";
 import productRoutes from "./routes/product.js";
 import cartRoutes from "./routes/cart.js";
@@ -44,6 +45,7 @@ app.get("/", (req, res) => {
 });
 
 // Use API Routes
+app.use("/avis", avisRoutes);
 app.use("/categories", categoryRoutes);
 app.use("/produits", productRoutes);
 app.use("/panier", cartRoutes);

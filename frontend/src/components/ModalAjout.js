@@ -191,8 +191,8 @@ function ModalAjout({ show, onHide }) {
                     },
                   })}
                 />
+                <p style={{ color: "red" }}>{errors.description?.message}</p>
               </Form.Group>
-              <p style={{ color: "red" }}>{errors.description?.message}</p>
 
               {/* Input PRIX UNITAIRE */}
               <Form.Group as={Col} controlId="prix">
