@@ -7,20 +7,24 @@ import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Carrousel from "../components/Carrousel";
 import CarteCategorie from "../components/CarteCategorie";
+// import Images from '../../public/images/carousel'
 
 function PageAccueil() {
   const axios = useContext(AxiosContext);
   const [promotions, setPromotions] = useState([]);
   const [produitsPopulaire, setProduitsPopulaire] = useState([]);
-  const [produitsPhare, setProduitsPhare] = useState([]);
   const [categories, setCategories] = useState([]);
 
+  const imagesCode = [1001,1002,1003];
+  const imagesList = imagesCode.map((item) => {
+    return `./images/${item}.png`
+  });
+  
   useEffect(() => {
     axios
       .get("/categories")
       .then(function (response) {
         // handle success
-        console.log(response);
         setCategories(response.data);
       })
       .catch(function (error) {
@@ -51,23 +55,6 @@ function PageAccueil() {
 
   useEffect(() => {
     axios
-      .get("/produits/populaire")
-      .then(function (response) {
-        // handle success
-        console.log(response);
-        setProduitsPhare(response.data);
-      })
-      .catch(function (error) {
-        // handle error
-        console.log(error);
-      })
-      .finally(function () {
-        // always executed
-      });
-  }, [axios]);
-
-  useEffect(() => {
-    axios
       .get("/produits/promotion")
       .then(function (response) {
         // handle success
@@ -86,7 +73,7 @@ function PageAccueil() {
     <ModelePage>
       <Stack gap={3}>
         <Carrousel
-          images={produitsPhare.map((produit) => produit.images[0]).slice(0, 5)}
+          images={imagesList}
         />
 
         <Container className="text-center">
