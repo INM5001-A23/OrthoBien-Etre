@@ -8,9 +8,6 @@ import { Button, Container, Stack } from "react-bootstrap";
 import FiltreCatalogue from "../components/FiltreCatalogue";
 import { useSearchParams } from "react-router-dom";
 import FiltreCategorie from "../components/FiltreCategorie";
-//import PropTypes from 'prop-types';
-import {SearchBar } from "../components/searchbar"
-import { SearchResultsList} from "../components/SearchResultsList"
 import { useLocation } from "react-router-dom";
 
 function Recherche  ({ }){
@@ -33,11 +30,11 @@ function Recherche  ({ }){
    console.log(results)
 
     if (results && results.length > 0) {
-      // Search results are already provided, no need to fetch
+      
       return;
     }
   
-    // Fetch data using the current filter and category
+    
     const fetchData = async () => {
       try {
         // Update the API endpoint based on your server setup
@@ -49,7 +46,7 @@ function Recherche  ({ }){
       }
     };
     
-    //fetchData(); // Call the fetchData function
+    
 
 }, [axios, filtre, filtreCategorie, results]);
 
@@ -87,9 +84,6 @@ function Recherche  ({ }){
   );
 }
 
-// Recherche.propTypes = {
-//   results: PropTypes.array.isRequired,
-//   setResults: PropTypes.func.isRequired,
-// };
+
 
 export default Recherche;
