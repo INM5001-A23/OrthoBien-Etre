@@ -2,9 +2,10 @@ import Tab from "react-bootstrap/Tab";
 import Tabs from "react-bootstrap/Tabs";
 import { useContext, useEffect, useState } from "react";
 import { UserContext } from "..";
-import { Container, Form, ListGroup, Stack, Row, Col } from "react-bootstrap";
+import { Container, Form, Stack, Row, Col} from "react-bootstrap";
 import { AxiosContext } from "..";
 import { useForm } from "react-hook-form";
+import HistoriqueCommande from "./HistoriqueCommande";
 
 function Onglets() {
   const axios = useContext(AxiosContext);
@@ -191,34 +192,7 @@ function Onglets() {
       </Tab>
       {(!user || user?.role !== "admin") && (
         <Tab eventKey="commandes" title="Historique des commandes">
-          <ListGroup variant="flush">
-            {orderHistory &&
-              orderHistory.map((item) => (
-                <ListGroup.Item mb={2}>
-                  <Stack
-                    direction="vertical"
-                    gap={1}
-                    style={{ justifyContent: "center", margin: "0px" }}
-                  >
-                    <Row>
-                      <Col>
-                        <h5>
-                          Order to: {item.shippingInfos.prenomClient}{" "}
-                          {item.shippingInfos.nomClient}
-                        </h5>
-                      </Col>
-                    </Row>
-                    <Row>
-                      <p>Order Id: {item.orderId}</p>
-                    </Row>
-                    <Row>
-                      <Col>Status: {item.status}</Col>
-                      <Col>Total: ${item.total} </Col>
-                    </Row>
-                  </Stack>
-                </ListGroup.Item>
-              ))}
-          </ListGroup>
+          <HistoriqueCommande historiqueCommandes={orderHistory} />
         </Tab>
       )}
     </Tabs>
