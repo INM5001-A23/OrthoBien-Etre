@@ -7,13 +7,15 @@ function Carrousel({
   style = {},
   className = "",
 }) {
+    const imagesCode = [1001,1002,1003];
+
   return (
     <Carousel style={style} variant="dark" className={className}>
-      {images.map((image) => (
+      {imagesCode.map((image) => (
         <Carousel.Item style={{ height: itemHeight }}>
           <img
             className="d-block w-100 h-100 object-fit-cover"
-            src={convertToDataUrl(image)}
+            src={`./images/${image}.png`}
             alt="First slide"
           />
         </Carousel.Item>
