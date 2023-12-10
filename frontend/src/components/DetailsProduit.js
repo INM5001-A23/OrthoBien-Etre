@@ -61,6 +61,7 @@ function DetailsProduit({
     codeProduit: codeProduit,
     nomProduit: nomProduit,
     prix: prix,
+    defaultImage: images[0]
   };
 
   const [cart, setCart] = useState(

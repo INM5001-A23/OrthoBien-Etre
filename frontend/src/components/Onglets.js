@@ -2,6 +2,10 @@ import { useContext, useEffect, useState } from "react";
 import { Col, Container, Form, Stack } from "react-bootstrap";
 import Tab from "react-bootstrap/Tab";
 import Tabs from "react-bootstrap/Tabs";
+import { useContext, useEffect, useState } from "react";
+import { UserContext } from "..";
+import { Container, Form, ListGroup, Stack, Row, Col } from "react-bootstrap";
+import { AxiosContext } from "..";
 import { useForm } from "react-hook-form";
 import { AxiosContext, UserContext } from "..";
 import HistoriqueCommande from "./HistoriqueCommande";
@@ -18,6 +22,7 @@ function Onglets() {
   const user = useContext(UserContext);
 
   const [orderHistory, setOrderHistory] = useState([]);
+  const [articles, setArticles] = useState([]);
 
   const handleOrderHistory = async (req, res) => {
     try {
@@ -191,7 +196,34 @@ function Onglets() {
       </Tab>
       {(!user || user?.role !== "admin") && (
         <Tab eventKey="commandes" title="Historique des commandes">
-          <HistoriqueCommande historiqueCommandes={orderHistory} />
+          <ListGroup variant="flush">
+            {orderHistory &&
+              orderHistory.map((item) => (
+                <ListGroup.Item mb={2}>
+                  <Stack
+                    direction="vertical"
+                    gap={1}
+                    style={{ justifyContent: "center", margin: "0px" }}
+                  >
+                    <Row>
+                      <Col>
+                        <h5>
+                          Order to: {item.shippingInfos.prenomClient}{" "}
+                          {item.shippingInfos.nomClient}
+                        </h5>
+                      </Col>
+                    </Row>
+                    <Row>
+                      <p>Order Id: {item.orderId}</p>
+                    </Row>
+                    <Row>
+                      <Col>Status: {item.status}</Col>
+                      <Col>Total: ${item.total} </Col>
+                    </Row>
+                  </Stack>
+                </ListGroup.Item>
+              ))}
+          </ListGroup>
         </Tab>
       )}
     </Tabs>

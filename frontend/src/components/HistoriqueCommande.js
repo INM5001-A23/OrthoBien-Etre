@@ -36,3 +36,4 @@ const HistoriqueCommande = (props) => {
 };
 
 export default HistoriqueCommande;
+
