@@ -51,12 +51,12 @@ function FormulaireEvaluation() {
         >
           <Card.Body>
             <Card.Subtitle style={{ margin: "0 0 5px 0" }}>
-              Évaluation globale
+              Note globale
             </Card.Subtitle>
             <Etoile size="30px" />
 
             <Card.Subtitle style={{ margin: "15px 0 5px 0" }}>
-              Ajouter un titre
+              Ajouter un commentaire
             </Card.Subtitle>
             <Form.Control
               as="textarea"

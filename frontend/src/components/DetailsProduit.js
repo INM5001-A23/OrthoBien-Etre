@@ -35,8 +35,8 @@ function DetailsProduit({
 }) {
   const navigate = useNavigate();
   const axios = useContext(AxiosContext);
-  const [produit, setProduit] = useState(null);
   const user = useContext(UserContext);
+  const [produit, setProduit] = useState(null);
 
   useEffect(() => {
     axios
@@ -187,21 +187,20 @@ function DetailsProduit({
       <h3 id="commentaires" style={{ textAlign: "center" }}>
         Commentaires des clients
       </h3>
-      <Stack
-        direction="horizontal"
-        gap={5}
-        style={{ justifyContent: "center" }}
-      >
-        {avis.map(({ prenomClient, date, commentaire, note }) => (
+      <Stack gap={3} style={{ justifyContent: "center" }}>
+        {avis.map(({ prenomClient, commentaire, note }) => (
           <CarteCommentaire
             nomClient={prenomClient}
-            titre={date}
             commentaire={commentaire}
             evaluation={note}
           />
         ))}
       </Stack>
-      <FormulaireEvaluation etoiles={"4"} />
+      {user && user?.role !== "admin" ? (
+        <FormulaireEvaluation etoiles={"4"} />
+      ) : (
+        <div>non</div>
+      )}
     </Container>
   );
 }

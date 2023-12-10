@@ -18,8 +18,21 @@ router.get("/", async (req, res) => {
 // Fetch products by category
 router.get("/:codeCategorie/produits", async (req, res) => {
   try {
-    const codeCategorie = req.params.codeCategorie;
-    const categoriesProduits = await Produit.find({ codeCategorie });
+    const codeCategorie = Number.parseInt(req.params.codeCategorie);
+    const categoriesProduits = await Produit.aggregate()
+      .lookup({
+        from: "Avis",
+        localField: "codeProduit",
+        foreignField: "codeProduit",
+        as: "avis",
+      })
+      .lookup({
+        from: "Images",
+        localField: "codeProduit",
+        foreignField: "codeProduit",
+        as: "images",
+      })
+      .match({ codeCategorie });
     res.json(categoriesProduits);
   } catch (err) {
     res.status(500).json({ message: err.message });

@@ -49,7 +49,7 @@ function Navigation() {
           </Nav>
           <Form className="d-flex">
             {user && (
-              <div style={{ padding: "0 10px 0 10px" }}>
+              <div style={{ padding: "10px 10px 0 10px" }}>
                 Bienvenue {user?.prenom || "Admin"}
               </div>
             )}

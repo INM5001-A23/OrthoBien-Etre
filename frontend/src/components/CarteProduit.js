@@ -96,7 +96,7 @@ function CarteProduit({
         <Card.Img
           className={styles["header-img"]}
           variant="top"
-          src={convertToDataUrl(images[0])}
+          src={images && convertToDataUrl(images[0])}
         />
         <h5>
           <Badge
@@ -149,7 +149,7 @@ function CarteProduit({
             )
           )}
         </Stack>
-        <Etoile evaluation={calculMoyenneAvis(avis)} size="25" />
+        <Etoile evaluation={avis && calculMoyenneAvis(avis)} size="25" />
       </Card.Body>
       <Row className="p-2 mb-3">
         <Stack
