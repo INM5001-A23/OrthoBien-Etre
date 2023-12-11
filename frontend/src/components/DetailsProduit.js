@@ -199,7 +199,12 @@ function DetailsProduit({
       {user && user?.role !== "admin" ? (
         <FormulaireEvaluation codeProduit={codeProduit} />
       ) : (
-        <div>non</div>
+        <h3
+          id="commentaires"
+          style={{ textAlign: "center", margin: "50px 0 40px 0" }}
+        >
+          Veuillez vous créez un profil afin d'ajouter une évaluation client.
+        </h3>
       )}
     </Container>
   );
