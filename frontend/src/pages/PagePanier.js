@@ -1,74 +1,93 @@
-import React, { useEffect, useState,useContext } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { Badge, Button, Card, ListGroup, Stack } from "react-bootstrap";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import { useNavigate } from "react-router-dom";
 import ModelePage from "../layout/ModelePage";
-import { UserContext,AxiosContext } from "..";
+import { UserContext, AxiosContext } from "..";
 import { convertToDataUrl } from "../utils";
-
 
 function PagePanier() {
   const axios = useContext(AxiosContext);
   const user = useContext(UserContext);
 
-  const [cart, setCart] = useState(localStorage.getItem("guestCartItems") ? JSON.parse((localStorage.getItem("guestCartItems")))  : []);
+  const [cart, setCart] = useState(
+    localStorage.getItem("guestCartItems")
+      ? JSON.parse(localStorage.getItem("guestCartItems"))
+      : []
+  );
 
   const fetchUserCart = async () => {
     try {
-      const userIdResponse = await axios.get(`/utilisateur/find/${user.courriel}`);
+      const userIdResponse = await axios.get(
+        `/utilisateur/find/${user.courriel}`
+      );
       const response = await axios.get(`/panier/${userIdResponse.data._id}`);
-      localStorage.setItem('guestCartItems', JSON.stringify(response.data.articles));
-
+      localStorage.setItem(
+        "guestCartItems",
+        JSON.stringify(response.data.articles)
+      );
     } catch (error) {
-      console.error('Error fetching cart:', error);
+      console.error("Error fetching cart:", error);
     }
   };
 
   const updateUserCart = async () => {
     try {
-      const guestCartItems = JSON.parse(localStorage.getItem('guestCartItems'));
-      const userIdResponse = await axios.get(`/utilisateur/find/${user.courriel}`);
-      const response = await axios.put(`/panier/update/${userIdResponse.data._id}`, {guestCartItems});
+      const guestCartItems = JSON.parse(localStorage.getItem("guestCartItems"));
+      const userIdResponse = await axios.get(
+        `/utilisateur/find/${user.courriel}`
+      );
+      const response = await axios.put(
+        `/panier/update/${userIdResponse.data._id}`,
+        { guestCartItems }
+      );
       console.log(userIdResponse.data._id);
       console.log(guestCartItems);
       console.log(response.data.articles);
     } catch (error) {
-      console.error('Error updating cart:', error);
+      console.error("Error updating cart:", error);
     }
-  }
+  };
 
   // fetch cart from api or localStorage
   useEffect(() => {
-    if(user) fetchUserCart();
-    setCart(localStorage.getItem("guestCartItems") ? JSON.parse((localStorage.getItem("guestCartItems")))  : []);
+    if (user) fetchUserCart();
+    setCart(
+      localStorage.getItem("guestCartItems")
+        ? JSON.parse(localStorage.getItem("guestCartItems"))
+        : []
+    );
   }, []);
 
   // update cart in localStorage or userCart
   useEffect(() => {
-    localStorage.setItem('guestCartItems', JSON.stringify(cart));
-    if(user) updateUserCart();
-    
+    localStorage.setItem("guestCartItems", JSON.stringify(cart));
+    if (user) updateUserCart();
   }, [cart]);
 
   const cartTotal = cart
-  ? cart.reduce((total, item) => total + item.prix * item.qtt, 0)
-  : 0;
+    ? cart.reduce((total, item) => total + item.prix * item.qtt, 0)
+    : 0;
 
   const increaseQuantity = (itemId) => {
-    const updatedCart = cart ? cart.map((item) =>
-      item.codeProduit === itemId ? { ...item, qtt: item.qtt + 1 } : item
-    ) : 0;
+    const updatedCart = cart
+      ? cart.map((item) =>
+          item.codeProduit === itemId ? { ...item, qtt: item.qtt + 1 } : item
+        )
+      : 0;
     setCart(updatedCart);
   };
 
   const decreaseQuantity = (itemId) => {
-    const updatedCart = cart? cart.map((item) =>
-    item.codeProduit === itemId && item.qtt > 1
-        ? { ...item, qtt: item.qtt - 1 }
-        : item
-    ) : 0;
+    const updatedCart = cart
+      ? cart.map((item) =>
+          item.codeProduit === itemId && item.qtt > 1
+            ? { ...item, qtt: item.qtt - 1 }
+            : item
+        )
+      : 0;
 
     setCart(updatedCart);
   };
@@ -78,9 +97,7 @@ function PagePanier() {
     setCart(updatedCart);
   };
 
-  const cartSize = cart
-  ? cart.reduce((size, item) => size + item.qtt, 0)
-  : 0;
+  const cartSize = cart ? cart.reduce((size, item) => size + item.qtt, 0) : 0;
 
   const navigate = useNavigate();
 
@@ -101,68 +118,71 @@ function PagePanier() {
           <Col xs={9}>
             <Card>
               <ListGroup variant="flush">
-          
-                { cart && cart.map((item) => (
-                  <ListGroup.Item
-                    className="d-flex justify-content-between"
-                    key={item.codeProduit}
-                  >
-                    <Stack
-                      direction="horizontal"
-                      gap={1}
-                      style={{ justifyContent: "center", margin: "0px" }}
+                {cart &&
+                  cart.map((item) => (
+                    <ListGroup.Item
+                      className="d-flex justify-content-between"
+                      key={item.codeProduit}
                     >
-                      <Button
-                        className="p-2"
-                        variant="outline-danger"
-                        size="sm"
-                        style={{ margin: "10px" }}
-                        onClick={() => removeItem(item.codeProduit)}
+                      <Stack
+                        direction="horizontal"
+                        gap={1}
+                        style={{ justifyContent: "center", margin: "0px" }}
                       >
+                        <Button
+                          className="p-2"
+                          variant="outline-danger"
+                          size="sm"
+                          style={{ margin: "10px" }}
+                          onClick={() => removeItem(item.codeProduit)}
+                        >
+                          <img
+                            style={{ width: "20px" }}
+                            src="./images/Delete-button.png"
+                            alt="Delete"
+                          />
+                        </Button>
                         <img
-                          style={{ width: "20px" }}
-                          src="./images/delete-button.png"
-                          alt="Delete"
+                          className="p-2"
+                          style={{ width: "80px" }}
+                          src={item.images && convertToDataUrl(item.images[0])}
+                          alt="Produit"
                         />
-                      </Button>
-                      <img
-                        className="p-2"
-                        style={{ width: "80px" }}
-                        src={(item.images && convertToDataUrl(item.images[0]))}
-                        alt="Produit"
-                      />
-                      <h6 style={{ fontSize: "20px" }} className="my-0 p-2">
-                        {item.nomProduit}
-                      </h6>
+                        <h6 style={{ fontSize: "20px" }} className="my-0 p-2">
+                          {item.nomProduit}
+                        </h6>
 
-                      {/* <small className="text-muted">{item.description}</small> */}
-                    </Stack>
-                    <div>
-                      <Button
-                        variant="outline-secondary"
-                        size="sm"
-                        style={{ margin: "10px" }}
-                        onClick={() => decreaseQuantity(item.codeProduit)}
-                      >
-                        -
-                      </Button>
-                      {item.qtt}
-                      <Button
-                        variant="outline-secondary"
-                        size="sm"
-                        style={{ margin: "10px" }}
-                        onClick={() => increaseQuantity(item.codeProduit)}
-                      >
-                        +
-                      </Button>
+                        {/* <small className="text-muted">{item.description}</small> */}
+                      </Stack>
+                      <div>
+                        <Button
+                          variant="outline-secondary"
+                          size="sm"
+                          style={{ margin: "10px" }}
+                          onClick={() => decreaseQuantity(item.codeProduit)}
+                        >
+                          -
+                        </Button>
+                        {item.qtt}
+                        <Button
+                          variant="outline-secondary"
+                          size="sm"
+                          style={{ margin: "10px" }}
+                          onClick={() => increaseQuantity(item.codeProduit)}
+                        >
+                          +
+                        </Button>
 
-                      <span className="text-muted" style={{ fontSize: "20px" }}>
-                        {item.prix?.toFixed(2)} $
-                        <span style={{ fontSize: "16px" }}> / unité</span>
-                      </span>
-                    </div>
-                  </ListGroup.Item>
-                ))}
+                        <span
+                          className="text-muted"
+                          style={{ fontSize: "20px" }}
+                        >
+                          {item.prix?.toFixed(2)} $
+                          <span style={{ fontSize: "16px" }}> / unité</span>
+                        </span>
+                      </div>
+                    </ListGroup.Item>
+                  ))}
                 <ListGroup.Item className="d-flex justify-content-between">
                   <span>Sous-total</span>
                   <strong>{cartTotal?.toFixed(2)} $</strong>
@@ -175,7 +195,8 @@ function PagePanier() {
               <Card.Body>
                 <Card.Title>Paiement</Card.Title>
                 <Card.Text>
-                  Sous-total ({cart ? cart.length : 0} articles) : {cartTotal?.toFixed(2)} $
+                  Sous-total ({cart ? cart.length : 0} articles) :{" "}
+                  {cartTotal?.toFixed(2)} $
                 </Card.Text>
                 <Button
                   variant="primary"
