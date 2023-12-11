@@ -6,6 +6,8 @@ import { useLocation } from "react-router-dom";
 import { PayPalScriptProvider } from "@paypal/react-paypal-js"
 import Checkout from "../components/PaypalCheckout"
 import { UserContext} from "..";
+import { convertToDataUrl } from "../utils";
+
 
 function PageCommande() {
 
@@ -15,7 +17,7 @@ function PageCommande() {
   const cartItems = location.state.cartItems;
   const shippingInfos = location.state.shippingInfos;
   const cartItemsOrder = location.state.cartItems.map((item) => {
-    const itemCart = {codeProduit: item.codeProduit, prix: item.prix, qtt: item.qtt}
+    const itemCart = {codeProduit: item.codeProduit, prix: item.prix, qtt: item.qtt, images: item.images}
     return(itemCart);
   }); 
 
@@ -64,7 +66,7 @@ function PageCommande() {
                               <img
                                 className="p-2"
                                 style={{ width: "60px" }}
-                                src={`/images/produits/${item.codeProduit}.jpeg`}
+                                src={(item.images && convertToDataUrl(item.images[0]))}
                                 alt="Produit"
                               />
                             </Col>
