@@ -6,6 +6,8 @@ import Row from "react-bootstrap/Row";
 import { useNavigate } from "react-router-dom";
 import ModelePage from "../layout/ModelePage";
 import { UserContext,AxiosContext } from "..";
+import { convertToDataUrl } from "../utils";
+
 
 function PagePanier() {
   const axios = useContext(AxiosContext);
@@ -126,7 +128,7 @@ function PagePanier() {
                       <img
                         className="p-2"
                         style={{ width: "80px" }}
-                        src={`/images/produits/${item.codeProduit}.jpeg`}
+                        src={(item.images && convertToDataUrl(item.images[0]))}
                         alt="Produit"
                       />
                       <h6 style={{ fontSize: "20px" }} className="my-0 p-2">

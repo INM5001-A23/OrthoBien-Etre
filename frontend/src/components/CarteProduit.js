@@ -25,7 +25,7 @@ function CarteProduit({
     codeProduit: codeProduit,
     nomProduit: nomProduit,
     prix: prix,
-    defaultImage: images[0]
+    images: images
   };
   const user = useContext(UserContext);
 
