@@ -14,16 +14,16 @@ function Onglets() {
   } = useForm({
     mode: "onChange",
   });
-  
+
   const user = useContext(UserContext);
 
   const [orderHistory, setOrderHistory] = useState([]);
-  const [articles, setArticles] = useState([]);
 
   const handleOrderHistory = async (req, res) => {
     try {
       const response = await axios.get(`/commande/${user.courriel}`);
       console.log(response.data);
+
       setOrderHistory(response.data);
     } catch (error) {
       console.error("Error fetching cart:", error);
@@ -46,7 +46,7 @@ function Onglets() {
     <Tabs defaultActiveKey="profil" id="fill-tab-example" className="mb-3" fill>
       <Tab eventKey="profil" title="Profil">
         <Form onSubmit={handleFormulaire}>
-          <Container style={{ width: "600px" }}>
+          <Container style={{ width: "400px" }}>
             <Stack>
               {/* Input PRENOM */}
               <Form.Group as={Col} controlId="prenom">
@@ -192,34 +192,38 @@ function Onglets() {
       </Tab>
       {(!user || user?.role !== "admin") && (
         <Tab eventKey="commandes" title="Historique des commandes">
-          <ListGroup variant="flush">
-            {orderHistory &&
-              orderHistory.map((item) => (
-                <ListGroup.Item mb={2}>
-                  <Stack
-                    direction="vertical"
-                    gap={1}
-                    style={{ justifyContent: "center", margin: "0px" }}
-                  >
-                    <Row>
-                      <Col>
-                        <h5>
-                          Order to: {item.shippingInfos.prenomClient}{" "}
-                          {item.shippingInfos.nomClient}
-                        </h5>
-                      </Col>
-                    </Row>
-                    <Row>
-                      <p>Order Id: {item.orderId}</p>
-                    </Row>
-                    <Row>
-                      <Col>Status: {item.status}</Col>
-                      <Col>Total: ${item.total} </Col>
-                    </Row>
-                  </Stack>
-                </ListGroup.Item>
-              ))}
-          </ListGroup>
+          <Container style={{ width: "800px" }}>
+            <Stack>
+              <ListGroup variant="flush">
+              {orderHistory &&
+                orderHistory.map((item) => (
+                  <ListGroup.Item mb={2}>
+                    <Stack
+                      direction="vertical"
+                      gap={1}
+                    >
+                      <Row>
+                        <Col xs={3}>
+                          <h5>Order to: </h5>
+                          <h6>Adresse de livraison: </h6>
+                          <h6>Order Id: </h6>
+                          <h6>Status Commande: </h6>
+                          <h6>Coût Total: </h6>
+                        </Col>
+                        <Col>
+                          <h5>{item.shippingInfos.prenomClient}{" "}{item.shippingInfos.nomClient}</h5>
+                          <h6>{item.shippingInfos.adresse.numeroCivic} {item.shippingInfos.adresse.rue} {item.shippingInfos.adresse.cp} {item.shippingInfos.adresse.ville} </h6>
+                          <h6>{item.orderId}</h6>
+                          <h6>{item.status}</h6>
+                          <h6>${item.total} </h6>
+                        </Col>
+                      </Row>
+                    </Stack>
+                  </ListGroup.Item>
+                ))}
+            </ListGroup>
+            </Stack>
+          </Container>
         </Tab>
       )}
     </Tabs>

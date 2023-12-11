@@ -1,4 +1,4 @@
-import React from "react";
+import {React, useContext} from "react";
 import ModelePage from "../layout/ModelePage";
 import Button from "../components/Bouton";
 import { Container } from "react-bootstrap";
@@ -7,12 +7,16 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { useForm } from "react-hook-form";
 import { useNavigate,useLocation } from "react-router-dom";
+import { UserContext,AxiosContext } from "..";
 
 
 const Livraison = () => {
     
     const location = useLocation();
     const navigate = useNavigate();
+
+    const axios = useContext(AxiosContext);
+    const user = useContext(UserContext);
 
     const totalAvantTaxes = location.state.total;
     const cartItems = location.state.cartItems;
@@ -23,18 +27,6 @@ const Livraison = () => {
         formState: { errors },
         } = useForm({
         mode: "onBlur",
-        defaultValues: {
-            prenom: "Fineas",
-            nom: "Fudge",
-            courriel: "ff@email.com",
-            telephone: "(000)-000-0000",
-            civique: "123A",
-            rue: "Rue Abc",
-            ville: "Qwerty",
-            postal:"Q1Q 1Q1",
-            province: "Québec",
-            pays: "Canada"
-        },
         });
 
     const handleformulaireLivraison = handleSubmit((data) => {
@@ -54,7 +46,7 @@ const Livraison = () => {
                             <h4> Informations de l'acheteur </h4>
                             <Form.Group className="mb-3 mx-auto" controlId="formBasicPrenom">
                                 <Form.Label>Prenom</Form.Label>
-                                <Form.Control type="text" name="prenom"
+                                <Form.Control type="text" name="prenom"  value={user?.prenom}
                                 {...register("prenom", {
                                     required: "Ce champ est obligatoire",
                                     pattern: {
@@ -70,7 +62,7 @@ const Livraison = () => {
                             </Form.Group>
                             <Form.Group className="mb-3 mx-auto" controlId="formBasicNom">
                                 <Form.Label>Nom</Form.Label>
-                                <Form.Control type="text" name="nom"
+                                <Form.Control type="text" name="nom" value={user?.nom}
                                 {...register("nom", {
                                     required: "Ce champ est obligatoire",
                                     pattern: {
@@ -86,7 +78,7 @@ const Livraison = () => {
                             </Form.Group>
                             <Form.Group className="mb-3 mx-auto" controlId="formBasicEmail">
                                 <Form.Label>Adresse courriel</Form.Label>
-                                <Form.Control type="email" name="courriel"
+                                <Form.Control type="email" name="courriel" value={user?.courriel}
                                     {...register("courriel", {
                                         required: "Ce champ est obligatoire",
                                         pattern: {
@@ -98,7 +90,7 @@ const Livraison = () => {
                             </Form.Group>
                             <Form.Group className="mb-3 mx-auto" controlId="formBasicTel">
                                 <Form.Label>Numero de telephone</Form.Label>
-                                <Form.Control type="tel"
+                                <Form.Control type="tel" value={user?.telephone}
                                     placeholder="(000)-000-0000"
                                     name="telephone"
                                     {...register("telephone", {
@@ -136,7 +128,7 @@ const Livraison = () => {
                                 <Col>
                                     <Form.Group className="mb-3 mx-auto" controlId="formBasicStreet">
                                         <Form.Label>Nom de la rue</Form.Label>
-                                        <Form.Control type="text" name="rue"
+                                        <Form.Control type="text" name="rue" value={user?.rue}
                                         {...register("rue", {
                                             required: "Ce champ est obligatoire",
                                             pattern: {
@@ -157,7 +149,7 @@ const Livraison = () => {
 
                             <Form.Group className="mb-3 mx-auto" controlId="formBasicCity">
                                 <Form.Label>Ville</Form.Label>
-                                <Form.Control type="text" name="ville"
+                                <Form.Control type="text" name="ville" value={user?.ville}
                                 {...register("ville", {
                                     required: "Ce champ est obligatoire",
                                     pattern: {
@@ -175,7 +167,7 @@ const Livraison = () => {
 
                             <Form.Group className="mb-3 mx-auto" controlId="formBasicZip">
                                 <Form.Label>Code Postal</Form.Label>
-                                <Form.Control type="text" name="postal"
+                                <Form.Control type="text" name="postal" value={user?.codePostal}
                                 {...register("postal", {
                                     required: "Ce champ est obligatoire",
                                     pattern: {
@@ -190,7 +182,7 @@ const Livraison = () => {
                                 <Col>
                                     <Form.Group className="mb-3 mx-auto" controlId="formBasicProvince">
                                     <Form.Label>Province</Form.Label>
-                                    <Form.Select name="province"
+                                    <Form.Select name="province" value={user?.province}
                                     {...register("province", {
                                         required: "Veuillez choisir une option",
                                     })}

@@ -21,8 +21,6 @@ function PageCommande() {
     return(itemCart);
   }); 
 
-  console.log(cartItems)
-
   const totalAvantTaxes = location.state.total.toFixed(2);
   const tps = (totalAvantTaxes*(5/100)).toFixed(2);
   const tvq = (totalAvantTaxes *(9.975/100)).toFixed(2);

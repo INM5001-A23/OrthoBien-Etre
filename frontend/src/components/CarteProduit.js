@@ -1,4 +1,4 @@
-import { default as React, useContext, useState } from "react";
+import { default as React, useContext, useEffect, useState } from "react";
 import { Alert, Badge, Button, Card, Row, Stack } from "react-bootstrap";
 import ListGroup from "react-bootstrap/ListGroup";
 import { useNavigate } from "react-router-dom";
@@ -29,32 +29,39 @@ function CarteProduit({
   };
   const user = useContext(UserContext);
 
-  const [cart, setCart] = useState(
-    JSON.parse(localStorage.getItem("guestCartItems")) !== null
-      ? JSON.parse(localStorage.getItem("guestCartItems"))
-      : []
-  );
+  const [cart, setCart] = useState(localStorage.getItem("guestCartItems") ? JSON.parse((localStorage.getItem("guestCartItems")))  : []);
 
   const [notification, setNotification] = useState(null);
 
   const addToCart = () => {
+    let updatedCart = [];
+
     const existingProduct = cart.find(
       (item) => item.codeProduit === productDetails.codeProduit
     );
 
     if (existingProduct) {
-      const updatedCart = cart.map((item) =>
+      updatedCart = cart.map((item) =>
         item.codeProduit === productDetails.codeProduit
           ? { ...item, qtt: item.qtt + 1 }
           : item
       );
-      setCart(updatedCart);
-      localStorage.setItem("guestCartItems", JSON.stringify(updatedCart));
+
     } else {
-      const updatedCart = [...cart, { ...productDetails, qtt: 1 }];
-      setCart(updatedCart);
-      localStorage.setItem("guestCartItems", JSON.stringify(updatedCart));
+
+      //setCart(JSON.parse((localStorage.getItem("guestCartItems"))));
+
+      console.log('cart avant: ' + cart)
+
+      updatedCart = [...cart, { ...productDetails, qtt: 1 }];
     }
+
+    //setCart(updatedCart);
+    localStorage.setItem("guestCartItems", JSON.stringify(updatedCart));
+    setCart(JSON.parse((localStorage.getItem("guestCartItems"))));
+
+    console.log('Updated cart apres: ' +  JSON.stringify(updatedCart))
+    console.log('cart apres: ' +  cart)
 
     setNotification(`${nomProduit} a été ajouté au panier`);
 
@@ -62,6 +69,11 @@ function CarteProduit({
       setNotification(null);
     }, 3000);
   };
+
+  // // update cart in localStorage
+  // useEffect(() => {
+  //   localStorage.setItem('guestCartItems', JSON.stringify(cart));    
+  // }, [cart]);
 
   const prixInitial = prix || 0;
   const prixBarre = promotion ? (prixInitial * 1.15).toFixed(2) : "";
