@@ -7,7 +7,7 @@ const router = express.Router();
 // Fetch all categories
 router.get("/", async (req, res) => {
   try {
-    const codeCategorie = req.params.codeCategorie;
+    const codeCategorie = Number.parseInt(req.params.codeCategorie);
     const categories = await Categories.find({});
     res.json(categories);
   } catch (err) {
@@ -41,7 +41,7 @@ router.get("/:codeCategorie/produits", async (req, res) => {
 
 router.get("/:code", async (req, res) => {
   try {
-    const codeCategorie = req.params.code;
+    const codeCategorie = Number.parseInt(req.params.code);
     const categorie = await Categories.findOne({ codeCategorie });
     res.json(categorie);
   } catch (err) {

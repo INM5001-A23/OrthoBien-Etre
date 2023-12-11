@@ -67,22 +67,7 @@ function TriCatalogue({ filtre, setFiltre }) {
             </Form.Check.Label>
           </Form.Check>
         </a>
-        <a className="dropdown-item">
-          <Form.Check>
-            <Form.Check.Input
-              type="radio"
-              id="trie-meilleurs-vendeurs"
-              name="formulaire-trier"
-              value="trie-meilleurs-vendeurs"
-            />
-            <Form.Check.Label
-              htmlFor="trie-meilleurs-vendeurs"
-              style={{ width: "100%" }}
-            >
-              Meilleurs vendeurs
-            </Form.Check.Label>
-          </Form.Check>
-        </a>
+
         <a className="dropdown-item">
           <Form.Check>
             <Form.Check.Input
