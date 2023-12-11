@@ -69,9 +69,9 @@ router.post("/", async (req, res) => {
         await newImage.save();
       }
 
-      res.status(200).json({ message: "Le produit a été ajouté !" });
+      res.status(200).json({ erreur: "Le produit a été ajouté !" });
     } else {
-      res.status(520).json({ message: "Ce produit existe déjà" });
+      res.status(520).json({ erreur: "Ce produit existe déjà" });
     }
   } catch (error) {
     console.log(error);

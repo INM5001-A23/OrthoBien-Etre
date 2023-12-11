@@ -21,6 +21,7 @@ function ModalAjout({ show, onHide }) {
   const {
     register,
     handleSubmit,
+    setError,
     setValue,
     getValues,
     formState: { errors },
@@ -62,14 +63,13 @@ function ModalAjout({ show, onHide }) {
           });
           navigate(0);
         } else {
-          // TODO afficher message erreur
+          setError("backend", response?.data?.erreur);
         }
         console.log(response);
       })
-      .catch(function (error) {
-        // handle error
-        // TODO afficher message erreur
-        console.log(error);
+      .catch((error) => {
+        console.error("Error submitting form:", error);
+        setError("backend", { message: error.response?.data?.erreur });
       });
   });
 
@@ -111,7 +111,7 @@ function ModalAjout({ show, onHide }) {
                     },
                   })}
                 />
-                <p style={{ color: "red" }}>{errors.codeProduit?.message}</p>
+                <p style={{ color: "red" }}>{errors.backend?.message}</p>
               </Form.Group>
 
               {/* Input IMAGE DU PRODUIT */}
@@ -145,6 +145,7 @@ function ModalAjout({ show, onHide }) {
                   })}
                 />
                 <p style={{ color: "red" }}>{errors.nomProduit?.message}</p>
+                <p style={{ color: "red" }}>{errors.backend?.message}</p>
               </Form.Group>
 
               {/* Input NOM DE LA CATÉGORIE */}
