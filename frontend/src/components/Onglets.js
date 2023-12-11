@@ -192,7 +192,7 @@ function Onglets() {
       </Tab>
       {(!user || user?.role !== "admin") && (
         <Tab eventKey="commandes" title="Historique des commandes">
-          <Container style={{ width: "800px" }}>
+          <Container style={{ width: "1000px" }}>
             <Stack>
               <ListGroup variant="flush">
               {orderHistory &&
@@ -201,21 +201,25 @@ function Onglets() {
                     <Stack
                       direction="vertical"
                       gap={1}
-                    >
+                    ><Row>
+                          <h5>Commande de: {item.shippingInfos.prenomClient} {item.shippingInfos.nomClient}</h5>
+                    </Row>
                       <Row>
-                        <Col xs={3}>
-                          <h5>Order to: </h5>
-                          <h6>Adresse de livraison: </h6>
-                          <h6>Order Id: </h6>
-                          <h6>Status Commande: </h6>
-                          <h6>Coût Total: </h6>
+                        <Col xs={4}>
+                          <h6>Adresse: {item.shippingInfos.adresse.numeroCivic} {item.shippingInfos.adresse.rue} {item.shippingInfos.adresse.cp} {item.shippingInfos.adresse.ville}</h6>
+                          <h6>Telephone: {item.shippingInfos.tel}</h6>
+                          <h6> Date Commande: 2023-12-11</h6>
                         </Col>
-                        <Col>
-                          <h5>{item.shippingInfos.prenomClient}{" "}{item.shippingInfos.nomClient}</h5>
-                          <h6>{item.shippingInfos.adresse.numeroCivic} {item.shippingInfos.adresse.rue} {item.shippingInfos.adresse.cp} {item.shippingInfos.adresse.ville} </h6>
-                          <h6>{item.orderId}</h6>
-                          <h6>{item.status}</h6>
-                          <h6>${item.total} </h6>
+                        <Col xs={4}>
+                          <h6>Id Commande: {item.orderId}</h6>
+                          <h6>Courriel: {item.shippingInfos.courriel}</h6>
+                          <h6> Date Livraison: 2024-01-09</h6>
+                        </Col>
+                        <Col xs={3}>
+                        <h6>Status: {item.status}</h6>
+                        <h6>Total: ${item.total} </h6>
+                        <h6> Paiement: Paypal</h6>
+                          
                         </Col>
                       </Row>
                     </Stack>
