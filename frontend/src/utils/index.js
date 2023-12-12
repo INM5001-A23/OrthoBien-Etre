@@ -3,6 +3,10 @@ export const convertToDataUrl = (image) => {
     return "";
   }
 
+  if (image.mimeType === "url") {
+    return image.image;
+  }
+
   return `data:${image.mimeType};base64,${image.image}`;
 };
 

@@ -17,7 +17,7 @@ function CarteAdmin({ produit }) {
         <Card.Img
           className={styles["header-img"]}
           variant="top"
-          src={convertToDataUrl(produit.images[0])}
+          src={produit.images && convertToDataUrl(produit.images[0])}
         />
         <h5>
           <Badge
