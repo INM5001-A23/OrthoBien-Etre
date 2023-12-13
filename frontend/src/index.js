@@ -1,10 +1,10 @@
+import axios from "axios";
+import "bootstrap/dist/css/bootstrap.min.css";
+import { jwtDecode } from "jwt-decode";
 import React, { createContext } from "react";
 import ReactDOM from "react-dom/client";
-import "bootstrap/dist/css/bootstrap.min.css";
-import "./index.css";
 import App from "./App";
-import axios from "axios";
-import { jwtDecode } from "jwt-decode";
+import "./index.css";
 
 export const AxiosContext = createContext();
 export const UserContext = createContext();

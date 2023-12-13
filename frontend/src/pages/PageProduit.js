@@ -1,9 +1,9 @@
-import { Alert, Spinner, Stack } from "react-bootstrap";
-import ModelePage from "../layout/ModelePage";
 import { useContext, useEffect, useState } from "react";
+import { Alert, Spinner, Stack } from "react-bootstrap";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { AxiosContext } from "..";
 import DetailsProduit from "../components/DetailsProduit";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
+import ModelePage from "../layout/ModelePage";
 
 function PageProduit() {
   const axios = useContext(AxiosContext);

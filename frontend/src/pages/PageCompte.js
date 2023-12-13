@@ -1,6 +1,6 @@
 import { Stack } from "react-bootstrap";
-import ModelePage from "../layout/ModelePage";
 import Onglets from "../components/Onglets";
+import ModelePage from "../layout/ModelePage";
 
 function PageCompte() {
   return (

@@ -1,14 +1,12 @@
-import ModelePage from "../layout/ModelePage";
-import Form from "react-bootstrap/Form";
-import Button from "../components/Bouton";
-import { useLocation, useNavigate } from "react-router-dom";
-import Nav from "react-bootstrap/Nav";
-import { useContext } from "react";
-import { AxiosContext } from "..";
-
-import { useForm } from "react-hook-form";
-import React from "react";
+import React, { useContext } from "react";
 import { Alert } from "react-bootstrap";
+import Form from "react-bootstrap/Form";
+import Nav from "react-bootstrap/Nav";
+import { useForm } from "react-hook-form";
+import { useLocation, useNavigate } from "react-router-dom";
+import { AxiosContext } from "..";
+import Button from "../components/Bouton";
+import ModelePage from "../layout/ModelePage";
 
 function PageConnexion() {
   const navigate = useNavigate();

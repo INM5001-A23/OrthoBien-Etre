@@ -1,13 +1,13 @@
 import { React, useContext } from "react";
-import ModelePage from "../layout/ModelePage";
-import Button from "../components/Bouton";
 import { Container } from "react-bootstrap";
+import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
 import { useForm } from "react-hook-form";
-import { useNavigate, useLocation } from "react-router-dom";
-import { UserContext, AxiosContext } from "..";
+import { useLocation, useNavigate } from "react-router-dom";
+import { AxiosContext, UserContext } from "..";
+import Button from "../components/Bouton";
+import ModelePage from "../layout/ModelePage";
 
 const Livraison = () => {
   const location = useLocation();

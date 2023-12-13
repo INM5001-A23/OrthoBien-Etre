@@ -1,9 +1,9 @@
 import React from "react";
-import { Container, Row, Col } from "react-bootstrap";
+import { Col, Container, Row } from "react-bootstrap";
 import ModelePage from "../layout/ModelePage";
 
 function PageContact() {
-    const adresseCourriel = "orthobienetre-info@gmail.com";
+  const adresseCourriel = "orthobienetre-info@gmail.com";
 
   return (
     <ModelePage>
@@ -21,7 +21,10 @@ function PageContact() {
           <Col md={6} className="mb-4">
             <div className="border p-4">
               <h3 className="mb-3">Information</h3>
-              <p>Email: <a href={`mailto:${adresseCourriel}`}>{adresseCourriel}</a></p>
+              <p>
+                Email:{" "}
+                <a href={`mailto:${adresseCourriel}`}>{adresseCourriel}</a>
+              </p>
               <p>Téléphone: 1-800-123-4567</p>
               <p>Nous sommes disponibles du lundi au vendredi, de 8h à 17h.</p>
             </div>

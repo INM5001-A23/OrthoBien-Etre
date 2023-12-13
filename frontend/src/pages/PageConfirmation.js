@@ -1,8 +1,8 @@
 import { React, useContext, useEffect } from "react";
-import ModelePage from "../layout/ModelePage";
 import { Container, Stack } from "react-bootstrap";
 import { useLocation, useNavigate } from "react-router-dom";
-import { UserContext, AxiosContext } from "..";
+import { AxiosContext, UserContext } from "..";
+import ModelePage from "../layout/ModelePage";
 
 const Confirmation = () => {
   const location = useLocation();

@@ -1,15 +1,12 @@
+import React, { useContext } from "react";
+import { Container, Stack } from "react-bootstrap";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
-
-import ModelePage from "../layout/ModelePage";
-import Button from "../components/Bouton";
-import { useNavigate } from "react-router-dom";
-
-import { Container, Stack } from "react-bootstrap";
-
 import { useForm } from "react-hook-form";
-import React, { useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import { AxiosContext } from "..";
+import Button from "../components/Bouton";
+import ModelePage from "../layout/ModelePage";
 
 function PageInscription() {
   const navigate = useNavigate();

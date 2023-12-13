@@ -1,18 +1,18 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import PageAccueil from "./pages/PageAccueil";
-import Erreur from "./pages/PageErreur";
-import PageCatalogue from "./pages/PageCatalogue";
-import PageConnexion from "./pages/PageConnexion";
-import PageInscription from "./pages/PageInscription";
-import PagePanier from "./pages/PagePanier";
-import PageCommande from "./pages/PageCommande";
-import PageProduit from "./pages/PageProduit";
 import PageAdmin from "./pages/PageAdmin";
+import PageCatalogue from "./pages/PageCatalogue";
+import PageCommande from "./pages/PageCommande";
 import PageCompte from "./pages/PageCompte";
-import PageLivraison from "./pages/PageLivraison";
 import PageConfirmation from "./pages/PageConfirmation";
-import PageFAQ from "./pages/PageFAQ";
+import PageConnexion from "./pages/PageConnexion";
 import PageContact from "./pages/PageContact";
+import Erreur from "./pages/PageErreur";
+import PageFAQ from "./pages/PageFAQ";
+import PageInscription from "./pages/PageInscription";
+import PageLivraison from "./pages/PageLivraison";
+import PagePanier from "./pages/PagePanier";
+import PageProduit from "./pages/PageProduit";
 import PageRecherche from "./pages/PageRecherche";
 
 const router = createBrowserRouter([
@@ -94,8 +94,6 @@ const router = createBrowserRouter([
     errorElement: <Erreur />,
   },
 ]);
-
-
 
 function App() {
   return <RouterProvider router={router} />;

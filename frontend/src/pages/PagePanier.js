@@ -1,11 +1,11 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Badge, Button, Card, ListGroup, Stack } from "react-bootstrap";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import { useNavigate } from "react-router-dom";
+import { AxiosContext, UserContext } from "..";
 import ModelePage from "../layout/ModelePage";
-import { UserContext, AxiosContext } from "..";
 import { convertToDataUrl } from "../utils";
 
 function PagePanier() {
