@@ -4,9 +4,11 @@ import Tab from "react-bootstrap/Tab";
 import Tabs from "react-bootstrap/Tabs";
 import { useForm } from "react-hook-form";
 import { AxiosContext, UserContext } from "..";
+import { useNavigate } from "react-router-dom";
 
 function Onglets() {
   const axios = useContext(AxiosContext);
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -31,6 +33,9 @@ function Onglets() {
   };
 
   useEffect(() => {
+    if (!user) {
+      navigate("/");
+    }
     handleOrderHistory();
   }, [user]);
 
@@ -74,7 +79,7 @@ function Onglets() {
                   <Form.Group as={Col} controlId="nom">
                     <Form.Label>Nom</Form.Label>
                     <Form.Control
-                      value={user.nom}
+                      value={user?.nom}
                       {...register("nom", {
                         required: "Ce champ est obligatoire",
                         pattern: {
@@ -96,7 +101,7 @@ function Onglets() {
                       type="tel"
                       placeholder="(000)-000-0000"
                       name="telephone"
-                      value={user.telephone}
+                      value={user?.telephone}
                       {...register("telephone", {
                         required: "Ce champ est obligatoire",
                         pattern: {
@@ -114,7 +119,7 @@ function Onglets() {
                   <Form.Group as={Col} controlId="civique">
                     <Form.Label>Numéro civique</Form.Label>
                     <Form.Control
-                      value={user.civique}
+                      value={user?.civique}
                       {...register("civique", {
                         minLength: {
                           value: 1,
@@ -129,7 +134,7 @@ function Onglets() {
                   <Form.Group as={Col} controlId="rue">
                     <Form.Label>Rue</Form.Label>
                     <Form.Control
-                      value={user.rue}
+                      value={user?.rue}
                       type="text"
                       {...register("rue", {
                         pattern: {
@@ -148,7 +153,7 @@ function Onglets() {
                   <Form.Group as={Col} controlId="ville">
                     <Form.Label>Ville</Form.Label>
                     <Form.Control
-                      value={user.ville}
+                      value={user?.ville}
                       type="text"
                       {...register("ville", {
                         required: "Ce champ est obligatoire",
@@ -169,7 +174,7 @@ function Onglets() {
                   <Form.Group as={Col} controlId="province">
                     <Form.Label>Province</Form.Label>
                     <Form.Select
-                      value={user.province}
+                      value={user?.province}
                       {...register("province", {
                         required: "Veuillez choisir une option",
                       })}
@@ -191,7 +196,7 @@ function Onglets() {
                   <Form.Group as={Col} controlId="codePostal">
                     <Form.Label>Code Postal</Form.Label>
                     <Form.Control
-                      value={user.codePostal}
+                      value={user?.codePostal}
                       type="text"
                       {...register("codePostal", {
                         required: "Ce champ est obligatoire",
