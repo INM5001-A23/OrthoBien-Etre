@@ -1,8 +1,8 @@
 import express from "express";
-import Connexion from "../models/Connexion.js";
 import Clients from "../models/Clients.js";
 import Administrateurs from "../models/Administrateurs.js";
 import jwt from "jsonwebtoken";
+import Connexion from "../models/Connexion.js";
 
 const router = express.Router();
 router.use(express.json());
@@ -19,11 +19,9 @@ router.use(express.json());
 router.post("/", async (req, res) => {
   try {
     //Information de connexion
-
     const { courriel, mdp } = req.body;
 
     //veification de l'acces admin
-
     const admin = await Administrateurs.findOne(
       { courriel },
       "courriel mdp prenomAdmin codeAdmin "
@@ -33,7 +31,7 @@ router.post("/", async (req, res) => {
       //Verification de l'acces client
       const user = await Clients.findOne(
         { courriel },
-        "courriel mdp prenom nom rue ville province codePostal telephone"
+        "courriel mdp prenom nom civique rue ville province codePostal telephone"
       );
 
       if (!user) {
@@ -43,15 +41,14 @@ router.post("/", async (req, res) => {
       }
 
       //return : message d'accueil + valeurs pour page profil
-
       if (user.mdp == mdp) {
         const auth = {
           role: "client",
           message: "Bonjour " + user.prenom,
           prenom: user.prenom,
           courriel: user.courriel,
-          prenom: user.prenom,
           nom: user.nom,
+          civique: user.civique,
           rue: user.rue,
           ville: user.ville,
           province: user.province,
@@ -96,7 +93,7 @@ router.post("/", async (req, res) => {
       } else {
         return res
           .status(401)
-          .json({ erreur: "Courriel admin ou mot de passe incorrect" });
+          .json({ erreur: "Courriel admin ou mot de passe est incorrect" });
       }
     }
   } catch (error) {

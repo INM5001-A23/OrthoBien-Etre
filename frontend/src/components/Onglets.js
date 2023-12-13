@@ -57,7 +57,7 @@ function Onglets() {
                   {...register("prenom", {
                     required: "Ce champ est obligatoire",
                     pattern: {
-                      value: /^[a-zA-ZÀ-ÖØ-öø-ÿ\s\p'-]+$/,
+                      value: /^[a-zA-ZÀ-ÿ\s'\-]+$/,
                       message: "Lettres de l'alphabet uniquement",
                     },
                     minLength: {
@@ -78,7 +78,7 @@ function Onglets() {
                       {...register("nom", {
                         required: "Ce champ est obligatoire",
                         pattern: {
-                          value: /^[A-Za-z]+$/i,
+                          value: /^[a-zA-ZÀ-ÿ\s'\-]+$/,
                           message: "Lettres de l'alphabet uniquement",
                         },
                         minLength: {
@@ -110,18 +110,30 @@ function Onglets() {
                   </Form.Group>
 
                   <h5>Adresse</h5>
+                  {/* Input NUMERO CIVIQUE */}
+                  <Form.Group as={Col} controlId="civique">
+                    <Form.Label>Numéro civique</Form.Label>
+                    <Form.Control
+                      value={user.civique}
+                      {...register("civique", {
+                        minLength: {
+                          value: 1,
+                          message: "Longueur minimale est de 1 caractères",
+                        },
+                      })}
+                    />
+                    <p style={{ color: "red" }}>{errors.civique?.message}</p>
+                  </Form.Group>
+
                   {/* Input RUE */}
                   <Form.Group as={Col} controlId="rue">
                     <Form.Label>Rue</Form.Label>
                     <Form.Control
                       value={user.rue}
-                      placeholder="1234 Main St"
                       type="text"
                       {...register("rue", {
                         pattern: {
-                          value: /^[A-Za-z0-9\s.,-]+$/,
-                          message:
-                            "Veuillez respecter le format: 'nomutilisateur@domaine.com'",
+                          value: /^[0-9a-zA-ZÀ-ÿ\s\-',.()]+$/,
                         },
                         minLength: {
                           value: 4,
@@ -141,7 +153,7 @@ function Onglets() {
                       {...register("ville", {
                         required: "Ce champ est obligatoire",
                         pattern: {
-                          value: /^[A-Za-z]+$/i,
+                          value: /^[0-9a-zA-ZÀ-ÿ\s\-',.()]+$/,
                           message: "Lettres de l'alphabet uniquement",
                         },
                         minLength: {
@@ -164,6 +176,13 @@ function Onglets() {
                     >
                       <option>Québec</option>
                       <option>Ontario</option>
+                      <option>Alberta</option>
+                      <option>Colombie-Britannique</option>
+                      <option>Manitoba</option>
+                      <option>Nouveau-Brunswick</option>
+                      <option>Nouvelle-Écosse</option>
+                      <option>Saskatchewan</option>
+                      <option>Terre-Neuve-et-Labrador</option>
                     </Form.Select>
                     <p style={{ color: "red" }}>{errors.province?.message}</p>
                   </Form.Group>
@@ -195,37 +214,42 @@ function Onglets() {
           <Container style={{ width: "1000px" }}>
             <Stack>
               <ListGroup variant="flush">
-              {orderHistory &&
-                orderHistory.map((item) => (
-                  <ListGroup.Item mb={2}>
-                    <Stack
-                      direction="vertical"
-                      gap={1}
-                    ><Row>
-                          <h5>Commande de: {item.shippingInfos.prenomClient} {item.shippingInfos.nomClient}</h5>
-                    </Row>
-                      <Row>
-                        <Col xs={4}>
-                          <h6>Adresse: {item.shippingInfos.adresse.numeroCivic} {item.shippingInfos.adresse.rue} {item.shippingInfos.adresse.cp} {item.shippingInfos.adresse.ville}</h6>
-                          <h6>Telephone: {item.shippingInfos.tel}</h6>
-                          <h6> Date Commande: 2023-12-11</h6>
-                        </Col>
-                        <Col xs={4}>
-                          <h6>Id Commande: {item.orderId}</h6>
-                          <h6>Courriel: {item.shippingInfos.courriel}</h6>
-                          <h6> Date Livraison: 2024-01-09</h6>
-                        </Col>
-                        <Col xs={3}>
-                        <h6>Status: {item.status}</h6>
-                        <h6>Total: ${item.total} </h6>
-                        <h6> Paiement: Paypal</h6>
-                          
-                        </Col>
-                      </Row>
-                    </Stack>
-                  </ListGroup.Item>
-                ))}
-            </ListGroup>
+                {orderHistory &&
+                  orderHistory.map((item) => (
+                    <ListGroup.Item mb={2}>
+                      <Stack direction="vertical" gap={1}>
+                        <Row>
+                          <h5>
+                            Commande de: {item.shippingInfos.prenomClient}{" "}
+                            {item.shippingInfos.nomClient}
+                          </h5>
+                        </Row>
+                        <Row>
+                          <Col xs={4}>
+                            <h6>
+                              Adresse: {item.shippingInfos.adresse.numeroCivic}{" "}
+                              {item.shippingInfos.adresse.rue}{" "}
+                              {item.shippingInfos.adresse.cp}{" "}
+                              {item.shippingInfos.adresse.ville}
+                            </h6>
+                            <h6>Telephone: {item.shippingInfos.tel}</h6>
+                            <h6> Date Commande: 2023-12-11</h6>
+                          </Col>
+                          <Col xs={4}>
+                            <h6>Id Commande: {item.orderId}</h6>
+                            <h6>Courriel: {item.shippingInfos.courriel}</h6>
+                            <h6> Date Livraison: 2024-01-09</h6>
+                          </Col>
+                          <Col xs={3}>
+                            <h6>Status: {item.status}</h6>
+                            <h6>Total: ${item.total} </h6>
+                            <h6> Paiement: Paypal</h6>
+                          </Col>
+                        </Row>
+                      </Stack>
+                    </ListGroup.Item>
+                  ))}
+              </ListGroup>
             </Stack>
           </Container>
         </Tab>

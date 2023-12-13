@@ -34,12 +34,11 @@ function FormulaireEvaluation({ codeProduit }) {
             },
           });
         }
-        console.log(response);
       })
       .catch(function (error) {
         // handle error
         // TODO afficher message erreur
-        console.log(error);
+        console.log("Impossible d'ajouter un commentaire");
       });
   });
 

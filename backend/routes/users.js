@@ -12,6 +12,7 @@ router.post("/inscription", async (req, res) => {
       nom,
       courriel,
       mdp,
+      civique,
       rue,
       ville,
       province,
@@ -20,18 +21,23 @@ router.post("/inscription", async (req, res) => {
     } = req.body;
 
     // TODO: Regarder si le courriel n'existe pas avant d'inserer
+    console.log(civique);
 
     const newClient = new Clients({
       prenom,
       nom,
       courriel,
       mdp,
+      civique,
       rue,
       ville,
       province,
       telephone,
       codePostal,
     });
+
+    console.log(newClient);
+
     await newClient.save();
     res.status(200).json({ message: "Enregistré" });
   } catch (error) {
@@ -40,21 +46,20 @@ router.post("/inscription", async (req, res) => {
   }
 });
 
-// Find user by email address
+// Trouver utilisateur par adresse courriel
 router.get("/find/:useremail", async (req, res) => {
   const userEmail = req.params.useremail;
   try {
-    const theUser = await Clients.findOne({'courriel':userEmail});
+    const theUser = await Clients.findOne({ courriel: userEmail });
 
     if (!theUser) {
-      res.status(404).json({ message: "User not found." });
+      res.status(404).json({ message: "Utilisateur non trouvé." });
       return;
     }
     res.json(theUser);
-
   } catch (error) {
     res.status(500).send();
   }
-})
+});
 
 export default router;

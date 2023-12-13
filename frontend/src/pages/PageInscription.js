@@ -74,7 +74,7 @@ function PageInscription() {
                 {...register("prenom", {
                   required: "Ce champ est obligatoire",
                   pattern: {
-                    value: /^[A-Za-z]+$/i,
+                    value: /^[a-zA-ZÀ-ÿ\s'\-]+$/,
                     message: "Lettres de l'alphabet uniquement",
                   },
                   minLength: {
@@ -94,7 +94,7 @@ function PageInscription() {
                 {...register("nom", {
                   required: "Ce champ est obligatoire",
                   pattern: {
-                    value: /^[A-Za-z]+$/i,
+                    value: /^[a-zA-ZÀ-ÿ\s'\-]+$/,
                     message: "Lettres de l'alphabet uniquement",
                   },
                   minLength: {
@@ -155,17 +155,29 @@ function PageInscription() {
             </Form.Group>
 
             <h5>Adresse</h5>
+            {/* Input NUMERO CIVIQUE */}
+            <Form.Group as={Col} controlId="civique">
+              <Form.Label>Numéro civique</Form.Label>
+              <Form.Control
+                {...register("civique", {
+                  minLength: {
+                    value: 1,
+                    message: "Longueur minimale est de 1 caractères",
+                  },
+                })}
+              />
+              <p style={{ color: "red" }}>{errors.civique?.message}</p>
+            </Form.Group>
+
             {/* Input RUE */}
             <Form.Group as={Col} controlId="rue">
               <Form.Label>Rue</Form.Label>
               <Form.Control
-                placeholder="1234 Main St"
+                placeholder="Rue des violettes"
                 type="text"
                 {...register("rue", {
                   pattern: {
-                    value: /^[A-Za-z0-9\s.,-]+$/,
-                    message:
-                      "Veuillez respecter le format: 'nomutilisateur@domaine.com'",
+                    value: /^[0-9a-zA-ZÀ-ÿ\s\-',.()]+$/,
                   },
                   minLength: {
                     value: 4,
@@ -184,7 +196,7 @@ function PageInscription() {
                 {...register("ville", {
                   required: "Ce champ est obligatoire",
                   pattern: {
-                    value: /^[A-Za-z]+$/i,
+                    value: /^[0-9a-zA-ZÀ-ÿ\s\-',.()]+$/,
                     message: "Lettres de l'alphabet uniquement",
                   },
                   minLength: {

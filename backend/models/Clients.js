@@ -1,51 +1,51 @@
-import mongoose from 'mongoose';
-
+import mongoose from "mongoose";
 
 const clientsSchema = new mongoose.Schema({
+  courriel: {
+    type: String,
+    unique: true,
+    required: true,
+  },
 
-    courriel: {
-        type: String,
-        unique: true,
-        required :true
-    },
+  civique: {
+    type: String,
+    required: true,
+  },
 
-    rue: {
-        type: String, required: true
-    },
-    ville:{
-        type: String,required: true
-    },
-    province:{
-        type: String, required: true
-    },
-    codePostal:{
-        type: String,required: true
-    },
-    mdp:{
-        type: String,required: true
-    },
+  rue: {
+    type: String,
+    required: true,
+  },
+  ville: {
+    type: String,
+    required: true,
+  },
+  province: {
+    type: String,
+    required: true,
+  },
+  codePostal: {
+    type: String,
+    required: true,
+  },
+  mdp: {
+    type: String,
+    required: true,
+  },
 
-    telephone:{
-        type:String
-    },
+  telephone: {
+    type: String,
+  },
 
-    prenom:{
-        type: String,
-        required: true
-    },
+  prenom: {
+    type: String,
+    required: true,
+  },
 
-    nom:{
-        type: String,
-        required: true
-    },
-
-    // numeroClient:{//
-    //     type: Number,
-    //     required:true,
-    //     unique: true
-    // },
-
+  nom: {
+    type: String,
+    required: true,
+  },
 });
 
-
-export default mongoose.model('Clients',clientsSchema,'Clients');
+export default mongoose.model("Clients", clientsSchema, "Clients");

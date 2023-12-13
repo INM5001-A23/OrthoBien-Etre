@@ -29,7 +29,11 @@ function CarteProduit({
   };
   const user = useContext(UserContext);
 
-  const [cart, setCart] = useState(localStorage.getItem("guestCartItems") ? JSON.parse((localStorage.getItem("guestCartItems")))  : []);
+  const [cart, setCart] = useState(
+    localStorage.getItem("guestCartItems")
+      ? JSON.parse(localStorage.getItem("guestCartItems"))
+      : []
+  );
 
   const [notification, setNotification] = useState(null);
 
@@ -46,22 +50,19 @@ function CarteProduit({
           ? { ...item, qtt: item.qtt + 1 }
           : item
       );
-
     } else {
-
       //setCart(JSON.parse((localStorage.getItem("guestCartItems"))));
-
-      console.log('cart avant: ' + cart)
+      console.log("cart avant: " + cart);
 
       updatedCart = [...cart, { ...productDetails, qtt: 1 }];
     }
 
     //setCart(updatedCart);
     localStorage.setItem("guestCartItems", JSON.stringify(updatedCart));
-    setCart(JSON.parse((localStorage.getItem("guestCartItems"))));
+    setCart(JSON.parse(localStorage.getItem("guestCartItems")));
 
-    console.log('Updated cart apres: ' +  JSON.stringify(updatedCart))
-    console.log('cart apres: ' +  cart)
+    console.log("Updated cart apres: " + JSON.stringify(updatedCart));
+    console.log("cart apres: " + cart);
 
     setNotification(`${nomProduit} a été ajouté au panier`);
 
@@ -72,7 +73,7 @@ function CarteProduit({
 
   // // update cart in localStorage
   // useEffect(() => {
-  //   localStorage.setItem('guestCartItems', JSON.stringify(cart));    
+  //   localStorage.setItem('guestCartItems', JSON.stringify(cart));
   // }, [cart]);
 
   const prixInitial = prix || 0;
