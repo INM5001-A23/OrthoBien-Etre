@@ -65,7 +65,6 @@ function ModalAjout({ show, onHide }) {
         } else {
           setError("backend", response?.data?.erreur);
         }
-        console.log(response);
       })
       .catch((error) => {
         console.error("Error submitting form:", error);

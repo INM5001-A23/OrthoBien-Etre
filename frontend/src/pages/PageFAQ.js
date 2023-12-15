@@ -90,7 +90,6 @@ function PageFAQ() {
     axios
       .get("/faq")
       .then(function (response) {
-        console.log(response);
         setFaqData(response.data);
       })
       .catch(function (error) {

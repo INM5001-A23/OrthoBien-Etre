@@ -1,4 +1,4 @@
- import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { DropdownButton, Form } from "react-bootstrap";
 import { AxiosContext } from "..";
 
@@ -11,7 +11,7 @@ function FiltreCategorie({ filtre, setFiltre }) {
       .get("/categories")
       .then(function (response) {
         // handle success
-        console.log(response);
+
         setCategories(response.data);
       })
       .catch(function (error) {

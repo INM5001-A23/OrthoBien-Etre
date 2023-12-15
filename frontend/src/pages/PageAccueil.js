@@ -29,9 +29,6 @@ function PageAccueil() {
       .catch(function (error) {
         // handle error
         console.log(error);
-      })
-      .finally(function () {
-        // always executed
       });
   }, [axios]);
 
@@ -40,15 +37,11 @@ function PageAccueil() {
       .get("/produits/populaire")
       .then(function (response) {
         // handle success
-        console.log(response);
         setProduitsPopulaire(response.data);
       })
       .catch(function (error) {
         // handle error
         console.log(error);
-      })
-      .finally(function () {
-        // always executed
       });
   }, [axios]);
 
@@ -62,9 +55,6 @@ function PageAccueil() {
       .catch(function (error) {
         // handle error
         console.log(error);
-      })
-      .finally(function () {
-        // always executed
       });
   }, [axios]);
 

@@ -71,9 +71,8 @@ function ModalModification({ produit, show, onHide }) {
           });
           navigate(0);
         } else {
-          // TODO afficher message erreur
+          console.log(error);
         }
-        console.log(response);
       })
       .catch(function (error) {
         // handle error

@@ -37,7 +37,7 @@ function FormulaireEvaluation({ codeProduit }) {
       })
       .catch(function (error) {
         // handle error
-        // TODO afficher message erreur
+
         console.log("Impossible d'ajouter un commentaire");
       });
   });

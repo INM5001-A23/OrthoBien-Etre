@@ -20,7 +20,6 @@ function PageProduit() {
       .get(`/produits/${codeProduit}`)
       .then(function (response) {
         // handle success
-        console.log(response);
         setProduit(response.data);
       })
       .catch(function (error) {

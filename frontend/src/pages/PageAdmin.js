@@ -27,15 +27,11 @@ function PageAdmin() {
       .get("/Produits")
       .then(function (response) {
         // handle success
-        console.log(response);
         setProduits(response.data);
       })
       .catch(function (error) {
         // handle error
         console.log(error);
-      })
-      .finally(function () {
-        // always executed
       });
   }, [axios]);
 

@@ -42,7 +42,7 @@ function DetailsProduit({
       .get(`/produits/${codeProduit}`)
       .then(function (response) {
         // handle success
-        console.log(response);
+
         setProduit(response.data);
       })
       .catch(function (error) {
@@ -61,7 +61,7 @@ function DetailsProduit({
     codeProduit: codeProduit,
     nomProduit: nomProduit,
     prix: prix,
-    images: images
+    images: images,
   };
 
   const [cart, setCart] = useState(
