@@ -8,76 +8,34 @@ import styles from "./Carte.module.css";
 import Etoile from "./Etoile";
 import NomCategorie from "./NomCategorie";
 
-function CarteProduit({
-  produit: {
-    codeProduit,
-    nomProduit,
-    codeCategorie,
-    prix,
-    promotion,
-    populaire,
-    images,
-    avis,
-  },
-}) {
-  const navigate = useNavigate();
-  const productDetails = {
-    codeProduit: codeProduit,
-    nomProduit: nomProduit,
-    prix: prix,
-    images: images,
+const CarteProduit = (props) => {
+  const produitDetails = {
+    codeProduit: props.produit.codeProduit,
+    nomProduit: props.produit.nomProduit,
+    codeCategorie: props.produit.codeCategorie,
+    prix: props.produit.prix,
+    promotion: props.produit.promotion,
+    populaire: props.produit.populaire,
+    images: props.produit.images,
+    avis: props.produit.avis,
   };
-  const user = useContext(UserContext);
 
-  const [cart, setCart] = useState(
-    localStorage.getItem("guestCartItems")
-      ? JSON.parse(localStorage.getItem("guestCartItems"))
-      : []
-  );
+  const navigate = useNavigate();
+
+  const user = useContext(UserContext);
 
   const [notification, setNotification] = useState(null);
 
-  const addToCart = () => {
-    let updatedCart = [];
-
-    const existingProduct = cart.find(
-      (item) => item.codeProduit === productDetails.codeProduit
-    );
-
-    if (existingProduct) {
-      updatedCart = cart.map((item) =>
-        item.codeProduit === productDetails.codeProduit
-          ? { ...item, qtt: item.qtt + 1 }
-          : item
-      );
-    } else {
-      //setCart(JSON.parse((localStorage.getItem("guestCartItems"))));
-      console.log("cart avant: " + cart);
-
-      updatedCart = [...cart, { ...productDetails, qtt: 1 }];
-    }
-
-    //setCart(updatedCart);
-    localStorage.setItem("guestCartItems", JSON.stringify(updatedCart));
-    setCart(JSON.parse(localStorage.getItem("guestCartItems")));
-
-    console.log("Updated cart apres: " + JSON.stringify(updatedCart));
-    console.log("cart apres: " + cart);
-
-    setNotification(`${nomProduit} a été ajouté au panier`);
+  const displayNotification = () => {
+    setNotification(`${produitDetails.nomProduit} a été ajouté au panier`);
 
     setTimeout(() => {
       setNotification(null);
-    }, 3000);
+    }, 2000);
   };
 
-  // // update cart in localStorage
-  // useEffect(() => {
-  //   localStorage.setItem('guestCartItems', JSON.stringify(cart));
-  // }, [cart]);
-
-  const prixInitial = prix || 0;
-  const prixBarre = promotion ? (prixInitial * 1.15).toFixed(2) : "";
+  const prixInitial = produitDetails.prix || 0;
+  const prixBarre = produitDetails.promotion ? (prixInitial * 1.15).toFixed(2) : "";
 
   return (
     <Card
@@ -104,12 +62,12 @@ function CarteProduit({
 
       <div
         style={{ position: "relative", display: "inline-block" }}
-        onClick={() => navigate(`/produit/${codeProduit}`)}
+        onClick={() => navigate(`/produit/${produitDetails.codeProduit}`)}
       >
         <Card.Img
           className={styles["header-img"]}
           variant="top"
-          src={images && convertToDataUrl(images[0])}
+          src={produitDetails.images && convertToDataUrl(produitDetails.images[0])}
         />
         <h5>
           <Badge
@@ -117,7 +75,7 @@ function CarteProduit({
             bg="danger"
             style={{ position: "absolute", top: "10px", right: "10px" }}
           >
-            {promotion ? "En promotion" : ""}
+            {produitDetails.promotion ? "En promotion" : ""}
           </Badge>
           <Badge
             pill
@@ -129,24 +87,24 @@ function CarteProduit({
               right: "10px",
             }}
           >
-            {populaire ? "Produit populaire!" : ""}
+            {produitDetails.populaire ? "Produit populaire!" : ""}
           </Badge>
         </h5>
       </div>
 
-      <Card.Body onClick={() => navigate(`/produit/${codeProduit}`)}>
-        <Card.Title className="mb-0  p-2">{nomProduit}</Card.Title>
+      <Card.Body onClick={() => navigate(`/produit/${produitDetails.codeProduit}`)}>
+        <Card.Title className="mb-0  p-2">{produitDetails.nomProduit}</Card.Title>
         <Row>
-          {codeCategorie && <NomCategorie codeCategorie={codeCategorie} />}
+          {produitDetails.codeCategorie && <NomCategorie codeCategorie={produitDetails.codeCategorie} />}
         </Row>
         <Stack direction="horizontal">
-          {promotion ? (
+          {produitDetails.promotion ? (
             <>
               <ListGroup.Item
                 className="mx-auto"
                 style={{ color: "red", fontWeight: "bold" }}
               >
-                {prix} CAD
+                {produitDetails.prix} CAD
               </ListGroup.Item>
               {prixBarre && (
                 <ListGroup.Item className="mx-auto">
@@ -169,9 +127,9 @@ function CarteProduit({
             justifyContent: "center",
           }}
         >
-          <Etoile evaluation={avis && calculMoyenneAvis(avis)} size="25" />
+          <Etoile evaluation={produitDetails.avis && calculMoyenneAvis(produitDetails.avis)} size="25" />
 
-          <Card.Link href="#commentaires">({avis.length})</Card.Link>
+          <Card.Link href="#commentaires">({produitDetails.avis.length})</Card.Link>
         </div>
       </Card.Body>
       <Row className="p-2 mb-3">
@@ -184,7 +142,10 @@ function CarteProduit({
             <div>
               <Button
                 variant="outline-primary"
-                onClick={addToCart}
+                onClick={() => {
+                  props.handleAddToCart && props.handleAddToCart(produitDetails);
+                  displayNotification();
+                }}
                 style={{ margin: "5px" }}
               >
                 Ajout Panier
@@ -194,7 +155,7 @@ function CarteProduit({
                 variant="outline-success"
                 onClick={() =>
                   navigate("/commande", {
-                    state: { total: prix, cartItems: [] },
+                    state: {total: produitDetails.prix, cartItems: [{produitDetails}]},
                   })
                 }
               >

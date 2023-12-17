@@ -92,6 +92,7 @@ function DetailsProduit({
     }
 
     setNotification(`${nomProduit} a été ajouté au panier`);
+    console.log(notification);
 
     setTimeout(() => {
       setNotification(null);
@@ -102,7 +103,7 @@ function DetailsProduit({
   const prixBarre = promotion ? (prixInitial * 1.15).toFixed(2) : "";
 
   return (
-    <Container>
+    <Container key={codeProduit}>
       {notification && (
         <Alert
           variant="success"

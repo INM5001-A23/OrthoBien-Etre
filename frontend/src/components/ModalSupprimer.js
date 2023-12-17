@@ -27,7 +27,7 @@ function ModalSupprimer({ produit, show, onHide }) {
           });
           navigate(0);
         } else {
-          console.log(error);
+          console.log('error');
         }
       })
       .catch(function (error) {

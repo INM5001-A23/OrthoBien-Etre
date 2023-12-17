@@ -13,11 +13,41 @@ function PageAccueil() {
   const [promotions, setPromotions] = useState([]);
   const [produitsPopulaire, setProduitsPopulaire] = useState([]);
   const [categories, setCategories] = useState([]);
+  const [cart, setCart] = useState(
+    localStorage.getItem("guestCartItems")
+      ? JSON.parse(localStorage.getItem("guestCartItems"))
+      : []
+  );
 
   const imagesCode = [1001, 1002, 1003];
   const imagesList = imagesCode.map((item) => {
     return `./images/${item}.png`;
   });
+
+  
+  const handleAddToCart = (productDetails) => {
+    console.log("Le produit ajoute: ", JSON.stringify(productDetails));
+
+    let updatedCart = [];
+
+    const existingProduct = cart.find(
+      (item) => item.codeProduit === productDetails.codeProduit
+    );
+
+    if (existingProduct) {
+      updatedCart = cart.map((item) =>
+        item.codeProduit === productDetails.codeProduit
+          ? { ...item, qtt: item.qtt + 1 }
+          : item
+      );
+    } else {
+      updatedCart = [...cart, { ...productDetails, qtt: 1 }];
+    }
+
+    setCart(updatedCart);
+
+    localStorage.setItem("guestCartItems", JSON.stringify(updatedCart));
+  };
 
   useEffect(() => {
     axios
@@ -70,7 +100,7 @@ function PageAccueil() {
           <Row xs={1} md={3} className="g-3 justify-content-center">
             {promotions.map((produit) => (
               <Col xs="auto" md="auto" key={produit._id}>
-                <CarteProduit produit={produit} />
+                <CarteProduit produit={produit}  handleAddToCart={handleAddToCart}  />
               </Col>
             ))}
           </Row>
@@ -84,7 +114,7 @@ function PageAccueil() {
             {produitsPopulaire
               .map((produitPopulaire) => (
                 <Col xs="auto" md="auto" key={produitPopulaire._id}>
-                  <CarteProduit produit={produitPopulaire} />
+                  <CarteProduit produit={produitPopulaire}  handleAddToCart={handleAddToCart} />
                 </Col>
               ))
               .slice(0, 3)}

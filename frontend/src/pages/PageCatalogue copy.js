@@ -18,36 +18,6 @@ function PageCatalogue() {
   const [produits, setProduits] = useState([]);
   const [filtre, setFiltre] = useState("");
 
-  const [cart, setCart] = useState(
-    localStorage.getItem("guestCartItems")
-      ? JSON.parse(localStorage.getItem("guestCartItems"))
-      : []
-  );
-
-  const handleAddToCart = (productDetails) => {
-    console.log("Le produit ajoute: ", JSON.stringify(productDetails));
-
-    let updatedCart = [];
-
-    const existingProduct = cart.find(
-      (item) => item.codeProduit === productDetails.codeProduit
-    );
-
-    if (existingProduct) {
-      updatedCart = cart.map((item) =>
-        item.codeProduit === productDetails.codeProduit
-          ? { ...item, qtt: item.qtt + 1 }
-          : item
-      );
-    } else {
-      updatedCart = [...cart, { ...productDetails, qtt: 1 }];
-    }
-
-    setCart(updatedCart);
-
-    localStorage.setItem("guestCartItems", JSON.stringify(updatedCart));
-  };
-
   useEffect(() => {
     if (!!filtreCategorie) {
       axios.get(`/categories/${filtreCategorie}/produits`).then((response) => {
@@ -84,7 +54,7 @@ function PageCatalogue() {
           {produits
             .map((produit) => (
               <Col xs="auto" md="auto" key={produit._id}>
-                <CarteProduit produit={produit} handleAddToCart={handleAddToCart} achat/>
+                <CarteProduit produit={produit} achat />
               </Col>
             ))
             .slice(0, 15)}
