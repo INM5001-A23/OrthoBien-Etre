@@ -103,9 +103,8 @@ cd  nom-du-projet
 
 ### Barre de recherche
 
-![image](https://github.com/INM5001-A23/OrthoBien-Etre/assets/106025922/790dbab0-46ef-47c0-b30b-e8be8759f140)
+![image](https://github.com/INM5001-A23/OrthoBien-Etre/assets/106025922/36467cfb-bfc9-4d77-a9d1-83d0f93a04fa)
 
-  
 
 ### Page catalogue
 
