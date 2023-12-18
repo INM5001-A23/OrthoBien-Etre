@@ -153,9 +153,9 @@ const CarteProduit = (props) => {
 
               <Button
                 variant="outline-success"
-                onClick={() =>
+                onClick={() => 
                   navigate("/commande", {
-                    state: {total: produitDetails.prix, cartItems: [{produitDetails}]},
+                    state: {total: produitDetails.prix, cartItems: [produitDetails]},
                   })
                 }
               >

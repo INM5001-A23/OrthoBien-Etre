@@ -11,6 +11,7 @@ function Recherche({}) {
 
   const results = location.state.total;
 
+  //Resultat de la recherche
   useEffect(() => {
     if (results && results.length > 0) {
       return;

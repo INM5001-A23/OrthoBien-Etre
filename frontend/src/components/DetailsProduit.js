@@ -92,7 +92,6 @@ function DetailsProduit({
     }
 
     setNotification(`${nomProduit} a été ajouté au panier`);
-    console.log(notification);
 
     setTimeout(() => {
       setNotification(null);
@@ -177,7 +176,12 @@ function DetailsProduit({
                   <Button variant="outline-primary" onClick={addToCart}>
                     Ajouter au panier
                   </Button>
-                  <Button variant="outline-success">Acheter maintenant</Button>
+                  <Button variant="outline-success" 
+                    onClick={() => 
+                      navigate("/commande", {
+                      state: {total: produit.prix, cartItems: [produit]},
+                    })
+                }>Acheter maintenant</Button>
                 </Stack>
               )}
             </Card.Body>

@@ -24,6 +24,7 @@ function PageConnexion() {
     mode: "onBlur",
   });
 
+  // Faire la connexion de l'utilisateur en verifiant les donnees dans la bd
   const handleFormulaireConnexion = handleSubmit((data) => {
     axios
       .post("/connexion", data)

@@ -27,6 +27,7 @@ const Livraison = () => {
     mode: "onBlur",
   });
 
+  //Copie informations de livraison et les envoie à la page commande
   const handleformulaireLivraison = handleSubmit((data) => {
     navigate("/commande", {
       state: {

@@ -13,6 +13,7 @@ function PageProduit() {
   const { state } = useLocation();
   const status = state?.status;
 
+  // Fetch product from database
   useEffect(() => {
     if (!codeProduit) return;
 

@@ -22,6 +22,7 @@ function PageAdmin() {
     }
   }, []);
 
+  //// API call to fetch products
   useEffect(() => {
     axios
       .get("/Produits")

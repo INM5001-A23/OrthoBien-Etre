@@ -11,10 +11,12 @@ const Confirmation = () => {
   const axios = useContext(AxiosContext);
   const user = useContext(UserContext);
 
+  //Efface le contenu du local storage dans la premiere ouverture de la page
   useEffect(() => {
     clearCart();
   }, []);
 
+  //Efface le contenu du local storage guestCartItems
   const clearCart = async () => {
     localStorage.removeItem("guestCartItems");
 

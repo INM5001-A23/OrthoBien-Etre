@@ -18,11 +18,13 @@ function PagePanier() {
       : []
   );
 
+  // Fetch user cart from database
   const fetchUserCart = async () => {
     try {
       const userIdResponse = await axios.get(
         `/utilisateur/find/${user.courriel}`
       );
+      
       const response = await axios.get(`/panier/${userIdResponse.data._id}`);
       localStorage.setItem(
         "guestCartItems",
@@ -33,7 +35,10 @@ function PagePanier() {
     }
   };
 
+  // Update user cart to database
   const updateUserCart = async () => {
+    console.log("Is in the updateUserCart function")
+    console.log(cart)
     try {
       const guestCartItems = JSON.parse(localStorage.getItem("guestCartItems"));
       const userIdResponse = await axios.get(
@@ -43,9 +48,6 @@ function PagePanier() {
         `/panier/update/${userIdResponse.data._id}`,
         { guestCartItems }
       );
-      console.log(userIdResponse.data._id);
-      console.log(guestCartItems);
-      console.log(response.data.articles);
     } catch (error) {
       console.error("Error updating cart:", error);
     }
@@ -67,10 +69,12 @@ function PagePanier() {
     if (user) updateUserCart();
   }, [cart]);
 
+  // Modifie le cout total du panier selon son contenu
   const cartTotal = cart
     ? cart.reduce((total, item) => total + item.prix * item.qtt, 0)
     : 0;
 
+    // Diminue quantite produit
   const increaseQuantity = (itemId) => {
     const updatedCart = cart
       ? cart.map((item) =>
@@ -80,6 +84,7 @@ function PagePanier() {
     setCart(updatedCart);
   };
 
+  // Diminue quantite produit
   const decreaseQuantity = (itemId) => {
     const updatedCart = cart
       ? cart.map((item) =>
@@ -92,11 +97,13 @@ function PagePanier() {
     setCart(updatedCart);
   };
 
+  // Effacer produit
   const removeItem = (itemId) => {
     const updatedCart = cart.filter((item) => item.codeProduit !== itemId);
     setCart(updatedCart);
   };
 
+  // Modifie le nombre de produit total du panier selon son contenu
   const cartSize = cart ? cart.reduce((size, item) => size + item.qtt, 0) : 0;
 
   const navigate = useNavigate();

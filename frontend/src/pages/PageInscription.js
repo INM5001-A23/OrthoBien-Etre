@@ -24,6 +24,7 @@ function PageInscription() {
     },
   });
 
+  // Faire inscription en enregistrant donnees dans bd
   const handleFormulaireInscription = handleSubmit((data) => {
     axios
       .post("/utilisateur/inscription", data)

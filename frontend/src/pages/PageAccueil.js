@@ -19,15 +19,14 @@ function PageAccueil() {
       : []
   );
 
+  // to display carousel
   const imagesCode = [1001, 1002, 1003];
   const imagesList = imagesCode.map((item) => {
     return `./images/${item}.png`;
   });
 
-  
+  // Ajouter produit dans panier
   const handleAddToCart = (productDetails) => {
-    console.log("Le produit ajoute: ", JSON.stringify(productDetails));
-
     let updatedCart = [];
 
     const existingProduct = cart.find(
@@ -49,6 +48,7 @@ function PageAccueil() {
     localStorage.setItem("guestCartItems", JSON.stringify(updatedCart));
   };
 
+  // API call to fetch categories
   useEffect(() => {
     axios
       .get("/categories")
@@ -62,6 +62,7 @@ function PageAccueil() {
       });
   }, [axios]);
 
+  // API call to fetch popular products
   useEffect(() => {
     axios
       .get("/produits/populaire")
@@ -75,6 +76,7 @@ function PageAccueil() {
       });
   }, [axios]);
 
+  // API call to fetch promotion products
   useEffect(() => {
     axios
       .get("/produits/promotion")
