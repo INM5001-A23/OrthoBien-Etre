@@ -5,6 +5,7 @@ const Etoile = ({ evaluation, onChange, size }) => {
   const [rating, setRating] = useState(evaluation);
   const [hover, setHover] = useState(null);
 
+  // ajouter notes au produit en cliquant sur les etoiles
   const handleOnClick = (currentRating) => {
     setRating(currentRating);
     onChange(currentRating);

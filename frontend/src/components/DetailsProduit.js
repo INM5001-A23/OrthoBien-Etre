@@ -37,6 +37,7 @@ function DetailsProduit({
   const user = useContext(UserContext);
   const [produit, setProduit] = useState(null);
 
+  //Fetch product details
   useEffect(() => {
     axios
       .get(`/produits/${codeProduit}`)

@@ -6,6 +6,7 @@ function FiltreCategorie({ filtre, setFiltre }) {
   const axios = useContext(AxiosContext);
   const [categories, setCategories] = useState([]);
 
+  // filtre par categorie
   useEffect(() => {
     axios
       .get("/categories")

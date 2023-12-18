@@ -1,5 +1,6 @@
 import { DropdownButton, Form } from "react-bootstrap";
 
+//Gestion Tri du catalogue
 function TriCatalogue({ filtre, setFiltre }) {
   const getNomFiltre = () => {
     const noms = {

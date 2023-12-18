@@ -18,6 +18,7 @@ function FormulaireEvaluation({ codeProduit }) {
     mode: "onBlur",
   });
 
+  // Ajouter avis dans base de donnee une fois complete
   const handleFormulaireEvaluation = handleSubmit((data) => {
     const body = { ...data, codeProduit, token };
 
