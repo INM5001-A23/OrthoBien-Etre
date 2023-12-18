@@ -42,8 +42,8 @@ router.post("/inscription", async (req, res) => {
     await newClient.save();
     res.status(200).json({ message: "Enregistré" });
   } catch (error) {
-    console.log("Nobody knows what you did !" + error.message);
-    res.status(500).json({ erreur: "Nobody knows !" });
+    
+    res.status(500).json({ error });
   }
 });
 
