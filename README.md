@@ -108,52 +108,43 @@ cd  nom-du-projet
 
 ### Page catalogue
 
-![image](https://github.com/INM5001-A23/OrthoBien-Etre/assets/106025922/9b2590af-3136-4b6f-af76-f13f1c872e71)
+![image](https://github.com/INM5001-A23/OrthoBien-Etre/assets/106025922/92157578-bdc7-4452-b36d-2b9a99784f0b)
 
-  
 
 ### Page connexion
 
 ![image](https://github.com/INM5001-A23/OrthoBien-Etre/assets/106025922/acf09e3a-dcb1-48f4-9a12-2103ac4e8e8d)
 
-  
 
 ### Page inscription
 
 ![image](https://github.com/INM5001-A23/OrthoBien-Etre/assets/106025922/c85f7fb8-fb1a-4bd7-aa9d-1a5db1c22c25)
 
-  
 
 ### Page panier
 
 ![image](https://github.com/INM5001-A23/OrthoBien-Etre/assets/106025922/9e08e002-c381-42a6-ad4b-e8f60e10c80a)
-
   
 
 ### Page livraison
 
 ![image](https://github.com/INM5001-A23/OrthoBien-Etre/assets/106025922/a81f6b9c-ef2a-4b0b-99a3-06fae5bd7f6b)
 
-  
 
 ### Page récapitulatif de la commande
 
 ![image](https://github.com/INM5001-A23/OrthoBien-Etre/assets/106025922/1b239934-4a52-4055-9f43-ad4d1ae2927e)
 
-  
 
 ### Page F.A.Q.
 
 ![image](https://github.com/INM5001-A23/OrthoBien-Etre/assets/106025922/f7149783-9dd8-4bb7-9a91-a75e2d9264bc)
-
   
 
 ### Page contact
 
 ![image](https://github.com/INM5001-A23/OrthoBien-Etre/assets/106025922/875614a3-d84e-4aed-9858-08878a774366)
 
-  
-  
 
 ## Auteurs
 
