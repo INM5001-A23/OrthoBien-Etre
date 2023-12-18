@@ -96,11 +96,10 @@ cd  nom-du-projet
 
 ### Page accueil
 
-![image](https://github.com/INM5001-A23/OrthoBien-Etre/assets/106025922/543ce619-ae12-4732-8eeb-b998a016ad22)
+![image](https://github.com/INM5001-A23/OrthoBien-Etre/assets/106025922/b556214b-310e-438b-8171-95fd7e9404ed)
 
-![image](https://github.com/INM5001-A23/OrthoBien-Etre/assets/106025922/7e62c287-3e30-4985-8872-1536830344cb)
+![image](https://github.com/INM5001-A23/OrthoBien-Etre/assets/106025922/70a2fa15-b20f-40d2-90c0-4c3bdc71eba2)
 
-  
 
 ### Barre de recherche
 
