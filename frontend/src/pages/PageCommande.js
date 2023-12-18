@@ -47,6 +47,8 @@ function PageCommande() {
     tvq: tvq,
     fraisLivraison: fraisLivraison,
     total: totalApresTaxes,
+    orderDate: "",
+    deliveryDate: ""
   };
 
   return (
@@ -94,7 +96,7 @@ function PageCommande() {
                               </Row>
                               <Row>
                                 <span style={{ fontSize: "14px" }}>
-                                  Quantité: {item.qtt}
+                                  Quantité: {item.qtt?item.qtt:1}
                                 </span>
                               </Row>
                             </Col>

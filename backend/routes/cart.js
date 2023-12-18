@@ -52,9 +52,6 @@ router.get("/:clientid", async (req, res) => {
   router.put('/update/:userid', async (req, res) => {
     const userId = req.params.userid;
     const newCart = req.body.guestCartItems;
-
-    console.log(newCart)
-
     let cartSize = 0;
     let cartTotal = 0;
 
@@ -62,9 +59,6 @@ router.get("/:clientid", async (req, res) => {
       cartSize = newCart.reduce((size, item) => size + item.qtt, 0);
       cartTotal = newCart.reduce((total, item) => total + item.prix * item.qtt, 0);
     }
-
-    console.log("Cart Size: " + cartSize)
-    console.log("Cart Total: " + cartTotal.toFixed(2))
 
     try {
       const updateCart = await Cart.findOneAndUpdate(
@@ -116,9 +110,6 @@ router.post('/add', async (req, res) => {
   try {
     const user = req.user._id;
     const items = req.body.products;
-
-    console.log(user);
-    console.log(items);
 
     const cartDoc = await cart.save();
 

@@ -50,6 +50,11 @@ const panierSchema = new mongoose.Schema({
                 default:1
             },
 
+            images:{
+                type: Array,
+                required: true
+            }
+
 
         }
     ],
