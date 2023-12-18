@@ -1,7 +1,7 @@
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { useNavigate } from "react-router-dom";
-import SearchResultPortal from "../components/SearchResultPortal";
+import SearchResultPortal from "./SearchResultPortal";
 import "../components/SearchResultsList.css";
 import { convertToDataUrl } from "../utils";
 
@@ -24,8 +24,9 @@ export const SearchResultsList = ({ results }) => {
                   type="image"
                   style={{
                     width: "150px",
-                    height: "100px",
+                    height: "150px",
                     display: "inline-block",
+                    
                   }}
                   src={convertToDataUrl(result.images[0])}
                   alt={`Image for ${result.nomProduit}`}

@@ -32,7 +32,7 @@ export const SearchBar = ({ setResults }) => {
         placeholder="Recherche"
         className="me-2"
         aria-label="Search"
-        style={{ height: "10%", alignSelf: "center", margin: "10px" }}
+        style={{ height: "10%", alignSelf: "center", margin: "10px" , width: "330px"}}
         value={input}
         onChange={(e) => handleChange(e.target.value)}
       />

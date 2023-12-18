@@ -15,7 +15,7 @@ function ModelePage({ children }) {
 
       <div
         id="search-result-portal"
-        style={{ position: "absolute", top: 40, right: 240, zIndex: 1000 }}
+        style={{ position: "absolute", top: 40, right:350, zIndex: 1000 }}
       />
       <PiedDePage />
     </Stack>

@@ -12,8 +12,6 @@
 
 ```bash
    npm install
-
-   npm i --save
 ```
 
 3. Démarrer le serveur
