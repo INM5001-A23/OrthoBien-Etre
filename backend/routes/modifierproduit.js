@@ -5,7 +5,6 @@ import Images from "../models/Images.js";
 
 const router = express.Router();
 router.use(express.json());
-//import jwt from "jsonwebtoken";
 
 /**
  * Cette route permet de modifier un produit

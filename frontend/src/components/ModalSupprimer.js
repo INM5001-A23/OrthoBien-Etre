@@ -10,13 +10,15 @@ function ModalSupprimer({ produit, show, onHide }) {
   const axios = useContext(AxiosContext);
   const token = localStorage.getItem("token");
 
-  const handleModalSupprimer = () => {
+  const handleModalSupprimer = (e) => {
+    e.preventDefault();
     const body = { codeProduit: produit.codeProduit, token };
 
     axios
       .delete("/supprimerProduit", { data: body })
       .then(function (response) {
         if (response.status === 200) {
+          onHide();
           navigate("/admin", {
             state: {
               status: {
@@ -27,7 +29,7 @@ function ModalSupprimer({ produit, show, onHide }) {
           });
           navigate(0);
         } else {
-          console.log('error');
+          console.log("error");
         }
       })
       .catch(function (error) {

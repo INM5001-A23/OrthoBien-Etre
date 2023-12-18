@@ -1,21 +1,20 @@
-import express from "express";
-import mongoose from "mongoose";
 import cors from "cors";
 import "dotenv/config";
-import bodyParser from "body-parser";
+import express from "express";
+import mongoose from "mongoose";
 import multer from "multer";
 
 // import routes
-import avisRoutes from "./routes/avis.js";
-import categoryRoutes from "./routes/category.js";
-import productRoutes from "./routes/product.js";
-import cartRoutes from "./routes/cart.js";
-import orderRoutes from "./routes/order.js";
-import usersRoutes from "./routes/users.js";
-import connexionRoutes from "./routes/connexion.js";
 import ajoutproduitRoutes from "./routes/ajoutproduit.js";
-import modifierproduitRoutes from "./routes/modifierproduit.js";
+import avisRoutes from "./routes/avis.js";
+import cartRoutes from "./routes/cart.js";
+import categoryRoutes from "./routes/category.js";
+import connexionRoutes from "./routes/connexion.js";
 import supprimerproduitRoutes from "./routes/deleteproduit.js";
+import modifierproduitRoutes from "./routes/modifierproduit.js";
+import orderRoutes from "./routes/order.js";
+import productRoutes from "./routes/product.js";
+import usersRoutes from "./routes/users.js";
 // app
 const app = express();
 const port = 3300;
