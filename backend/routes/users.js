@@ -4,7 +4,9 @@ import Clients from "../models/Clients.js";
 const router = express.Router();
 router.use(express.json());
 
-//ajouter un client dans la base de donnee
+/***
+ * Cette route ajoute un utilisateur dans la base de donnees
+ */
 router.post("/inscription", async (req, res) => {
   try {
     const {
@@ -45,7 +47,9 @@ router.post("/inscription", async (req, res) => {
   }
 });
 
-// Trouver utilisateur par adresse courriel
+/***
+ * Cette route cherche et retourne un utilisateur par son adresse courriel
+ */
 router.get("/find/:useremail", async (req, res) => {
   const userEmail = req.params.useremail;
   try {

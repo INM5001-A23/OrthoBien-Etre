@@ -16,7 +16,7 @@
 
     - Dépendances:
         - @babel/plugin-proposal-private-property-in-object: ^7.21.11,
-        - nodemon": ^3.0.1
+        - nodemon: ^3.0.1
 
 3. Démarrer le serveur
 
@@ -56,7 +56,7 @@ Pour déployer l'application en production, utilisez la commande:
     - Product: Gestion des produit (Post, Get)
     - Users: Gestion des utilisateurs (Post, Get, Put)
 
-    
+
 
 
         

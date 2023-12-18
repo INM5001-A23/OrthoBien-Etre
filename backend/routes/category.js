@@ -20,7 +20,7 @@ router.get("/", async (req, res) => {
 });
 
 /***
- * Cette route va chercher les categories 
+ * Cette route va chercher les categories par code
  */
 router.get("/:codeCategorie/produits", async (req, res) => {
   try {

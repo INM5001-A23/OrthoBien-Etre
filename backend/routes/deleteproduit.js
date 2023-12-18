@@ -6,6 +6,10 @@ import Images from "../models/Images.js";
 const router = express.Router();
 router.use(express.json());
 
+/***
+ * Cette route efface un produit 
+ * Seulement l'administrateur peut enlever les produits
+ */
 router.delete("/", async (req, res) => {
   try {
     const { codeProduit, token } = req.body;

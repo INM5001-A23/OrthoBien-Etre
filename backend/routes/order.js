@@ -9,14 +9,31 @@ router.use(bodyParser.json());
 
 router.use(cors());
 
+/***
+ * Cette route ajoute une commande avec toutes informations
+ * Elle contient toutes les informations de livraison
+ * du client invité ou du client connecté
+ */
 router.post("/", cors(), async (req, res) => {
   try {
+
+    const date = new Date();
+
+    let day = date.getDate();
+    let month = date.getMonth() + 1;
+    let year = date.getFullYear();
+
+    const todayDate = `${day}-${month}-${year}`;
+    const deliveryDate = `${day+5}-${month}-${year}`; 
+
     let orderDetails = req.body;
 
     const newOrder = new Commandes({
       orderId: orderDetails.orderId,
       paymentId: orderDetails.paymentId,
       client: orderDetails.isClient,
+      orderDate: todayDate,
+      deliveryDate: deliveryDate,
       shippingInfos: {
         nomClient: orderDetails.shipping.nom,
         prenomClient: orderDetails.shipping.prenom,
@@ -53,7 +70,10 @@ router.post("/", cors(), async (req, res) => {
   }
 });
 
-//get orders by emailAddress
+/***
+ * Cette route cherche et retourne toutes les commande d'un client
+ * par son adresse courriel
+ */
 router.get("/:emailAddress", async (req, res) => {
   const courriel = req.params.emailAddress
   try {

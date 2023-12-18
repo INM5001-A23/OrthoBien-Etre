@@ -16,7 +16,6 @@ router.use(express.json());
 
 router.put("/", async (req, res) => {
   try {
-    //const{codeProduit} = req.params;
     const {
       codeProduit,
       nomProduit,

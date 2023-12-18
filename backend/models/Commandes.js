@@ -13,12 +13,24 @@ const commandesSchema = new mongoose.Schema({
   client: {
     type: Boolean,
     default: false,
-    require: true,
+    require: true
   },
 
   infosclient: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Clients",
+  },
+
+  orderDate: {
+    type: String,
+    required: true,
+    default: "12-12-2023"
+  },
+
+  deliveryDate: {
+    type: String,
+    required: true,
+    default: "12-01-2024"
   },
 
   shippingInfos: {

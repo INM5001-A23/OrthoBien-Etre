@@ -95,6 +95,10 @@ router.get("/:clientid", async (req, res) => {
     }
   });
 
+  /***
+ * Cette route cherche et retourne le panier d'achat
+ * en utilisant son id passé en paramètre
+ */
 router.get('/:cartid', async (req, res) => {
   try{
       const cartId = req.params.cartid;
@@ -105,7 +109,9 @@ router.get('/:cartid', async (req, res) => {
   }
 });
 
-// Fetch all cart
+/***
+ * Cette route cherche et retourne tous les paniers 
+ */
 router.get('/', async (req, res) => {
   try{
       const cart = await Cart.find()

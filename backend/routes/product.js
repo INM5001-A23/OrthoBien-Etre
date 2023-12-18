@@ -3,6 +3,9 @@ import Produits from "../models/Produits.js";
 
 const router = express.Router();
 
+/***
+ * Cette route cherche et retourne les produits
+ */
 router.get("/", async (req, res) => {
   try {
     const produits = await Produits.aggregate()
@@ -24,7 +27,9 @@ router.get("/", async (req, res) => {
   }
 });
 
-// Fetch products in promotion
+/***
+ * Cette route cherche et retourne les produits en promotion
+ */
 router.get("/promotion", async (req, res) => {
   try {
     const popularProduct = await Produits.aggregate()
@@ -47,7 +52,9 @@ router.get("/promotion", async (req, res) => {
   }
 });
 
-// Fetch popular products
+/***
+ * Cette route cherche et retourne les produits populaires
+ */
 router.get("/populaire", async (req, res) => {
   try {
     const popularProduct = await Produits.aggregate()
@@ -70,7 +77,9 @@ router.get("/populaire", async (req, res) => {
   }
 });
 
-// Fetch produits phares
+/***
+ * Cette route cherche et retourne les produits phares
+ */
 router.get("/produitPhare", async (req, res) => {
   try {
     const produitPhare = await Produits.aggregate()
@@ -93,7 +102,9 @@ router.get("/produitPhare", async (req, res) => {
   }
 });
 
-//Fetch in order of higher price
+/***
+ * Cette route cherche et retourne les produits par grand prix
+ */
 router.get("/grandprix", async (req, res) => {
   try {
     const query = {};
@@ -119,7 +130,9 @@ router.get("/grandprix", async (req, res) => {
   }
 });
 
-//Fetch in order of lower price
+/***
+ * Cette route cherche et retourne les produits par petit prix
+ */
 router.get("/petitprix", async (req, res) => {
   try {
     const query = {};
@@ -145,7 +158,9 @@ router.get("/petitprix", async (req, res) => {
   }
 });
 
-// Fetch product
+/***
+ * Cette route cherche et retourne un produit par son code
+ */
 router.get("/:codeProduit", async (req, res) => {
   try {
     const codeProduit = Number.parseInt(req.params.codeProduit);
