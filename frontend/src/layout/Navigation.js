@@ -20,6 +20,7 @@ function Navigation() {
   const onDeconnexionClick = () => {
     localStorage.removeItem("guestCartItems");
     localStorage.removeItem("token");
+    navigate("/");
     navigate(0);
   };
 

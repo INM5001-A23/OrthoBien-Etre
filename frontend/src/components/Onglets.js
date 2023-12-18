@@ -21,11 +21,6 @@ function Onglets() {
 
   const [orderHistory, setOrderHistory] = useState([]);
 
-  /**
-   * Retourne l'historique de commande
-   * @param {} req 
-   * @param {*} res 
-   */
   const handleOrderHistory = async (req, res) => {
     try {
       const response = await axios.get(`/commande/${user.courriel}`);
