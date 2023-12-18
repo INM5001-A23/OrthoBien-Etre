@@ -14,6 +14,29 @@
    npm install
 ```
 
+    - Dépoendances:
+        - @paypal/react-paypal-js: ^8.1.3,
+        - @testing-library/jest-dom: ^5.17.0,
+        - @testing-library/react: ^13.4.0,
+        - @testing-library/user-event: ^13.5.0,
+        - axios: ^1.5.1,
+        - bootstrap: ^5.3.2,
+        - jwt-decode: ^4.0.0,
+        - localforage: ^1.10.0,
+        - match-sorter: ^6.3.1,
+        - react: ^18.2.0,
+        - react-bootstrap: ^2.9.0,
+        - react-bootstrap-icons: ^1.10.3,
+        - react-bootstrap-validation: ^0.1.11,
+        - react-dom: ^18.2.0,
+        - react-hook-form: ^7.48.2,
+        - react-icons: ^4.11.0,
+        - react-router-dom: ^6.16.0,
+        - react-scripts: ^5.0.1,
+        - react-toastify: ^9.1.3,
+        - sort-by: ^0.0.2,
+        - web-vitals: ^2.1.4
+
 3. Démarrer le serveur
 
 ```bash

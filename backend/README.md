@@ -14,6 +14,10 @@
    npm install
 ```
 
+    - Dépendances:
+        - @babel/plugin-proposal-private-property-in-object: ^7.21.11,
+        - nodemon": ^3.0.1
+
 3. Démarrer le serveur
 
 ```bash
@@ -51,6 +55,8 @@ Pour déployer l'application en production, utilisez la commande:
     - Order: Gestion des commande (Post, Get)
     - Product: Gestion des produit (Post, Get)
     - Users: Gestion des utilisateurs (Post, Get, Put)
+
+    
 
 
         
