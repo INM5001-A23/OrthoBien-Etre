@@ -105,11 +105,13 @@ function ModalAjout({ show, onHide }) {
                   {...register("codeProduit", {
                     required: "Ce champ est obligatoire",
                     pattern: {
-                      value: /^2\d{3}$/,
-                      message: "Le code produit doit respecter ce format: 2000",
+                      value: /^\d{4}$/,
+                      message:
+                        "Le code produit doit respecter un format de 4 chiffres",
                     },
                   })}
                 />
+                <p style={{ color: "red" }}>{errors.codeProduit?.message}</p>
                 <p style={{ color: "red" }}>{errors.backend?.message}</p>
               </Form.Group>
 
