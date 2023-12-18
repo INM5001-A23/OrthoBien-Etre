@@ -16,6 +16,9 @@ const Livraison = () => {
   const axios = useContext(AxiosContext);
   const user = useContext(UserContext);
 
+  console.log(user)
+
+
   const totalAvantTaxes = location.state.total;
   const cartItems = location.state.cartItems;
 
@@ -132,9 +135,9 @@ const Livraison = () => {
                   >
                     <Form.Label>Numero civique</Form.Label>
                     <Form.Control
-                      type="number"
+                      type="text"
                       name="civique"
-                      value={user?.civique}
+                      value={user?.numeroCivic}
                       {...register("civique", {
                         required: "Ce champ est obligatoire",
                         pattern: {
@@ -147,7 +150,7 @@ const Livraison = () => {
                         },
                       })}
                     />
-                    <p style={{ color: "red" }}>{errors.civique?.message}</p>
+                    <p style={{ color: "red" }}>{errors.numeroCivic?.message}</p>
                   </Form.Group>
                 </Col>
                 <Col>

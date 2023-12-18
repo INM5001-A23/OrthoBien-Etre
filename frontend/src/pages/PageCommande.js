@@ -46,9 +46,7 @@ function PageCommande() {
     tps: tps,
     tvq: tvq,
     fraisLivraison: fraisLivraison,
-    total: totalApresTaxes,
-    orderDate: "",
-    deliveryDate: ""
+    total: totalApresTaxes
   };
 
   return (

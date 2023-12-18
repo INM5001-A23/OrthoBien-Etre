@@ -119,7 +119,7 @@ function Onglets() {
                   <Form.Group as={Col} controlId="civique">
                     <Form.Label>Numéro civique</Form.Label>
                     <Form.Control
-                      value={user?.civique}
+                      value={user?.numeroCivic}
                       {...register("civique", {
                         minLength: {
                           value: 1,
@@ -238,12 +238,12 @@ function Onglets() {
                               {item.shippingInfos.adresse.ville}
                             </h6>
                             <h6>Telephone: {item.shippingInfos.tel}</h6>
-                            <h6> Date Commande: 2023-12-11</h6>
+                            <h6> Date Commande: {item.orderDate}</h6>
                           </Col>
                           <Col xs={4}>
                             <h6>Id Commande: {item.orderId}</h6>
                             <h6>Courriel: {item.shippingInfos.courriel}</h6>
-                            <h6> Date Livraison: 2024-01-09</h6>
+                            <h6> Date Livraison: {item.deliveryDate}</h6>
                           </Col>
                           <Col xs={3}>
                             <h6>Status: {item.status}</h6>

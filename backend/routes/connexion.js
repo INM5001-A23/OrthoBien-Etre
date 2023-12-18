@@ -30,7 +30,7 @@ router.post("/", async (req, res) => {
       //Verification de l'acces client
       const user = await Clients.findOne(
         { courriel },
-        "courriel mdp prenom nom civique rue ville province codePostal telephone"
+        "courriel mdp prenom nom numeroCivic rue ville province codePostal telephone"
       );
 
       if (!user) {
@@ -47,7 +47,7 @@ router.post("/", async (req, res) => {
           prenom: user.prenom,
           courriel: user.courriel,
           nom: user.nom,
-          civique: user.civique,
+          numeroCivic: user.numeroCivic,
           rue: user.rue,
           ville: user.ville,
           province: user.province,
@@ -62,6 +62,9 @@ router.post("/", async (req, res) => {
           token,
           ...auth,
         });
+
+        
+
       } else {
         return res
           .status(401)

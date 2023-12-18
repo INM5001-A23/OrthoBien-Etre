@@ -13,6 +13,7 @@ function PageAccueil() {
   const [promotions, setPromotions] = useState([]);
   const [produitsPopulaire, setProduitsPopulaire] = useState([]);
   const [categories, setCategories] = useState([]);
+
   const [cart, setCart] = useState(
     localStorage.getItem("guestCartItems")
       ? JSON.parse(localStorage.getItem("guestCartItems"))

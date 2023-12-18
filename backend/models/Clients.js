@@ -7,7 +7,7 @@ const clientsSchema = new mongoose.Schema({
     required: true,
   },
 
-  civique: {
+  numeroCivic: {
     type: String,
     required: true,
   },

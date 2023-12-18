@@ -78,7 +78,6 @@ router.get("/:emailAddress", async (req, res) => {
   const courriel = req.params.emailAddress
   try {
     const orderList = await Commandes.find({ 'shippingInfos.courriel':  courriel});
-    console.log('Les commandes: ' + orderList)
     res.json(orderList);
   } catch (err) {
     res.status(500).json({ message: err.message });
