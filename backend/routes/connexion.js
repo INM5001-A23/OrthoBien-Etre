@@ -82,8 +82,7 @@ router.post("/", async (req, res) => {
           codeAdmin: admin.codeAdmin,
         };
 
-        // secret can be replaced by process.env.JWT_SECRET
-        const token = jwt.sign(auth, "secret");
+        const token = jwt.sign(auth, process.env.JWT_SECRET);
 
         return res.status(200).json({
           success: true,
