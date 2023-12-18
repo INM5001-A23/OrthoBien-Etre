@@ -40,5 +40,20 @@ Pour déployer l'application en production, utilisez la commande:
     `index.js`: Application backend
     `/models` : Contient les modèles de la base de données.
     `/routes` : Contient les routes qui font la connection backend et frontend.
+
+### Les routes
+    - Admin: 
+    - AjoutProduit: Gestion des ajout de produit par l'administrateur (Post)
+    - Avis: Gestion des commentaires et notes des utilisateurs (Post)
+    - Cart: Gestion du panier (Post, Get, Put)
+    - Category: Retourne les categories (Get)
+    - Connexion: Gestion de la connexion et de l'utilisateur et de l'admin (Post)
+    - DeleteProduit: Effacer un produit par l'administrateur (Delete)
+    - ModifierProduit: Modifier un produit (Post, Put)
+    - Order: Gestion des commande (Post, Get)
+    - Product: Gestion des produit (Post, Get)
+    - Users: Gestion des utilisateurs (Post, Get, Put)
+
+
         
 
