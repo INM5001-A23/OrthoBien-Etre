@@ -4,7 +4,11 @@ import Produit from "../models/Produits.js";
 
 const router = express.Router();
 
-// Fetch all categories
+
+
+/***
+ * Cette route va chercher toutes les catégories
+ */
 router.get("/", async (req, res) => {
   try {
     const codeCategorie = Number.parseInt(req.params.codeCategorie);
@@ -15,7 +19,9 @@ router.get("/", async (req, res) => {
   }
 });
 
-// Fetch products by category
+/***
+ * Cette route va chercher les categories 
+ */
 router.get("/:codeCategorie/produits", async (req, res) => {
   try {
     const codeCategorie = Number.parseInt(req.params.codeCategorie);

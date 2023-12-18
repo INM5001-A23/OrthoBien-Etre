@@ -2,9 +2,14 @@ import express from 'express';
 import Cart from '../models/Panier.js';
 
 
+
+
 const router = express.Router();
 
-//get cart by userid
+/***
+ * Cette route va chercher les informations du panier du client
+ * en utilisant son id passe en parametres
+ */
 router.get("/:clientid", async (req, res) => {
   const clientid = req.params.clientid;
   
@@ -21,7 +26,10 @@ router.get("/:clientid", async (req, res) => {
   }
 });
 
-  // Clear cart 
+  /***
+ * Cette route efface les articles du panier
+ * ainsi que le total de produits et le prix total
+ */
   router.put('/clear/:cartid', async (req, res) => {
     const cartId = req.params.cartid;
     console.log('Cart to clear: ' + cartId);
@@ -48,7 +56,10 @@ router.get("/:clientid", async (req, res) => {
     }
   });
 
-  // Update cart with userID
+ /***
+ * Cette route modifie les informations du panier du client
+ * en utilisant son id passé en paramètre
+ */
   router.put('/update/:userid', async (req, res) => {
     const userId = req.params.userid;
     const newCart = req.body.guestCartItems;
@@ -84,7 +95,6 @@ router.get("/:clientid", async (req, res) => {
     }
   });
 
-// Fetch cart by cartid
 router.get('/:cartid', async (req, res) => {
   try{
       const cartId = req.params.cartid;
