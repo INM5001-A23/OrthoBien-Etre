@@ -1,8 +1,7 @@
 import express from "express";
-import Clients from "../models/Clients.js";
-import Administrateurs from "../models/Administrateurs.js";
 import jwt from "jsonwebtoken";
-import Connexion from "../models/Connexion.js";
+import Administrateurs from "../models/Administrateurs.js";
+import Clients from "../models/Clients.js";
 
 const router = express.Router();
 router.use(express.json());

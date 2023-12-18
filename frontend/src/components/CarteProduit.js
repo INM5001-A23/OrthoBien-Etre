@@ -35,7 +35,9 @@ const CarteProduit = (props) => {
   };
 
   const prixInitial = produitDetails.prix || 0;
-  const prixBarre = produitDetails.promotion ? (prixInitial * 1.15).toFixed(2) : "";
+  const prixBarre = produitDetails.promotion
+    ? (prixInitial * 1.15).toFixed(2)
+    : "";
 
   return (
     <Card
@@ -67,7 +69,9 @@ const CarteProduit = (props) => {
         <Card.Img
           className={styles["header-img"]}
           variant="top"
-          src={produitDetails.images && convertToDataUrl(produitDetails.images[0])}
+          src={
+            produitDetails.images && convertToDataUrl(produitDetails.images[0])
+          }
         />
         <h5>
           <Badge
@@ -92,10 +96,16 @@ const CarteProduit = (props) => {
         </h5>
       </div>
 
-      <Card.Body onClick={() => navigate(`/produit/${produitDetails.codeProduit}`)}>
-        <Card.Title className="mb-0  p-2">{produitDetails.nomProduit}</Card.Title>
+      <Card.Body
+        onClick={() => navigate(`/produit/${produitDetails.codeProduit}`)}
+      >
+        <Card.Title className="mb-0  p-2">
+          {produitDetails.nomProduit}
+        </Card.Title>
         <Row>
-          {produitDetails.codeCategorie && <NomCategorie codeCategorie={produitDetails.codeCategorie} />}
+          {produitDetails.codeCategorie && (
+            <NomCategorie codeCategorie={produitDetails.codeCategorie} />
+          )}
         </Row>
         <Stack direction="horizontal">
           {produitDetails.promotion ? (
@@ -104,7 +114,7 @@ const CarteProduit = (props) => {
                 className="mx-auto"
                 style={{ color: "red", fontWeight: "bold" }}
               >
-                {produitDetails.prix} CAD
+                {produitDetails.prix.toFixed(2)} CAD
               </ListGroup.Item>
               {prixBarre && (
                 <ListGroup.Item className="mx-auto">
@@ -115,7 +125,7 @@ const CarteProduit = (props) => {
           ) : (
             prixInitial && (
               <ListGroup.Item className="mx-auto">
-                {prixInitial} CAD
+                {prixInitial.toFixed(2)} CAD
               </ListGroup.Item>
             )
           )}
@@ -127,9 +137,16 @@ const CarteProduit = (props) => {
             justifyContent: "center",
           }}
         >
-          <Etoile evaluation={produitDetails.avis && calculMoyenneAvis(produitDetails.avis)} size="25" />
+          <Etoile
+            evaluation={
+              produitDetails.avis && calculMoyenneAvis(produitDetails.avis)
+            }
+            size="25"
+          />
 
-          <Card.Link href="#commentaires">({produitDetails.avis.length})</Card.Link>
+          <Card.Link href="#commentaires">
+            ({produitDetails.avis.length})
+          </Card.Link>
         </div>
       </Card.Body>
       <Row className="p-2 mb-3">
@@ -143,7 +160,8 @@ const CarteProduit = (props) => {
               <Button
                 variant="outline-primary"
                 onClick={() => {
-                  props.handleAddToCart && props.handleAddToCart(produitDetails);
+                  props.handleAddToCart &&
+                    props.handleAddToCart(produitDetails);
                   displayNotification();
                 }}
                 style={{ margin: "5px" }}
@@ -153,9 +171,12 @@ const CarteProduit = (props) => {
 
               <Button
                 variant="outline-success"
-                onClick={() => 
+                onClick={() =>
                   navigate("/commande", {
-                    state: {total: produitDetails.prix, cartItems: [produitDetails]},
+                    state: {
+                      total: produitDetails.prix,
+                      cartItems: [produitDetails],
+                    },
                   })
                 }
               >
@@ -167,6 +188,6 @@ const CarteProduit = (props) => {
       </Row>
     </Card>
   );
-}
+};
 
 export default CarteProduit;
