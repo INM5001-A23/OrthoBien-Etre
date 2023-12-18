@@ -35,37 +35,7 @@ cd  nom-du-projet
 
 ```
 
-  
-
-3. Installez les dependencies:
-
-- Frontend
-	- @paypal/react-paypal-js: ^8.1.3, 
-	- @testing-library/jest-dom: ^5.17.0, 
-	- @testing-library/react: ^13.4.0, 
-	- @testing-library/user-event: ^13.5.0, 
-	- axios: ^1.5.1, 
-	- bootstrap: ^5.3.2, 
-	- jwt-decode: ^4.0.0, 
-	- localforage: ^1.10.0, 
-	- match-sorter: ^6.3.1, 
-	- react: ^18.2.0, 
-	- react-bootstrap: ^2.9.0, 
-	- react-bootstrap-icons: ^1.10.3, 
-	- react-bootstrap-validation: ^0.1.11, 
-	- react-dom: ^18.2.0, 
-	- react-hook-form: ^7.48.2, 
-	- react-icons: ^4.11.0, 
-	- react-router-dom: ^6.16.0, 
-	- react-scripts: ^5.0.1, 
-	- react-toastify: ^9.1.3, 
-	- sort-by: ^0.0.2, 
-	- web-vitals: ^2.1.4
-	
-- Backend
-	- "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
-	- "nodemon": "^3.0.1"
-
+3. Lire les READMEs du frontend et du backend pour la suite
   
 
 ## Fonctionnalités
@@ -96,66 +66,67 @@ cd  nom-du-projet
 
 ### Page accueil
 
-![image](https://github.com/INM5001-A23/OrthoBien-Etre/assets/106025922/543ce619-ae12-4732-8eeb-b998a016ad22)
+![image](https://github.com/INM5001-A23/OrthoBien-Etre/assets/106025922/b556214b-310e-438b-8171-95fd7e9404ed)
 
-![image](https://github.com/INM5001-A23/OrthoBien-Etre/assets/106025922/7e62c287-3e30-4985-8872-1536830344cb)
+![image](https://github.com/INM5001-A23/OrthoBien-Etre/assets/106025922/70a2fa15-b20f-40d2-90c0-4c3bdc71eba2)
 
-  
 
 ### Barre de recherche
 
-![image](https://github.com/INM5001-A23/OrthoBien-Etre/assets/106025922/790dbab0-46ef-47c0-b30b-e8be8759f140)
+![image](https://github.com/INM5001-A23/OrthoBien-Etre/assets/106025922/36467cfb-bfc9-4d77-a9d1-83d0f93a04fa)
 
-  
 
 ### Page catalogue
 
-![image](https://github.com/INM5001-A23/OrthoBien-Etre/assets/106025922/9b2590af-3136-4b6f-af76-f13f1c872e71)
+![image](https://github.com/INM5001-A23/OrthoBien-Etre/assets/106025922/92157578-bdc7-4452-b36d-2b9a99784f0b)
 
-  
+### Page produit
+
+![image](https://github.com/INM5001-A23/OrthoBien-Etre/assets/106025922/e4f94492-340b-4273-b2d4-480799e76da2)
+
+### Section commentaires client de la page produit
+
+![image](https://github.com/INM5001-A23/OrthoBien-Etre/assets/106025922/5dc024ba-0294-4ffa-88a8-9fbebb9a240b)
+
+### Section création d'une évaluation client de la page produit avec utilisateur enregistré
+
+![image](https://github.com/INM5001-A23/OrthoBien-Etre/assets/106025922/2d8debdd-2ec6-4c53-b054-821e0362fa8c)
+
 
 ### Page connexion
 
 ![image](https://github.com/INM5001-A23/OrthoBien-Etre/assets/106025922/acf09e3a-dcb1-48f4-9a12-2103ac4e8e8d)
 
-  
 
 ### Page inscription
 
 ![image](https://github.com/INM5001-A23/OrthoBien-Etre/assets/106025922/c85f7fb8-fb1a-4bd7-aa9d-1a5db1c22c25)
 
-  
 
 ### Page panier
 
 ![image](https://github.com/INM5001-A23/OrthoBien-Etre/assets/106025922/9e08e002-c381-42a6-ad4b-e8f60e10c80a)
-
   
 
 ### Page livraison
 
 ![image](https://github.com/INM5001-A23/OrthoBien-Etre/assets/106025922/a81f6b9c-ef2a-4b0b-99a3-06fae5bd7f6b)
 
-  
 
 ### Page récapitulatif de la commande
 
 ![image](https://github.com/INM5001-A23/OrthoBien-Etre/assets/106025922/1b239934-4a52-4055-9f43-ad4d1ae2927e)
 
-  
 
 ### Page F.A.Q.
 
 ![image](https://github.com/INM5001-A23/OrthoBien-Etre/assets/106025922/f7149783-9dd8-4bb7-9a91-a75e2d9264bc)
-
   
 
 ### Page contact
 
 ![image](https://github.com/INM5001-A23/OrthoBien-Etre/assets/106025922/875614a3-d84e-4aed-9858-08878a774366)
 
-  
-  
 
 ## Auteurs
 

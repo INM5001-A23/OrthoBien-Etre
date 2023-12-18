@@ -21,7 +21,6 @@ router.post("/inscription", async (req, res) => {
     } = req.body;
 
     // TODO: Regarder si le courriel n'existe pas avant d'inserer
-    console.log(civique);
 
     const newClient = new Clients({
       prenom,
