@@ -16,7 +16,7 @@ const Etoile = ({ evaluation, onChange, size }) => {
       {[...Array(5)].map((star, index) => {
         const currentRating = index + 1;
         return (
-          <label>
+          <label key={index}>
             <input
               style={{ display: "none" }}
               type="radio"

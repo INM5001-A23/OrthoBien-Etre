@@ -1,5 +1,4 @@
 import Carousel from "react-bootstrap/Carousel";
-import { convertToDataUrl } from "../utils";
 
 function Carrousel({
   images,
@@ -11,8 +10,8 @@ function Carrousel({
 
   return (
     <Carousel style={style} variant="dark" className={className}>
-      {imagesCode.map((image) => (
-        <Carousel.Item style={{ height: itemHeight }}>
+      {imagesCode.map((image, index) => (
+        <Carousel.Item style={{ height: itemHeight }} key={index}>
           <img
             className="d-block w-100 h-100 object-fit-cover"
             src={`./images/${image}.png`}

@@ -21,11 +21,14 @@ function Onglets() {
 
   const [orderHistory, setOrderHistory] = useState([]);
 
+  /**
+   * Retourne l'historique de commande
+   * @param {} req 
+   * @param {*} res 
+   */
   const handleOrderHistory = async (req, res) => {
     try {
       const response = await axios.get(`/commande/${user.courriel}`);
-      console.log(response.data);
-
       setOrderHistory(response.data);
     } catch (error) {
       console.error("Error fetching cart:", error);
@@ -220,7 +223,7 @@ function Onglets() {
             <Stack>
               <ListGroup variant="flush">
                 {orderHistory &&
-                  orderHistory.map((item) => (
+                  orderHistory.reverse().map((item) => (
                     <ListGroup.Item mb={2}>
                       <Stack direction="vertical" gap={1}>
                         <Row>

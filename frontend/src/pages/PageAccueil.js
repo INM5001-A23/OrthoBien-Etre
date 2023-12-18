@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { Container, Stack } from "react-bootstrap";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
-import { AxiosContext } from "..";
+import { AxiosContext, UserContext } from "..";
 import Carrousel from "../components/CarrouselAccueil";
 import CarteCategorie from "../components/CarteCategorie";
 import CarteProduit from "../components/CarteProduit";
@@ -10,6 +10,8 @@ import ModelePage from "../layout/ModelePage";
 
 function PageAccueil() {
   const axios = useContext(AxiosContext);
+  const user = useContext(UserContext);
+
   const [promotions, setPromotions] = useState([]);
   const [produitsPopulaire, setProduitsPopulaire] = useState([]);
   const [categories, setCategories] = useState([]);

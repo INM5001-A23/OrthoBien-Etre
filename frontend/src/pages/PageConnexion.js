@@ -30,12 +30,18 @@ function PageConnexion() {
       .post("/connexion", data)
       .then((res) => {
         if (res.status === 200) {
+    
           localStorage.setItem("token", res?.data?.token);
+          //fetchUserCart("mariesnow@gmail.com");
+
           navigate("/");
           navigate(0);
+
         } else {
           setError("backend", res?.data?.erreur);
         }
+
+        console.log(res.data)
       })
       .catch((error) => {
         console.error("Error submitting form:", error);

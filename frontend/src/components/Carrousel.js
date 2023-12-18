@@ -9,8 +9,8 @@ function Carrousel({
 }) {
   return (
     <Carousel style={style} variant="dark" className={className}>
-      {images.map((image) => (
-        <Carousel.Item style={{ height: itemHeight }}>
+      {images.map((image, index) => (
+        <Carousel.Item style={{ height: itemHeight }} key={index}>
           <img
             className="d-block w-100 h-100 object-fit-cover"
             src={convertToDataUrl(image)}

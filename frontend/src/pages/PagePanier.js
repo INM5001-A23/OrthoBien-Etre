@@ -37,7 +37,6 @@ function PagePanier() {
 
   // Update user cart to database
   const updateUserCart = async () => {
-    console.log("Is in the updateUserCart function")
     console.log(cart)
     try {
       const guestCartItems = JSON.parse(localStorage.getItem("guestCartItems"));
