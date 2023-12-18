@@ -75,7 +75,7 @@ router.post("/", async (req, res) => {
     }
   } catch (error) {
     console.log(error);
-    res.status(550).json({ erreur: "Could not add product " });
+    res.status(550).json({ erreur: "Impossible d'ajouter un nouveau produit" });
   }
 });
 
