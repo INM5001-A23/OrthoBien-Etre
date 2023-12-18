@@ -110,6 +110,18 @@ cd  nom-du-projet
 
 ![image](https://github.com/INM5001-A23/OrthoBien-Etre/assets/106025922/92157578-bdc7-4452-b36d-2b9a99784f0b)
 
+### Page produit
+
+![image](https://github.com/INM5001-A23/OrthoBien-Etre/assets/106025922/e4f94492-340b-4273-b2d4-480799e76da2)
+
+### Section commentaires client de la page produit
+
+![image](https://github.com/INM5001-A23/OrthoBien-Etre/assets/106025922/5dc024ba-0294-4ffa-88a8-9fbebb9a240b)
+
+### Section création d'une évaluation client de la page produit avec utilisateur enregistré
+
+![image](https://github.com/INM5001-A23/OrthoBien-Etre/assets/106025922/2d8debdd-2ec6-4c53-b054-821e0362fa8c)
+
 
 ### Page connexion
 
