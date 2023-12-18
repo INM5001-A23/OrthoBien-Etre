@@ -16,6 +16,7 @@ function Navigation() {
   const user = useContext(UserContext);
   const [results, setResults] = useState([]);
 
+  // gestion deconnexion
   const onDeconnexionClick = () => {
     localStorage.removeItem("guestCartItems");
     localStorage.removeItem("token");
