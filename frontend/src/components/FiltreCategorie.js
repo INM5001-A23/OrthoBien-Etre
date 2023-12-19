@@ -49,7 +49,7 @@ function FiltreCategorie({ filtre, setFiltre }) {
       autoClose="outside"
     >
       {categories.map((categorie) => (
-        <a className="dropdown-item" key={categorie.codeCategorie}>
+        <a href="#/" className="dropdown-item" key={categorie.codeCategorie}>
           <Form.Check>
             <Form.Check.Input
               type="radio"

@@ -59,7 +59,7 @@ function FormulaireEvaluation({ codeProduit }) {
 
       <Stack gap={2}>
         <Form onSubmit={handleFormulaireEvaluation}>
-          <h2 style={{ textAlign: "center" }}></h2>
+          <h2 style={{ textAlign: "center" }}>{""}</h2>
           <Container
             style={{
               backgroundColor: "#80808014",

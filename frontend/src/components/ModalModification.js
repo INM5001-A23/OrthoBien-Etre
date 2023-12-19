@@ -34,7 +34,6 @@ function ModalModification({ produit, show, onHide }) {
       codeCategorie: produit.codeCategorie,
       codeProduit: produit.codeProduit,
       prix: produit.prix,
-      quantite: produit.quantite,
       populaire: produit.populaire,
       promotion: produit.promotion,
     },
@@ -244,7 +243,7 @@ function ModalModification({ produit, show, onHide }) {
                     variant={idx % 2 ? "outline-primary" : "outline-secondary"}
                     name="radio-populaire"
                     value={radio.value}
-                    checked={getValues("populaire") == radio.value}
+                    checked={getValues("populaire") === radio.value}
                     onChange={(e) =>
                       setValue("populaire", e.currentTarget.value === "true", {
                         shouldValidate: true,
@@ -268,7 +267,7 @@ function ModalModification({ produit, show, onHide }) {
                     variant={idx % 2 ? "outline-primary" : "outline-secondary"}
                     name="radio-promotion"
                     value={radio.value}
-                    checked={getValues("promotion") == radio.value}
+                    checked={getValues("promotion") === radio.value}
                     onChange={(e) =>
                       setValue("promotion", e.currentTarget.value === "true", {
                         shouldValidate: true,

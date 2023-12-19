@@ -244,7 +244,7 @@ function ModalAjout({ show, onHide }) {
                     variant={idx % 2 ? "outline-primary" : "outline-secondary"}
                     name="radio-populaire"
                     value={radio.value}
-                    checked={getValues("populaire") == radio.value}
+                    checked={getValues("populaire") === radio.value}
                     onChange={(e) =>
                       setValue("populaire", e.currentTarget.value === "true", {
                         shouldValidate: true,
@@ -268,7 +268,7 @@ function ModalAjout({ show, onHide }) {
                     variant={idx % 2 ? "outline-primary" : "outline-secondary"}
                     name="radio-promotion"
                     value={radio.value}
-                    checked={getValues("promotion") == radio.value}
+                    checked={getValues("promotion") === radio.value}
                     onChange={(e) =>
                       setValue("promotion", e.currentTarget.value === "true", {
                         shouldValidate: true,

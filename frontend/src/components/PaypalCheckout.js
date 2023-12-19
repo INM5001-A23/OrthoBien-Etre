@@ -35,7 +35,7 @@ const Checkout = (props) => {
 
   const navigate = useNavigate();
   const axios = useContext(AxiosContext);
-  const [{ options, isPending }, dispatch] = usePayPalScriptReducer();
+  const [{ isPending }] = usePayPalScriptReducer();
 
   const onCreateOrder = (data, actions) => {
     return actions.order.create({

@@ -36,7 +36,7 @@ function TriCatalogue({ filtre, setFiltre }) {
       autoClose="outside"
     >
       <Form onChange={onFormulaireTrierChange}>
-        <a className="dropdown-item">
+        <a href="#/" className="dropdown-item">
           <Form.Check>
             <Form.Check.Input
               type="radio"
@@ -52,7 +52,7 @@ function TriCatalogue({ filtre, setFiltre }) {
             </Form.Check.Label>
           </Form.Check>
         </a>
-        <a className="dropdown-item">
+        <a href="#/" className="dropdown-item">
           <Form.Check>
             <Form.Check.Input
               type="radio"
@@ -69,7 +69,7 @@ function TriCatalogue({ filtre, setFiltre }) {
           </Form.Check>
         </a>
 
-        <a className="dropdown-item">
+        <a href="#/" className="dropdown-item">
           <Form.Check>
             <Form.Check.Input
               type="radio"
