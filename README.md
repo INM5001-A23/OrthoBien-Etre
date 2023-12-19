@@ -100,7 +100,7 @@ cd  nom-du-projet
 
 ### Page inscription
 
-![image](https://github.com/INM5001-A23/OrthoBien-Etre/assets/106025922/c85f7fb8-fb1a-4bd7-aa9d-1a5db1c22c25)
+![image](https://github.com/INM5001-A23/OrthoBien-Etre/assets/106025922/288eebac-e474-4a07-87bc-1fc165ab97b1)
 
 
 ### Page panier
