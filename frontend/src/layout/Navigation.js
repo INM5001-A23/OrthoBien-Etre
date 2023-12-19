@@ -1,11 +1,10 @@
 import React, { useContext, useState } from "react";
 import Button from "react-bootstrap/Button";
-import Container from "react-bootstrap/Container";
 import Col from "react-bootstrap/Col";
-import Stack from "react-bootstrap/Stack";
-import Row from "react-bootstrap/Row";
+import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
+import Row from "react-bootstrap/Row";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "..";
 import Logo from "../components/Logo";
@@ -43,19 +42,19 @@ function Navigation() {
         <Navbar.Collapse id="navbarScroll">
           <Nav
             className="me-auto my-2 my-lg-0"
-            style={{ maxHeight: "100px"}}
+            style={{ maxHeight: "100px" }}
             navbarScroll
           >
             <Nav.Link onClick={() => navigate("/catalogue")}>
               Catalogue
             </Nav.Link>
           </Nav>
-          
+
           <Row className="d-flex">
             <Col>
               {user && (
-                <div style={{ paddingTop:"10px", whiteSpace: "nowrap"}}>
-                 <p>Bienvenue {user?.prenom || "Admin"}</p>
+                <div style={{ paddingTop: "10px", whiteSpace: "nowrap" }}>
+                  <p>Bienvenue {user?.prenom || "Admin"}</p>
                 </div>
               )}
               {user && user?.role === "admin" && (
@@ -64,31 +63,31 @@ function Navigation() {
             </Col>
             <Col>
               <Logo
-                  img="/images/user.svg"
-                  path={user ? "/compte" : "/connexion"}
-                />
+                img="/images/user.svg"
+                path={user ? "/compte" : "/connexion"}
+              />
             </Col>
             <Col>
               {(!user || user?.role !== "admin") && (
-                    <Logo img="/images/panier.svg" path="/panier" />
-                  )}
+                <Logo img="/images/panier.svg" path="/panier" />
+              )}
             </Col>
-            
+
             <Col>
-            {user && (
-              <Button
-                variant="outline-danger"
-                size="sm"
-                style={{
-                  height: "70%",
-                  alignSelf: "center",
-                  marginTop:"5px"
-                }}
-                onClick={onDeconnexionClick}
-              >
-                Déconnexion
-              </Button>
-            )}
+              {user && (
+                <Button
+                  variant="outline-danger"
+                  size="sm"
+                  style={{
+                    height: "70%",
+                    alignSelf: "center",
+                    marginTop: "5px",
+                  }}
+                  onClick={onDeconnexionClick}
+                >
+                  Déconnexion
+                </Button>
+              )}
             </Col>
             <Col>
               <div className="me-2">
