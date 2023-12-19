@@ -14,7 +14,7 @@ router.post("/inscription", async (req, res) => {
       nom,
       courriel,
       mdp,
-      civique,
+      numeroCivic,
       rue,
       ville,
       province,
@@ -29,7 +29,7 @@ router.post("/inscription", async (req, res) => {
       nom,
       courriel,
       mdp,
-      civique,
+      numeroCivic,
       rue,
       ville,
       province,
@@ -42,7 +42,6 @@ router.post("/inscription", async (req, res) => {
     await newClient.save();
     res.status(200).json({ message: "Enregistré" });
   } catch (error) {
-    
     res.status(500).json({ error });
   }
 });
