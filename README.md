@@ -117,6 +117,22 @@ cd  nom-du-projet
 
 ![image](https://github.com/INM5001-A23/OrthoBien-Etre/assets/106025922/1b239934-4a52-4055-9f43-ad4d1ae2927e)
 
+### Page administrateur
+
+![image](https://github.com/INM5001-A23/OrthoBien-Etre/assets/106025922/9385f350-fb35-4ad3-8685-f90f6179172e)
+
+### Page administrateur - Modification d'un produit
+
+![image](https://github.com/INM5001-A23/OrthoBien-Etre/assets/106025922/3f41c9b0-7c25-4938-83c2-54415d3ddbeb)
+
+### Page administrateur - Ajout d'un produit
+
+![image](https://github.com/INM5001-A23/OrthoBien-Etre/assets/106025922/41c5aa9b-f17c-4719-9fb1-3adbf9e06765)
+
+### Page administrateur - Suppression d'un produit
+
+![image](https://github.com/INM5001-A23/OrthoBien-Etre/assets/106025922/f521bf63-b5e7-458a-a555-20d687ccd931)
+
 
 ### Page F.A.Q.
 
