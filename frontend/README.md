@@ -64,3 +64,4 @@ Pour déployer l'application en production, utilisez la commande:
         `/components`: Composants précis réutilisables.
         `/layout`: Composants apparaissants sur chaque page de l'application.
         `/pages`: Composants représantants chaque page.
+        `/utils`: Éléments autres.
