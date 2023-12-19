@@ -18,13 +18,14 @@ function PageAccueil() {
 
   // fetch cart from api or localStorage
   useEffect(() => {
-    if (user) fetchUserCart();
+    if (!user || user.role !== "client") return;
+    fetchUserCart();
     setCart(
       localStorage.getItem("guestCartItems")
         ? JSON.parse(localStorage.getItem("guestCartItems"))
         : []
     );
-  }, []);
+  }, [user]);
 
   const [cart, setCart] = useState(
     localStorage.getItem("guestCartItems")
@@ -38,22 +39,22 @@ function PageAccueil() {
     return `./images/${item}.png`;
   });
 
-    // Fetch user cart from database
-    const fetchUserCart = async () => {
-      try {
-        const userIdResponse = await axios.get(
-          `/utilisateur/find/${user.courriel}`
-        );
-        
-        const response = await axios.get(`/panier/${userIdResponse.data._id}`);
-        localStorage.setItem(
-          "guestCartItems",
-          JSON.stringify(response.data.articles)
-        );
-      } catch (error) {
-        console.error("Error fetching cart:", error);
-      }
-    };
+  // Fetch user cart from database
+  const fetchUserCart = async () => {
+    try {
+      const userIdResponse = await axios.get(
+        `/utilisateur/find/${user.courriel}`
+      );
+
+      const response = await axios.get(`/panier/${userIdResponse.data._id}`);
+      localStorage.setItem(
+        "guestCartItems",
+        JSON.stringify(response.data.articles)
+      );
+    } catch (error) {
+      console.error("Error fetching cart:", error);
+    }
+  };
 
   // Ajouter produit dans panier
   const handleAddToCart = (productDetails) => {
@@ -132,7 +133,10 @@ function PageAccueil() {
           <Row xs={1} md={3} className="g-3 justify-content-center">
             {promotions.map((produit) => (
               <Col xs="auto" md="auto" key={produit._id}>
-                <CarteProduit produit={produit}  handleAddToCart={handleAddToCart}  />
+                <CarteProduit
+                  produit={produit}
+                  handleAddToCart={handleAddToCart}
+                />
               </Col>
             ))}
           </Row>
@@ -146,7 +150,10 @@ function PageAccueil() {
             {produitsPopulaire
               .map((produitPopulaire) => (
                 <Col xs="auto" md="auto" key={produitPopulaire._id}>
-                  <CarteProduit produit={produitPopulaire}  handleAddToCart={handleAddToCart} />
+                  <CarteProduit
+                    produit={produitPopulaire}
+                    handleAddToCart={handleAddToCart}
+                  />
                 </Col>
               ))
               .slice(0, 3)}

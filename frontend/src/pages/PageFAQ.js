@@ -83,20 +83,6 @@ function PageFAQ() {
     //ajouter des questions ici
   ];
 
-  const axios = useContext(AxiosContext);
-  const [, setFaqData] = useState([]);
-
-  useEffect(() => {
-    axios
-      .get("/faq")
-      .then(function (response) {
-        setFaqData(response.data);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-  }, [axios]);
-
   const [expandedIndex, setExpandedIndex] = useState(null);
 
   const toggleAnswer = (index) => {

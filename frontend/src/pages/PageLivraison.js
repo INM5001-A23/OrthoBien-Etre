@@ -15,9 +15,6 @@ const Livraison = () => {
 
   const user = useContext(UserContext);
 
-  console.log(user)
-
-
   const totalAvantTaxes = location.state.total;
   const cartItems = location.state.cartItems;
 
@@ -149,7 +146,9 @@ const Livraison = () => {
                         },
                       })}
                     />
-                    <p style={{ color: "red" }}>{errors.numeroCivic?.message}</p>
+                    <p style={{ color: "red" }}>
+                      {errors.numeroCivic?.message}
+                    </p>
                   </Form.Group>
                 </Col>
                 <Col>

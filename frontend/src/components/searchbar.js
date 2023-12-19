@@ -1,9 +1,11 @@
 import { useContext, useState } from "react";
 import Form from "react-bootstrap/Form";
 import { AxiosContext } from "..";
+import { SearchResultsList } from "./SearchResultsList";
 
-export const SearchBar = ({ setResults }) => {
+export const SearchBar = () => {
   const axios = useContext(AxiosContext);
+  const [results, setResults] = useState([]);
   const [input, setInput] = useState("");
 
   const fetchData = (value) => {
@@ -32,10 +34,13 @@ export const SearchBar = ({ setResults }) => {
         placeholder="Recherche"
         className="me-2"
         aria-label="Search"
-        style={{ height: "10%", alignSelf: "center", margin: "10px" , width: "330px"}}
+        style={{
+          width: "330px",
+        }}
         value={input}
         onChange={(e) => handleChange(e.target.value)}
       />
+      {results && results.length > 0 && <SearchResultsList results={results} />}
     </Form>
   );
 };

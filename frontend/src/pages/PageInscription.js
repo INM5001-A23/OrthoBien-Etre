@@ -151,17 +151,17 @@ function PageInscription() {
 
             <h5>Adresse</h5>
             {/* Input NUMERO CIVIQUE */}
-            <Form.Group as={Col} controlId="civique">
+            <Form.Group as={Col} controlId="numeroCivic">
               <Form.Label>Numéro civique</Form.Label>
               <Form.Control
-                {...register("civique", {
+                {...register("numeroCivic", {
                   minLength: {
                     value: 1,
                     message: "Longueur minimale est de 1 caractères",
                   },
                 })}
               />
-              <p style={{ color: "red" }}>{errors.civique?.message}</p>
+              <p style={{ color: "red" }}>{errors.numeroCivic?.message}</p>
             </Form.Group>
 
             {/* Input RUE */}

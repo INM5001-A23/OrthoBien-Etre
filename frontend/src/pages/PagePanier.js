@@ -45,7 +45,7 @@ function PagePanier() {
     ? cart.reduce((total, item) => total + item.prix * item.qtt, 0)
     : 0;
 
-    // Diminue quantite produit
+  // Diminue quantite produit
   const increaseQuantity = (itemId) => {
     const updatedCart = cart
       ? cart.map((item) =>

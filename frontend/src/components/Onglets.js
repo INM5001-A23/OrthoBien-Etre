@@ -11,7 +11,6 @@ function Onglets() {
   const navigate = useNavigate();
   const {
     register,
-    handleSubmit,
     formState: { errors },
   } = useForm({
     mode: "onChange",
@@ -21,7 +20,7 @@ function Onglets() {
 
   const [orderHistory, setOrderHistory] = useState([]);
 
-  const handleOrderHistory = async (req, res) => {
+  const handleOrderHistory = async () => {
     try {
       const response = await axios.get(`/commande/${user.courriel}`);
       setOrderHistory(response.data);
@@ -37,18 +36,10 @@ function Onglets() {
     handleOrderHistory();
   }, [user]);
 
-  const handleFormulaire = handleSubmit(async (data) => {
-    const formData = new FormData();
-
-    formData.append("files", data.imageProduit[0]);
-
-    var test = await axios.put("/modificationProduit", formData);
-  });
-
   return (
     <Tabs defaultActiveKey="profil" id="fill-tab-example" className="mb-3" fill>
       <Tab eventKey="profil" title="Profil">
-        <Form onSubmit={handleFormulaire}>
+        <Form onSubmit={() => null}>
           <Container style={{ width: "400px" }}>
             <Stack>
               {/* Input PRENOM */}
@@ -219,7 +210,7 @@ function Onglets() {
               <ListGroup variant="flush">
                 {orderHistory &&
                   orderHistory.reverse().map((item) => (
-                    <ListGroup.Item mb={2}>
+                    <ListGroup.Item mb={2} key={item.orderId}>
                       <Stack direction="vertical" gap={1}>
                         <Row>
                           <h5>

@@ -15,7 +15,6 @@ import "./Navigation.module.css";
 function Navigation() {
   const navigate = useNavigate();
   const user = useContext(UserContext);
-  const [results, setResults] = useState([]);
 
   // gestion deconnexion
   const onDeconnexionClick = () => {
@@ -50,52 +49,45 @@ function Navigation() {
             </Nav.Link>
           </Nav>
 
-          <Row className="d-flex">
-            <Col>
-              {user && (
-                <div style={{ paddingTop: "10px", whiteSpace: "nowrap" }}>
-                  <p>Bienvenue {user?.prenom || "Admin"}</p>
-                </div>
-              )}
-              {user && user?.role === "admin" && (
+          <Row
+            style={{ alignItems: "center", justifyContent: "end", gap: "15px" }}
+          >
+            {user && (
+              <Col style={{ padding: 0, flexGrow: 0 }}>
+                <span>Bienvenue {user?.prenom || "Admin"}</span>
+              </Col>
+            )}
+            {user && user?.role === "admin" && (
+              <Col style={{ padding: 0, flexGrow: 0 }}>
                 <Logo img="/images/inventaire.svg" path="/admin" />
-              )}
-            </Col>
-            <Col>
+              </Col>
+            )}
+            <Col style={{ padding: 0, flexGrow: 0 }}>
               <Logo
                 img="/images/user.svg"
                 path={user ? "/compte" : "/connexion"}
+                height="45"
+                width="45"
               />
             </Col>
-            <Col>
-              {(!user || user?.role !== "admin") && (
+            {(!user || user?.role !== "admin") && (
+              <Col style={{ padding: 0, flexGrow: 0 }}>
                 <Logo img="/images/panier.svg" path="/panier" />
-              )}
-            </Col>
-
-            <Col>
-              {user && (
+              </Col>
+            )}
+            {user && (
+              <Col style={{ padding: 0, flexGrow: 0 }}>
                 <Button
                   variant="outline-danger"
                   size="sm"
-                  style={{
-                    height: "70%",
-                    alignSelf: "center",
-                    marginTop: "5px",
-                  }}
                   onClick={onDeconnexionClick}
                 >
                   Déconnexion
                 </Button>
-              )}
-            </Col>
-            <Col>
-              <div className="me-2">
-                <SearchBar setResults={setResults} />
-                {results && results.length > 0 && (
-                  <SearchResultsList results={results} />
-                )}
-              </div>
+              </Col>
+            )}
+            <Col style={{ padding: 0, flexGrow: 0 }}>
+              <SearchBar />
             </Col>
           </Row>
         </Navbar.Collapse>

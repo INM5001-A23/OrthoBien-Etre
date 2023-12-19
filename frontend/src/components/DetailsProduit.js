@@ -177,12 +177,16 @@ function DetailsProduit({
                   <Button variant="outline-primary" onClick={addToCart}>
                     Ajouter au panier
                   </Button>
-                  <Button variant="outline-success" 
-                    onClick={() => 
+                  <Button
+                    variant="outline-success"
+                    onClick={() =>
                       navigate("/commande", {
-                      state: {total: produit.prix, cartItems: [produit]},
-                    })
-                }>Acheter maintenant</Button>
+                        state: { total: produit.prix, cartItems: [produit] },
+                      })
+                    }
+                  >
+                    Acheter maintenant
+                  </Button>
                 </Stack>
               )}
             </Card.Body>
@@ -194,8 +198,9 @@ function DetailsProduit({
         Commentaires des clients
       </h3>
       <Stack gap={3} style={{ justifyContent: "center" }}>
-        {avis.map(({ prenomClient, commentaire, note }) => (
+        {avis.map(({ _id, prenomClient, commentaire, note }) => (
           <CarteCommentaire
+            key={_id}
             nomClient={prenomClient}
             commentaire={commentaire}
             evaluation={note}
