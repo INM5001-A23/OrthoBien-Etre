@@ -32,7 +32,6 @@ function PageConnexion() {
         if (res.status === 200) {
     
           localStorage.setItem("token", res?.data?.token);
-          //fetchUserCart("mariesnow@gmail.com");
 
           navigate("/");
           navigate(0);
