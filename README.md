@@ -171,9 +171,9 @@ cd  nom-du-projet
 
 
 ### N.B.
-- L'ajout de grand nombre de photos peut causer une instabilité des requete HTTP dans le backend dû à la limitation de notre forfait graduit avec mongodb.
+- L'ajout d'un grand nombre de photos peut causer une instabilité au niveau des requêtes HTTP dans le backend dû à une limitation du forfait gratuit de MongoDB que nous utilisons.
 
-- Certains messages d'erreur s'affiche dans la console du frontend et du backend. Cela n'affecte en aucun cas les fonctionnalités du site.
+- Certains messages d'erreur s'affichent dans la console du frontend et du backend. Cela n'affecte en aucun cas les fonctionnalités du site.
 
 
 ## Auteurs
