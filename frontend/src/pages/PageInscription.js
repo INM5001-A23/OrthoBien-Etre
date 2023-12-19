@@ -31,13 +31,10 @@ function PageInscription() {
       .then(function (response) {
         if (response.status === 200) {
           navigate("/connexion", { state: { status: "success" } });
-        } else {
-          // TODO afficher message erreur
         }
       })
       .catch(function (error) {
         // handle error
-        // TODO afficher message erreur
         console.log(error);
       });
   });
