@@ -117,6 +117,10 @@ cd  nom-du-projet
 
 ![image](https://github.com/INM5001-A23/OrthoBien-Etre/assets/106025922/1b239934-4a52-4055-9f43-ad4d1ae2927e)
 
+### Page confirmation de la commande
+
+![image](https://github.com/INM5001-A23/OrthoBien-Etre/assets/106025922/5954b892-0230-4099-9a1e-dab49a5ed58e)
+
 
 ### Page compte - profil
 ![image](https://github.com/INM5001-A23/OrthoBien-Etre/assets/106025922/2840739e-acda-4f46-845b-70dc694ebf0a)
