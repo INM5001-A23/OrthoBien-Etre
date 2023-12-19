@@ -33,10 +33,14 @@ router.get("/:clientid", async (req, res) => {
     try{
       const clearCart = await Cart.findOne({'client.infosClient': cartId});
 
-      if (clearCart && clearCart.articles.length > 0) {
+      console.log("clearCart with userid: " + clearCart)
+
+      if (clearCart  && cart.articles.length > 0) {
         clearCart.articles = [];
         clearCart.nombreArticles = 0;
         clearCart.montantAvantTaxes = 0.00;
+
+        console.log(clearCart);
     
         await clearCart.save();
           res
@@ -115,20 +119,6 @@ router.get('/', async (req, res) => {
       res.status(500).json({message: err.message})
   }
   
-});
-
-router.post('/add', async (req, res) => {
-  try {
-    const user = req.user._id;
-    const items = req.body.products;
-
-    const cartDoc = await cart.save();
-
-  } catch (error) {
-    res.status(400).json({
-      error: 'Your request could not be processed. Please try again.'
-    });
-  }
 });
 
 export default router;
