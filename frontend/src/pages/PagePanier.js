@@ -52,15 +52,15 @@ function PagePanier() {
     }
   };
 
-  // fetch cart from api or localStorage
-  useEffect(() => {
-    if (user) fetchUserCart();
-    setCart(
-      localStorage.getItem("guestCartItems")
-        ? JSON.parse(localStorage.getItem("guestCartItems"))
-        : []
-    );
-  }, []);
+  // // fetch cart from api or localStorage
+  // useEffect(() => {
+  //   if (user) fetchUserCart();
+  //   setCart(
+  //     localStorage.getItem("guestCartItems")
+  //       ? JSON.parse(localStorage.getItem("guestCartItems"))
+  //       : []
+  //   );
+  // }, []);
 
   // update cart in localStorage or userCart
   useEffect(() => {

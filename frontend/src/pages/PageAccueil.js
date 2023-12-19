@@ -16,6 +16,16 @@ function PageAccueil() {
   const [produitsPopulaire, setProduitsPopulaire] = useState([]);
   const [categories, setCategories] = useState([]);
 
+  // fetch cart from api or localStorage
+  useEffect(() => {
+    if (user) fetchUserCart();
+    setCart(
+      localStorage.getItem("guestCartItems")
+        ? JSON.parse(localStorage.getItem("guestCartItems"))
+        : []
+    );
+  }, []);
+
   const [cart, setCart] = useState(
     localStorage.getItem("guestCartItems")
       ? JSON.parse(localStorage.getItem("guestCartItems"))
@@ -27,6 +37,23 @@ function PageAccueil() {
   const imagesList = imagesCode.map((item) => {
     return `./images/${item}.png`;
   });
+
+    // Fetch user cart from database
+    const fetchUserCart = async () => {
+      try {
+        const userIdResponse = await axios.get(
+          `/utilisateur/find/${user.courriel}`
+        );
+        
+        const response = await axios.get(`/panier/${userIdResponse.data._id}`);
+        localStorage.setItem(
+          "guestCartItems",
+          JSON.stringify(response.data.articles)
+        );
+      } catch (error) {
+        console.error("Error fetching cart:", error);
+      }
+    };
 
   // Ajouter produit dans panier
   const handleAddToCart = (productDetails) => {
