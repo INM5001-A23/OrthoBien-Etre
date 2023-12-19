@@ -21,7 +21,7 @@ function Recherche({}) {
   return (
     <ModelePage>
       <Container>
-        <h2 className="p-3">Résultat de la recherche</h2>
+        <h2 className="p-3">Résultats de la recherche</h2>
         <Row xs={1} md={4} className="g-4 justify-content-center">
           {results &&
             results
