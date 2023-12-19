@@ -38,6 +38,18 @@ cd  nom-du-projet
 3. Lire les READMEs du frontend et du backend pour la suite
   
 
+## Utilisateur test pour Paypal
+
+- Courriel: sb-xql1728160531@personal.example.com
+- Mot de passe: C=#hq4*B
+
+
+## Utilisateur admin
+
+- Courriel: admin@ortho.com
+- Mot de passe: mdpadmin
+
+
 ## Fonctionnalités
 
   
@@ -155,6 +167,13 @@ cd  nom-du-projet
 ### Page contact
 
 ![image](https://github.com/INM5001-A23/OrthoBien-Etre/assets/106025922/875614a3-d84e-4aed-9858-08878a774366)
+
+
+
+### N.B.
+- L'ajout de grand nombre de photos peut causer une instabilité des requete HTTP dans le backend dû à la limitation de notre forfait graduit avec mongodb.
+
+- Certains messages d'erreur s'affiche dans la console du frontend et du backend. Cela n'affecte en aucun cas les fonctionnalités du site.
 
 
 ## Auteurs
