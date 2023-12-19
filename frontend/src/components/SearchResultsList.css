@@ -10,8 +10,8 @@
 }
 
 .result-item img {
-  width: 75px;
-  height: 75px;
+  width: 100px;
+  height: 100px;
   margin-right: 10px;
   border: 1px solid rgba(0, 0, 0, 0.175);
   border-radius: 0.375rem;

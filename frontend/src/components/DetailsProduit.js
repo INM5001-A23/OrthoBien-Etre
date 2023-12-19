@@ -151,16 +151,16 @@ function DetailsProduit({
                         margin: "0 20px 0 0",
                       }}
                     >
-                      {prix} CAD
+                      {prix.toFixed(2)} CAD
                     </ListGroup.Item>
-                    {prixBarre.toFixed(2) && (
+                    {prixBarre && (
                       <ListGroup.Item>
-                        <del>{prixBarre.toFixed(2)} CAD</del>
+                        <del>{prixBarre} CAD</del>
                       </ListGroup.Item>
                     )}
                   </>
                 ) : (
-                  prixInitial.toFixed(2) && (
+                  prixInitial && (
                     <ListGroup.Item>
                       {prixInitial.toFixed(2)} CAD
                     </ListGroup.Item>
