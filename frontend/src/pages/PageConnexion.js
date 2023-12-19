@@ -24,12 +24,30 @@ function PageConnexion() {
     mode: "onBlur",
   });
 
+  const fetchUserCart = async (courriel) => {
+    try {
+      const userIdResponse = await axios.get(
+        `/utilisateur/find/${courriel}`
+      );
+      
+      const response = await axios.get(`/panier/${userIdResponse.data._id}`);
+      localStorage.setItem(
+        "guestCartItems",
+        JSON.stringify(response.data.articles)
+      );
+    } catch (error) {
+      console.error("Error fetching cart:", error);
+    }
+  };
+
   // Faire la connexion de l'utilisateur en verifiant les donnees dans la bd
   const handleFormulaireConnexion = handleSubmit((data) => {
     axios
       .post("/connexion", data)
       .then((res) => {
         if (res.status === 200) {
+
+          fetchUserCart(data.courriel);
     
           localStorage.setItem("token", res?.data?.token);
 
@@ -40,7 +58,6 @@ function PageConnexion() {
           setError("backend", res?.data?.erreur);
         }
 
-        console.log(res.data)
       })
       .catch((error) => {
         console.error("Error submitting form:", error);
