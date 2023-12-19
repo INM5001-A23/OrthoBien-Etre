@@ -1,4 +1,4 @@
-import { default as React, useContext, useEffect, useState } from "react";
+import { default as React, useContext, useState } from "react";
 import { Alert, Badge, Button, Card, Row, Stack } from "react-bootstrap";
 import ListGroup from "react-bootstrap/ListGroup";
 import { useNavigate } from "react-router-dom";

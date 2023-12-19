@@ -3,7 +3,7 @@ import { Button, Container, Stack } from "react-bootstrap";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import { useSearchParams } from "react-router-dom";
-import { AxiosContext, UserContext } from "..";
+import { AxiosContext } from "..";
 import CarteProduit from "../components/CarteProduit";
 import FiltreCatalogue from "../components/FiltreCatalogue";
 import FiltreCategorie from "../components/FiltreCategorie";
@@ -11,7 +11,6 @@ import ModelePage from "../layout/ModelePage";
 
 function PageCatalogue() {
   const axios = useContext(AxiosContext);
-  const user = useContext(UserContext);
 
   const [searchParams] = useSearchParams();
   const [filtreCategorie, setFiltreCategorie] = useState(

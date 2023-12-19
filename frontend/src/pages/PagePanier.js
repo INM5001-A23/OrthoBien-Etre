@@ -18,26 +18,8 @@ function PagePanier() {
       : []
   );
 
-  // Fetch user cart from database
-  const fetchUserCart = async () => {
-    try {
-      const userIdResponse = await axios.get(
-        `/utilisateur/find/${user.courriel}`
-      );
-      
-      const response = await axios.get(`/panier/${userIdResponse.data._id}`);
-      localStorage.setItem(
-        "guestCartItems",
-        JSON.stringify(response.data.articles)
-      );
-    } catch (error) {
-      console.error("Error fetching cart:", error);
-    }
-  };
-
   // Update user cart to database
   const updateUserCart = async () => {
-    console.log(cart)
     try {
       const guestCartItems = JSON.parse(localStorage.getItem("guestCartItems"));
       const userIdResponse = await axios.get(

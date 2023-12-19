@@ -5,7 +5,7 @@ import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import { useForm } from "react-hook-form";
 import { useLocation, useNavigate } from "react-router-dom";
-import { AxiosContext, UserContext } from "..";
+import { UserContext } from "..";
 import Button from "../components/Bouton";
 import ModelePage from "../layout/ModelePage";
 
@@ -13,7 +13,6 @@ const Livraison = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
-  const axios = useContext(AxiosContext);
   const user = useContext(UserContext);
 
   console.log(user)

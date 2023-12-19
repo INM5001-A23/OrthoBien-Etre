@@ -29,11 +29,9 @@ router.get("/:clientid", async (req, res) => {
  */
   router.put('/clear/:cartid', async (req, res) => {
     const cartId = req.params.cartid;
-    console.log('Cart to clear: ' + cartId);
     
     try{
       const clearCart = await Cart.findOne({'client.infosClient': cartId});
-      console.log('Cart to clear: ' + clearCart);
 
       if (clearCart && clearCart.articles.length > 0) {
         clearCart.articles = [];

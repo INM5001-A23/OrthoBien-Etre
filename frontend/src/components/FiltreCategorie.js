@@ -34,7 +34,7 @@ function FiltreCategorie({ filtre, setFiltre }) {
     }
 
     const nomCategorie = categories.find(
-      (categorie) => categorie.codeCategorie == filtre
+      (categorie) => categorie.codeCategorie === filtre
     )?.nomCategorie;
 
     return `: ${nomCategorie}`;
