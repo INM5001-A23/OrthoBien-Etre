@@ -90,7 +90,7 @@ cd  nom-du-projet
 
 ### Section création d'une évaluation client de la page produit avec utilisateur enregistré
 
-![image](https://github.com/INM5001-A23/OrthoBien-Etre/assets/106025922/6e2aeda0-df0b-4aa4-9024-77eae8e2675c)
+![image](https://github.com/INM5001-A23/OrthoBien-Etre/assets/106025922/3d4e831b-7eae-4595-88af-e89470eaef33)
 
 
 ### Page connexion
