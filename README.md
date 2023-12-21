@@ -35,19 +35,6 @@ cd  nom-du-projet
 ```
 
 3. Lire les READMEs du frontend et du backend pour la suite
-  
-
-## Utilisateur test pour Paypal
-
-- Courriel: sb-xql1728160531@personal.example.com
-- Mot de passe: C=#hq4*B
-
-
-## Utilisateur admin
-
-- Courriel: admin@ortho.com
-- Mot de passe: mdpadmin
-
 
 ## Fonctionnalités
 
